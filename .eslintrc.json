@@ -1,0 +1,18 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+    "rules": {
+        "no-use-before-define": "off",
+        "no-restricted-properties": "off"
+    },
+    "globals": {
+        "Buffer": true,
+        "require": true,
+        "module": true,
+        "__dirname": true,
+        "inject": true,
+        "angular": true
+    },
+    "env": {
+        "jasmine": true
+    }
+}

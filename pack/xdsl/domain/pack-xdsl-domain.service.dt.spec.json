@@ -1,0 +1,5 @@
+{
+    "error" : { "message": "Error message" },
+    "services" : ["mydomain.eu"],
+    "tlds": ["com","net","info","fr","eu"]
+}

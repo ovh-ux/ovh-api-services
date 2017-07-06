@@ -1,0 +1,22 @@
+{
+    "get": {
+        "success": {
+            "notifications": [
+                {
+                    "frequency": "1h",
+                    "email": "fab@ovh.com",
+                    "smsAccount": "",
+                    "id": 9017,
+                    "type": "mail",
+                    "phone": "",
+                    "enabled": true
+                }
+            ]
+        }
+    },
+    "count": {
+        "success":{
+            "value":2
+        }
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "error" : { "message": "Error message" },
+    "clouds" :
+    [
+
+    ],
+    "cloud" :
+    {
+
+    },
+    "cloudjson" : {
+        "models": {
+            "cloud.rule.RuleActionEnum": {
+                "namespace": "rule",
+                "id": "RuleActionEnum",
+                "description": "",
+                "enum": [
+                    "allow",
+                    "deny"
+                ],
+                "enumType": "string"
+            },
+            "cloud.rule.RuleProtocolEnum": {
+                "namespace": "rule",
+                "id": "RuleProtocolEnum",
+                "description": "",
+                "enum": [
+                    "tcp",
+                    "udp",
+                    "icmp",
+                    "any"
+                ],
+                "enumType": "string"
+            }
+        }
+    }
+}
+

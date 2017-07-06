@@ -1,0 +1,27 @@
+{
+    "error" : { "message": "Error message" },
+    "prices" : {
+        "instances" : [
+            {"monthlyPrice": {"currencyCode": "EUR","value": 3,"text": "3.00 €"},"flavorId": "03b5d6a8-95b7-4fcf-a1b6-3265dca20dcc","region": "SBG1","price": {"currencyCode": "EUR","value": 0.008,"text": "0.008 €"},"flavorName": "ks-1"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 142,"text": "142.00 €"},"flavorId": "0417a0e6-f68a-4b8b-a642-ca5ecb9652f7","region": "SBG1","price": {"currencyCode": "EUR","value": 0.394,"text": "0.394 €"},"flavorName": "win-sp-60"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 480,"text": "480.00 €"},"flavorId": "1f1efedf-ec91-4a42-acd7-f5cf64b02d3c","region": "SBG1","price": {"currencyCode": "EUR","value": 1.333,"text": "1.333 €"},"flavorName": "eg-120"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 120,"text": "120.00 €"},"flavorId": "3c1d6170-0097-4b5c-a3b3-adff1b7a86e0","region": "SBG1","price": {"currencyCode": "EUR","value": 0.333,"text": "0.333 €"},"flavorName": "eg-30"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 568,"text": "568.00 €"},"flavorId": "07885848-8831-486d-8525-91484c09cc7e","region": "SBG1","price": {"currencyCode": "EUR","value": 1.578,"text": "1.578 €"},"flavorName": "win-sp-240"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 30,"text": "30.00 €"},"flavorId": "fa3cc551-0358-4170-be64-56ea432b064c","region": "SBG1","price": {"currencyCode": "EUR","value": 0.083,"text": "0.083 €"},"flavorName": "eg-7"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 70,"text": "70.00 €"},"flavorId": "80d8510a-79cc-4307-8db7-d1965c9e8ddb","region": "SBG1","price": {"currencyCode": "EUR","value": 0.194,"text": "0.194 €"},"flavorName": "sp-60"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 284,"text": "284.00 €"},"flavorId": "f247dc56-395b-49de-9a62-93ccc4fff4ed","region": "SBG1","price": {"currencyCode": "EUR","value": 0.789,"text": "0.789 €"},"flavorName": "win-sp-120"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 50,"text": "50.00 €"},"flavorId": "377ded36-491f-4ad7-9eb4-876798b2aea9","region": "SBG1","price": {"currencyCode": "EUR","value": 0.139,"text": "0.139 €"},"flavorName": "win-eg-7"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 800,"text": "800.00 €"},"flavorId": "b798e44e-bf71-488c-9335-f20bf5976547","region": "SBG1","price": {"currencyCode": "EUR","value": 2.222,"text": "2.222 €"},"flavorName": "win-eg-120"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 140,"text": "140.00 €"},"flavorId": "ac74cb45-d895-47dd-b9cf-c17778033d83","region": "SBG1","price": {"currencyCode": "EUR","value": 0.389,"text": "0.389 €"},"flavorName": "sp-120"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 100,"text": "100.00 €"},"flavorId": "ae900175-72bd-4fbc-8ab2-4673b468aa5b","region": "SBG1","price": {"currencyCode": "EUR","value": 0.278,"text": "0.278 €"},"flavorName": "win-eg-15"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 240,"text": "240.00 €"},"flavorId": "0297d7ac-fe6f-4ff1-b6e7-0b8b0908c94f","region": "SBG1","price": {"currencyCode": "EUR","value": 0.667,"text": "0.667 €"},"flavorName": "eg-60"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 200,"text": "200.00 €"},"flavorId": "6e12cae3-0492-483c-aa39-54a0dcaf86dd","region": "SBG1","price": {"currencyCode": "EUR","value": 0.556,"text": "0.556 €"},"flavorName": "win-eg-30"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 280,"text": "280.00 €"},"flavorId": "ed286e2c-769f-4c47-ac52-b8de7a4891f6","region": "SBG1","price": {"currencyCode": "EUR","value": 0.778,"text": "0.778 €"},"flavorName": "sp-240"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 400,"text": "400.00 €"},"flavorId": "def75cbd-a4b1-4f82-9152-90c65df9587b","region": "SBG1","price": {"currencyCode": "EUR","value": 1.111,"text": "1.111 €"},"flavorName": "win-eg-60"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 35,"text": "35.00 €"},"flavorId": "d1acf88d-6f55-4c5c-a914-4ecbdbd50d6b","region": "SBG1","price": {"currencyCode": "EUR","value": 0.097,"text": "0.097 €"},"flavorName": "sp-30"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 60,"text": "60.00 €"},"flavorId": "675558ea-04fe-47a2-83de-40be9b2eacd4","region": "SBG1","price": {"currencyCode": "EUR","value": 0.167,"text": "0.167 €"},"flavorName": "eg-15"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 71,"text": "71.00 €"},"flavorId": "8be9dc29-3eca-499b-ae2d-e3c99699131a","region": "SBG1","price": {"currencyCode": "EUR","value": 0.197,"text": "0.197 €"},"flavorName": "win-sp-30"},
+            {"monthlyPrice": {"currencyCode": "EUR","value": 6,"text": "6.00 €"},"flavorId": "701af928-72fe-44a7-8092-8e8ff498b295","region": "SBG1","price": {"currencyCode": "EUR","value": 0.017,"text": "0.017 €"},"flavorName": "ks-2"}
+        ]
+    }
+}

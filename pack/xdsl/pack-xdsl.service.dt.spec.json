@@ -1,0 +1,38 @@
+[
+    {
+        "name": "hostedEmail",
+        "used": 1,
+        "inCreation": 0,
+        "total": 10
+    },
+    {
+        "name": "voipBillingAccount",
+        "used": 1,
+        "inCreation": 0,
+        "total": 1
+    },
+    {
+        "name": "voipEcoFax",
+        "used": 1,
+        "inCreation": 0,
+        "total": 1
+    },
+    {
+        "name": "hubic",
+        "used": 1,
+        "inCreation": 0,
+        "total": 1
+    },
+    {
+        "name": "access",
+        "used": 1,
+        "inCreation": 0,
+        "total": 1
+    },
+    {
+        "name": "voipLine",
+        "used": 1,
+        "inCreation": 0,
+        "total": 3
+    }
+]

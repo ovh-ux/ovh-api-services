@@ -1,0 +1,41 @@
+{
+    "success": {
+        "status": {
+            "function": "refreshConnectedDevices",
+            "status": "todo",
+            "id": 7631077
+        },
+        "devices": [
+            {
+                "addressSource": "DHCP",
+                "informationDate": "2015-05-22T17:24:16+02:00",
+                "macAddress": "d8:50:e6:f0:14:a6",
+                "ipAddress": "192.168.1.113",
+                "active": true,
+                "hostName": "android-8fd988ef6b715362",
+                "leaseTimeRemaining": 45153,
+                "interfaceType": "802.11"
+            },
+            {
+                "addressSource": "DHCP",
+                "informationDate": "2015-05-22T17:24:16+02:00",
+                "macAddress": "b8:27:eb:67:a7:a0",
+                "ipAddress": "192.168.1.83",
+                "active": true,
+                "hostName": "osmc",
+                "leaseTimeRemaining": 66545,
+                "interfaceType": "Ethernet"
+            },
+            {
+                "addressSource": "Unknown",
+                "informationDate": "2015-05-22T17:24:16+02:00",
+                "macAddress": "9c:97:26:b6:fd:2a",
+                "ipAddress": "192.168.1.254",
+                "active": true,
+                "hostName": "localhost",
+                "leaseTimeRemaining": -1,
+                "interfaceType": "Ethernet"
+            }
+        ]
+    }
+}

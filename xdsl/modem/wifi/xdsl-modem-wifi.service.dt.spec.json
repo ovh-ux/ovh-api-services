@@ -1,0 +1,17 @@
+{
+  "get": {
+    "success": [
+      {
+        "channelMode": "Auto",
+        "taskId": null,
+        "SSIDAdvertisementEnabled": true,
+        "SSID": "TNCAP1CAFCD",
+        "channel": 11,
+        "securityType": "WPAandWPA2",
+        "securityKey": "eH5mUaSj7bwf1uHTbRKsRW5vdH55DGrIrAKNUGAx722jI5YeEWcoBnL+9TEdyv+BTKUYDAkzRBaGUNcSZsEObdLav3x2GbkQWOxGWbl3FZuZ51di3Nnb6HY6YlHB2INcBOM/VZpsEo395f5gRdSYZJ6nhla43sSaW/ZujEfUeH0=",
+        "enabled": false,
+        "wifiName": "defaultWIFI"
+      }
+    ]
+  }
+}

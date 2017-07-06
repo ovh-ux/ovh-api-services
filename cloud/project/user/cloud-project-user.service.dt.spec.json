@@ -1,0 +1,131 @@
+{
+    "error" : { "message": "Error message" },
+    "users" : [
+        {
+            "creationDate": "2015-06-30T12:31:14.497115+02:00",
+            "status": "creating",
+            "id": 1251,
+            "description": "z",
+            "username": "TwPZVjSC7Jq7"
+        },
+        {
+            "creationDate": "2015-06-30T12:31:12.448387+02:00",
+            "status": "ok",
+            "id": 1250,
+            "description": "d",
+            "username": "TcYyNFh7ushY"
+        }
+    ],
+    "user" :{
+        "creationDate": "2015-06-30T12:31:14.497115+02:00",
+        "status": "ok",
+        "id": 1251,
+        "description": "z",
+        "username": "TwPZVjSC7Jq7"
+    },
+    "regeneratePassword": {
+        "password": "Adm6KEVdUDTkvnEFBJ5853tfHdF3yCvM",
+        "creationDate": "2015-06-30T12:31:14.497115+02:00",
+        "status": "updating",
+        "id": 1251,
+        "description": "z",
+        "username": "TwPZVjSC7Jq7"
+    },
+    "token": {
+        "X-Auth-Token": "0b9f78bfaa014c02a8a8776abf294bfe",
+        "token": {
+            "roles": [
+                {
+                    "name": "_member_",
+                    "id": "9fe2ff9ee4384b1894a90878d3e92bab"
+                }
+            ],
+            "project": {
+                "domain": {
+                    "name": "Default"
+                },
+                "name": "6068432162845601",
+                "id": "93c6b9f66a87431a9319c31ee6d4feb6"
+            },
+            "expires_at": "2015-07-01T14:31:16.786037Z",
+            "catalog": [
+                {
+                    "type": "network",
+                    "id": "0be6ed3dce244b8295ff643739a86809",
+                    "endpoints": [
+                        {
+                            "url": "https://network.compute.sbg1.cloud.ovh.net/",
+                            "region": "SBG1",
+                            "interface": "public",
+                            "legacy_endpoint_id": "997be9b2ca494b299fcf0b94ab64985c",
+                            "id": "8e398b826d084ef0947656c312dc08c1"
+                        }
+                    ]
+                },
+                {
+                    "type": "image",
+                    "id": "480216e24c6e4970b77ff352384548c3",
+                    "endpoints": [
+                        {
+                            "url": "https://image.compute.sbg1.cloud.ovh.net/",
+                            "region": "SBG1",
+                            "interface": "public",
+                            "legacy_endpoint_id": "644ff7c0d1124fc1933404e18b8bbd4e",
+                            "id": "2ced8b73c21f42809d0cbe40da07032a"
+                        }
+                    ]
+                },
+                {
+                    "type": "compute",
+                    "id": "292dc0f1cc134cb8b363d4a4f74630b4",
+                    "endpoints": [
+                        {
+                            "url": "https://compute.sbg1.cloud.ovh.net/v2/93c6b9f66a87431a9319c31ee6d4feb6",
+                            "region": "SBG1",
+                            "interface": "public",
+                            "legacy_endpoint_id": "86455e1a43c140938aca8c559943439c",
+                            "id": "a707bffedf1c4b80a124c585c67c1639"
+                        }
+                    ]
+                },
+                {
+                    "type": "identity",
+                    "id": "1736f92a0c9541c48d778df7f50b82ce",
+                    "endpoints": [
+                        {
+                            "url": "https://auth.cloud.ovh.net/v2.0",
+                            "region": "SBG1",
+                            "interface": "public",
+                            "legacy_endpoint_id": "ea827133d77c4299866c19bd0006bff4",
+                            "id": "800ba8b2166c4f358d3535d2b500c24a"
+                        }
+                    ]
+                },
+                {
+                    "type": "object-store",
+                    "id": "9afff7a684eb4830b08366fce2b94c57",
+                    "endpoints": [
+                        {
+                            "url": "https://storage.sbg1.cloud.ovh.net/v1/AUTH_93c6b9f66a87431a9319c31ee6d4feb6",
+                            "region": "SBG1",
+                            "interface": "public",
+                            "legacy_endpoint_id": "0feb14c5933047cea97e3bf8a3ddee96",
+                            "id": "3ccc82bbd33d4cdfbc5f03aef2724ab0"
+                        }
+                    ]
+                }
+            ],
+            "user": {
+                "domain": {
+                    "name": "Default"
+                },
+                "name": "TwPZVjSC7Jq7",
+                "id": "bc1efaa16c6648a5950993b4453fb632"
+            },
+            "methods": [
+                "password"
+            ],
+            "issued_at": "2015-06-30T14:31:16.786096Z"
+        }
+    }
+}

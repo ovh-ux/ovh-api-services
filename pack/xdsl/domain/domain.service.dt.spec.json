@@ -1,0 +1,24 @@
+{
+    "error": { "message": "Error message" },
+    "dispo": {
+        "domain": "exemple",
+        "search": [
+            { "tld": "com", "available": 0 },
+            { "tld": "ovh", "available": 1 },
+            { "tld": "club", "available": 0 },
+            { "tld": "website", "available": 0 },
+            { "tld": "fr", "available": 0 },
+            { "tld": "be", "available": 0 },
+            { "tld": "eu", "available": 0 },
+            { "tld": "net", "available": 0 },
+            { "tld": "kim", "available": 1 },
+            { "tld": "voto", "available": 1 },
+            { "tld": "villas", "available": 1 },
+            { "tld": "vlaanderen", "available": 1 },
+            { "tld": "repair", "available": 1 },
+            { "tld": "immo", "available": 1 },
+            { "tld": "sexy", "available": 1 },
+            { "tld": "review", "available": 0 }
+        ]
+    }
+}

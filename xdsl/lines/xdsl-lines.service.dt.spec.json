@@ -1,0 +1,32 @@
+{
+    "get": {
+        "success": [
+            "0605040708"
+        ]
+    },
+    "query": {
+        "success": {
+            "deconsolidation": "total",
+            "concentrationPoint": {
+                "lineHead": "801/D07",
+                "lineInitialSectionPair": 3,
+                "lineInitialSection": 1
+            },
+            "number": "0320027703",
+            "distance": 1239,
+            "faultRepairTime": "NORMAL",
+            "directDistribution": false,
+            "portability": true,
+            "mitigation": 20.085,
+            "lineSectionsLength": [
+                {
+                    "length": 1239,
+                    "diameter": 4
+                }
+            ],
+            "syncUp": 0,
+            "syncDown": 0,
+            "originalNumber": ""
+        }
+    }
+}

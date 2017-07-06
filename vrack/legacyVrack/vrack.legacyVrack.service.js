@@ -1,0 +1,8 @@
+angular.module("ovh-api-services").service("VrackLegacyVrack", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("VrackLegacyVrackLexi");
+        }
+    };
+});

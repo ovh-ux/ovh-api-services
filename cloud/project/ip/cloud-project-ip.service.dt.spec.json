@@ -1,0 +1,16 @@
+{
+    "error" : { "message": "Error message" },
+    "ips" : [
+        {"id":188,"ip":"192.168.0.3","status":"ok","type":"private"},
+        {"id":189,"ip":"189.189.189.189","status":"ok","type":"sticky"},
+        {"id":218,"ip":"218.218.218.218","status":"ok","type":"floating"},
+        {"id":219,"ip":"219.219.219.219","status":"ok","type":"floating"},
+        {"id":220,"ip":"220.220.220.220","status":"ok","type":"floating"},
+        {"id":221,"ip":"221.221.221.221","status":"ok","type":"floating"}
+    ],
+    "new": {"id":188,"ip":null,"status":"creationPending","routedTo": null,"progress": 0},
+    "delete": {"id":42,"ip":"42.42.42.42","status":"deletionPending","routedTo": null,"progress": 0},
+    "attach": "",
+    "detach": "",
+    "ip" : {}
+}

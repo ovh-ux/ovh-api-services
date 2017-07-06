@@ -1,0 +1,21 @@
+{
+  "lns": {
+    "get": [
+      {
+        "city": "Roubaix",
+        "isCurrent": true,
+        "name": "rbxLns-1"
+      },
+      {
+        "city": "Paris",
+        "isCurrent": false,
+        "name": "parLns-1"
+      }
+    ],
+    "post": {
+      "function": "lnsChange",
+      "status": "todo",
+      "id": 7599095
+    }
+  }
+}

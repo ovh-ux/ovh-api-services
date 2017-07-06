@@ -1,0 +1,27 @@
+{
+    "get": {
+        "success": {
+            "deconsolidation": "total",
+            "concentrationPoint": {
+                "lineHead": "801/D07",
+                "lineInitialSectionPair": 1,
+                "lineInitialSection": 2
+            },
+            "number": "0320028741",
+            "distance": 1229,
+            "faultRepairTime": "NORMAL",
+            "directDistribution": false,
+            "portability": true,
+            "mitigation": 19.935,
+            "lineSectionsLength": [
+                {
+                    "length": 1229,
+                    "diameter": 4
+                }
+            ],
+            "syncUp": 1212,
+            "syncDown": 15507,
+            "originalNumber": ""
+        }
+    }
+}

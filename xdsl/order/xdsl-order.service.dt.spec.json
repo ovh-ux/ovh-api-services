@@ -1,0 +1,82 @@
+[
+  {
+    "expectedDuration": 1,
+    "status": "done",
+    "durationUnit": "minute",
+    "name": "orderReceived",
+    "comments": [
+      "Créée le 26/05/2011 à 18h19."
+    ],
+    "doneDate": "2011-05-26T18:19:09+02:00"
+  },
+  {
+    "expectedDuration": 5,
+    "status": "done",
+    "durationUnit": "minute",
+    "name": "orderPayed",
+    "comments": [
+      "Payée le 27/05/2011 à 19h02."
+    ],
+    "doneDate": "2011-05-27T19:02:22+02:00"
+  },
+  {
+    "expectedDuration": 20,
+    "status": "done",
+    "durationUnit": "minute",
+    "name": "orderTreatment",
+    "comments": [],
+    "doneDate": null
+  },
+  {
+    "expectedDuration": 5,
+    "status": "done",
+    "durationUnit": "minute",
+    "name": "checkInfrastructure",
+    "comments": [],
+    "doneDate": null
+  },
+  {
+    "expectedDuration": 1,
+    "status": "done",
+    "durationUnit": "day",
+    "name": "sendOrderToProvider",
+    "comments": [
+      "Demande envoyée à France Telecom. En attente de validation."
+    ],
+    "doneDate": null
+  },
+  {
+    "expectedDuration": 5,
+    "status": "done",
+    "durationUnit": "minute",
+    "name": "configureAccessOnOVH",
+    "comments": [],
+    "doneDate": null
+  },
+  {
+    "expectedDuration": 5,
+    "status": "done",
+    "durationUnit": "day",
+    "name": "waitingForProviderInstallReport",
+    "comments": [
+      "Construction de la ligne 0320027703 réalisée par France Telecom le 24/06/2011."
+    ],
+    "doneDate": null
+  },
+  {
+    "expectedDuration": 3,
+    "status": "done",
+    "durationUnit": "day",
+    "name": "setupCustomerPremisesEquipment",
+    "comments": [],
+    "doneDate": null
+  },
+  {
+    "expectedDuration": 1,
+    "status": "done",
+    "durationUnit": "minute",
+    "name": "accessIsOperational",
+    "comments": [],
+    "doneDate": null
+  }
+]
