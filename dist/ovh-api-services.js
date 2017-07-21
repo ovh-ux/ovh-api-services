@@ -4704,58 +4704,57 @@ angular.module("ovh-api-services").service("OrderCloudProjectIp", ["$injector", 
 
 }]);
 
-angular.module("ovh-api-services").service("OrderDedicatedNashaNewLexi",
-                                           ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-                                               "use strict";
+angular.module("ovh-api-services").service("OrderDedicatedNashaNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
 
-                                               // Cache to invalidate
-                                               var queryCache = $cacheFactory("OrderDedicatedNashaNewLexiQuery");
-                                               var cache = $cacheFactory("OrderDedicatedNashaNewLexi");
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       queryCache.removeAll();
-                                                       return response.data;
-                                                   }
-                                               };
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OrderDedicatedNashaNewLexiQuery");
+    var cache = $cacheFactory("OrderDedicatedNashaNewLexi");
+    var interceptor = {
+        response: function (response) {
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
 
-                                               var resource = $resource("/order/dedicated/nasha/new/:duration", {
-                                                   duration: "@duration"
-                                               }, {
-                                                   query: {
-                                                       method: "GET",
-                                                       isArray: true,
-                                                       cache: queryCache,
-                                                       params: {
-                                                           datacenter: "@datacenter",
-                                                           model: "@model"
-                                                       }
-                                                   },
-                                                   get: {
-                                                       method: "GET",
-                                                       cache: cache,
-                                                       isArray: false,
-                                                       params: {
-                                                           datacenter: "@datacenter",
-                                                           model: "@model"
-                                                       }
-                                                   },
-                                                   create: {
-                                                       method: "POST",
-                                                       interceptor: interceptor
-                                                   }
+    var resource = $resource("/order/dedicated/nasha/new/:duration", {
+        duration: "@duration"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache,
+            params: {
+                datacenter: "@datacenter",
+                model: "@model"
+            }
+        },
+        get: {
+            method: "GET",
+            cache: cache,
+            isArray: false,
+            params: {
+                datacenter: "@datacenter",
+                model: "@model"
+            }
+        },
+        create: {
+            method: "POST",
+            interceptor: interceptor
+        }
 
-                                               });
+    });
 
-                                               resource.resetCache = function () {
-                                                   cache.removeAll();
-                                               };
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
 
-                                               resource.resetQueryCache = function () {
-                                                   queryCache.removeAll();
-                                               };
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
 
-                                               return resource;
-                                           }]);
+    return resource;
+}]);
 
 angular.module("ovh-api-services").service("OrderDedicatedNashaNew", ["$injector", function ($injector) {
     "use strict";
@@ -4780,29 +4779,28 @@ angular.module("ovh-api-services").service("OrderDedicatedNasha", ["$injector", 
 
 }]);
 
-angular.module("ovh-api-services").service("OrderLicenseOfficeNewLexi",
-                                           ["$resource", "$cacheFactory", "License", function ($resource, $cacheFactory, License) {
-                                               "use strict";
+angular.module("ovh-api-services").service("OrderLicenseOfficeNewLexi", ["$resource", "$cacheFactory", "License", function ($resource, $cacheFactory, License) {
+    "use strict";
 
-                                               // Cache to invalidate
-                                               var queryCache = $cacheFactory("OrderLicenseOfficeNewLexiQuery");
-                                               var cache = $cacheFactory("OrderLicenseOfficeNewLexi");
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OrderLicenseOfficeNewLexiQuery");
+    var cache = $cacheFactory("OrderLicenseOfficeNewLexi");
 
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       License.Office().Lexi().resetQueryCache();
-                                                       return response;
-                                                   }
-                                               };
+    var interceptor = {
+        response: function (response) {
+            License.Office().Lexi().resetQueryCache();
+            return response;
+        }
+    };
 
-                                               return $resource("/order/license/office/new/:duration", {
-                                                   duration: "@duration"
-                                               }, {
-                                                   query: { method: "GET", isArray: true, cache: queryCache },
-                                                   get: { method: "GET", cache: cache },
-                                                   save: { method: "POST", interceptor: interceptor }
-                                               });
-                                           }]);
+    return $resource("/order/license/office/new/:duration", {
+        duration: "@duration"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        save: { method: "POST", interceptor: interceptor }
+    });
+}]);
 
 angular.module("ovh-api-services").service("OrderLicenseOfficeNew", ["$injector", function ($injector) {
 
@@ -4838,27 +4836,26 @@ angular.module("ovh-api-services").service("OrderLicense", ["$injector", functio
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderLexi",
-                                           ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-                                               "use strict";
+angular.module("ovh-api-services").service("OrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
 
-                                               var schemaCache = $cacheFactory("OrderLexiSchema");
+    var schemaCache = $cacheFactory("OrderLexiSchema");
 
-                                               var orderRessource = $resource("/order", {
-                                               }, {
-                                                   schema: {
-                                                       method: "GET",
-                                                       cache: schemaCache,
-                                                       url: "/order.json"
-                                                   }
-                                               });
+    var orderRessource = $resource("/order", {
+    }, {
+        schema: {
+            method: "GET",
+            cache: schemaCache,
+            url: "/order.json"
+        }
+    });
 
-                                               orderRessource.resetSchemaCache = function () {
-                                                   schemaCache.removeAll();
-                                               };
+    orderRessource.resetSchemaCache = function () {
+        schemaCache.removeAll();
+    };
 
-                                               return orderRessource;
-                                           }]);
+    return orderRessource;
+}]);
 
 angular.module("ovh-api-services").service("Order", ["$injector", function ($injector) {
     "use strict";
@@ -4945,29 +4942,28 @@ angular.module("ovh-api-services").service("OrderOverTheBox", ["$injector", func
 
 }]);
 
-angular.module("ovh-api-services").service("OrderRouterNewLexi",
-                                           ["$resource", "$cacheFactory", "Router", function ($resource, $cacheFactory, Router) {
-                                               "use strict";
+angular.module("ovh-api-services").service("OrderRouterNewLexi", ["$resource", "$cacheFactory", "Router", function ($resource, $cacheFactory, Router) {
+    "use strict";
 
-                                               // Cache to invalidate
-                                               var queryCache = $cacheFactory("OrderRouterNewLexiQuery");
-                                               var cache = $cacheFactory("OrderRouterNewLexi");
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OrderRouterNewLexiQuery");
+    var cache = $cacheFactory("OrderRouterNewLexi");
 
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       Router.Lexi().resetQueryCache();
-                                                       return response;
-                                                   }
-                                               };
+    var interceptor = {
+        response: function (response) {
+            Router.Lexi().resetQueryCache();
+            return response;
+        }
+    };
 
-                                               return $resource("/order/router/new/:duration", {
-                                                   duration: "@duration"
-                                               }, {
-                                                   query: { method: "GET", isArray: true, cache: queryCache },
-                                                   get: { method: "GET", cache: cache },
-                                                   save: { method: "POST", interceptor: interceptor }
-                                               });
-                                           }]);
+    return $resource("/order/router/new/:duration", {
+        duration: "@duration"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        save: { method: "POST", interceptor: interceptor }
+    });
+}]);
 
 angular.module("ovh-api-services").service("OrderRouterNew", ["$injector", function ($injector) {
 
@@ -5523,23 +5519,22 @@ angular.module("ovh-api-services").service("PackXdslAccess", ["$injector", "$cac
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslDomainActivationAapi",
-                                           ["$resource", "PackXdslDomainActivation", function ($resource, PackXdslDomainActivation) {
-                                               "use strict";
+angular.module("ovh-api-services").service("PackXdslDomainActivationAapi", ["$resource", "PackXdslDomainActivation", function ($resource, PackXdslDomainActivation) {
+    "use strict";
 
-                                               return $resource(
-                                                   "/pack/xdsl/:packId/domain/disponibility/:language/:domain", {
-                                                       packId: "@packId",
-                                                       language: "@language",
-                                                       domain: "@domain"
-                                                   }, {
-                                                       checkDisponibility: {
-                                                           method: "POST",
-                                                           serviceType: "aapi",
-                                                           cache: PackXdslDomainActivation.cache
-                                                       }
-                                                   });
-                                           }]);
+    return $resource(
+        "/pack/xdsl/:packId/domain/disponibility/:language/:domain", {
+            packId: "@packId",
+            language: "@language",
+            domain: "@domain"
+        }, {
+            checkDisponibility: {
+                method: "POST",
+                serviceType: "aapi",
+                cache: PackXdslDomainActivation.cache
+            }
+        });
+}]);
 
 angular.module("ovh-api-services").service("PackXdslDomainActivationLexi", ["$resource", "PackXdslDomainActivation", function ($resource, PackXdslDomainActivation) {
     "use strict";
@@ -8882,52 +8877,51 @@ angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberAapi", ["$
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberLexi",
-                                           ["$resource", "TelephonyAbbreviatedNumber", function ($resource, TelephonyAbbreviatedNumber) {
+angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberLexi", ["$resource", "TelephonyAbbreviatedNumber", function ($resource, TelephonyAbbreviatedNumber) {
 
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       TelephonyAbbreviatedNumber.resetCache();
-                                                       return response.resource;
-                                                   }
-                                               };
+    var interceptor = {
+        response: function (response) {
+            TelephonyAbbreviatedNumber.resetCache();
+            return response.resource;
+        }
+    };
 
-                                               return $resource("/telephony/:billingAccount/abbreviatedNumber", {
-                                                   billingAccount: "@billingAccount"
-                                               }, {
-                                                   query: {
-                                                       method: "GET",
-                                                       isArray: true,
-                                                       url: "/telephony/:billingAccount/abbreviatedNumber",
-                                                       cache: TelephonyAbbreviatedNumber.cache
-                                                   },
-                                                   detail: {
-                                                       method: "GET",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
-                                                       cache: TelephonyAbbreviatedNumber.cache
-                                                   },
-                                                   remove: {
-                                                       method: "DELETE",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
-                                                       interceptor: interceptor
-                                                   },
-                                                   update: {
-                                                       method: "PUT",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
-                                                       interceptor: interceptor
-                                                   },
-                                                   insert: {
-                                                       method: "POST",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
-                                                       interceptor: interceptor
-                                                   }
-                                               });
+    return $resource("/telephony/:billingAccount/abbreviatedNumber", {
+        billingAccount: "@billingAccount"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            url: "/telephony/:billingAccount/abbreviatedNumber",
+            cache: TelephonyAbbreviatedNumber.cache
+        },
+        detail: {
+            method: "GET",
+            isArray: false,
+            url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
+            cache: TelephonyAbbreviatedNumber.cache
+        },
+        remove: {
+            method: "DELETE",
+            isArray: false,
+            url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            isArray: false,
+            url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
+            interceptor: interceptor
+        },
+        insert: {
+            method: "POST",
+            isArray: false,
+            url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
+            interceptor: interceptor
+        }
+    });
 
-                                           }]);
+}]);
 
 angular.module("ovh-api-services").service("TelephonyAbbreviatedNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
@@ -10028,32 +10022,31 @@ angular.module("ovh-api-services").service("TelephonyEasyPabx", ["$injector", "$
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEventtokenLexi",
-                                           ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-                                               "use strict";
+angular.module("ovh-api-services").service("TelephonyEventtokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
 
-                                               var queryCache = $cacheFactory("TelephonyEventtokenLexiQuery");
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       queryCache.removeAll();
-                                                       return response;
-                                                   }
-                                               };
+    var queryCache = $cacheFactory("TelephonyEventtokenLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            queryCache.removeAll();
+            return response;
+        }
+    };
 
-                                               var eventtokens = $resource("/telephony/:billingAccount/eventToken", {
-                                                   billingAccount: "@billingAccount"
-                                               }, {
-                                                   query: { method: "GET", cache: queryCache },
-                                                   save: { method: "POST", interceptor: interceptor },
-                                                   "delete": { method: "DELETE", interceptor: interceptor }
-                                               });
+    var eventtokens = $resource("/telephony/:billingAccount/eventToken", {
+        billingAccount: "@billingAccount"
+    }, {
+        query: { method: "GET", cache: queryCache },
+        save: { method: "POST", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
 
-                                               eventtokens.resetQueryCache = function () {
-                                                   queryCache.removeAll();
-                                               };
+    eventtokens.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
 
-                                               return eventtokens;
-                                           }]);
+    return eventtokens;
+}]);
 
 angular.module("ovh-api-services").service("TelephonyEventtoken",
                                            ["$injector", function ($injector) {
@@ -10218,6 +10211,22 @@ angular.module("ovh-api-services").service("TelephonyFaxLexi", ["$cacheFactory",
             method: "POST",
             url: "/telephony/:billingAccount/fax/:serviceName/settings/sendFax",
             interceptor: interceptor
+        },
+        getScreenLists: {
+            method: "GET",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        createScreenLists: {
+            method: "POST",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        updateScreenLists: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        deleteScreenLists: {
+            method: "DELETE",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
         }
     });
 
@@ -10408,53 +10417,52 @@ angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberAapi",
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi",
-                                           ["$resource", "TelephonyLineAbbreviatedNumber", function ($resource, TelephonyLineAbbreviatedNumber) {
+angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi", ["$resource", "TelephonyLineAbbreviatedNumber", function ($resource, TelephonyLineAbbreviatedNumber) {
 
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       TelephonyLineAbbreviatedNumber.resetCache();
-                                                       return response.resource;
-                                                   }
-                                               };
+    var interceptor = {
+        response: function (response) {
+            TelephonyLineAbbreviatedNumber.resetCache();
+            return response.resource;
+        }
+    };
 
-                                               return $resource("/telephony/:billingAccount/line/:serviceName/abbreviatedNumber", {
-                                                   billingAccount: "@billingAccount",
-                                                   serviceName: "@serviceName"
-                                               }, {
-                                                   query: {
-                                                       method: "GET",
-                                                       isArray: true,
-                                                       url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber",
-                                                       cache: TelephonyLineAbbreviatedNumber.cache
-                                                   },
-                                                   detail: {
-                                                       method: "GET",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
-                                                       cache: TelephonyLineAbbreviatedNumber.cache
-                                                   },
-                                                   remove: {
-                                                       method: "DELETE",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
-                                                       interceptor: interceptor
-                                                   },
-                                                   update: {
-                                                       method: "PUT",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
-                                                       interceptor: interceptor
-                                                   },
-                                                   insert: {
-                                                       method: "POST",
-                                                       isArray: false,
-                                                       url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
-                                                       interceptor: interceptor
-                                                   }
-                                               });
+    return $resource("/telephony/:billingAccount/line/:serviceName/abbreviatedNumber", {
+        billingAccount: "@billingAccount",
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber",
+            cache: TelephonyLineAbbreviatedNumber.cache
+        },
+        detail: {
+            method: "GET",
+            isArray: false,
+            url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
+            cache: TelephonyLineAbbreviatedNumber.cache
+        },
+        remove: {
+            method: "DELETE",
+            isArray: false,
+            url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            isArray: false,
+            url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
+            interceptor: interceptor
+        },
+        insert: {
+            method: "POST",
+            isArray: false,
+            url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
+            interceptor: interceptor
+        }
+    });
 
-                                           }]);
+}]);
 
 angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
@@ -13419,23 +13427,22 @@ angular.module("ovh-api-services").service("TelephonyService", ["$injector", fun
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionAapi",
-                                           ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-                                               "use strict";
+angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
 
-                                               var cache = $cacheFactory("TelephonyServiceVoiceConsumptionAapi");
+    var cache = $cacheFactory("TelephonyServiceVoiceConsumptionAapi");
 
-                                               return $resource("/telephony/:billingAccount/consumption", {
-                                                   billingAccount: "@billingAccount"
-                                               }, {
-                                                   get: {
-                                                       serviceType: "aapi",
-                                                       isArray: false,
-                                                       cache: cache
-                                                   }
-                                               }
-                                               );
-                                           }]);
+    return $resource("/telephony/:billingAccount/consumption", {
+        billingAccount: "@billingAccount"
+    }, {
+        get: {
+            serviceType: "aapi",
+            isArray: false,
+            cache: cache
+        }
+    }
+    );
+}]);
 
 angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionErika", ["apiv7", function (apiv7) {
     "use strict";
@@ -14336,32 +14343,31 @@ angular.module("ovh-api-services").service("UserAlerts", ["$injector", function 
     };
 }]);
 
-angular.module("ovh-api-services").service("UserLexi",
-                                           ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-                                               "use strict";
+angular.module("ovh-api-services").service("UserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
 
-                                               var cache = $cacheFactory("UserLexi");
+    var cache = $cacheFactory("UserLexi");
 
-                                               var interceptor = {
-                                                   response: function (response) {
-                                                       cache.remove(response.config.url);
-                                                       return response;
-                                                   }
-                                               };
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response;
+        }
+    };
 
-                                               var me = $resource("/me", {}, {
-                                                   get: { method: "GET", cache: cache },
-                                                   update: { method: "PUT", interceptor: interceptor },
-                                                   schema: { method: "GET", url: "/me.json" }
-                                               });
+    var me = $resource("/me", {}, {
+        get: { method: "GET", cache: cache },
+        update: { method: "PUT", interceptor: interceptor },
+        schema: { method: "GET", url: "/me.json" }
+    });
 
-                                               me.resetCache = function () {
-                                                   cache.removeAll();
-                                               };
+    me.resetCache = function () {
+        cache.removeAll();
+    };
 
-                                               return me;
+    return me;
 
-                                           }]);
+}]);
 
 angular.module("ovh-api-services").service("User", ["$injector", function ($injector) {
     "use strict";
@@ -16124,28 +16130,27 @@ angular.module("ovh-api-services").service("XdslAvailableLns", ["$injector", "$c
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslDeconsolidationLexi",
-                                           ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-                                               "use strict";
+angular.module("ovh-api-services").service("XdslDeconsolidationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
 
-                                               var cache = $cacheFactory("xdslDeconsolidationLexi");
+    var cache = $cacheFactory("xdslDeconsolidationLexi");
 
-                                               return $resource(
-                                                   "/xdsl/:xdslId", {
-                                                       serviceName: "@serviceName"
-                                                   }, {
-                                                       terms: {
-                                                           method: "GET",
-                                                           cache: cache,
-                                                           url: "/xdsl/:serviceName/totalDeconsolidationTerms"
-                                                       },
-                                                       requestTotalDeconsolidation: {
-                                                           method: "POST",
-                                                           url: "/xdsl/:serviceName/requestTotalDeconsolidation"
-                                                       }
-                                                   }
-                                               );
-                                           }]);
+    return $resource(
+        "/xdsl/:xdslId", {
+            serviceName: "@serviceName"
+        }, {
+            terms: {
+                method: "GET",
+                cache: cache,
+                url: "/xdsl/:serviceName/totalDeconsolidationTerms"
+            },
+            requestTotalDeconsolidation: {
+                method: "POST",
+                url: "/xdsl/:serviceName/requestTotalDeconsolidation"
+            }
+        }
+    );
+}]);
 
 angular.module("ovh-api-services").service("XdslDeconsolidation", ["$injector", function ($injector) {
     "use strict";
