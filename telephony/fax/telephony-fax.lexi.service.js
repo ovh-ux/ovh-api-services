@@ -47,6 +47,22 @@ angular.module("ovh-api-services").service("TelephonyFaxLexi", function ($cacheF
             method: "POST",
             url: "/telephony/:billingAccount/fax/:serviceName/settings/sendFax",
             interceptor: interceptor
+        },
+        getScreenLists: {
+            method: "GET",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        createScreenLists: {
+            method: "POST",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        updateScreenLists: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        deleteScreenLists: {
+            method: "DELETE",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
         }
     });
 
