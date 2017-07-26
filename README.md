@@ -1,23 +1,21 @@
+# ovh-api-services
+
 ![OVH component](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
 
 [![NPM](https://nodei.co/npm/ovh-api-services.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-api-services/)
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
-ovh-api-services
-================
+> Contains all $resource for API.
+> Submodule added in each new manager v6.
 
-Contains all $resource for API.
-Submodule added in each new manager v6.
+## Table of contents
 
-#### Table of contents
-[Installation](#installation)
-
-[Usage](#usage)
+- [Installation](#installation)
+- [Usage](#usage)
 
 
 ## Installation
----------------
 
 ### Download module with bower
 
@@ -64,8 +62,8 @@ The directories structure must follow the structure of the API.
 
 ## Contributing
 
-You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
-to hear from you !
+You've developed a new cool feature? Fixed an annoying bug? We'd be happy
+to hear from you!
 
 Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-api-services/blob/master/CONTRIBUTING.md)
 
@@ -83,4 +81,4 @@ $ npm test
 
 ## License
 
-See https://github.com/ovh-ux/ovh-api-services/blob/master/LICENSE.md
+See https://github.com/ovh-ux/ovh-api-services/blob/master/LICENSE
