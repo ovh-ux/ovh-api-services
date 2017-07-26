@@ -14410,6 +14410,9 @@ angular.module("ovh-api-services").service("User", ["$injector", function ($inje
         },
         Telephony: function () {
             return $injector.get("UserTelephony");
+        },
+        Fax: function () {
+            return $injector.get("UserFax");
         }
     };
 }]);
@@ -14677,6 +14680,46 @@ angular.module("ovh-api-services").service("UserDocument", ["$injector", functio
     };
 }]);
 
+
+angular.module("ovh-api-services").service("UserFax", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        CustomDomains: function () {
+            return $injector.get("UserFaxCustomDomains");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("UserFaxCustomDomainsLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/fax/customDomains/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        create: {
+            method: "POST"
+        },
+        remove: {
+            method: "DELETE"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("UserFaxCustomDomains", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("UserFaxCustomDomainsLexi");
+        }
+    };
+}]);
 
 angular.module("ovh-api-services").service("UserFeedbackAapi", ["$resource", function ($resource) {
     "use strict";
