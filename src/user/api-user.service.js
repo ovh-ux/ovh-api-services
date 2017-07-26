@@ -39,6 +39,9 @@ angular.module("ovh-api-services").service("User", function ($injector) {
         },
         Telephony: function () {
             return $injector.get("UserTelephony");
+        },
+        Fax: function () {
+            return $injector.get("UserFax");
         }
     };
 });
