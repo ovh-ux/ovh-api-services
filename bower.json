@@ -15,6 +15,7 @@
     "node_modules",
     "Gruntfile.js",
     "src",
+    "!src/**/*.dt.spec.json",
     "karma.conf.js",
     ".jshintrc",
     ".editorconfig",
