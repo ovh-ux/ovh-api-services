@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON("package.json"),
         bower: grunt.file.readJSON("bower.json"),
         distdir: "dist",
-        srcdir: ".",
+        srcdir: "src",
         builddir: ".work/.tmp",
         name: grunt.file.readJSON("package.json").name || "ovh-api-services", // module name
 
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
         delta: {
             dist: {
                 files: ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
-                tasks: ["buildProd"]
+                tasks: ["build"]
             },
             test: {
                 files: ["<%= srcdir %>/**/*.spec.js"],
