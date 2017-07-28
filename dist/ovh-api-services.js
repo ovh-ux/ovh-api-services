@@ -4779,6 +4779,49 @@ angular.module("ovh-api-services").service("OrderDedicatedNasha", ["$injector", 
 
 }]);
 
+angular.module("ovh-api-services").service("OrderFreefaxLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/order/freefax/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET",
+            isArray: true
+        },
+        getNew: {
+            method: "GET",
+            url: "/order/freefax/:serviceName/new"
+        },
+        orderNew: {
+            method: "POST",
+            url: "/order/freefax/:serviceName/new"
+        },
+        getConvertToVoicefax: {
+            method: "GET",
+            url: "/order/freefax/:serviceName/convertToVoicefax"
+        },
+        orderConvertToVoicefax: {
+            method: "POST",
+            url: "/order/freefax/:serviceName/convertToVoicefax"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OrderFreefax", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OrderFreefaxLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OrderLicenseOfficeNewLexi", ["$resource", "$cacheFactory", "License", function ($resource, $cacheFactory, License) {
     "use strict";
 
@@ -4874,6 +4917,9 @@ angular.module("ovh-api-services").service("Order", ["$injector", function ($inj
         },
         Telephony: function () {
             return $injector.get("OrderTelephony");
+        },
+        Freefax: function () {
+            return $injector.get("OrderFreefax");
         },
         Sms: function () {
             return $injector.get("OrderSms");
