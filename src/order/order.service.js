@@ -16,6 +16,9 @@ angular.module("ovh-api-services").service("Order", function ($injector) {
         Telephony: function () {
             return $injector.get("OrderTelephony");
         },
+        Freefax: function () {
+            return $injector.get("OrderFreefax");
+        },
         Sms: function () {
             return $injector.get("OrderSms");
         },
