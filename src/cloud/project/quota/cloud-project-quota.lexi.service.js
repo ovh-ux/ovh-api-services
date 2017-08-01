@@ -9,7 +9,16 @@ angular.module("ovh-api-services").service("CloudProjectQuotaLexi", function ($r
         },
         query: {
             method: "GET",
-            isArray: true
+            isArray: true,
+            transformResponse: function (quotas, headers, status) {
+                if (status === 200) {
+                    var quotasObj = angular.fromJson(quotas);
+                    return _.filter(quotasObj, function (currentQuota) {
+                        return !/WAW/.test(currentQuota.region);
+                    });
+                }
+                return quotas;
+            }
         }
     });
 

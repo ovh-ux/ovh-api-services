@@ -18,6 +18,9 @@ angular.module("ovh-api-services").service("CloudProjectRegionLexi", function ($
 
                 if (status === 200) {
                     regionsRsp = angular.fromJson(regionsRsp); // IE11
+                    regionsRsp = _.filter(regionsRsp, function (region) {
+                        return !/WAW/.test(region);
+                    });
                     return regionsRsp.sort();
                 }
                 return regionsRsp;

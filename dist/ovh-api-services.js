@@ -1379,7 +1379,16 @@ angular.module("ovh-api-services").service("CloudProjectQuotaLexi", ["$resource"
         },
         query: {
             method: "GET",
-            isArray: true
+            isArray: true,
+            transformResponse: function (quotas, headers, status) {
+                if (status === 200) {
+                    var quotasObj = angular.fromJson(quotas);
+                    return _.filter(quotasObj, function (currentQuota) {
+                        return !/WAW/.test(currentQuota.region);
+                    });
+                }
+                return quotas;
+            }
         }
     });
 
@@ -1418,6 +1427,9 @@ angular.module("ovh-api-services").service("CloudProjectRegionLexi", ["$resource
 
                 if (status === 200) {
                     regionsRsp = angular.fromJson(regionsRsp); // IE11
+                    regionsRsp = _.filter(regionsRsp, function (region) {
+                        return !/WAW/.test(region);
+                    });
                     return regionsRsp.sort();
                 }
                 return regionsRsp;
