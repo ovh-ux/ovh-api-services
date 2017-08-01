@@ -1,10 +1,10 @@
-angular.module('ovh-api-services').service('CloudProjectMigration', function ($injector) {
+angular.module("ovh-api-services").service("CloudProjectMigration", function ($injector) {
 
     "use strict";
 
     return {
-        Lexi : function () {
-            return $injector.get('CloudProjectMigrationLexi');
+        Lexi: function () {
+            return $injector.get("CloudProjectMigrationLexi");
         }
     };
 

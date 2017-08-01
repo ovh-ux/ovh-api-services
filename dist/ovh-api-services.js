@@ -629,7 +629,7 @@ angular.module("ovh-api-services").service("CloudProject", ["$injector", "$cache
         Bill: function () {
             return $injector.get("CloudProjectBill");
         },
-        Migration : function () {
+        Migration: function () {
             return $injector.get("CloudProjectMigration");
         }
     };
@@ -1226,8 +1226,8 @@ angular.module("ovh-api-services").service("CloudProjectIpFailover", ["$injector
 angular.module("ovh-api-services").service("CloudProjectMigrationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory('CloudProjectMigrationLexiQuery'),
-        cache = $cacheFactory('CloudProjectMigrationLexi');
+    var queryCache = $cacheFactory("CloudProjectMigrationLexiQuery");
+    var cache = $cacheFactory("CloudProjectMigrationLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1238,19 +1238,19 @@ angular.module("ovh-api-services").service("CloudProjectMigrationLexi", ["$resou
     };
 
     var migration = $resource("/cloud/project/:serviceName/migration/:migrationId", {
-        serviceName : '@serviceName',
-        migrationId : '@migrationId'
+        serviceName: "@serviceName",
+        migrationId: "@migrationId"
     }, {
-        get   : { method: 'GET', cache: cache },
-        query : { method: 'GET', cache: queryCache, isArray: true },
-        put   : { method: "PUT", interceptor : interceptor }
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        put: { method: "PUT", interceptor: interceptor }
     });
 
-    migration.resetCache = function() {
+    migration.resetCache = function () {
         cache.removeAll();
     };
 
-    migration.resetQueryCache = function() {
+    migration.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
@@ -1258,13 +1258,13 @@ angular.module("ovh-api-services").service("CloudProjectMigrationLexi", ["$resou
 
 }]);
 
-angular.module('ovh-api-services').service('CloudProjectMigration', ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("CloudProjectMigration", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
-        Lexi : function () {
-            return $injector.get('CloudProjectMigrationLexi');
+        Lexi: function () {
+            return $injector.get("CloudProjectMigrationLexi");
         }
     };
 

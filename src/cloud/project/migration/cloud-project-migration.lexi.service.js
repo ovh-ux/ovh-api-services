@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("CloudProjectMigrationLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory('CloudProjectMigrationLexiQuery'),
-        cache = $cacheFactory('CloudProjectMigrationLexi');
+    var queryCache = $cacheFactory("CloudProjectMigrationLexiQuery");
+    var cache = $cacheFactory("CloudProjectMigrationLexi");
 
     var interceptor = {
         response: function (response) {
@@ -13,19 +13,19 @@ angular.module("ovh-api-services").service("CloudProjectMigrationLexi", function
     };
 
     var migration = $resource("/cloud/project/:serviceName/migration/:migrationId", {
-        serviceName : '@serviceName',
-        migrationId : '@migrationId'
+        serviceName: "@serviceName",
+        migrationId: "@migrationId"
     }, {
-        get   : { method: 'GET', cache: cache },
-        query : { method: 'GET', cache: queryCache, isArray: true },
-        put   : { method: "PUT", interceptor : interceptor }
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        put: { method: "PUT", interceptor: interceptor }
     });
 
-    migration.resetCache = function() {
+    migration.resetCache = function () {
         cache.removeAll();
     };
 
-    migration.resetQueryCache = function() {
+    migration.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
