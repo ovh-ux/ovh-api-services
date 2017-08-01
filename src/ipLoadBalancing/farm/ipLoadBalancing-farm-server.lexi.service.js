@@ -2,7 +2,7 @@
 
 _.forEach(["tcp", "udp", "http"], function (type) {
     angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi",
-        function ($resource, $cacheFactory) {
+        ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
             var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
             var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexiQuery");
 
@@ -35,5 +35,5 @@ _.forEach(["tcp", "udp", "http"], function (type) {
             };
 
             return iplbFarm;
-        });
+        }]);
 });
