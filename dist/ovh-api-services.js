@@ -4264,6 +4264,374 @@ angular.module("ovh-api-services").service("IpReverse", ["$injector", function (
 }]);
 
 
+"use strict";
+
+_.forEach(["tcp", "udp", "http"], function (type) {
+    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi",
+        function ($resource, $cacheFactory) {
+            var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
+            var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexiQuery");
+
+            var interceptor = {
+                response: function (response) {
+                    cache.remove(response.config.url);
+                    queryCache.removeAll();
+                    return response.resource;
+                }
+            };
+
+            var iplbFarm = $resource("/ipLoadbalancing/:serviceName/" + type + "/farm/:farmId/server/:serverId", {
+                serviceName: "@serviceName",
+                farmId: "@farmId",
+                serverId: "@serverId"
+            }, {
+                query: { method: "GET", isArray: true, cache: queryCache },
+                get: { method: "GET", cache: cache },
+                post: { method: "POST", interceptor: interceptor },
+                put: { method: "PUT", interceptor: interceptor },
+                "delete": { method: "DELETE", interceptor: interceptor }
+            });
+
+            iplbFarm.resetCache = function () {
+                cache.removeAll();
+            };
+
+            iplbFarm.resetQueryCache = function () {
+                queryCache.removeAll();
+            };
+
+            return iplbFarm;
+        });
+});
+
+"use strict";
+
+_.forEach(["tcp", "udp", "http"], function (type) {
+    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "Server", function ($injector) {
+        return {
+            Lexi: function () {
+                return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
+            }
+        };
+    });
+});
+
+
+
+
+"use strict";
+
+angular.module("ovh-api-services").service("IpLoadBalancingFarmLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        var queryCache = $cacheFactory("IpLoadBalancingFarmLexiQuery");
+
+        var iplbFarm = $resource("/ipLoadbalancing/:serviceName/definedFarms", {
+            serviceName: "@serviceName"
+        }, {
+            query: { method: "GET", isArray: true, cache: queryCache }
+        });
+
+        iplbFarm.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return iplbFarm;
+    }]);
+
+_.forEach(["tcp", "udp", "http"], function (type) {
+    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi",
+        function ($resource, $cacheFactory) {
+            var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
+            var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "LexiQuery");
+
+            var interceptor = {
+                response: function (response) {
+                    cache.remove(response.config.url);
+                    queryCache.removeAll();
+                    return response.resource;
+                }
+            };
+
+            var iplbFarm = $resource("/ipLoadbalancing/:serviceName/" + type + "/farm/:farmId", {
+                serviceName: "@serviceName",
+                farmId: "@farmId"
+            }, {
+                query: { method: "GET", isArray: true, cache: queryCache },
+                get: { method: "GET", cache: cache },
+                post: { method: "POST", interceptor: interceptor },
+                put: { method: "PUT", interceptor: interceptor },
+                "delete": { method: "DELETE", interceptor: interceptor }
+            });
+
+            iplbFarm.resetCache = function () {
+                cache.removeAll();
+            };
+
+            iplbFarm.resetQueryCache = function () {
+                queryCache.removeAll();
+            };
+
+            return iplbFarm;
+        });
+});
+
+angular.module("ovh-api-services").service("IpLoadBalancingFarm", ["$injector", function ($injector) {
+    "use strict";
+
+    var services = _.reduce(["tcp", "udp", "http"], function (farm, type) {
+        farm[_.capitalize(type)] = function () {
+            return {
+                Lexi: function () {
+                    return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
+                },
+                Server: function () {
+                    return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "Server");
+                }
+            };
+        };
+        return farm;
+    }, {});
+
+    services.Lexi = function () {
+        return $injector.get("IpLoadBalancingFarmLexi");
+    };
+
+    return services;
+}]);
+
+(function () {
+    "use strict";
+
+    angular.module("ovh-api-services").service("IpLoadBalancingFrontendLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        var queryCache = $cacheFactory("IpLoadBalancingFrontendLexiQuery");
+
+        var iplbFrontend = $resource("/ipLoadbalancing/:serviceName/definedFrontends", {
+            serviceName: "@serviceName"
+        }, {
+            query: { method: "GET", isArray: true, cache: queryCache }
+        });
+
+        iplbFrontend.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return iplbFrontend;
+    }]);
+
+    _.forEach(["tcp", "udp", "http"], function (type) {
+        angular.module("ovh-api-services").service("IpLoadBalancingFrontend" + _.capitalize(type) + "Lexi",
+            function ($resource, $cacheFactory) {
+                var cache = $cacheFactory("IpLoadBalancingFrontend" + _.capitalize(type) + "Lexi");
+                var queryCache = $cacheFactory("IpLoadBalancingFrontend" + _.capitalize(type) + "LexiQuery");
+
+                var interceptor = {
+                    response: function (response) {
+                        cache.remove(response.config.url);
+                        queryCache.removeAll();
+                        return response.resource;
+                    }
+                };
+
+                var iplbFrontend = $resource("/ipLoadbalancing/:serviceName/" + type + "/frontend/:frontendId", {
+                    serviceName: "@serviceName",
+                    frontendId: "@frontendId"
+                }, {
+                    query: { method: "GET", isArray: true, cache: queryCache },
+                    get: { method: "GET", cache: cache },
+                    post: { method: "POST", interceptor: interceptor },
+                    put: { method: "PUT", interceptor: interceptor },
+                    "delete": { method: "DELETE", interceptor: interceptor }
+                });
+
+                iplbFrontend.resetCache = function () {
+                    cache.removeAll();
+                };
+
+                iplbFrontend.resetQueryCache = function () {
+                    queryCache.removeAll();
+                };
+
+                return iplbFrontend;
+            });
+    });
+})();
+
+
+angular.module("ovh-api-services").service("IpLoadBalancingFrontend", ["$injector", function ($injector) {
+    "use strict";
+
+    var services = _.reduce(["tcp", "udp", "http"], function (frontend, type) {
+        frontend[_.capitalize(type)] = function () {
+            return {
+                Lexi: function () {
+                    return $injector.get("IpLoadBalancingFrontend" + _.capitalize(type) + "Lexi");
+                }
+            };
+        };
+        return frontend;
+    }, {});
+
+    services.Lexi = function () {
+        return $injector.get("IpLoadBalancingFrontendLexi");
+    };
+
+    return services;
+}]);
+
+"use strict";
+
+angular.module("ovh-api-services").service("IpLoadBalancingLexi",
+    ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        var cache = $cacheFactory("IpLoadBalancingLexi");
+        var queryCache = $cacheFactory("IpLoadBalancingLexiQuery");
+
+        var interceptor = {
+            response: function (response) {
+                cache.remove(response.config.url);
+                queryCache.removeAll();
+                return response.resource;
+            }
+        };
+
+        var ipLoadBalancing = $resource("/ipLoadbalancing/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            schema: { method: "GET", url: "/ipLoadbalancing.json" },
+            query: { method: "GET", isArray: true, cache: queryCache },
+            get: { method: "GET", cache: cache },
+            put: { method: "PUT", interceptor: interceptor },
+            availableZones: {
+                method: "GET",
+                isArray: true,
+                url: "/ipLoadbalancing/:serviceName/availableZones",
+                cache: cache
+            },
+            availableFarmTypes: {
+                method: "GET",
+                isArray: true,
+                url: "/ipLoadbalancing/:serviceName/availableFarmType",
+                cache: cache
+            },
+            failoverIp: {
+                method: "GET",
+                isArray: true,
+                url: "/ipLoadbalancing/:serviceName/failover ",
+                cache: cache
+            },
+            natIp: {
+                method: "GET",
+                isArray: true,
+                url: "/ipLoadbalancing/:serviceName/natIp  ",
+                cache: cache
+            },
+            serviceInfos: {
+                method: "GET",
+                url: "/ipLoadbalancing/:serviceName/serviceInfos",
+                cache: cache
+            }
+        });
+
+        ipLoadBalancing.resetCache = function () {
+            cache.removeAll();
+        };
+
+        ipLoadBalancing.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return ipLoadBalancing;
+    }]);
+
+angular.module("ovh-api-services").service("IpLoadBalancing", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("IpLoadBalancingLexi");
+        },
+        Farm: function () {
+            return $injector.get("IpLoadBalancingFarm");
+        },
+        Frontend: function () {
+            return $injector.get("IpLoadBalancingFrontend");
+        },
+        Ssl: function () {
+            return $injector.get("IpLoadBalancingSsl");
+        },
+        Task: function () {
+            return $injector.get("IpLoadBalancingTask");
+        }
+    };
+}]);
+
+"use strict";
+
+angular.module("ovh-api-services").service("IpLoadBalancingSslLexi",
+    ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        var cache = $cacheFactory("IpLoadBalancingSslLexi");
+        var queryCache = $cacheFactory("IpLoadBalancingSslLexiQuery");
+
+        var interceptor = {
+            response: function (response) {
+                cache.remove(response.config.url);
+                queryCache.removeAll();
+                return response.resource;
+            }
+        };
+
+        var ipLoadBalancingSsl = $resource("/ipLoadbalancing/:serviceName/ssl/:sslId", {
+            serviceName: "@serviceName",
+            sslId: "@sslId"
+        }, {
+            query: { method: "GET", isArray: true, cache: queryCache },
+            get: { method: "GET", cache: cache },
+            post: { method: "POST", interceptor: interceptor },
+            put: { method: "PUT", interceptor: interceptor },
+            "delete": { method: "DELETE", interceptor: interceptor }
+        });
+
+        ipLoadBalancingSsl.resetCache = function () {
+            cache.removeAll();
+        };
+
+        ipLoadBalancingSsl.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return ipLoadBalancingSsl;
+    }]);
+
+angular.module("ovh-api-services").service("IpLoadBalancingSsl", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("IpLoadBalancingSslLexi");
+        }
+    };
+}]);
+
+"use strict";
+
+angular.module("ovh-api-services").service("IpLoadBalancingTaskLexi",
+    ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        var ipLoadBalancingTask = $resource("/ipLoadbalancing/:serviceName/task/:taskId", {
+            serviceName: "@serviceName",
+            taskId: "@taskId"
+        }, {
+            query: { method: "GET", isArray: true },
+            get: { method: "GET" }
+        });
+
+        return ipLoadBalancingTask;
+    }]);
+
+angular.module("ovh-api-services").service("IpLoadBalancingTask", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("IpLoadBalancingTaskLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("License", ["$injector", function ($injector) {
     "use strict";
     return {
