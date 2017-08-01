@@ -4268,7 +4268,7 @@ angular.module("ovh-api-services").service("IpReverse", ["$injector", function (
 
 _.forEach(["tcp", "udp", "http"], function (type) {
     angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi",
-        function ($resource, $cacheFactory) {
+        ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
             var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
             var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexiQuery");
 
@@ -4301,19 +4301,20 @@ _.forEach(["tcp", "udp", "http"], function (type) {
             };
 
             return iplbFarm;
-        });
+        }]);
 });
 
 "use strict";
 
 _.forEach(["tcp", "udp", "http"], function (type) {
-    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "Server", function ($injector) {
-        return {
-            Lexi: function () {
-                return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
-            }
-        };
-    });
+    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "Server",
+        ["$injector", function ($injector) {
+            return {
+                Lexi: function () {
+                    return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
+                }
+            };
+        }]);
 });
 
 
@@ -4339,7 +4340,7 @@ angular.module("ovh-api-services").service("IpLoadBalancingFarmLexi", ["$resourc
 
 _.forEach(["tcp", "udp", "http"], function (type) {
     angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi",
-        function ($resource, $cacheFactory) {
+        ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
             var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
             var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "LexiQuery");
 
@@ -4371,7 +4372,7 @@ _.forEach(["tcp", "udp", "http"], function (type) {
             };
 
             return iplbFarm;
-        });
+        }]);
 });
 
 angular.module("ovh-api-services").service("IpLoadBalancingFarm", ["$injector", function ($injector) {
@@ -4419,7 +4420,7 @@ angular.module("ovh-api-services").service("IpLoadBalancingFarm", ["$injector", 
 
     _.forEach(["tcp", "udp", "http"], function (type) {
         angular.module("ovh-api-services").service("IpLoadBalancingFrontend" + _.capitalize(type) + "Lexi",
-            function ($resource, $cacheFactory) {
+            ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
                 var cache = $cacheFactory("IpLoadBalancingFrontend" + _.capitalize(type) + "Lexi");
                 var queryCache = $cacheFactory("IpLoadBalancingFrontend" + _.capitalize(type) + "LexiQuery");
 
@@ -4451,7 +4452,7 @@ angular.module("ovh-api-services").service("IpLoadBalancingFarm", ["$injector", 
                 };
 
                 return iplbFrontend;
-            });
+            }]);
     });
 })();
 
