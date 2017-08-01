@@ -48,6 +48,9 @@ angular.module("ovh-api-services").service("CloudProject", function ($injector, 
         },
         Bill: function () {
             return $injector.get("CloudProjectBill");
+        },
+        Migration : function () {
+            return $injector.get("CloudProjectMigration");
         }
     };
 
