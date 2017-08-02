@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueue", funct
         },
         Agent: function () {
             return $injector.get("TelephonyOvhPabxHuntingQueueAgent");
+        },
+        LiveCalls: function () {
+            return $injector.get("TelephonyOvhPabxHuntingQueueLiveCalls");
         }
     };
 });

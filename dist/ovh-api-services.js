@@ -12033,6 +12033,61 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueAgent", 
     };
 }]);
 
+angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLiveCallsLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    var res = $resource("/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id", {
+        billingAccount: "@billingAccount",
+        serviceName: "@serviceName",
+        queueId: "@queueId",
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        eavesdrop: {
+            method: "POST",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id/eavesdrop"
+        },
+        hangup: {
+            method: "POST",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id/hangup"
+        },
+        hold: {
+            method: "POST",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id/hold"
+        },
+        intercept: {
+            method: "POST",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id/intercept"
+        },
+        transfer: {
+            method: "POST",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id/transfer"
+        },
+        whisper: {
+            method: "POST",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id/whisper"
+        }
+    });
+
+    return res;
+}]);
+
+angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLiveCalls", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("TelephonyOvhPabxHuntingQueueLiveCallsLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -12107,6 +12162,9 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueue", ["$in
         },
         Agent: function () {
             return $injector.get("TelephonyOvhPabxHuntingQueueAgent");
+        },
+        LiveCalls: function () {
+            return $injector.get("TelephonyOvhPabxHuntingQueueLiveCalls");
         }
     };
 }]);
