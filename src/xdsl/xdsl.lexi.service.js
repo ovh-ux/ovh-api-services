@@ -29,11 +29,6 @@ angular.module("ovh-api-services").service("XdslLexi", function ($resource, Xdsl
                 isArray: true,
                 cache: Xdsl.cache
             },
-            changeLns: {
-                method: "POST",
-                url: "/xdsl/:xdslId/changeLns",
-                interceptor: interceptor
-            },
             incidents: {
                 method: "GET",
                 cache: Xdsl.cache
@@ -65,15 +60,6 @@ angular.module("ovh-api-services").service("XdslLexi", function ($resource, Xdsl
                 url: "/xdsl/eligibility/streets",
                 isArray: true,
                 cancellable: true
-            },
-            canMigrateToPPP: {
-                method: "GET",
-                url: "/xdsl/:xdslId/canMigrateToPPP"
-            },
-            migrateToPPP: {
-                method: "POST",
-                url: "/xdsl/:xdslId/migrateToPPP",
-                interceptor: interceptor
             },
             requestPPPLoginMail: {
                 method: "POST",
