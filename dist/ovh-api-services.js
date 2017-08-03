@@ -16249,34 +16249,6 @@ angular.module("ovh-api-services").service("Vrack", ["$injector", function ($inj
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslAvailableLnsLexi", ["$resource", "XdslAvailableLns", function ($resource, XdslAvailableLns) {
-    "use strict";
-
-    return $resource("/xdsl/:xdslId/availableLns", {
-        xdslId: "@xdslId"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            cache: XdslAvailableLns.cache
-        }
-    });
-}]);
-
-angular.module("ovh-api-services").service("XdslAvailableLns", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
-    "use strict";
-
-    var cache = $cacheFactory("XdslAvailableLns");
-
-    return {
-        Lexi: function () {
-            return $injector.get("XdslAvailableLnsLexi");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
-}]);
-
 angular.module("ovh-api-services").service("XdslDeconsolidationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -17420,11 +17392,6 @@ angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "Te
                 isArray: true,
                 cache: Xdsl.cache
             },
-            changeLns: {
-                method: "POST",
-                url: "/xdsl/:xdslId/changeLns",
-                interceptor: interceptor
-            },
             incidents: {
                 method: "GET",
                 cache: Xdsl.cache
@@ -17456,15 +17423,6 @@ angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "Te
                 url: "/xdsl/eligibility/streets",
                 isArray: true,
                 cancellable: true
-            },
-            canMigrateToPPP: {
-                method: "GET",
-                url: "/xdsl/:xdslId/canMigrateToPPP"
-            },
-            migrateToPPP: {
-                method: "POST",
-                url: "/xdsl/:xdslId/migrateToPPP",
-                interceptor: interceptor
             },
             requestPPPLoginMail: {
                 method: "POST",
