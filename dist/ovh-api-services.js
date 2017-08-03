@@ -11081,6 +11081,16 @@ angular.module("ovh-api-services").service("TelephonyLinePhoneLexi", ["$resource
         resetConfig: {
             method: "POST",
             url: "/telephony/:billingAccount/line/:serviceName/phone/resetConfig"
+        },
+        supportsPhonebook: {
+            method: "GET",
+            url: "/telephony/:billingAccount/line/:serviceName/phone/supportsPhonebook",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return null;
+            }
         }
     });
 }]);
