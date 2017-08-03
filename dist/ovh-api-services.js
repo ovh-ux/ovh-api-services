@@ -12134,6 +12134,10 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLexi", [
         remove: {
             method: "DELETE",
             interceptor: interceptor
+        },
+        getLiveStatistics: {
+            method: "GET",
+            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveStatistics"
         }
     });
 
