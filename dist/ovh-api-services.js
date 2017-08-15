@@ -628,6 +628,9 @@ angular.module("ovh-api-services").service("CloudProject", ["$injector", "$cache
         },
         Bill: function () {
             return $injector.get("CloudProjectBill");
+        },
+        Migration: function () {
+            return $injector.get("CloudProjectMigration");
         }
     };
 
@@ -1215,6 +1218,53 @@ angular.module("ovh-api-services").service("CloudProjectIpFailover", ["$injector
     return {
         Lexi: function () {
             return $injector.get("CloudProjectIpFailoverLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("CloudProjectMigrationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("CloudProjectMigrationLexiQuery");
+    var cache = $cacheFactory("CloudProjectMigrationLexi");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var migration = $resource("/cloud/project/:serviceName/migration/:migrationId", {
+        serviceName: "@serviceName",
+        migrationId: "@migrationId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        put: { method: "PUT", interceptor: interceptor }
+    });
+
+    migration.resetCache = function () {
+        cache.removeAll();
+    };
+
+    migration.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return migration;
+
+}]);
+
+angular.module("ovh-api-services").service("CloudProjectMigration", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("CloudProjectMigrationLexi");
         }
     };
 
