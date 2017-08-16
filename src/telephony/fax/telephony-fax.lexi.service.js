@@ -63,6 +63,10 @@ angular.module("ovh-api-services").service("TelephonyFaxLexi", function ($cacheF
         deleteScreenLists: {
             method: "DELETE",
             url: "/telephony/:billingAccount/fax/:serviceName/screenLists"
+        },
+        resetScreenLists: {
+            method: "POST",
+            url: "/telephony/:billingAccount/fax/:serviceName/screenLists/reset"
         }
     });
 
