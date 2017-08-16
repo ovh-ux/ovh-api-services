@@ -1,13 +1,13 @@
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceTokenLexi", function ($resource, $cacheFactory) {
+    .service("MetricsTokenLexi", function ($resource, $cacheFactory) {
 
-        var otherCache = $cacheFactory("MetricsServiceTokenLexi");
-        var queryCache = $cacheFactory("MetricsServiceTokenLexiQuery");
+        var cache = $cacheFactory("MetricsTokenLexi");
+        var queryCache = $cacheFactory("MetricsTokenLexiQuery");
 
         var interceptor = {
             response: function (response) {
-                otherCache.removeAll();
+                cache.removeAll();
                 return response.data;
             }
         };
@@ -18,7 +18,7 @@ angular
         }, {
             get: {
                 method: "GET",
-                cache: otherCache
+                cache: cache
             },
             query: {
                 method: "GET",
@@ -36,12 +36,12 @@ angular
         });
 
         r.resetAllCache = function () {
-            r.resetOtherCache();
+            r.resetCache();
             r.resetQueryCache();
         };
 
-        r.resetOtherCache = function () {
-            otherCache.removeAll();
+        r.resetCache = function () {
+            cache.removeAll();
         };
 
         r.resetQueryCache = function () {

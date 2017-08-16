@@ -4441,11 +4441,11 @@ angular
     .service("Metrics", ["$injector", function ($injector) {
 
         return {
-            Service: function () {
-                return $injector.get("MetricsService");
+            Token: function () {
+                return $injector.get("MetricsToken");
             },
             Lexi: function () {
-                return $injector.get("Metrics");
+                return $injector.get("MetricsLexi");
             }
         };
     }]);
@@ -4453,107 +4453,71 @@ angular
 angular
     .module("ovh-api-services")
     .service("MetricsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        "use strict";
 
+        var cache = $cacheFactory("MetricsLexi");
         var queryCache = $cacheFactory("MetricsLexiQuery");
-        var r = $resource("/metrics", {}, {
+        var interceptor = {
+            response: function (response) {
+                cache.removeAll();
+                queryCache.removeAll();
+                return response.data;
+            }
+        };
+        var resource = $resource("/metrics/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
             query: {
                 method: "GET",
                 cache: queryCache,
                 isArray: true
-            }
-        });
-
-        r.resetAllCache = function () {
-            r.resetQueryCache();
-        };
-
-        r.resetQueryCache = function () {
-            queryCache.removeAll();
-        };
-
-        return r;
-    }]);
-
-angular
-    .module("ovh-api-services")
-    .service("MetricsServiceConsumptionLexi", ["$resource", function ($resource) {
-
-        return $resource("/metrics/:serviceName/consumption", {
-            serviceName: "@serviceName"
-        }, {
+            },
             get: {
                 method: "GET",
-                cache: false
-            }
-        });
-    }]);
-
-angular
-    .module("ovh-api-services")
-    .service("MetricsServiceConsumption", ["$injector", function ($injector) {
-
-        return {
-            Lexi: function () {
-                return $injector.get("MetricsServiceConsumptionLexi");
-            }
-        };
-    }]);
-
-angular
-    .module("ovh-api-services")
-    .service("MetricsServiceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-
-        var otherCache = $cacheFactory("MetricsServiceLexi");
-        var interceptor = {
-            response: function (response) {
-                otherCache.removeAll();
-                return response.data;
-            }
-        };
-
-        var r = $resource("/metrics/:serviceName", {
-            serviceName: "@serviceName"
-        }, {
-            get: {
-                method: "GET",
-                cache: otherCache
+                cache: cache
             },
             edit: {
                 method: "PUT",
                 interceptor: interceptor
+            },
+            getServiceInfos: {
+                url: "/metrics/:serviceName/serviceInfos",
+                method: "GET",
+                cache: cache
+            },
+            getConsumption: {
+                url: "/metrics/:serviceName/consumption",
+                method: "GET",
+                cache: false
             }
         });
 
-        return r;
-    }]);
-
-angular
-    .module("ovh-api-services")
-    .service("MetricsService", ["$injector", function ($injector) {
-
-        return {
-            Token: function () {
-                return $injector.get("MetricsServiceToken");
-            },
-            Consumption: function () {
-                return $injector.get("MetricsServiceConsumption");
-            },
-            Lexi: function () {
-                return $injector.get("MetricsServiceLexi");
-            }
+        resource.resetCache = function () {
+            cache.removeAll();
         };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        resource.resetAllCache = function () {
+            resource.resetCache();
+            resource.resetQueryCache();
+        };
+
+        return resource;
     }]);
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceTokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    .service("MetricsTokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-        var otherCache = $cacheFactory("MetricsServiceTokenLexi");
-        var queryCache = $cacheFactory("MetricsServiceTokenLexiQuery");
+        var cache = $cacheFactory("MetricsTokenLexi");
+        var queryCache = $cacheFactory("MetricsTokenLexiQuery");
 
         var interceptor = {
             response: function (response) {
-                otherCache.removeAll();
+                cache.removeAll();
                 return response.data;
             }
         };
@@ -4564,7 +4528,7 @@ angular
         }, {
             get: {
                 method: "GET",
-                cache: otherCache
+                cache: cache
             },
             query: {
                 method: "GET",
@@ -4582,12 +4546,12 @@ angular
         });
 
         r.resetAllCache = function () {
-            r.resetOtherCache();
+            r.resetCache();
             r.resetQueryCache();
         };
 
-        r.resetOtherCache = function () {
-            otherCache.removeAll();
+        r.resetCache = function () {
+            cache.removeAll();
         };
 
         r.resetQueryCache = function () {
@@ -4599,11 +4563,11 @@ angular
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceToken", ["$injector", function ($injector) {
+    .service("MetricsToken", ["$injector", function ($injector) {
 
         return {
             Lexi: function () {
-                return $injector.get("MetricsServiceTokenLexi");
+                return $injector.get("MetricsTokenLexi");
             }
         };
     }]);
