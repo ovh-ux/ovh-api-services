@@ -4522,7 +4522,7 @@ angular
             }
         };
 
-        var r = $resource("/metrics/:serviceName/token/:tokenID", {
+        var resource = $resource("/metrics/:serviceName/token/:tokenID", {
             serviceName: "@serviceName",
             tokenID: "@tokenID"
         }, {
@@ -4545,20 +4545,20 @@ angular
             }
         });
 
-        r.resetAllCache = function () {
-            r.resetCache();
-            r.resetQueryCache();
+        resource.resetAllCache = function () {
+            resource.resetCache();
+            resource.resetQueryCache();
         };
 
-        r.resetCache = function () {
+        resource.resetCache = function () {
             cache.removeAll();
         };
 
-        r.resetQueryCache = function () {
+        resource.resetQueryCache = function () {
             queryCache.removeAll();
         };
 
-        return r;
+        return resource;
     }]);
 
 angular
