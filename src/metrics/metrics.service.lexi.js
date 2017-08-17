@@ -1,23 +1,46 @@
 angular
     .module("ovh-api-services")
     .service("MetricsLexi", function ($resource, $cacheFactory) {
+        "use strict";
 
+        var cache = $cacheFactory("MetricsLexi");
         var queryCache = $cacheFactory("MetricsLexiQuery");
-        var r = $resource("/metrics", {}, {
-            query: {
+        var interceptor = {
+            response: function (response) {
+                cache.removeAll();
+                queryCache.removeAll();
+                return response.data;
+            }
+        };
+        var resource = $resource("/metrics/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            query: { method: "GET", cache: queryCache, isArray: true },
+            get: { method: "GET", cache: cache },
+            edit: { method: "PUT", interceptor: interceptor },
+            getServiceInfos: {
+                url: "/metrics/:serviceName/serviceInfos",
                 method: "GET",
-                cache: queryCache,
-                isArray: true
+                cache: cache
+            },
+            getConsumption: {
+                url: "/metrics/:serviceName/consumption",
+                method: "GET"
             }
         });
 
-        r.resetAllCache = function () {
-            r.resetQueryCache();
+        resource.resetCache = function () {
+            cache.removeAll();
         };
 
-        r.resetQueryCache = function () {
+        resource.resetQueryCache = function () {
             queryCache.removeAll();
         };
 
-        return r;
+        resource.resetAllCache = function () {
+            resource.resetCache();
+            resource.resetQueryCache();
+        };
+
+        return resource;
     });

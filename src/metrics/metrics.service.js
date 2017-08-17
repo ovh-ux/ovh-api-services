@@ -3,11 +3,11 @@ angular
     .service("Metrics", function ($injector) {
 
         return {
-            Service: function () {
-                return $injector.get("MetricsService");
+            Token: function () {
+                return $injector.get("MetricsToken");
             },
             Lexi: function () {
-                return $injector.get("Metrics");
+                return $injector.get("MetricsLexi");
             }
         };
     });
