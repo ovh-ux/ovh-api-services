@@ -4467,19 +4467,9 @@ angular
         var resource = $resource("/metrics/:serviceName", {
             serviceName: "@serviceName"
         }, {
-            query: {
-                method: "GET",
-                cache: queryCache,
-                isArray: true
-            },
-            get: {
-                method: "GET",
-                cache: cache
-            },
-            edit: {
-                method: "PUT",
-                interceptor: interceptor
-            },
+            query: { method: "GET", cache: queryCache, isArray: true },
+            get: { method: "GET", cache: cache },
+            edit: { method: "PUT", interceptor: interceptor },
             getServiceInfos: {
                 url: "/metrics/:serviceName/serviceInfos",
                 method: "GET",
@@ -4487,8 +4477,7 @@ angular
             },
             getConsumption: {
                 url: "/metrics/:serviceName/consumption",
-                method: "GET",
-                cache: false
+                method: "GET"
             }
         });
 
@@ -4526,23 +4515,10 @@ angular
             serviceName: "@serviceName",
             tokenID: "@tokenID"
         }, {
-            get: {
-                method: "GET",
-                cache: cache
-            },
-            query: {
-                method: "GET",
-                cache: queryCache,
-                isArray: true
-            },
-            "delete": {
-                method: "DELETE",
-                interceptor: interceptor
-            },
-            edit: {
-                method: "PUT",
-                interceptor: interceptor
-            }
+            get: { method: "GET", cache: cache },
+            query: { method: "GET", cache: queryCache, isArray: true },
+            "delete": { method: "DELETE", interceptor: interceptor },
+            edit: { method: "PUT", interceptor: interceptor }
         });
 
         resource.resetAllCache = function () {

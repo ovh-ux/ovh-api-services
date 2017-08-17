@@ -16,23 +16,10 @@ angular
             serviceName: "@serviceName",
             tokenID: "@tokenID"
         }, {
-            get: {
-                method: "GET",
-                cache: cache
-            },
-            query: {
-                method: "GET",
-                cache: queryCache,
-                isArray: true
-            },
-            "delete": {
-                method: "DELETE",
-                interceptor: interceptor
-            },
-            edit: {
-                method: "PUT",
-                interceptor: interceptor
-            }
+            get: { method: "GET", cache: cache },
+            query: { method: "GET", cache: queryCache, isArray: true },
+            "delete": { method: "DELETE", interceptor: interceptor },
+            edit: { method: "PUT", interceptor: interceptor }
         });
 
         resource.resetAllCache = function () {

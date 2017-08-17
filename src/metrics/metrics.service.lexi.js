@@ -15,19 +15,9 @@ angular
         var resource = $resource("/metrics/:serviceName", {
             serviceName: "@serviceName"
         }, {
-            query: {
-                method: "GET",
-                cache: queryCache,
-                isArray: true
-            },
-            get: {
-                method: "GET",
-                cache: cache
-            },
-            edit: {
-                method: "PUT",
-                interceptor: interceptor
-            },
+            query: { method: "GET", cache: queryCache, isArray: true },
+            get: { method: "GET", cache: cache },
+            edit: { method: "PUT", interceptor: interceptor },
             getServiceInfos: {
                 url: "/metrics/:serviceName/serviceInfos",
                 method: "GET",
@@ -35,8 +25,7 @@ angular
             },
             getConsumption: {
                 url: "/metrics/:serviceName/consumption",
-                method: "GET",
-                cache: false
+                method: "GET"
             }
         });
 
