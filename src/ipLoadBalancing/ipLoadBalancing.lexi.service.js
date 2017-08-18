@@ -48,6 +48,10 @@ angular.module("ovh-api-services").service("IpLoadBalancingLexi",
                 method: "GET",
                 url: "/ipLoadbalancing/:serviceName/serviceInfos",
                 cache: cache
+            },
+            refresh: {
+                method: "POST",
+                url: "/ipLoadbalancing/:serviceName/refresh"
             }
         });
 
