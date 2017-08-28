@@ -4428,6 +4428,977 @@ angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsers", ["$inject
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeAgreementsLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/agreements/:id", {
+        id: "@id"
+    }, {
+        accept: {
+            url: "/me/agreements/:id/accept",
+            method: "POST"
+        },
+        contract: {
+            url: "/me/agreements/:id/contract",
+            method: "GET"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAgreements", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeAgreementsLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAlertsAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/alerts", {}, {
+        query: {
+            method: "GET",
+            isArray: true,
+            url: "/me/alerts",
+            serviceType: "aapi"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAlerts", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiMeAlertsAapi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAvailableAutomaticPaymentMeansLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeAvailableAutomaticPaymentMeansLexi");
+
+    return $resource("/me/availableAutomaticPaymentMeans", { }, {
+        get: { method: "GET", cache: cache, isArray: false }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAvailableAutomaticPaymentMeans", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Tera: angular.noop,
+        Lexi: function () {
+            return $injector.get("OvhApiMeAvailableAutomaticPaymentMeansLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillDetailsLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/bill/:billId/details/:billDetailId", {
+        billId: "@billId",
+        billDetailId: "@billDetailId"
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillDetails", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeBillDetailsLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/bill", {}, {
+        last: {
+            method: "GET",
+            url: "/me/bill/last",
+            serviceType: "aapi",
+            isArray: true
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    // we don't need cache for query : it's just list of IDs and we don't know if a new bill is emited
+    var cache = $cacheFactory("OvhApiMeBillLexi");
+
+    var userBillResource = $resource("/me/bill/:billId", {
+        billId: "@billId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", isArray: true }
+    });
+
+    userBillResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return userBillResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBill", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiMeBillAapi");
+        },
+        Lexi: function () {
+            return $injector.get("OvhApiMeBillLexi");
+        },
+        Details: function () {
+            return $injector.get("OvhApiMeBillDetails");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeContactErika", ["$resource", "$cacheFactory", "Apiv7Endpoint", function ($resource, $cacheFactory, Apiv7Endpoint) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiMeContactErikaQuery");
+    var otherCache = $cacheFactory("OvhApiMeContactErika");
+
+    var userContactResource = new Apiv7Endpoint("/me/contact/:contactId", {
+        contactId: "@contactId"
+    }, {
+        query: {
+            url: "/me/contact",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            serviceType: "apiv7"
+        }
+    });
+
+    userContactResource.resetAllCache = function () {
+        userContactResource.resetOtherCache();
+        userContactResource.resetQueryCache();
+    };
+
+    userContactResource.resetOtherCache = function () {
+        otherCache.removeAll();
+    };
+
+    userContactResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return userContactResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiMeContactQueryLexi");
+    var cache = $cacheFactory("OvhApiMeContactLexi");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    return $resource("/me/contact/:contactId", {
+        contactId: "@contactId"
+    }, {
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true
+        },
+        create: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        save: {
+            method: "PUT",
+            interceptor: interceptor
+        }
+    });
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeContact", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeContactLexi");
+        },
+        Erika: function () {
+            return $injector.get("OvhApiMeContactErika");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDocumentLexi", ["$resource", "$cacheFactory", "$window", "$http", function ($resource, $cacheFactory, $window, $http) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeDocumentLexi");
+    var queryCache = $cacheFactory("OvhApiMeDocumentLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var docResource = $resource("/me/document/:id", {
+        id: "@id"
+    }, {
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true
+        },
+        create: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        },
+        cors: {
+            method: "POST",
+            url: "/me/document/cors"
+        }
+    });
+
+    docResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    docResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    docResource.resetAllCache = function () {
+        this.resetQueryCache();
+        this.resetCache();
+    };
+
+    docResource.upload = function (fileName, file) {
+        return docResource.create({}, {
+            name: fileName
+        }).$promise.then(function (resp) {
+            return docResource.cors({}, {
+                origin: $window.location.origin
+            }).$promise.then(function () {
+                return $http.put(resp.putUrl, file, {
+                    serviceType: "storage",
+                    headers: {
+                        "Content-type": "multipart/form-data"
+                    }
+                }).then(function () {
+                    return docResource.get({
+                        id: resp.id
+                    }).$promise;
+                });
+            });
+        });
+    };
+
+    return docResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDocument", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeDocumentLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeFaxCustomDomainsLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/fax/customDomains/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        create: {
+            method: "POST"
+        },
+        remove: {
+            method: "DELETE"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeFaxCustomDomains", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeFaxCustomDomainsLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeFax", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        CustomDomains: function () {
+            return $injector.get("OvhApiMeFaxCustomDomains");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeFeedbackAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me", {}, {
+        feedback: {
+            method: "POST",
+            url: "/me/feedback",
+            serviceType: "aapi"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeFidelityAccountLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeFidelityAccountLexi");
+
+    var userFidelityResource = $resource("/me/fidelityAccount", {}, {
+        get: {
+            method: "GET",
+            cache: cache
+        }
+    });
+
+    userFidelityResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return userFidelityResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeFidelityAccount", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeFidelityAccountLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeLexi");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response;
+        }
+    };
+
+    var me = $resource("/me", {}, {
+        get: { method: "GET", cache: cache },
+        update: { method: "PUT", interceptor: interceptor },
+        schema: { method: "GET", url: "/me.json" }
+    });
+
+    me.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return me;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeLexi");
+        },
+        Agreements: function () {
+            return $injector.get("OvhApiMeAgreements");
+        },
+        SshKey: function () {
+            return $injector.get("OvhApiMeSshKey");
+        },
+        Bill: function () {
+            return $injector.get("OvhApiMeBill");
+        },
+        Order: function () {
+            return $injector.get("OvhApiMeOrder");
+        },
+        OvhAccount: function () {
+            return $injector.get("OvhApiMeOvhAccount");
+        },
+        FidelityAccount: function () {
+            return $injector.get("OvhApiMeFidelityAccount");
+        },
+        PaymentMean: function () {
+            return $injector.get("OvhApiMePaymentMean");
+        },
+        AvailableAutomaticPaymentMeans: function () {
+            return $injector.get("OvhApiMeAvailableAutomaticPaymentMeans");
+        },
+        Document: function () {
+            return $injector.get("OvhApiMeDocument");
+        },
+        Contact: function () {
+            return $injector.get("OvhApiMeContact");
+        },
+        Task: function () {
+            return $injector.get("OvhApiMeTask");
+        },
+        Telephony: function () {
+            return $injector.get("OvhApiMeTelephony");
+        },
+        Fax: function () {
+            return $injector.get("OvhApiMeFax");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeOrderErika", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var userOrderEndpoint = apiv7("/me/order/:orderId", {
+        orderId: "@orderId"
+    });
+
+    return userOrderEndpoint;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var otherCache = $cacheFactory("OvhApiMeOrderLexi");
+    var queryCache = $cacheFactory("OvhApiMeOrderLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            otherCache.remove(response.config.url);
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var userOrderResource = $resource("/me/order/:orderId", { orderId: "@orderId" }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: otherCache },
+        getStatus: {
+            url: "/me/order/:orderId/status",
+            method: "GET",
+
+            /**
+             * This endpoint returns a bared, quoted string like "unPaid".
+             * $resource does not handle that gracefully.
+             * So lets make a clean object out of that response
+             */
+            transformResponse: function (response, headers, httpCode) {
+                if (httpCode === 200) {
+                    return { status: angular.fromJson(response) };
+                }
+                return response;
+            }
+        },
+        getDetails: { method: "GET", url: "/me/order/:orderId/details", cache: queryCache, isArray: true },
+        getDetail: { method: "GET", url: "/me/order/:orderId/details/:detailId", params: { orderId: "@orderId", detailId: "@detailId" }, cache: queryCache },
+        payRegisteredPaymentMean: { method: "POST", url: "/me/order/:orderId/payWithRegisteredPaymentMean", interceptor: interceptor }
+    });
+
+    userOrderResource.resetAllCache = function () {
+        userOrderResource.resetOtherCache();
+        userOrderResource.resetQueryCache();
+    };
+
+    userOrderResource.resetOtherCache = function () {
+        otherCache.removeAll();
+    };
+
+    userOrderResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return userOrderResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeOrder", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Tera: angular.noop,
+        Lexi: function () {
+            return $injector.get("OvhApiMeOrderLexi");
+        },
+        Erika: function () {
+            return $injector.get("OvhApiMeOrderErika");
+        },
+        PayRegisteredPaymentMean: function () {
+            return $injector.get("OvhApiMeOrderPayRegisteredPaymentMean");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeOvhAccountAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/ovhAccount/all", {}, {
+        info: {
+            method: "GET",
+            serviceType: "aapi",
+            isArray: true
+        }
+    });
+}]);
+
+angular.module("ovh-api-services")
+    .service("OvhApiMeOvhAccountLexi", ["$resource", "$cacheFactory", "OvhApiMeLexi", function ($resource, $cacheFactory, OvhApiMeLexi) {
+        "use strict";
+
+        var cache = $cacheFactory("OvhApiMeOvhAccountLexi");
+        var queryCache = $cacheFactory("OvhApiMeOvhAccountLexiQuery");
+
+        var resource = $resource("/me/ovhAccount/:ovhAccountId", {
+            ovhAccountId: "@ovhAccountId"
+        }, {
+            get: { method: "GET", cache: cache },
+            query: { method: "GET", cache: queryCache, isArray: true }
+        });
+
+        resource.getBalance = function () {
+            return OvhApiMeLexi.get().$promise
+                .then(function (userInfo) {
+                    return resource.get({ ovhAccountId: userInfo.ovhSubsidiary }).$promise;
+                })
+                .then(function (accountInfo) {
+                    return accountInfo.balance;
+                });
+        };
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular.module("ovh-api-services").service("OvhApiMeOvhAccount", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiMeOvhAccountAapi");
+        },
+        Lexi: function () {
+            return $injector.get("OvhApiMeOvhAccountLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccountLexi", ["$resource", "$q", function ($resource, $q) {
+    "use strict";
+
+    var resource = $resource("/me/paymentMean/bankAccount/:id", {
+        id: "@id",
+        state: "@state"
+    });
+
+    resource.getDefaultPaymentMean = function () {
+        var defaultPaymentMean;
+        return resource.query({ state: "valid" }).$promise.then(function (bankAccountIds) {
+            var queue = [];
+            angular.forEach(bankAccountIds, function (bankAccountId) {
+                queue.push(resource.get({ id: bankAccountId }).$promise.then(function (bankAccount) {
+                    if (bankAccount.defaultPaymentMean) {
+                        defaultPaymentMean = bankAccount;
+                    }
+                }));
+            });
+            return $q.all(queue).then(function () {
+                return defaultPaymentMean;
+            });
+        });
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccount", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMePaymentMeanBankAccountLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanCreditCardLexi", ["$resource", "$q", function ($resource, $q) {
+    "use strict";
+
+    var resource = $resource("/me/paymentMean/creditCard/:id", {
+        id: "@id"
+    });
+
+    resource.getDefaultPaymentMean = function () {
+        var defaultPaymentMean;
+        return resource.query().$promise.then(function (creditCardIds) {
+            var queue = [];
+            angular.forEach(creditCardIds, function (creditCardId) {
+                queue.push(resource.get({ id: creditCardId }).$promise.then(function (creditCard) {
+                    if (creditCard.defaultPaymentMean) {
+                        defaultPaymentMean = creditCard;
+                    }
+                }));
+            });
+            return $q.all(queue).then(function () {
+                return defaultPaymentMean;
+            });
+        });
+    };
+
+    resource.getCreditCards = function () {
+        return resource.query().$promise.then(function (ids) {
+            var queue = [];
+            angular.forEach(ids, function (id) {
+                queue.push(resource.get({ id: id }).$promise);
+            });
+            return $q.all(queue);
+        });
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanCreditCard", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMePaymentMeanCreditCardLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanLexi", ["OvhApiMePaymentMeanBankAccount", "OvhApiMePaymentMeanCreditCard", "OvhApiMePaymentMeanPaypal", function (OvhApiMePaymentMeanBankAccount, OvhApiMePaymentMeanCreditCard, OvhApiMePaymentMeanPaypal) {
+    "use strict";
+
+    return {
+        getDefaultPaymentMean: function () {
+            return OvhApiMePaymentMeanCreditCard.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanCreditCard) {
+                if (defaultPaymentMeanCreditCard) {
+                    defaultPaymentMeanCreditCard.paymentType = "creditCard";
+                    return defaultPaymentMeanCreditCard;
+                }
+                return OvhApiMePaymentMeanPaypal.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanPaypal) {
+                    if (defaultPaymentMeanPaypal) {
+                        defaultPaymentMeanPaypal.paymentType = "paypal";
+                        return defaultPaymentMeanPaypal;
+                    }
+                    return OvhApiMePaymentMeanBankAccount.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanBankAccount) {
+                        if (defaultPaymentMeanBankAccount) {
+                            defaultPaymentMeanBankAccount.paymentType = "bankAccount";
+                            return defaultPaymentMeanBankAccount;
+                        }
+
+                        return null;
+                    });
+
+                });
+
+            });
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMean", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMePaymentMeanLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypalLexi", ["$resource", "$q", function ($resource, $q) {
+    "use strict";
+
+    var resource = $resource("/me/paymentMean/paypal/:id", {
+        id: "@id"
+    });
+
+    resource.getDefaultPaymentMean = function () {
+        var defaultPaymentMean;
+        return resource.query().$promise.then(function (paypalIds) {
+            var queue = [];
+            angular.forEach(paypalIds, function (paypalId) {
+                queue.push(resource.get({ id: paypalId }).$promise.then(function (paypal) {
+                    if (paypal.defaultPaymentMean) {
+                        defaultPaymentMean = paypal;
+                    }
+                }));
+            });
+            return $q.all(queue).then(function () {
+                return defaultPaymentMean;
+            });
+        });
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypal", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMePaymentMeanPaypalLexi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeSshKey", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeSshKeyLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", ["$injector", "$resource", function ($injector, $resource) {
+    "use strict";
+
+    var req = $resource("/api/me/sshKey");
+
+    return req;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTaskContactChangeLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/task/contactChange/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            headers: {
+                "X-Ovh-Batch": ","
+            }
+        },
+        accept: {
+            method: "POST",
+            url: "/me/task/contactChange/:id/accept"
+        },
+        refuse: {
+            method: "POST",
+            url: "/me/task/contactChange/:id/refuse"
+        },
+        resendEmail: {
+            method: "POST",
+            url: "/me/task/contactChange/:id/resendEmail"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTaskContactChange", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeTaskContactChangeLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTask", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        ContactChange: function () {
+            return $injector.get("OvhApiMeTaskContactChange");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTelephonyDefaultIpRestrictionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeTelephonyDefaultIpRestrictionLexi");
+    var queryCache = $cacheFactory("OvhApiMeTelephonyDefaultIpRestrictionLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var res = $resource("/me/telephony/defaultIpRestriction/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache,
+            headers: {
+                "X-Ovh-Batch": ","
+            }
+        },
+        create: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        remove: {
+            method: "DELETE",
+            interceptor: interceptor
+        }
+    });
+
+    res.resetCache = function () {
+        cache.removeAll();
+    };
+
+    res.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    res.resetAllCache = function () {
+        this.resetCache();
+        this.resetQueryCache();
+    };
+
+    return res;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTelephonyDefaultIpRestriction", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeTelephonyDefaultIpRestrictionLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTelephony", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        DefaultIpRestriction: function () {
+            return $injector.get("OvhApiMeTelephonyDefaultIpRestriction");
+        },
+        Settings: function () {
+            return $injector.get("OvhApiMeTelephonySettings");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTelephonySettingsLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/telephony/settings", {}, {
+        get: {
+            method: "GET"
+        },
+        change: {
+            method: "POST"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeTelephonySettings", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeTelephonySettingsLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeVipStatusLexi", ["$injector", "$resource", function ($injector, $resource) {
+    "use strict";
+
+    var req = $resource("/me/vipStatus");
+
+    return req;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeVipStatus", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiMeVipStatusLexi");
+        }
+    };
+}]);
+
 angular
     .module("ovh-api-services")
     .service("OvhApiMetrics", ["$injector", function ($injector) {
@@ -14422,983 +15393,6 @@ angular.module("ovh-api-services").service("OvhApiTelephonyVxml", ["$injector", 
     return {
         Lexi: function () {
             return $injector.get("OvhApiTelephonyVxmlLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserAgreementsLexi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/agreements/:id", {
-        id: "@id"
-    }, {
-        accept: {
-            url: "/me/agreements/:id/accept",
-            method: "POST"
-        },
-        contract: {
-            url: "/me/agreements/:id/contract",
-            method: "GET"
-        }
-    });
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserAgreements", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserAgreementsLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserAlertsAapi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/alerts", {}, {
-        query: {
-            method: "GET",
-            isArray: true,
-            url: "/me/alerts",
-            serviceType: "aapi"
-        }
-    });
-}]);
-
-
-angular.module("ovh-api-services").service("OvhApiUserAlerts", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiUserAlertsAapi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var cache = $cacheFactory("OvhApiUserLexi");
-
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            return response;
-        }
-    };
-
-    var me = $resource("/me", {}, {
-        get: { method: "GET", cache: cache },
-        update: { method: "PUT", interceptor: interceptor },
-        schema: { method: "GET", url: "/me.json" }
-    });
-
-    me.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return me;
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUser", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserLexi");
-        },
-        Agreements: function () {
-            return $injector.get("OvhApiUserAgreements");
-        },
-        SshKey: function () {
-            return $injector.get("OvhApiUserSshKey");
-        },
-        Bill: function () {
-            return $injector.get("OvhApiUserBill");
-        },
-        Order: function () {
-            return $injector.get("OvhApiUserOrder");
-        },
-        OvhAccount: function () {
-            return $injector.get("OvhApiUserOvhAccount");
-        },
-        FidelityAccount: function () {
-            return $injector.get("OvhApiUserFidelityAccount");
-        },
-        PaymentMean: function () {
-            return $injector.get("OvhApiUserPaymentMean");
-        },
-        AvailableAutomaticPaymentMeans: function () {
-            return $injector.get("OvhApiUserAvailableAutomaticPaymentMeans");
-        },
-        Document: function () {
-            return $injector.get("OvhApiUserDocument");
-        },
-        Contact: function () {
-            return $injector.get("OvhApiUserContact");
-        },
-        Task: function () {
-            return $injector.get("OvhApiUserTask");
-        },
-        Telephony: function () {
-            return $injector.get("OvhApiUserTelephony");
-        },
-        Fax: function () {
-            return $injector.get("OvhApiUserFax");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserAvailableAutomaticPaymentMeansLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var cache = $cacheFactory("OvhApiUserAvailableAutomaticPaymentMeansLexi");
-
-    return $resource("/me/availableAutomaticPaymentMeans", { }, {
-        get: { method: "GET", cache: cache, isArray: false }
-    });
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserAvailableAutomaticPaymentMeans", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Tera: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiUserAvailableAutomaticPaymentMeansLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserBillDetailsLexi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/bill/:billId/details/:billDetailId", {
-        billId: "@billId",
-        billDetailId: "@billDetailId"
-    });
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserBillDetails", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserBillDetailsLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserBillAapi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/bill", {}, {
-        last: {
-            method: "GET",
-            url: "/me/bill/last",
-            serviceType: "aapi",
-            isArray: true
-        }
-    });
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserBillLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    // we don't need cache for query : it's just list of IDs and we don't know if a new bill is emited
-    var cache = $cacheFactory("OvhApiUserBillLexi");
-
-    var userBillResource = $resource("/me/bill/:billId", {
-        billId: "@billId"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: { method: "GET", isArray: true }
-    });
-
-    userBillResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return userBillResource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserBill", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiUserBillAapi");
-        },
-        Lexi: function () {
-            return $injector.get("OvhApiUserBillLexi");
-        },
-        Details: function () {
-            return $injector.get("OvhApiUserBillDetails");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserContactErika", ["$resource", "$cacheFactory", "Apiv7Endpoint", function ($resource, $cacheFactory, Apiv7Endpoint) {
-    "use strict";
-
-    var queryCache = $cacheFactory("OvhApiUserContactErikaQuery");
-    var otherCache = $cacheFactory("OvhApiUserContactErika");
-
-    var userContactResource = new Apiv7Endpoint("/me/contact/:contactId", {
-        contactId: "@contactId"
-    }, {
-        query: {
-            url: "/me/contact",
-            method: "GET",
-            cache: queryCache,
-            isArray: true,
-            serviceType: "apiv7"
-        }
-    });
-
-    userContactResource.resetAllCache = function () {
-        userContactResource.resetOtherCache();
-        userContactResource.resetQueryCache();
-    };
-
-    userContactResource.resetOtherCache = function () {
-        otherCache.removeAll();
-    };
-
-    userContactResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return userContactResource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var queryCache = $cacheFactory("OvhApiUserContactQueryLexi");
-    var cache = $cacheFactory("OvhApiUserContactLexi");
-
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
-        }
-    };
-
-    return $resource("/me/contact/:contactId", {
-        contactId: "@contactId"
-    }, {
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true
-        },
-        create: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        save: {
-            method: "PUT",
-            interceptor: interceptor
-        }
-    });
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserContact", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserContactLexi");
-        },
-        Erika: function () {
-            return $injector.get("OvhApiUserContactErika");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserDocumentLexi", ["$resource", "$cacheFactory", "$window", "$http", function ($resource, $cacheFactory, $window, $http) {
-    "use strict";
-
-    var cache = $cacheFactory("OvhApiUserDocumentLexi");
-    var queryCache = $cacheFactory("OvhApiUserDocumentLexiQuery");
-
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
-
-    var docResource = $resource("/me/document/:id", {
-        id: "@id"
-    }, {
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true
-        },
-        create: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        "delete": {
-            method: "DELETE",
-            interceptor: interceptor
-        },
-        cors: {
-            method: "POST",
-            url: "/me/document/cors"
-        }
-    });
-
-    docResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    docResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    docResource.resetAllCache = function () {
-        this.resetQueryCache();
-        this.resetCache();
-    };
-
-    docResource.upload = function (fileName, file) {
-        return docResource.create({}, {
-            name: fileName
-        }).$promise.then(function (resp) {
-            return docResource.cors({}, {
-                origin: $window.location.origin
-            }).$promise.then(function () {
-                return $http.put(resp.putUrl, file, {
-                    serviceType: "storage",
-                    headers: {
-                        "Content-type": "multipart/form-data"
-                    }
-                }).then(function () {
-                    return docResource.get({
-                        id: resp.id
-                    }).$promise;
-                });
-            });
-        });
-    };
-
-    return docResource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserDocument", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserDocumentLexi");
-        }
-    };
-}]);
-
-
-angular.module("ovh-api-services").service("OvhApiUserFax", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        CustomDomains: function () {
-            return $injector.get("OvhApiUserFaxCustomDomains");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserFaxCustomDomainsLexi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/fax/customDomains/:id", {
-        id: "@id"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true
-        },
-        get: {
-            method: "GET"
-        },
-        create: {
-            method: "POST"
-        },
-        remove: {
-            method: "DELETE"
-        }
-    });
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserFaxCustomDomains", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserFaxCustomDomainsLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserFeedbackAapi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me", {}, {
-        feedback: {
-            method: "POST",
-            url: "/me/feedback",
-            serviceType: "aapi"
-        }
-    });
-}]);
-
-
-angular.module("ovh-api-services").service("OvhApiUserFidelityAccountLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var cache = $cacheFactory("OvhApiUserFidelityAccountLexi");
-
-    var userFidelityResource = $resource("/me/fidelityAccount", {}, {
-        get: {
-            method: "GET",
-            cache: cache
-        }
-    });
-
-    userFidelityResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return userFidelityResource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserFidelityAccount", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserFidelityAccountLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserOrderErika", ["apiv7", function (apiv7) {
-    "use strict";
-
-    var userOrderEndpoint = apiv7("/me/order/:orderId", {
-        orderId: "@orderId"
-    });
-
-    return userOrderEndpoint;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var otherCache = $cacheFactory("OvhApiUserOrderLexi");
-    var queryCache = $cacheFactory("OvhApiUserOrderLexiQuery");
-
-    var interceptor = {
-        response: function (response) {
-            otherCache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
-
-    var userOrderResource = $resource("/me/order/:orderId", { orderId: "@orderId" }, {
-        query: { method: "GET", cache: queryCache, isArray: true },
-        get: { method: "GET", cache: otherCache },
-        getStatus: {
-            url: "/me/order/:orderId/status",
-            method: "GET",
-
-            /**
-             * This endpoint returns a bared, quoted string like "unPaid".
-             * $resource does not handle that gracefully.
-             * So lets make a clean object out of that response
-             */
-            transformResponse: function (response, headers, httpCode) {
-                if (httpCode === 200) {
-                    return { status: angular.fromJson(response) };
-                }
-                return response;
-            }
-        },
-        getDetails: { method: "GET", url: "/me/order/:orderId/details", cache: queryCache, isArray: true },
-        getDetail: { method: "GET", url: "/me/order/:orderId/details/:detailId", params: { orderId: "@orderId", detailId: "@detailId" }, cache: queryCache },
-        payRegisteredPaymentMean: { method: "POST", url: "/me/order/:orderId/payWithRegisteredPaymentMean", interceptor: interceptor }
-    });
-
-    userOrderResource.resetAllCache = function () {
-        userOrderResource.resetOtherCache();
-        userOrderResource.resetQueryCache();
-    };
-
-    userOrderResource.resetOtherCache = function () {
-        otherCache.removeAll();
-    };
-
-    userOrderResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return userOrderResource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserOrder", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Tera: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiUserOrderLexi");
-        },
-        Erika: function () {
-            return $injector.get("OvhApiUserOrderErika");
-        },
-        PayRegisteredPaymentMean: function () {
-            return $injector.get("OvhApiUserOrderPayRegisteredPaymentMean");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserOvhAccountAapi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/ovhAccount/all", {}, {
-        info: {
-            method: "GET",
-            serviceType: "aapi",
-            isArray: true
-        }
-    });
-}]);
-
-angular.module("ovh-api-services")
-    .service("UserOvhAccountLexi", ["$resource", "$cacheFactory", "OvhApiUserLexi", function ($resource, $cacheFactory, OvhApiUserLexi) {
-        "use strict";
-
-        var cache = $cacheFactory("OvhApiUserOvhAccountLexi");
-        var queryCache = $cacheFactory("OvhApiUserOvhAccountLexiQuery");
-
-        var resource = $resource("/me/ovhAccount/:ovhAccountId", {
-            ovhAccountId: "@ovhAccountId"
-        }, {
-            get: { method: "GET", cache: cache },
-            query: { method: "GET", cache: queryCache, isArray: true }
-        });
-
-        resource.getBalance = function () {
-            return OvhApiUserLexi.get().$promise
-                .then(function (userInfo) {
-                    return resource.get({ ovhAccountId: userInfo.ovhSubsidiary }).$promise;
-                })
-                .then(function (accountInfo) {
-                    return accountInfo.balance;
-                });
-        };
-
-        resource.resetCache = function () {
-            cache.removeAll();
-        };
-
-        resource.resetQueryCache = function () {
-            queryCache.removeAll();
-        };
-
-        return resource;
-    }]);
-
-angular.module("ovh-api-services").service("OvhApiUserOvhAccount", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiUserOvhAccountAapi");
-        },
-        Lexi: function () {
-            return $injector.get("OvhApiUserOvhAccountLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanBankAccountLexi", ["$resource", "$q", function ($resource, $q) {
-    "use strict";
-
-    var resource = $resource("/me/paymentMean/bankAccount/:id", {
-        id: "@id",
-        state: "@state"
-    });
-
-    resource.getDefaultPaymentMean = function () {
-        var defaultPaymentMean;
-        return resource.query({ state: "valid" }).$promise.then(function (bankAccountIds) {
-            var queue = [];
-            angular.forEach(bankAccountIds, function (bankAccountId) {
-                queue.push(resource.get({ id: bankAccountId }).$promise.then(function (bankAccount) {
-                    if (bankAccount.defaultPaymentMean) {
-                        defaultPaymentMean = bankAccount;
-                    }
-                }));
-            });
-            return $q.all(queue).then(function () {
-                return defaultPaymentMean;
-            });
-        });
-    };
-
-    return resource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanBankAccount", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserPaymentMeanBankAccountLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanCreditCardLexi", ["$resource", "$q", function ($resource, $q) {
-    "use strict";
-
-    var resource = $resource("/me/paymentMean/creditCard/:id", {
-        id: "@id"
-    });
-
-    resource.getDefaultPaymentMean = function () {
-        var defaultPaymentMean;
-        return resource.query().$promise.then(function (creditCardIds) {
-            var queue = [];
-            angular.forEach(creditCardIds, function (creditCardId) {
-                queue.push(resource.get({ id: creditCardId }).$promise.then(function (creditCard) {
-                    if (creditCard.defaultPaymentMean) {
-                        defaultPaymentMean = creditCard;
-                    }
-                }));
-            });
-            return $q.all(queue).then(function () {
-                return defaultPaymentMean;
-            });
-        });
-    };
-
-    resource.getCreditCards = function () {
-        return resource.query().$promise.then(function (ids) {
-            var queue = [];
-            angular.forEach(ids, function (id) {
-                queue.push(resource.get({ id: id }).$promise);
-            });
-            return $q.all(queue);
-        });
-    };
-
-    return resource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanCreditCard", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserPaymentMeanCreditCardLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanPaypalLexi", ["$resource", "$q", function ($resource, $q) {
-    "use strict";
-
-    var resource = $resource("/me/paymentMean/paypal/:id", {
-        id: "@id"
-    });
-
-    resource.getDefaultPaymentMean = function () {
-        var defaultPaymentMean;
-        return resource.query().$promise.then(function (paypalIds) {
-            var queue = [];
-            angular.forEach(paypalIds, function (paypalId) {
-                queue.push(resource.get({ id: paypalId }).$promise.then(function (paypal) {
-                    if (paypal.defaultPaymentMean) {
-                        defaultPaymentMean = paypal;
-                    }
-                }));
-            });
-            return $q.all(queue).then(function () {
-                return defaultPaymentMean;
-            });
-        });
-    };
-
-    return resource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanPaypal", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserPaymentMeanPaypalLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMeanLexi", ["OvhApiUserPaymentMeanBankAccount", "OvhApiUserPaymentMeanCreditCard", "OvhApiUserPaymentMeanPaypal", function (OvhApiUserPaymentMeanBankAccount, OvhApiUserPaymentMeanCreditCard, OvhApiUserPaymentMeanPaypal) {
-    "use strict";
-
-    return {
-        getDefaultPaymentMean: function () {
-            return OvhApiUserPaymentMeanCreditCard.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanCreditCard) {
-                if (defaultPaymentMeanCreditCard) {
-                    defaultPaymentMeanCreditCard.paymentType = "creditCard";
-                    return defaultPaymentMeanCreditCard;
-                }
-                return OvhApiUserPaymentMeanPaypal.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanPaypal) {
-                    if (defaultPaymentMeanPaypal) {
-                        defaultPaymentMeanPaypal.paymentType = "paypal";
-                        return defaultPaymentMeanPaypal;
-                    }
-                    return OvhApiUserPaymentMeanBankAccount.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanBankAccount) {
-                        if (defaultPaymentMeanBankAccount) {
-                            defaultPaymentMeanBankAccount.paymentType = "bankAccount";
-                            return defaultPaymentMeanBankAccount;
-                        }
-
-                        return null;
-                    });
-
-                });
-
-            });
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserPaymentMean", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserPaymentMeanLexi");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserSshKey", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserSshKeyLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserSshKeyLexi", ["$injector", "$resource", function ($injector, $resource) {
-    "use strict";
-
-    var req = $resource("/api/me/sshKey");
-
-    return req;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserTaskContactChangeLexi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/task/contactChange/:id", {
-        id: "@id"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true
-        },
-        get: {
-            method: "GET"
-        },
-        getBatch: {
-            method: "GET",
-            isArray: true,
-            headers: {
-                "X-Ovh-Batch": ","
-            }
-        },
-        accept: {
-            method: "POST",
-            url: "/me/task/contactChange/:id/accept"
-        },
-        refuse: {
-            method: "POST",
-            url: "/me/task/contactChange/:id/refuse"
-        },
-        resendEmail: {
-            method: "POST",
-            url: "/me/task/contactChange/:id/resendEmail"
-        }
-    });
-}]);
-
-
-angular.module("ovh-api-services").service("OvhApiUserTaskContactChange", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserTaskContactChangeLexi");
-        }
-    };
-}]);
-
-
-angular.module("ovh-api-services").service("OvhApiUserTask", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        ContactChange: function () {
-            return $injector.get("OvhApiUserTaskContactChange");
-        }
-    };
-}]);
-
-
-angular.module("ovh-api-services").service("OvhApiUserTelephony", ["$injector", function ($injector) {
-    "use strict";
-    return {
-        DefaultIpRestriction: function () {
-            return $injector.get("OvhApiUserTelephonyDefaultIpRestriction");
-        },
-        Settings: function () {
-            return $injector.get("OvhApiUserTelephonySettings");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserTelephonyDefaultIpRestrictionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var cache = $cacheFactory("OvhApiUserTelephonyDefaultIpRestrictionLexi");
-    var queryCache = $cacheFactory("OvhApiUserTelephonyDefaultIpRestrictionLexiQuery");
-
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
-
-    var res = $resource("/me/telephony/defaultIpRestriction/:id", {
-        id: "@id"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            cache: queryCache
-        },
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        getBatch: {
-            method: "GET",
-            isArray: true,
-            cache: queryCache,
-            headers: {
-                "X-Ovh-Batch": ","
-            }
-        },
-        create: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        remove: {
-            method: "DELETE",
-            interceptor: interceptor
-        }
-    });
-
-    res.resetCache = function () {
-        cache.removeAll();
-    };
-
-    res.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    res.resetAllCache = function () {
-        this.resetCache();
-        this.resetQueryCache();
-    };
-
-    return res;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserTelephonyDefaultIpRestriction", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserTelephonyDefaultIpRestrictionLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserTelephonySettingsLexi", ["$resource", function ($resource) {
-    "use strict";
-
-    return $resource("/me/telephony/settings", {}, {
-        get: {
-            method: "GET"
-        },
-        change: {
-            method: "POST"
-        }
-    });
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserTelephonySettings", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserTelephonySettingsLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserVipStatusLexi", ["$injector", "$resource", function ($injector, $resource) {
-    "use strict";
-
-    var req = $resource("/me/vipStatus");
-
-    return req;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiUserVipStatus", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiUserVipStatusLexi");
         }
     };
 }]);

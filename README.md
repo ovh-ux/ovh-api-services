@@ -51,9 +51,9 @@ The files structure is then:
 └── me
     ├── sshKey
     │   ├── me-sshKey.service.js
-    │   └── me-sshKey.lexi.js
+    │   └── me-sshKey.lexi.service.js
     ├── me.service.js
-    └── me.lexi.js
+    └── me.lexi.service.js
 ```
 
 The directories structure must follow the structure of the API.
