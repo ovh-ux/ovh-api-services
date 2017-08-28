@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("CloudProjectUsageHistoryLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageHistoryLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectUsageHistoryLexiQuery");
-    var cache = $cacheFactory("CloudProjectUsageHistoryLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectUsageHistoryLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectUsageHistoryLexi");
 
     var usages = $resource("/cloud/project/:serviceName/usage/history/:usageId", {
         serviceName: "@serviceName",

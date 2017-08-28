@@ -1,35 +1,35 @@
-angular.module("ovh-api-services").service("Vrack", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrack", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("VrackAapi");
+            return $injector.get("OvhApiVrackAapi");
         },
         Lexi: function () {
-            return $injector.get("VrackLexi");
+            return $injector.get("OvhApiVrackLexi");
         },
         CloudProject: function () {
-            return $injector.get("VrackCloudProject");
+            return $injector.get("OvhApiVrackCloudProject");
         },
         DedicatedCloud: function () {
-            return $injector.get("VrackDedicatedCloud");
+            return $injector.get("OvhApiVrackDedicatedCloud");
         },
         DedicatedServer: function () {
-            return $injector.get("VrackDedicatedServer");
+            return $injector.get("OvhApiVrackDedicatedServer");
         },
         DedicatedServerInterface: function () {
-            return $injector.get("DedicatedServerInterface");
+            return $injector.get("OvhApiDedicatedServerInterface");
         },
         DedicatedConnect: function () {
-            return $injector.get("VrackDedicatedConnect");
+            return $injector.get("OvhApiVrackDedicatedConnect");
         },
         Ip: function () {
-            return $injector.get("VrackIp");
+            return $injector.get("OvhApiVrackIp");
         },
         LegacyVrack: function () {
-            return $injector.get("VrackLegacyVrack");
+            return $injector.get("OvhApiVrackLegacyVrack");
         },
         Nasha: function () {
-            return $injector.get("VrackNasha");
+            return $injector.get("OvhApiVrackNasha");
         }
     };
 });

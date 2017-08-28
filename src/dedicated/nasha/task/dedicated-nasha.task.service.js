@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("DedicatedNashaTask", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaTask", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaTaskLexi");
+            return $injector.get("OvhApiDedicatedNashaTaskLexi");
         }
     };
 });

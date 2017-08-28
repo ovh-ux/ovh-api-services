@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("OrderSms", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderSms", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OrderSms");
+    var cache = $cacheFactory("OvhApiOrderSms");
 
     return {
         Lexi: function () {
-            return $injector.get("OrderSmsLexi");
+            return $injector.get("OvhApiOrderSmsLexi");
         },
         cache: cache
     };

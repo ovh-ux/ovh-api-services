@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DedicatedHousingLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedHousingLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedHousingLexi");
-    var queryCache = $cacheFactory("DedicatedHousingLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedHousingLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedHousingLexiQuery");
 
     var dedicatedHousingResource = $resource("/dedicated/housing/:serviceName", {
         serviceName: "@serviceName"

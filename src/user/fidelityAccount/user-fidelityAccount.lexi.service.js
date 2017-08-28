@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("UserFidelityAccountLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserFidelityAccountLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("UserFidelityAccountLexi");
+    var cache = $cacheFactory("OvhApiUserFidelityAccountLexi");
 
     var userFidelityResource = $resource("/me/fidelityAccount", {}, {
         get: {

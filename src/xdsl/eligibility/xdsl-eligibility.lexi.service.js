@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslEligibilityLexi", function ($resource, XdslEligibility) {
+angular.module("ovh-api-services").service("OvhApiXdslEligibilityLexi", function ($resource, OvhApiXdslEligibility) {
     "use strict";
 
     return $resource("/xdsl/eligibility", {
@@ -7,13 +7,13 @@ angular.module("ovh-api-services").service("XdslEligibilityLexi", function ($res
             method: "GET",
             isArray: true,
             url: "/xdsl/eligibility/cities",
-            cache: XdslEligibility.cache
+            cache: OvhApiXdslEligibility.cache
         },
         getStreets: {
             method: "GET",
             isArray: true,
             url: "/xdsl/eligibility/streets",
-            cache: XdslEligibility.cache
+            cache: OvhApiXdslEligibility.cache
         }
     });
 });

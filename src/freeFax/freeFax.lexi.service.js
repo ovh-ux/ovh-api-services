@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("FreeFaxLexi", function ($resource, $cacheFactory, FreeFax) {
+angular.module("ovh-api-services").service("OvhApiFreeFaxLexi", function ($resource, $cacheFactory, OvhApiFreeFax) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            FreeFax.resetCache();
+            OvhApiFreeFax.resetCache();
             return response.resource;
         }
     };
@@ -19,12 +19,12 @@ angular.module("ovh-api-services").service("FreeFaxLexi", function ($resource, $
             method: "GET",
             url: "/freefax",
             isArray: true,
-            cache: FreeFax.cache
+            cache: OvhApiFreeFax.cache
         },
         getPrice: {
             method: "GET",
             url: "/order/freefax/new",
-            cache: FreeFax.cache
+            cache: OvhApiFreeFax.cache
         },
         orderCredits: {
             method: "POST",

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("UserPaymentMean", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMean", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserPaymentMeanLexi");
+            return $injector.get("OvhApiUserPaymentMeanLexi");
         }
     };
 

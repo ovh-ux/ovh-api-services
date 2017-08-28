@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslIpsAapi", function ($resource, XdslIps) {
+angular.module("ovh-api-services").service("OvhApiXdslIpsAapi", function ($resource, OvhApiXdslIps) {
     "use strict";
 
     var xdslIps = $resource("/xdsl/:xdslId/ips", {
@@ -9,14 +9,14 @@ angular.module("ovh-api-services").service("XdslIpsAapi", function ($resource, X
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslIps.cache
+            cache: OvhApiXdslIps.cache
         },
         reverse: {
             method: "GET",
             isArray: true,
             serviceType: "aapi",
             url: "/xdsl/reverseDns/:ipBlock",
-            cache: XdslIps.cache
+            cache: OvhApiXdslIps.cache
         }
     });
 

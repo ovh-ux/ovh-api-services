@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("CloudProjectAggregateAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAggregateAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectAggregateAapi");
+    var cache = $cacheFactory("OvhApiCloudProjectAggregateAapi");
 
     var cloudProjectAggregateResource = $resource("/cloud/project/:serviceName/aggregate", {
         serviceName: "@serviceName"

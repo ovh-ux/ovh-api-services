@@ -1,12 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyEventtoken",
-                                           function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEventtoken", function ($injector) {
+    "use strict";
 
-                                               "use strict";
-
-                                               return {
-                                                   Lexi: function () {
-                                                       return $injector.get("TelephonyEventtokenLexi");
-                                                   }
-                                               };
-
-                                           });
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiTelephonyEventtokenLexi");
+        }
+    };
+});

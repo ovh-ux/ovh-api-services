@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyRsvaLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRsvaLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/rsva/:serviceName", {

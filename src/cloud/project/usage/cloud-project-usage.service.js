@@ -1,15 +1,15 @@
-angular.module("ovh-api-services").service("CloudProjectUsage", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsage", function ($injector) {
     "use strict";
 
     return {
         History: function () {
-            return $injector.get("CloudProjectUsageHistory");
+            return $injector.get("OvhApiCloudProjectUsageHistory");
         },
         Current: function () {
-            return $injector.get("CloudProjectUsageCurrent");
+            return $injector.get("OvhApiCloudProjectUsageCurrent");
         },
         Forecast: function () {
-            return $injector.get("CloudProjectUsageForecast");
+            return $injector.get("OvhApiCloudProjectUsageForecast");
         }
     };
 });

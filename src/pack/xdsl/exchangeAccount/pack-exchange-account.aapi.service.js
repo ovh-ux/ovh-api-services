@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslExchangeAccountAapi", function ($resource, PackXdslExchangeAccount) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountAapi", function ($resource, OvhApiPackXdslExchangeAccount) {
     "use strict";
 
     return $resource("/pack/xdsl/:packName/exchangeAccount/email", {
@@ -7,7 +7,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeAccountAapi", functi
         query: {
             isArray: true,
             serviceType: "aapi",
-            cache: PackXdslExchangeAccount.cache
+            cache: OvhApiPackXdslExchangeAccount.cache
         }
     }
     );

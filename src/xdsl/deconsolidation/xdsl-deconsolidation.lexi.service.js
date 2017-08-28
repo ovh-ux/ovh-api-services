@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("XdslDeconsolidationLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslDeconsolidationLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("xdslDeconsolidationLexi");
+    var cache = $cacheFactory("OvhApixdslDeconsolidationLexi");
 
     return $resource(
         "/xdsl/:xdslId", {

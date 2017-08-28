@@ -1,10 +1,10 @@
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceConsumption", function ($injector) {
+    .service("OvhApiMetricsServiceConsumption", function ($injector) {
 
         return {
             Lexi: function () {
-                return $injector.get("MetricsServiceConsumptionLexi");
+                return $injector.get("OvhApiMetricsServiceConsumptionLexi");
             }
         };
     });

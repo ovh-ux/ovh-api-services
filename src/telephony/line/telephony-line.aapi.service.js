@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("TelephonyLineAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineAapi");
+    var cache = $cacheFactory("OvhApiTelephonyLineAapi");
 
     var telephonyAll = $resource("/telephony/line", {}, {
         get: {

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("CloudProjectAggregate", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAggregate", function ($injector) {
     "use strict";
 
     return {
         Aapi: function () {
-            return $injector.get("CloudProjectAggregateAapi");
+            return $injector.get("OvhApiCloudProjectAggregateAapi");
         }
     };
 

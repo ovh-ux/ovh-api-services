@@ -1,15 +1,15 @@
 "use strict";
 
-angular.module("ovh-api-services").service("VrackDedicatedConnectLexi", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedConnectLexi", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackDedicatedConnectLexi");
-    var queryCache = $cacheFactory("VrackDedicatedConnectLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackDedicatedConnectLexi");
+    var queryCache = $cacheFactory("OvhApiVrackDedicatedConnectLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -31,12 +31,12 @@ angular.module("ovh-api-services").service("VrackDedicatedConnectLexi", function
 
     vrackDedicatedConnect.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     vrackDedicatedConnect.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackDedicatedConnect;

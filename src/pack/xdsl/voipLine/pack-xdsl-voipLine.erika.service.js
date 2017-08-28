@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslVoipLineErika", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipLineErika", function (apiv7) {
     "use strict";
 
     var res = apiv7("/pack/xdsl/:packName/voipLine", {

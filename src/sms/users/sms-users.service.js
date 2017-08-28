@@ -1,20 +1,20 @@
-angular.module("ovh-api-services").service("SmsUsers", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsUsers", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsUsersLexi");
+            return $injector.get("OvhApiSmsUsersLexi");
         },
         Incoming: function () {
-            return $injector.get("SmsUsersIncoming");
+            return $injector.get("OvhApiSmsUsersIncoming");
         },
         Jobs: function () {
-            return $injector.get("SmsUsersJobs");
+            return $injector.get("OvhApiSmsUsersJobs");
         },
         Outgoing: function () {
-            return $injector.get("SmsUsersOutgoing");
+            return $injector.get("OvhApiSmsUsersOutgoing");
         },
         Receivers: function () {
-            return $injector.get("SmsUsersReceivers");
+            return $injector.get("OvhApiSmsUsersReceivers");
         }
     };
 });

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectQuotaLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectQuotaLexi", function ($resource) {
     "use strict";
 
     var quota = $resource("/cloud/project/:serviceName/quota", {

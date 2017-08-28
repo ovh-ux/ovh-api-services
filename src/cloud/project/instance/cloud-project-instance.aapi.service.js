@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectInstanceAapi", function ($resource, CloudProjectInstance) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectInstanceAapi", function ($resource, OvhApiCloudProjectInstance) {
 
     "use strict";
 
@@ -7,13 +7,13 @@ angular.module("ovh-api-services").service("CloudProjectInstanceAapi", function 
     }, {
         monitoring: {
             url: "/cloud/project/:projectId/instance/monitoring",
-            cache: CloudProjectInstance.cache,
+            cache: OvhApiCloudProjectInstance.cache,
             method: "GET",
             serviceType: "aapi"
         },
         summary: {
             url: "/cloud/project/:projectId/instance/:instanceId/summary",
-            cache: CloudProjectInstance.cache,
+            cache: OvhApiCloudProjectInstance.cache,
             method: "GET",
             serviceType: "aapi",
             params: {

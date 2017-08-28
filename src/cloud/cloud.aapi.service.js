@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("CloudAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudAapiQuery");
+    var queryCache = $cacheFactory("OvhApiCloudAapiQuery");
 
     var instancesResource = $resource("/cloud/instances", {}, {
         query: {

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("UserAgreements", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserAgreements", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserAgreementsLexi");
+            return $injector.get("OvhApiUserAgreementsLexi");
         }
     };
 

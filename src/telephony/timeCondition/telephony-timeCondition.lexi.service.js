@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyTimeConditionLexi", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", function ($resource, TelephonyTimeCondition) {
 
     var interceptor = {
         response: function (response) {

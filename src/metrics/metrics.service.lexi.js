@@ -1,8 +1,8 @@
 angular
     .module("ovh-api-services")
-    .service("MetricsLexi", function ($resource, $cacheFactory) {
+    .service("OvhApiMetricsLexi", function ($resource, $cacheFactory) {
 
-        var queryCache = $cacheFactory("MetricsLexiQuery");
+        var queryCache = $cacheFactory("OvhApiMetricsLexiQuery");
         var r = $resource("/metrics", {}, {
             query: {
                 method: "GET",

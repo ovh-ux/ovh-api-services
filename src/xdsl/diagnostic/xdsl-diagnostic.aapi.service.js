@@ -1,5 +1,5 @@
 /* global angular*/
-angular.module("ovh-api-services").service("XdslDiagnosticAapi", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiXdslDiagnosticAapi", function ($resource, Poller) {
     "use strict";
 
     var route = "/xdsl/:xdslId/diagnostic";

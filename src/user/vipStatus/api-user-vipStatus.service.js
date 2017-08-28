@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("UserVipStatus", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserVipStatus", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserVipStatusLexi");
+            return $injector.get("OvhApiUserVipStatusLexi");
         }
     };
 });

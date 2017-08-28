@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("UserTelephony", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTelephony", function ($injector) {
     "use strict";
     return {
         DefaultIpRestriction: function () {
-            return $injector.get("UserTelephonyDefaultIpRestriction");
+            return $injector.get("OvhApiUserTelephonyDefaultIpRestriction");
         },
         Settings: function () {
-            return $injector.get("UserTelephonySettings");
+            return $injector.get("OvhApiUserTelephonySettings");
         }
     };
 });

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelecomPreferencesAapi", function ($resource, TelecomPreferences) {
+angular.module("ovh-api-services").service("OvhApiTelecomPreferencesAapi", function ($resource, OvhApiTelecomPreferences) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelecomPreferences.resetCache();
+            OvhApiTelecomPreferences.resetCache();
             return response.data;
         }
     };
@@ -13,7 +13,7 @@ angular.module("ovh-api-services").service("TelecomPreferencesAapi", function ($
             method: "GET",
             serviceType: "aapi",
             isArray: false,
-            cache: TelecomPreferences.cache
+            cache: OvhApiTelecomPreferences.cache
         },
         write: {
             method: "POST",

@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedCephUserLexi", function ($resource, $cacheFactory, DedicatedCephUserAapi) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUserLexi", function ($resource, $cacheFactory, OvhApiDedicatedCephUserAapi) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephUserLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephUserLexi");
 
     var interceptor = {
         response: function (response) {
@@ -39,12 +39,12 @@ angular.module("ovh-api-services").service("DedicatedCephUserLexi", function ($r
 
     resource.resetAllCache = function () {
         resource.resetQueryCache();
-        DedicatedCephUserAapi.resetAllCache();
+        OvhApiDedicatedCephUserAapi.resetAllCache();
     };
 
     resource.resetQueryCache = function () {
         queryCache.removeAll();
-        DedicatedCephUserAapi.resetCache();
+        OvhApiDedicatedCephUserAapi.resetCache();
     };
 
     return resource;

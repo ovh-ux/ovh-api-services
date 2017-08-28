@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyEasyHuntingSoundLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingSoundLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyHunting/:serviceName/sound/:soundId", {

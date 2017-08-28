@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("XdslModemLanDhcpLexi", function ($resource, $cacheFactory, XdslModemLanDhcpAapi) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpLexi", function ($resource, $cacheFactory, OvhApiXdslModemLanDhcpAapi) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemLanDhcpLexi");
+    var cache = $cacheFactory("OvhApiXdslModemLanDhcpLexi");
     var interceptor = {
         response: function (response) {
-            XdslModemLanDhcpAapi.resetCache();
+            OvhApiXdslModemLanDhcpAapi.resetCache();
             cache.removeAll();
             return response.resource;
         }

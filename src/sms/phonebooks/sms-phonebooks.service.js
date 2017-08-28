@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("SmsPhonebooks", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsPhonebooks", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsPhonebooksLexi");
+            return $injector.get("OvhApiSmsPhonebooksLexi");
         },
         PhonebookContact: function () {
-            return $injector.get("SmsPhonebooksPhonebookContact");
+            return $injector.get("OvhApiSmsPhonebooksPhonebookContact");
         }
     };
 });

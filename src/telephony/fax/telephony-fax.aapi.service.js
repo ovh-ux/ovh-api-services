@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyFaxAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxAapi", function ($resource) {
     "use strict";
 
     var fax = $resource("/fax", {}, {

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("NewAccountCreationRulesLexi", function ($resource, NewAccountCreationRules) {
+angular.module("ovh-api-services").service("OvhApiNewAccountCreationRulesLexi", function ($resource, OvhApiNewAccountCreationRules) {
     "use strict";
 
     return $resource("/newAccount/creationRules", {
@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("NewAccountCreationRulesLexi", functi
     }, {
         get: {
             method: "GET",
-            cache: NewAccountCreationRules.cache
+            cache: OvhApiNewAccountCreationRules.cache
         }
     }
     );

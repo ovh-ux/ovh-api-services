@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("UserAgreementsLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserAgreementsLexi", function ($resource) {
     "use strict";
 
     return $resource("/me/agreements/:id", {

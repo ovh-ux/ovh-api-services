@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("UserPaymentMeanPaypalLexi", function ($resource, $q) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanPaypalLexi", function ($resource, $q) {
     "use strict";
 
     var resource = $resource("/me/paymentMean/paypal/:id", {

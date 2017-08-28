@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("OrderOverTheBoxNewLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderOverTheBoxNewLexi", function ($resource, $cacheFactory) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderOverTheBoxNewLexiQuery");
-    var cache = $cacheFactory("OrderOverTheBoxNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderOverTheBoxNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderOverTheBoxNewLexi");
 
     var orderOverTheBox = $resource("/order/overTheBox/new/:duration", {
         duration: "@duration"

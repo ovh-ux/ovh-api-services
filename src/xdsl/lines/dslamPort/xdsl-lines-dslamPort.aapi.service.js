@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslLinesDslamPortAapi", function ($resource, XdslLinesDslamPort) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPortAapi", function ($resource, OvhApiXdslLinesDslamPort) {
     "use strict";
 
     var xdslLinesDslamPortAapi = $resource("/xdsl/:xdslId/lines/:number/dslamPort", {
@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("XdslLinesDslamPortAapi", function ($
             url: "/xdsl/:xdslId/lines/:number/dslamPort/availableProfiles",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslLinesDslamPort.cache
+            cache: OvhApiXdslLinesDslamPort.cache
         }
     }
     );

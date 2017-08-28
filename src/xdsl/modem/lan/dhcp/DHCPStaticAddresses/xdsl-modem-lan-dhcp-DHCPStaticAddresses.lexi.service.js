@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslModemLanDhcpDHCPStaticAddressesLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpDHCPStaticAddressesLexi", function ($resource) {
     "use strict";
 
     return $resource("/xdsl/:xdslId/modem/lan/:lanName/dhcp/:dhcpName/DHCPStaticAddresses/:MACAddress", {

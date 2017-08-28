@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedCephPoolLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephPoolLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephPoolLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephPoolLexi");
 
     var interceptor = {
         response: function (response) {

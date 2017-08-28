@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslModemWifiAapi", function ($resource, XdslModemWifi) {
+angular.module("ovh-api-services").service("OvhApiXdslModemWifiAapi", function ($resource, OvhApiXdslModemWifi) {
     "use strict";
 
     var xdslModemWifiAapi = $resource("/xdsl/:xdslId/modem/wifi/details", {
@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("XdslModemWifiAapi", function ($resou
             url: "/xdsl/:xdslId/modem/wifi/details",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslModemWifi.cache
+            cache: OvhApiXdslModemWifi.cache
         }
     });
 

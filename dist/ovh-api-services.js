@@ -1,6 +1,6 @@
 angular.module("ovh-api-services", []);
 
-angular.module("ovh-api-services").service("AuthLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiAuthLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource(
@@ -16,31 +16,31 @@ angular.module("ovh-api-services").service("AuthLexi", ["$resource", function ($
 }]
 );
 
-angular.module("ovh-api-services").service("Auth", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiAuth", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("AuthLexi");
+            return $injector.get("OvhApiAuthLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("Cdn", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCdn", ["$injector", function ($injector) {
     "use strict";
     return {
         Dedicated: function () {
-            return $injector.get("CdnDedicated");
+            return $injector.get("OvhApiCdnDedicated");
         },
         Website: function () {
-            return $injector.get("CdnWebsite");
+            return $injector.get("OvhApiCdnWebsite");
         },
         Webstorage: function () {
-            return $injector.get("CdnWebstorage");
+            return $injector.get("OvhApiCdnWebstorage");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CdnDedicatedLexi", ["$resource", "$q", "CdnDedicated", function ($resource, $q, CdnDedicated) {
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedLexi", ["$resource", "$q", "OvhApiCdnDedicated", function ($resource, $q, OvhApiCdnDedicated) {
     "use strict";
 
     return $resource("/cdn/dedicated/:serviceName", {
@@ -48,31 +48,31 @@ angular.module("ovh-api-services").service("CdnDedicatedLexi", ["$resource", "$q
     }, {
         get: {
             method: "GET",
-            cache: CdnDedicated.cache
+            cache: OvhApiCdnDedicated.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: CdnDedicated.cache
+            cache: OvhApiCdnDedicated.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("CdnDedicated", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCdnDedicated", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CdnDedicated");
+    var cache = $cacheFactory("OvhApiCdnDedicated");
 
     return {
         Lexi: function () {
-            return $injector.get("CdnDedicatedLexi");
+            return $injector.get("OvhApiCdnDedicatedLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("CdnWebsiteLexi", ["$resource", "$q", "CdnWebsite", function ($resource, $q, CdnWebsite) {
+angular.module("ovh-api-services").service("OvhApiCdnWebsiteLexi", ["$resource", "$q", "OvhApiCdnWebsite", function ($resource, $q, OvhApiCdnWebsite) {
     "use strict";
 
     return $resource("/cdn/website/:serviceName", {
@@ -80,31 +80,31 @@ angular.module("ovh-api-services").service("CdnWebsiteLexi", ["$resource", "$q",
     }, {
         get: {
             method: "GET",
-            cache: CdnWebsite.cache
+            cache: OvhApiCdnWebsite.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: CdnWebsite.cache
+            cache: OvhApiCdnWebsite.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("CdnWebsite", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCdnWebsite", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CdnWebsite");
+    var cache = $cacheFactory("OvhApiCdnWebsite");
 
     return {
         Lexi: function () {
-            return $injector.get("CdnWebsiteLexi");
+            return $injector.get("OvhApiCdnWebsiteLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("CdnWebstorageLexi", ["$resource", "$q", "CdnWebstorage", function ($resource, $q, CdnWebstorage) {
+angular.module("ovh-api-services").service("OvhApiCdnWebstorageLexi", ["$resource", "$q", "OvhApiCdnWebstorage", function ($resource, $q, OvhApiCdnWebstorage) {
     "use strict";
 
     return $resource("/cdn/webstorage/:serviceName", {
@@ -112,31 +112,31 @@ angular.module("ovh-api-services").service("CdnWebstorageLexi", ["$resource", "$
     }, {
         get: {
             method: "GET",
-            cache: CdnWebstorage.cache
+            cache: OvhApiCdnWebstorage.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: CdnWebstorage.cache
+            cache: OvhApiCdnWebstorage.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("CdnWebstorage", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCdnWebstorage", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CdnWebstorage");
+    var cache = $cacheFactory("OvhApiCdnWebstorage");
 
     return {
         Lexi: function () {
-            return $injector.get("CdnWebstorageLexi");
+            return $injector.get("OvhApiCdnWebstorageLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("ChangelogAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiChangelogAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource(
@@ -151,20 +151,20 @@ angular.module("ovh-api-services").service("ChangelogAapi", ["$resource", functi
 }]
 );
 
-angular.module("ovh-api-services").service("Changelog", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiChangelog", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Aapi: function () {
-            return $injector.get("ChangelogAapi");
+            return $injector.get("OvhApiChangelogAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudAapiQuery");
+    var queryCache = $cacheFactory("OvhApiCloudAapiQuery");
 
     var instancesResource = $resource("/cloud/instances", {}, {
         query: {
@@ -184,13 +184,13 @@ angular.module("ovh-api-services").service("CloudAapi", ["$resource", "$cacheFac
 
 "use strict";
 
-angular.module("ovh-api-services").service("CloudLexi", ["$resource", "CloudProjectLexi", "Vrack", function ($resource, CloudProjectLexi, Vrack) {
+angular.module("ovh-api-services").service("OvhApiCloudLexi", ["$resource", "OvhApiCloudProjectLexi", "OvhApiVrack", function ($resource, OvhApiCloudProjectLexi, OvhApiVrack) {
 
     var interceptor = {
         response: function (response) {
-            CloudProjectLexi.resetAllCache();
-            Vrack.Lexi().resetCache();
-            Vrack.Aapi().resetCache();
+            OvhApiCloudProjectLexi.resetAllCache();
+            OvhApiVrack.Lexi().resetCache();
+            OvhApiVrack.Aapi().resetCache();
             return response.data;
         }
     };
@@ -216,32 +216,32 @@ angular.module("ovh-api-services").service("CloudLexi", ["$resource", "CloudProj
     });
 }]);
 
-angular.module("ovh-api-services").service("Cloud", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloud", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("CloudLexi");
+            return $injector.get("OvhApiCloudLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudAapi");
+            return $injector.get("OvhApiCloudAapi");
         },
         Price: function () {
-            return $injector.get("CloudPrice");
+            return $injector.get("OvhApiCloudPrice");
         },
         Project: function () {
-            return $injector.get("CloudProject");
+            return $injector.get("OvhApiCloudProject");
         },
         PCA: function () {
-            return $injector.get("CloudPCA");
+            return $injector.get("OvhApiCloudPCA");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudPCALexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudPCALexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudPCALexiQuery");
-    var cache = $cacheFactory("CloudPCALexi");
+    var queryCache = $cacheFactory("OvhApiCloudPCALexiQuery");
+    var cache = $cacheFactory("OvhApiCloudPCALexi");
 
     var interceptor = {
         response: function (response) {
@@ -302,22 +302,22 @@ angular.module("ovh-api-services").service("CloudPCALexi", ["$resource", "$cache
     return cloudPCA;
 }]);
 
-angular.module("ovh-api-services").service("CloudPCA", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudPCA", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudPCALexi");
+            return $injector.get("OvhApiCloudPCALexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudPriceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudPriceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudPriceLexi");
+    var cache = $cacheFactory("OvhApiCloudPriceLexi");
 
     return $resource("/cloud/price", {
         flavorId: "@flavorId",
@@ -329,23 +329,23 @@ angular.module("ovh-api-services").service("CloudPriceLexi", ["$resource", "$cac
 
 }]);
 
-angular.module("ovh-api-services").service("CloudPrice", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudPrice", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudPriceLexi");
+            return $injector.get("OvhApiCloudPriceLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectAclLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAclLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectAclLexiQuery");
-    var cache = $cacheFactory("CloudProjectAclLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectAclLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectAclLexi");
 
     var interceptor = {
         response: function (response) {
@@ -381,22 +381,22 @@ angular.module("ovh-api-services").service("CloudProjectAclLexi", ["$resource", 
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectAcl", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAcl", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectAclLexi");
+            return $injector.get("OvhApiCloudProjectAclLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectAggregateAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAggregateAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectAggregateAapi");
+    var cache = $cacheFactory("OvhApiCloudProjectAggregateAapi");
 
     var cloudProjectAggregateResource = $resource("/cloud/project/:serviceName/aggregate", {
         serviceName: "@serviceName"
@@ -419,22 +419,22 @@ angular.module("ovh-api-services").service("CloudProjectAggregateAapi", ["$resou
     return cloudProjectAggregateResource;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectAggregate", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAggregate", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Aapi: function () {
-            return $injector.get("CloudProjectAggregateAapi");
+            return $injector.get("OvhApiCloudProjectAggregateAapi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectAlertingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAlertingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectAlertingLexiQuery");
-    var cache = $cacheFactory("CloudProjectAlertingLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectAlertingLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectAlertingLexi");
 
     var interceptor = {
         response: function (response) {
@@ -471,19 +471,19 @@ angular.module("ovh-api-services").service("CloudProjectAlertingLexi", ["$resour
     return alertingResource;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectAlerting", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectAlerting", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectAlertingLexi");
+            return $injector.get("OvhApiCloudProjectAlertingLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectBillLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectBillLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/cloud/project/:serviceName/bill", {
@@ -493,24 +493,24 @@ angular.module("ovh-api-services").service("CloudProjectBillLexi", ["$resource",
     });
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectBill", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectBill", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectBillLexi");
+            return $injector.get("OvhApiCloudProjectBillLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectLexi", ["$resource", "$q", "CloudProject", function ($resource, $q, CloudProject) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectLexi", ["$resource", "$q", "OvhApiCloudProject", function ($resource, $q, OvhApiCloudProject) {
 
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            CloudProject.resetCache();
+            OvhApiCloudProject.resetCache();
             return response.data;
         }
     };
@@ -520,7 +520,7 @@ angular.module("ovh-api-services").service("CloudProjectLexi", ["$resource", "$q
     }, {
         get: {
             method: "GET",
-            cache: CloudProject.cache
+            cache: OvhApiCloudProject.cache
         },
         unleash: {
             url: "/cloud/project/:serviceName/unleash",
@@ -564,21 +564,21 @@ angular.module("ovh-api-services").service("CloudProjectLexi", ["$resource", "$q
     // These methods were been kept to maintain compatibility with the previous method to reset cache.
 
     cloudProject.resetAllCache = function () {
-        CloudProject.resetCache();
+        OvhApiCloudProject.resetCache();
     };
 
     cloudProject.resetCache = function () {
-        CloudProject.resetCache();
+        OvhApiCloudProject.resetCache();
     };
 
     cloudProject.resetQueryCache = function () {
-        CloudProject.resetCache();
+        OvhApiCloudProject.resetCache();
     };
 
     return cloudProject;
 }]);
 
-angular.module("ovh-api-services").service("CloudProject", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
 
     "use strict";
 
@@ -586,57 +586,57 @@ angular.module("ovh-api-services").service("CloudProject", ["$injector", "$cache
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectLexi");
+            return $injector.get("OvhApiCloudProjectLexi");
         },
         resetCache: cache.removeAll,
         cache: cache,
         Acl: function () {
-            return $injector.get("CloudProjectAcl");
+            return $injector.get("OvhApiCloudProjectAcl");
         },
         Flavor: function () {
-            return $injector.get("CloudProjectFlavor");
+            return $injector.get("OvhApiCloudProjectFlavor");
         },
         Image: function () {
-            return $injector.get("CloudProjectImage");
+            return $injector.get("OvhApiCloudProjectImage");
         },
         Instance: function () {
-            return $injector.get("CloudProjectInstance");
+            return $injector.get("OvhApiCloudProjectInstance");
         },
         Ip: function () {
-            return $injector.get("CloudProjectIp");
+            return $injector.get("OvhApiCloudProjectIp");
         },
         Region: function () {
-            return $injector.get("CloudProjectRegion");
+            return $injector.get("OvhApiCloudProjectRegion");
         },
         Snapshot: function () {
-            return $injector.get("CloudProjectSnapshot");
+            return $injector.get("OvhApiCloudProjectSnapshot");
         },
         SshKey: function () {
-            return $injector.get("CloudProjectSshKey");
+            return $injector.get("OvhApiCloudProjectSshKey");
         },
         Credit: function () {
-            return $injector.get("CloudProjectCredit");
+            return $injector.get("OvhApiCloudProjectCredit");
         },
         User: function () {
-            return $injector.get("CloudProjectUser");
+            return $injector.get("OvhApiCloudProjectUser");
         },
         ServiceInfos: function () {
-            return $injector.get("CloudProjectServiceInfos");
+            return $injector.get("OvhApiCloudProjectServiceInfos");
         },
         Alerting: function () {
-            return $injector.get("CloudProjectAlerting");
+            return $injector.get("OvhApiCloudProjectAlerting");
         },
         Bill: function () {
-            return $injector.get("CloudProjectBill");
+            return $injector.get("OvhApiCloudProjectBill");
         },
         Migration: function () {
-            return $injector.get("CloudProjectMigration");
+            return $injector.get("OvhApiCloudProjectMigration");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectConsumptionLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectConsumptionLexi", ["$resource", function ($resource) {
     "use strict";
 
     var cloudProjectConsumptionResource = $resource("/cloud/project/:serviceName/consumption", {
@@ -691,18 +691,18 @@ angular.module("ovh-api-services").service("CloudProjectConsumptionLexi", ["$res
     return cloudProjectConsumptionResource;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectConsumption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectConsumptionLexi");
+            return $injector.get("OvhApiCloudProjectConsumptionLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectCreditAapi", ["$resource", "CloudProjectCredit", function ($resource, CloudProjectCredit) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectCreditAapi", ["$resource", "OvhApiCloudProjectCredit", function ($resource, OvhApiCloudProjectCredit) {
     "use strict";
 
     var credit = $resource("/cloud/project/:serviceName/credit", {
@@ -711,7 +711,7 @@ angular.module("ovh-api-services").service("CloudProjectCreditAapi", ["$resource
         query: {
             method: "GET",
             serviceType: "aapi",
-            cache: CloudProjectCredit.cache.aapi.query,
+            cache: OvhApiCloudProjectCredit.cache.aapi.query,
             isArray: true
         }
     });
@@ -719,12 +719,12 @@ angular.module("ovh-api-services").service("CloudProjectCreditAapi", ["$resource
     return credit;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectCreditLexi", ["$resource", "CloudProjectCredit", function ($resource, CloudProjectCredit) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectCreditLexi", ["$resource", "OvhApiCloudProjectCredit", function ($resource, OvhApiCloudProjectCredit) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            CloudProjectCredit.resetCache();
+            OvhApiCloudProjectCredit.resetCache();
             return response.data;
         }
     };
@@ -733,43 +733,43 @@ angular.module("ovh-api-services").service("CloudProjectCreditLexi", ["$resource
         serviceName: "@serviceName",
         creditId: "@creditId"
     }, {
-        get: { method: "GET", cache: CloudProjectCredit.cache.lexi.get },
-        query: { method: "GET", cache: CloudProjectCredit.cache.lexi.query, isArray: true },
+        get: { method: "GET", cache: OvhApiCloudProjectCredit.cache.lexi.get },
+        query: { method: "GET", cache: OvhApiCloudProjectCredit.cache.lexi.query, isArray: true },
         save: { method: "POST", interceptor: interceptor }
     });
 
     credit.resetCache = function () {
-        CloudProjectCredit.cache.lexi.get.removeAll();
+        OvhApiCloudProjectCredit.cache.lexi.get.removeAll();
     };
 
     credit.resetQueryCache = function () {
-        CloudProjectCredit.cache.lexi.query.removeAll();
-        CloudProjectCredit.cache.aapi.query.removeAll();
+        OvhApiCloudProjectCredit.cache.lexi.query.removeAll();
+        OvhApiCloudProjectCredit.cache.aapi.query.removeAll();
     };
 
     return credit;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectCredit", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectCredit", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
 
     "use strict";
 
     var cache = {
         lexi: {
-            query: $cacheFactory("CloudProjectCreditLexiQuery"),
-            get: $cacheFactory("CloudProjectCreditLexi")
+            query: $cacheFactory("OvhApiCloudProjectCreditLexiQuery"),
+            get: $cacheFactory("OvhApiCloudProjectCreditLexi")
         },
         aapi: {
-            query: $cacheFactory("CloudProjectCreditAapiQuery")
+            query: $cacheFactory("OvhApiCloudProjectCreditAapiQuery")
         }
     };
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectCreditLexi");
+            return $injector.get("OvhApiCloudProjectCreditLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudProjectCreditAapi");
+            return $injector.get("OvhApiCloudProjectCreditAapi");
         },
         resetCache: function () {
             cache.lexi.query.removeAll();
@@ -781,10 +781,10 @@ angular.module("ovh-api-services").service("CloudProjectCredit", ["$injector", "
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectFlavorLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectFlavorLexi");
+    var cache = $cacheFactory("OvhApiCloudProjectFlavorLexi");
 
     return $resource("/cloud/project/:serviceName/flavor/:flavorId", {
         serviceName: "@serviceName",
@@ -830,19 +830,19 @@ angular.module("ovh-api-services").service("CloudProjectFlavorLexi", ["$resource
     });
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectFlavor", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectFlavor", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectFlavorLexi");
+            return $injector.get("OvhApiCloudProjectFlavorLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectForecastLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectForecastLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/cloud/project/:serviceName/forecast", {
@@ -850,21 +850,21 @@ angular.module("ovh-api-services").service("CloudProjectForecastLexi", ["$resour
     });
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectForecast", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectForecast", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectForecastLexi");
+            return $injector.get("OvhApiCloudProjectForecastLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectImageLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectImageLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectImageLexi");
+    var cache = $cacheFactory("OvhApiCloudProjectImageLexi");
 
 
     // @todo: go to service
@@ -951,19 +951,19 @@ angular.module("ovh-api-services").service("CloudProjectImageLexi", ["$resource"
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectImage", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectImage", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectImageLexi");
+            return $injector.get("OvhApiCloudProjectImageLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectInstanceAapi", ["$resource", "CloudProjectInstance", function ($resource, CloudProjectInstance) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectInstanceAapi", ["$resource", "OvhApiCloudProjectInstance", function ($resource, OvhApiCloudProjectInstance) {
 
     "use strict";
 
@@ -972,13 +972,13 @@ angular.module("ovh-api-services").service("CloudProjectInstanceAapi", ["$resour
     }, {
         monitoring: {
             url: "/cloud/project/:projectId/instance/monitoring",
-            cache: CloudProjectInstance.cache,
+            cache: OvhApiCloudProjectInstance.cache,
             method: "GET",
             serviceType: "aapi"
         },
         summary: {
             url: "/cloud/project/:projectId/instance/:instanceId/summary",
-            cache: CloudProjectInstance.cache,
+            cache: OvhApiCloudProjectInstance.cache,
             method: "GET",
             serviceType: "aapi",
             params: {
@@ -991,13 +991,13 @@ angular.module("ovh-api-services").service("CloudProjectInstanceAapi", ["$resour
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectInstanceLexi", ["$resource", "CloudProjectInstance", function ($resource, CloudProjectInstance) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectInstanceLexi", ["$resource", "OvhApiCloudProjectInstance", function ($resource, OvhApiCloudProjectInstance) {
 
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            CloudProjectInstance.resetCache();
+            OvhApiCloudProjectInstance.resetCache();
             return response.data;
         }
     };
@@ -1006,8 +1006,8 @@ angular.module("ovh-api-services").service("CloudProjectInstanceLexi", ["$resour
         serviceName: "@serviceName",
         instanceId: "@instanceId"
     }, {
-        get: { method: "GET", cache: CloudProjectInstance.cache },
-        query: { method: "GET", cache: CloudProjectInstance.cache, isArray: true },
+        get: { method: "GET", cache: OvhApiCloudProjectInstance.cache },
+        query: { method: "GET", cache: OvhApiCloudProjectInstance.cache, isArray: true },
         save: { method: "POST", interceptor: interceptor },
         remove: { method: "DELETE", interceptor: interceptor },
         "delete": { method: "DELETE", interceptor: interceptor },
@@ -1068,7 +1068,7 @@ angular.module("ovh-api-services").service("CloudProjectInstanceLexi", ["$resour
         },
         monitoring: {
             url: "/cloud/project/:serviceName/instance/:instanceId/monitoring",
-            cache: CloudProjectInstance.cache,
+            cache: OvhApiCloudProjectInstance.cache,
             method: "GET"
         }
     });
@@ -1077,32 +1077,32 @@ angular.module("ovh-api-services").service("CloudProjectInstanceLexi", ["$resour
     // These methods were been kept to maintain compatibility with the previous method to reset cache.
 
     instancesResource.resetAllCache = function () {
-        CloudProjectInstance.resetCache();
+        OvhApiCloudProjectInstance.resetCache();
     };
 
     instancesResource.resetCache = function () {
-        CloudProjectInstance.resetCache();
+        OvhApiCloudProjectInstance.resetCache();
     };
 
     instancesResource.resetQueryCache = function () {
-        CloudProjectInstance.resetCache();
+        OvhApiCloudProjectInstance.resetCache();
     };
 
     return instancesResource;
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectInstance", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectInstance", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
 
     "use strict";
-    var cache = $cacheFactory("CloudProjectInstance");
+    var cache = $cacheFactory("OvhApiCloudProjectInstance");
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectInstanceLexi");
+            return $injector.get("OvhApiCloudProjectInstanceLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudProjectInstanceAapi");
+            return $injector.get("OvhApiCloudProjectInstanceAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
@@ -1110,19 +1110,11 @@ angular.module("ovh-api-services").service("CloudProjectInstance", ["$injector",
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectIpLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectIpLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectIpLexiQuery");
-    var cache = $cacheFactory("CloudProjectIpLexi");
-
-    // var interceptor = {
-    //     response: function (response) {
-    //         cache.remove(response.config.url);
-    //         queryCache.removeAll();
-    //         return response.data;
-    //     }
-    // };
+    var queryCache = $cacheFactory("OvhApiCloudProjectIpLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectIpLexi");
 
     var ips = $resource("/cloud/project/:serviceName/ip", {
         serviceName: "@serviceName"
@@ -1147,22 +1139,22 @@ angular.module("ovh-api-services").service("CloudProjectIpLexi", ["$resource", "
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectIp", ["CloudProjectIpFailover", function (CloudProjectIpFailover) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectIp", ["OvhApiCloudProjectIpFailover", function (OvhApiCloudProjectIpFailover) {
 
     "use strict";
 
     return {
-        failover: CloudProjectIpFailover
+        failover: OvhApiCloudProjectIpFailover
     };
 
 }]
 );
 
-angular.module("ovh-api-services").service("CloudProjectIpFailoverLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectIpFailoverLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectIpFailoverLexiQuery");
-    var cache = $cacheFactory("CloudProjectIpFailoverLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectIpFailoverLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectIpFailoverLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1211,23 +1203,23 @@ angular.module("ovh-api-services").service("CloudProjectIpFailoverLexi", ["$reso
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectIpFailover", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectIpFailover", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectIpFailoverLexi");
+            return $injector.get("OvhApiCloudProjectIpFailoverLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectMigrationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectMigrationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectMigrationLexiQuery");
-    var cache = $cacheFactory("CloudProjectMigrationLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectMigrationLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectMigrationLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1258,36 +1250,36 @@ angular.module("ovh-api-services").service("CloudProjectMigrationLexi", ["$resou
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectMigration", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectMigration", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectMigrationLexi");
+            return $injector.get("OvhApiCloudProjectMigrationLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetwork", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetwork", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Private: function () {
-            return $injector.get("CloudProjectNetworkPrivate");
+            return $injector.get("OvhApiCloudProjectNetworkPrivate");
         },
         Public: function () {
-            return $injector.get("CloudProjectNetworkPublic");
+            return $injector.get("OvhApiCloudProjectNetworkPublic");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetworkPrivateLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPrivateLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectNetworkPrivateLexiQuery");
-    var cache = $cacheFactory("CloudProjectNetworkPrivateLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectNetworkPrivateLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectNetworkPrivateLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1322,24 +1314,24 @@ angular.module("ovh-api-services").service("CloudProjectNetworkPrivateLexi", ["$
     return privateNetworksResources;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetworkPrivate", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPrivate", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectNetworkPrivateLexi");
+            return $injector.get("OvhApiCloudProjectNetworkPrivateLexi");
         },
         Subnet: function () {
-            return $injector.get("CloudProjectNetworkPrivateSubnet");
+            return $injector.get("OvhApiCloudProjectNetworkPrivateSubnet");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetworkPrivateSubnetLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPrivateSubnetLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectNetworkPrivateSubnetLexiQuery");
-    var cache = $cacheFactory("CloudProjectNetworkPrivateSubnetLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectNetworkPrivateSubnetLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectNetworkPrivateSubnetLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1375,20 +1367,20 @@ angular.module("ovh-api-services").service("CloudProjectNetworkPrivateSubnetLexi
     return privateNetworkSubnetResources;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetworkPrivateSubnet", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPrivateSubnet", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectNetworkPrivateSubnetLexi");
+            return $injector.get("OvhApiCloudProjectNetworkPrivateSubnetLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetworkPublicLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPublicLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectNetworkPublicLexiQuery");
+    var queryCache = $cacheFactory("OvhApiCloudProjectNetworkPublicLexiQuery");
 
     var publicNetworksResources = $resource("/cloud/project/:serviceName/network/public/:networkId", {
         serviceName: "@serviceName",
@@ -1408,17 +1400,17 @@ angular.module("ovh-api-services").service("CloudProjectNetworkPublicLexi", ["$r
     return publicNetworksResources;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectNetworkPublic", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPublic", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectNetworkPublicLexi");
+            return $injector.get("OvhApiCloudProjectNetworkPublicLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectQuotaLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectQuotaLexi", ["$resource", function ($resource) {
     "use strict";
 
     var quota = $resource("/cloud/project/:serviceName/quota", {
@@ -1437,22 +1429,22 @@ angular.module("ovh-api-services").service("CloudProjectQuotaLexi", ["$resource"
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectQuota", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectQuota", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectQuotaLexi");
+            return $injector.get("OvhApiCloudProjectQuotaLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectRegionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectRegionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectRegionLexiQuery");
-    var cache = $cacheFactory("CloudProjectRegionLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectRegionLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectRegionLexi");
 
     var regions = $resource("/cloud/project/:serviceName/region/:id", {
         serviceName: "@serviceName",
@@ -1488,23 +1480,23 @@ angular.module("ovh-api-services").service("CloudProjectRegionLexi", ["$resource
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectRegion", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectRegion", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectRegionLexi");
+            return $injector.get("OvhApiCloudProjectRegionLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectServiceInfosLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectServiceInfosLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectServiceInfosLexiQuery");
-    var cache = $cacheFactory("CloudProjectServiceInfosLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectServiceInfosLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectServiceInfosLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1533,23 +1525,23 @@ angular.module("ovh-api-services").service("CloudProjectServiceInfosLexi", ["$re
     return serviceInfosResource;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectServiceInfos", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectServiceInfos", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectServiceInfosLexi");
+            return $injector.get("OvhApiCloudProjectServiceInfosLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectSnapshotLexiQuery");
-    var cache = $cacheFactory("CloudProjectSnapshotLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectSnapshotLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectSnapshotLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1595,23 +1587,23 @@ angular.module("ovh-api-services").service("CloudProjectSnapshotLexi", ["$resour
     return snapshot;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectSnapshot", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectSnapshot", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectSnapshotLexi");
+            return $injector.get("OvhApiCloudProjectSnapshotLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectSshKeyLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectSshKeyLexiQuery");
-    var cache = $cacheFactory("CloudProjectSshKeyLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectSshKeyLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectSshKeyLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1658,19 +1650,19 @@ angular.module("ovh-api-services").service("CloudProjectSshKeyLexi", ["$resource
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectSshKey", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectSshKey", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectSshKeyLexi");
+            return $injector.get("OvhApiCloudProjectSshKeyLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectStorageLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectStorageLexi", ["$resource", function ($resource) {
     "use strict";
 
     var baseUrl = "/:basePath/cloud/project/:projectId/storage/:containerId";
@@ -1722,37 +1714,37 @@ angular.module("ovh-api-services").service("CloudProjectStorageLexi", ["$resourc
     });
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectStorage", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectStorage", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectStorageLexi");
+            return $injector.get("OvhApiCloudProjectStorageLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsage", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsage", ["$injector", function ($injector) {
     "use strict";
 
     return {
         History: function () {
-            return $injector.get("CloudProjectUsageHistory");
+            return $injector.get("OvhApiCloudProjectUsageHistory");
         },
         Current: function () {
-            return $injector.get("CloudProjectUsageCurrent");
+            return $injector.get("OvhApiCloudProjectUsageCurrent");
         },
         Forecast: function () {
-            return $injector.get("CloudProjectUsageForecast");
+            return $injector.get("OvhApiCloudProjectUsageForecast");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsageCurrentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageCurrentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectUsageCurrentLexi");
+    var cache = $cacheFactory("OvhApiCloudProjectUsageCurrentLexi");
 
     var usages = $resource("/cloud/project/:serviceName/usage/current", {
         serviceName: "@serviceName"
@@ -1768,21 +1760,21 @@ angular.module("ovh-api-services").service("CloudProjectUsageCurrentLexi", ["$re
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsageCurrent", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageCurrent", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectUsageCurrentLexi");
+            return $injector.get("OvhApiCloudProjectUsageCurrentLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsageForecastLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageForecastLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectUsageForecastLexi");
+    var cache = $cacheFactory("OvhApiCloudProjectUsageForecastLexi");
 
     var usages = $resource("/cloud/project/:serviceName/usage/forecast", {
         serviceName: "@serviceName"
@@ -1798,22 +1790,22 @@ angular.module("ovh-api-services").service("CloudProjectUsageForecastLexi", ["$r
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsageForecast", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageForecast", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectUsageForecastLexi");
+            return $injector.get("OvhApiCloudProjectUsageForecastLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsageHistoryLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageHistoryLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectUsageHistoryLexiQuery");
-    var cache = $cacheFactory("CloudProjectUsageHistoryLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectUsageHistoryLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectUsageHistoryLexi");
 
     var usages = $resource("/cloud/project/:serviceName/usage/history/:usageId", {
         serviceName: "@serviceName",
@@ -1835,18 +1827,18 @@ angular.module("ovh-api-services").service("CloudProjectUsageHistoryLexi", ["$re
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUsageHistory", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUsageHistory", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectUsageHistoryLexi");
+            return $injector.get("OvhApiCloudProjectUsageHistoryLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUserAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUserAapi", ["$resource", function ($resource) {
     "use strict";
 
     var servicesDefinition = {
@@ -1868,11 +1860,11 @@ angular.module("ovh-api-services").service("CloudProjectUserAapi", ["$resource",
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectUserLexiQuery");
-    var cache = $cacheFactory("CloudProjectUserLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectUserLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectUserLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1907,27 +1899,27 @@ angular.module("ovh-api-services").service("CloudProjectUserLexi", ["$resource",
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectUser", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUser", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectUserLexi");
+            return $injector.get("OvhApiCloudProjectUserLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudProjectUserAapi");
+            return $injector.get("OvhApiCloudProjectUserAapi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectVolumeLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectVolumeLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectVolumeLexiQuery");
-    var cache = $cacheFactory("CloudProjectVolumeLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectVolumeLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectVolumeLexi");
 
     var interceptor = {
         response: function (response) {
@@ -1984,23 +1976,23 @@ angular.module("ovh-api-services").service("CloudProjectVolumeLexi", ["$resource
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectVolume", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectVolume", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectVolumeLexi");
+            return $injector.get("OvhApiCloudProjectVolumeLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectVolumeSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectVolumeSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectVolumeSnapshotLexiQuery");
-    var cache = $cacheFactory("CloudProjectVolumeSnapshotLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectVolumeSnapshotLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectVolumeSnapshotLexi");
 
     var interceptor = {
         response: function (response) {
@@ -2044,33 +2036,33 @@ angular.module("ovh-api-services").service("CloudProjectVolumeSnapshotLexi", ["$
     return volumesSnapshotResource;
 }]);
 
-angular.module("ovh-api-services").service("CloudProjectVolumeSnapshot", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectVolumeSnapshot", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Tera: angular.noop,
         Lexi: function () {
-            return $injector.get("CloudProjectVolumeSnapshotLexi");
+            return $injector.get("OvhApiCloudProjectVolumeSnapshotLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("Dbaas", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaas", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Queue: function () {
-            return $injector.get("DbaasQueue");
+            return $injector.get("OvhApiDbaasQueue");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DbaasQueueKeyLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueKeyLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DbaasQueueKeyLexi");
-    var queryCache = $cacheFactory("DbaasQueueKeyLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasQueueKeyLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasQueueKeyLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
@@ -2107,21 +2099,21 @@ angular.module("ovh-api-services").service("DbaasQueueKeyLexi", ["$resource", "$
     return keyResource;
 }]);
 
-angular.module("ovh-api-services").service("DbaasQueueKey", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueKey", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DbaasQueueKeyLexi");
+            return $injector.get("OvhApiDbaasQueueKeyLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DbaasQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DbaasQueueLexi");
-    var queryCache = $cacheFactory("DbaasQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasQueueLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasQueueLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
@@ -2155,27 +2147,27 @@ angular.module("ovh-api-services").service("DbaasQueueLexi", ["$resource", "$cac
     return queueResource;
 }]);
 
-angular.module("ovh-api-services").service("DbaasQueue", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueue", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DbaasQueueLexi");
+            return $injector.get("OvhApiDbaasQueueLexi");
         },
         Key: function () {
-            return $injector.get("DbaasQueueKey");
+            return $injector.get("OvhApiDbaasQueueKey");
         },
         Region: function () {
-            return $injector.get("DbaasQueueRegion");
+            return $injector.get("OvhApiDbaasQueueRegion");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DbaasQueueRegionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueRegionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DbaasQueueRegionLexi");
-    var queryCache = $cacheFactory("DbaasQueueRegionLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasQueueRegionLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasQueueRegionLexiQuery");
 
     var regionResource = $resource("/dbaas/queue/region", {
         regionId: "@regionId"
@@ -2200,17 +2192,17 @@ angular.module("ovh-api-services").service("DbaasQueueRegionLexi", ["$resource",
     return regionResource;
 }]);
 
-angular.module("ovh-api-services").service("DbaasQueueRegion", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueRegion", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DbaasQueueRegionLexi");
+            return $injector.get("OvhApiDbaasQueueRegionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/dbaasts", {}, {
@@ -2225,25 +2217,25 @@ angular.module("ovh-api-services").service("DBaasTsLexi", ["$resource", function
     });
 }]);
 
-angular.module("ovh-api-services").service("DBaasTs", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTs", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsLexi");
+            return $injector.get("OvhApiDBaasTsLexi");
         },
         Region: function () {
-            return $injector.get("DBaasTsRegion");
+            return $injector.get("OvhApiDBaasTsRegion");
         },
         Project: function () {
-            return $injector.get("DBaasTsProject");
+            return $injector.get("OvhApiDBaasTsProject");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectBillingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectBillingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DBaasTsProjectBillingLexi");
+    var cache = $cacheFactory("OvhApiDBaasTsProjectBillingLexi");
 
     var billingResource = $resource("/dbaas/timeseries/:serviceName/consumption", {
         serviceName: "@serviceName"
@@ -2258,20 +2250,20 @@ angular.module("ovh-api-services").service("DBaasTsProjectBillingLexi", ["$resou
     return billingResource;
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectBilling", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectBilling", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsProjectBillingLexi");
+            return $injector.get("OvhApiDBaasTsProjectBillingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectLexi", ["$resource", "$q", "$cacheFactory", function ($resource, $q, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectLexi", ["$resource", "$q", "$cacheFactory", function ($resource, $q, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DBaasTsProjectLexiQuery");
-    var cache = $cacheFactory("DBaasTsProjectLexi");
+    var queryCache = $cacheFactory("OvhApiDBaasTsProjectLexiQuery");
+    var cache = $cacheFactory("OvhApiDBaasTsProjectLexi");
 
     var interceptor = {
         response: function (response) {
@@ -2330,29 +2322,29 @@ angular.module("ovh-api-services").service("DBaasTsProjectLexi", ["$resource", "
     return projectResource;
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProject", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProject", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsProjectLexi");
+            return $injector.get("OvhApiDBaasTsProjectLexi");
         },
         Key: function () {
-            return $injector.get("DBaasTsProjectKey");
+            return $injector.get("OvhApiDBaasTsProjectKey");
         },
         Quota: function () {
-            return $injector.get("DBaasTsProjectQuota");
+            return $injector.get("OvhApiDBaasTsProjectQuota");
         },
         Billing: function () {
-            return $injector.get("DBaasTsProjectBilling");
+            return $injector.get("OvhApiDBaasTsProjectBilling");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectKeyLexi", ["$resource", "$q", "$cacheFactory", function ($resource, $q, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectKeyLexi", ["$resource", "$q", "$cacheFactory", function ($resource, $q, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DBaasTsProjectKeyLexiQuery");
-    var cache = $cacheFactory("DBaasTsProjectKeyLexi");
+    var queryCache = $cacheFactory("OvhApiDBaasTsProjectKeyLexiQuery");
+    var cache = $cacheFactory("OvhApiDBaasTsProjectKeyLexi");
 
     var interceptor = {
         response: function (response) {
@@ -2405,20 +2397,20 @@ angular.module("ovh-api-services").service("DBaasTsProjectKeyLexi", ["$resource"
     return keyResource;
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectKey", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectKey", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsProjectKeyLexi");
+            return $injector.get("OvhApiDBaasTsProjectKeyLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectQuotaLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectQuotaLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DBaasTsProjectQuotaLexiQuery");
-    var cache = $cacheFactory("DBaasTsProjectQuotaLexi");
+    var queryCache = $cacheFactory("OvhApiDBaasTsProjectQuotaLexiQuery");
+    var cache = $cacheFactory("OvhApiDBaasTsProjectQuotaLexi");
 
     var quotaResource = $resource("/dbaas/timeseries/:serviceName/quota", {
         serviceName: "@serviceName"
@@ -2443,19 +2435,19 @@ angular.module("ovh-api-services").service("DBaasTsProjectQuotaLexi", ["$resourc
     return quotaResource;
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsProjectQuota", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectQuota", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsProjectQuotaLexi");
+            return $injector.get("OvhApiDBaasTsProjectQuotaLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsRegionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsRegionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DBaasTsRegionLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDBaasTsRegionLexiQuery");
 
     var regionResource = $resource("/dbaas/timeseries/region", {
     }, {
@@ -2469,19 +2461,19 @@ angular.module("ovh-api-services").service("DBaasTsRegionLexi", ["$resource", "$
     return regionResource;
 }]);
 
-angular.module("ovh-api-services").service("DBaasTsRegion", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsRegion", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsRegionLexi");
+            return $injector.get("OvhApiDBaasTsRegionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephAclLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephAclLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephAclLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephAclLexi");
     var interceptor = {
         response: function (response) {
             queryCache.removeAll();
@@ -2526,21 +2518,21 @@ angular.module("ovh-api-services").service("DedicatedCephAclLexi", ["$resource",
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephAcl", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephAcl", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephAclLexi");
+            return $injector.get("OvhApiDedicatedCephAclLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var schemaCache = $cacheFactory("DedicatedCephLexiSchema");
-    var queryCache = $cacheFactory("DedicatedCephLexiQuery");
+    var schemaCache = $cacheFactory("OvhApiDedicatedCephLexiSchema");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -2593,32 +2585,32 @@ angular.module("ovh-api-services").service("DedicatedCephLexi", ["$resource", "$
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCeph", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCeph", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephLexi");
+            return $injector.get("OvhApiDedicatedCephLexi");
         },
         User: function () {
-            return $injector.get("DedicatedCephUser");
+            return $injector.get("OvhApiDedicatedCephUser");
         },
         Acl: function () {
-            return $injector.get("DedicatedCephAcl");
+            return $injector.get("OvhApiDedicatedCephAcl");
         },
         Pool: function () {
-            return $injector.get("DedicatedCephPool");
+            return $injector.get("OvhApiDedicatedCephPool");
         },
         Task: function () {
-            return $injector.get("DedicatedCephTask");
+            return $injector.get("OvhApiDedicatedCephTask");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephPoolLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephPoolLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephPoolLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephPoolLexi");
 
     var interceptor = {
         response: function (response) {
@@ -2665,20 +2657,20 @@ angular.module("ovh-api-services").service("DedicatedCephPoolLexi", ["$resource"
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephPool", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephPool", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephPoolLexi");
+            return $injector.get("OvhApiDedicatedCephPoolLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephTaskLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephTaskLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephTaskLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephTaskLexi");
 
     var resource = $resource("/dedicated/ceph/:serviceName/task/:taskId", {
         serviceName: "@serviceName",
@@ -2706,20 +2698,20 @@ angular.module("ovh-api-services").service("DedicatedCephTaskLexi", ["$resource"
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephTask", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephTaskLexi");
+            return $injector.get("OvhApiDedicatedCephTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephUserAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUserAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedCephUserAapi");
+    var cache = $cacheFactory("OvhApiDedicatedCephUserAapi");
 
     var resource = $resource("/dedicated/ceph/:serviceName/user", {
         serviceName: "@serviceName"
@@ -2744,10 +2736,10 @@ angular.module("ovh-api-services").service("DedicatedCephUserAapi", ["$resource"
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephUserLexi", ["$resource", "$cacheFactory", "DedicatedCephUserAapi", function ($resource, $cacheFactory, DedicatedCephUserAapi) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUserLexi", ["$resource", "$cacheFactory", "OvhApiDedicatedCephUserAapi", function ($resource, $cacheFactory, OvhApiDedicatedCephUserAapi) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephUserLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephUserLexi");
 
     var interceptor = {
         response: function (response) {
@@ -2785,37 +2777,37 @@ angular.module("ovh-api-services").service("DedicatedCephUserLexi", ["$resource"
 
     resource.resetAllCache = function () {
         resource.resetQueryCache();
-        DedicatedCephUserAapi.resetAllCache();
+        OvhApiDedicatedCephUserAapi.resetAllCache();
     };
 
     resource.resetQueryCache = function () {
         queryCache.removeAll();
-        DedicatedCephUserAapi.resetCache();
+        OvhApiDedicatedCephUserAapi.resetCache();
     };
 
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephUser", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUser", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephUserLexi");
+            return $injector.get("OvhApiDedicatedCephUserLexi");
         },
         Pool: function () {
-            return $injector.get("DedicatedCephUserPool");
+            return $injector.get("OvhApiDedicatedCephUserPool");
         },
         Aapi: function () {
-            return $injector.get("DedicatedCephUserAapi");
+            return $injector.get("OvhApiDedicatedCephUserAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephUserPoolLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUserPoolLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephUserPoolLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephUserPoolLexi");
 
     var interceptor = {
         response: function (response) {
@@ -2854,21 +2846,21 @@ angular.module("ovh-api-services").service("DedicatedCephUserPoolLexi", ["$resou
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCephUserPool", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUserPool", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephUserPoolLexi");
+            return $injector.get("OvhApiDedicatedCephUserPoolLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedHousingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedHousingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedHousingLexi");
-    var queryCache = $cacheFactory("DedicatedHousingLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedHousingLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedHousingLexiQuery");
 
     var dedicatedHousingResource = $resource("/dedicated/housing/:serviceName", {
         serviceName: "@serviceName"
@@ -2897,21 +2889,21 @@ angular.module("ovh-api-services").service("DedicatedHousingLexi", ["$resource",
     return dedicatedHousingResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedHousing", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedHousing", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedHousingLexi");
+            return $injector.get("OvhApiDedicatedHousingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNasLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNasLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedNasLexi");
-    var queryCache = $cacheFactory("DedicatedNasLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedNasLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedNasLexiQuery");
 
     var dedicatedNasResource = $resource("/dedicated/nas/:serviceName", {
         serviceName: "@serviceName"
@@ -2940,20 +2932,20 @@ angular.module("ovh-api-services").service("DedicatedNasLexi", ["$resource", "$c
     return dedicatedNasResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNas", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNas", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNasLexi");
+            return $injector.get("OvhApiDedicatedNasLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaAapi");
+    var cache = $cacheFactory("OvhApiDedicatedNashaAapi");
 
     var resource = $resource("/dedicated/nasha/:serviceName", {
         serviceName: "@serviceName"
@@ -2985,12 +2977,12 @@ angular.module("ovh-api-services").service("DedicatedNashaAapi", ["$resource", "
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedNashaLexi");
-    var schemaCache = $cacheFactory("DedicatedNashaLexiSchema");
-    var queryCache = $cacheFactory("DedicatedNashaLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedNashaLexi");
+    var schemaCache = $cacheFactory("OvhApiDedicatedNashaLexiSchema");
+    var queryCache = $cacheFactory("OvhApiDedicatedNashaLexiQuery");
 
     var resource = $resource("/dedicated/nasha/:serviceName", {
         serviceName: "@serviceName"
@@ -3053,30 +3045,30 @@ angular.module("ovh-api-services").service("DedicatedNashaLexi", ["$resource", "
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNasha", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNasha", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Aapi: function () {
-            return $injector.get("DedicatedNashaAapi");
+            return $injector.get("OvhApiDedicatedNashaAapi");
         },
         Lexi: function () {
-            return $injector.get("DedicatedNashaLexi");
+            return $injector.get("OvhApiDedicatedNashaLexi");
         },
         Partition: function () {
-            return $injector.get("DedicatedNashaPartition");
+            return $injector.get("OvhApiDedicatedNashaPartition");
         },
         Task: function () {
-            return $injector.get("DedicatedNashaTask");
+            return $injector.get("OvhApiDedicatedNashaTask");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionAccessAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionAccessAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaPartitionAccessAapi");
+    var cache = $cacheFactory("OvhApiDedicatedNashaPartitionAccessAapi");
 
     var instancesResource = $resource("/dedicated/nasha/:serviceName/partition/:partitionName", {
         serviceName: "@serviceName",
@@ -3095,10 +3087,10 @@ angular.module("ovh-api-services").service("DedicatedNashaPartitionAccessAapi", 
 
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionAccessLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionAccessLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaPartitionAccessLexi");
+    var cache = $cacheFactory("OvhApiDedicatedNashaPartitionAccessLexi");
 
     var interceptor = {
         response: function (response) {
@@ -3152,23 +3144,23 @@ angular.module("ovh-api-services").service("DedicatedNashaPartitionAccessLexi", 
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionAccess", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionAccess", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionAccessLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionAccessLexi");
         },
         Aapi: function () {
-            return $injector.get("DedicatedNashaPartitionAccessAapi");
+            return $injector.get("OvhApiDedicatedNashaPartitionAccessAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionCustomSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionCustomSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedNashaPartitionCustomSnapshotLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDedicatedNashaPartitionCustomSnapshotLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -3213,20 +3205,20 @@ angular.module("ovh-api-services").service("DedicatedNashaPartitionCustomSnapsho
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionCustomSnapshot", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionCustomSnapshot", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionCustomSnapshotLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionCustomSnapshotLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedNashaPartitionLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDedicatedNashaPartitionLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -3287,32 +3279,32 @@ angular.module("ovh-api-services").service("DedicatedNashaPartitionLexi", ["$res
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartition", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartition", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionLexi");
         },
         CustomSnapshot: function () {
-            return $injector.get("DedicatedNashaPartitionCustomSnapshot");
+            return $injector.get("OvhApiDedicatedNashaPartitionCustomSnapshot");
         },
         Snapshot: function () {
-            return $injector.get("DedicatedNashaPartitionSnapshot");
+            return $injector.get("OvhApiDedicatedNashaPartitionSnapshot");
         },
         Access: function () {
-            return $injector.get("DedicatedNashaPartitionAccess");
+            return $injector.get("OvhApiDedicatedNashaPartitionAccess");
         },
         Options: function () {
-            return $injector.get("DedicatedNashaPartitionOptions");
+            return $injector.get("OvhApiDedicatedNashaPartitionOptions");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionOptionsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionOptionsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaPartitionOptionsLexi");
+    var cache = $cacheFactory("OvhApiDedicatedNashaPartitionOptionsLexi");
 
     var interceptor = {
         response: function (response) {
@@ -3347,20 +3339,20 @@ angular.module("ovh-api-services").service("DedicatedNashaPartitionOptionsLexi",
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionOptions", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionOptions", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionOptionsLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionOptionsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionSnapshotLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedNashaPartitionSnapshotLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDedicatedNashaPartitionSnapshotLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -3404,20 +3396,20 @@ angular.module("ovh-api-services").service("DedicatedNashaPartitionSnapshotLexi"
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaPartitionSnapshot", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionSnapshot", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionSnapshotLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionSnapshotLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaTaskLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaTaskLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaTaskLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedNashaTaskLexiQuery");
 
     var resource = $resource("/dedicated/nasha/:serviceName/task/:taskId", {
         serviceName: "@serviceName",
@@ -3444,20 +3436,20 @@ angular.module("ovh-api-services").service("DedicatedNashaTaskLexi", ["$resource
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedNashaTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaTask", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaTaskLexi");
+            return $injector.get("OvhApiDedicatedNashaTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedServerAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServerAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedServerAapi");
+    var cache = $cacheFactory("OvhApiDedicatedServerAapi");
 
     var dedicatedServerResource = $resource("/dedicated/server/:serverName", {
         serverName: "@serverName"
@@ -3493,11 +3485,11 @@ angular.module("ovh-api-services").service("DedicatedServerAapi", ["$resource", 
     return dedicatedServerResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedServerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedServerLexi");
-    var queryCache = $cacheFactory("DedicatedServerLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedServerLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedServerLexiQuery");
 
     var dedicatedServerResource = $resource("/dedicated/server/:serverName", {
         serverName: "@serverName"
@@ -3563,24 +3555,24 @@ angular.module("ovh-api-services").service("DedicatedServerLexi", ["$resource", 
     return dedicatedServerResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedServer", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServer", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedServerLexi");
+            return $injector.get("OvhApiDedicatedServerLexi");
         },
         Aapi: function () {
-            return $injector.get("DedicatedServerAapi");
+            return $injector.get("OvhApiDedicatedServerAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudDatacenterLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedCloudDatacenterLexi");
-    var queryCache = $cacheFactory("DedicatedCloudDatacenterLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedCloudDatacenterLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudDatacenterLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -3617,29 +3609,29 @@ angular.module("ovh-api-services").service("DedicatedCloudDatacenterLexi", ["$re
     return datacenterResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudDatacenter", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudDatacenterLexi");
+            return $injector.get("OvhApiDedicatedCloudDatacenterLexi");
         },
         Filer: function () {
-            return $injector.get("DedicatedCloudDatacenterFiler");
+            return $injector.get("OvhApiDedicatedCloudDatacenterFiler");
         },
         Host: function () {
-            return $injector.get("DedicatedCloudDatacenterHost");
+            return $injector.get("OvhApiDedicatedCloudDatacenterHost");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudDatacenterFilerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterFilerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCloudDatacenterFilerLexiQuery");
-    var cache = $cacheFactory("DedicatedCloudDatacenterFilerLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudDatacenterFilerLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterFilerLexi");
 
     var filerResource = $resource("/dedicatedCloud/:serviceName/datacenter/:datacenterId/filer/:filerId", {
         serviceName: "@serviceName",
@@ -3661,22 +3653,22 @@ angular.module("ovh-api-services").service("DedicatedCloudDatacenterFilerLexi", 
     return filerResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudDatacenterFiler", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterFiler", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudDatacenterFilerLexi");
+            return $injector.get("OvhApiDedicatedCloudDatacenterFilerLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudDatacenterHostLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterHostLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCloudDatacenterHostLexiQuery");
-    var cache = $cacheFactory("DedicatedCloudDatacenterHostLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudDatacenterHostLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterHostLexi");
 
     var hostResource = $resource("/dedicatedCloud/:serviceName/datacenter/:datacenterId/host/:hostId", {
         serviceName: "@serviceName",
@@ -3698,22 +3690,22 @@ angular.module("ovh-api-services").service("DedicatedCloudDatacenterHostLexi", [
     return hostResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudDatacenterHost", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterHost", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudDatacenterHostLexi");
+            return $injector.get("OvhApiDedicatedCloudDatacenterHostLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedCloudLexi");
-    var queryCache = $cacheFactory("DedicatedCloudLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedCloudLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -3752,31 +3744,31 @@ angular.module("ovh-api-services").service("DedicatedCloudLexi", ["$resource", "
     return dedicatedCloudResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloud", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloud", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudLexi");
+            return $injector.get("OvhApiDedicatedCloudLexi");
         },
         User: function () {
-            return $injector.get("DedicatedCloudUser");
+            return $injector.get("OvhApiDedicatedCloudUser");
         },
         Filer: function () {
-            return $injector.get("DedicatedCloudFiler");
+            return $injector.get("OvhApiDedicatedCloudFiler");
         },
         Datacenter: function () {
-            return $injector.get("DedicatedCloudDatacenter");
+            return $injector.get("OvhApiDedicatedCloudDatacenter");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudFilerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFilerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCloudFilerLexiQuery");
-    var cache = $cacheFactory("DedicatedCloudFilerLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudFilerLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedCloudFilerLexi");
 
     var filerResource = $resource("/dedicatedCloud/:serviceName/filer/:filerId", {
         serviceName: "@serviceName",
@@ -3797,22 +3789,22 @@ angular.module("ovh-api-services").service("DedicatedCloudFilerLexi", ["$resourc
     return filerResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudFiler", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFiler", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudFilerLexi");
+            return $injector.get("OvhApiDedicatedCloudFilerLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCloudUserLexiQuery");
-    var cache = $cacheFactory("DedicatedCloudUserLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudUserLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedCloudUserLexi");
 
     var interceptor = {
         response: function (response) {
@@ -3844,18 +3836,18 @@ angular.module("ovh-api-services").service("DedicatedCloudUserLexi", ["$resource
     return userResource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedCloudUser", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUser", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudUserLexi");
+            return $injector.get("OvhApiDedicatedCloudUserLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("DomainErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiDomainErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var domainEndpoint = apiv7("/domain/:serviceName", {
@@ -3865,11 +3857,11 @@ angular.module("ovh-api-services").service("DomainErika", ["apiv7", function (ap
     return domainEndpoint;
 }]);
 
-angular.module("ovh-api-services").service("DomainLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDomainLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DomainLexi");
-    var queryCache = $cacheFactory("DomainLexiQuery");
+    var cache = $cacheFactory("OvhApiDomainLexi");
+    var queryCache = $cacheFactory("OvhApiDomainLexiQuery");
 
     var domain = $resource("/domain/:serviceName", {
         serviceName: "@serviceName"
@@ -3896,24 +3888,24 @@ angular.module("ovh-api-services").service("DomainLexi", ["$resource", "$cacheFa
     return domain;
 }]);
 
-angular.module("ovh-api-services").service("Domain", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDomain", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DomainLexi");
+            return $injector.get("OvhApiDomainLexi");
         },
         Erika: function () {
-            return $injector.get("DomainErika");
+            return $injector.get("OvhApiDomainErika");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("FreeFaxAapi", ["$resource", "$cacheFactory", "FreeFax", function ($resource, $cacheFactory, FreeFax) {
+angular.module("ovh-api-services").service("OvhApiFreeFaxAapi", ["$resource", "$cacheFactory", "OvhApiFreeFax", function ($resource, $cacheFactory, OvhApiFreeFax) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            FreeFax.resetCache();
+            OvhApiFreeFax.resetCache();
             return response.resource;
         }
     };
@@ -3926,7 +3918,7 @@ angular.module("ovh-api-services").service("FreeFaxAapi", ["$resource", "$cacheF
             url: "/freefax/notifications/:serviceName",
             serviceType: "aapi",
             isArray: true,
-            cache: FreeFax.cache
+            cache: OvhApiFreeFax.cache
         },
         notificationsUpdate: {
             method: "PUT",
@@ -3938,14 +3930,14 @@ angular.module("ovh-api-services").service("FreeFaxAapi", ["$resource", "$cacheF
             method: "GET",
             serviceType: "aapi",
             url: "/freefax/:serviceName/details",
-            cache: FreeFax.cache
+            cache: OvhApiFreeFax.cache
         }
     });
 
     return freeFaxAapi;
 }]);
 
-angular.module("ovh-api-services").service("FreeFaxErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiFreeFaxErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var freeFaxEndpoint = apiv7("/freefax/:serviceName", {
@@ -3956,12 +3948,12 @@ angular.module("ovh-api-services").service("FreeFaxErika", ["apiv7", function (a
 
 }]);
 
-angular.module("ovh-api-services").service("FreeFaxLexi", ["$resource", "$cacheFactory", "FreeFax", function ($resource, $cacheFactory, FreeFax) {
+angular.module("ovh-api-services").service("OvhApiFreeFaxLexi", ["$resource", "$cacheFactory", "OvhApiFreeFax", function ($resource, $cacheFactory, OvhApiFreeFax) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            FreeFax.resetCache();
+            OvhApiFreeFax.resetCache();
             return response.resource;
         }
     };
@@ -3977,12 +3969,12 @@ angular.module("ovh-api-services").service("FreeFaxLexi", ["$resource", "$cacheF
             method: "GET",
             url: "/freefax",
             isArray: true,
-            cache: FreeFax.cache
+            cache: OvhApiFreeFax.cache
         },
         getPrice: {
             method: "GET",
             url: "/order/freefax/new",
-            cache: FreeFax.cache
+            cache: OvhApiFreeFax.cache
         },
         orderCredits: {
             method: "POST",
@@ -4044,20 +4036,20 @@ angular.module("ovh-api-services").service("FreeFaxLexi", ["$resource", "$cacheF
     });
 }]);
 
-angular.module("ovh-api-services").service("FreeFax", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiFreeFax", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("FreeFax");
+    var cache = $cacheFactory("OvhApiFreeFax");
 
     return {
         Lexi: function () {
-            return $injector.get("FreeFaxLexi");
+            return $injector.get("OvhApiFreeFaxLexi");
         },
         Aapi: function () {
-            return $injector.get("FreeFaxAapi");
+            return $injector.get("OvhApiFreeFaxAapi");
         },
         Erika: function () {
-            return $injector.get("FreeFaxErika");
+            return $injector.get("OvhApiFreeFaxErika");
         },
         resetCache: cache.removeAll,
         cache: cache
@@ -4066,10 +4058,10 @@ angular.module("ovh-api-services").service("FreeFax", ["$injector", "$cacheFacto
 
 "use strict";
 
-angular.module("ovh-api-services").service("IpLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiIpLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("IpLexi");
-    var queryCache = $cacheFactory("IpLexiQuery");
+    var cache = $cacheFactory("OvhApiIpLexi");
+    var queryCache = $cacheFactory("OvhApiIpLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -4160,23 +4152,23 @@ angular.module("ovh-api-services").service("IpLexi", ["$resource", "$cacheFactor
     return ips;
 }]);
 
-angular.module("ovh-api-services").service("Ip", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIp", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("IpLexi");
+            return $injector.get("OvhApiIpLexi");
         },
         Reverse: function () {
-            return $injector.get("IpReverse");
+            return $injector.get("OvhApiIpReverse");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("IpReverseLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiIpReverseLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("IpReverseLexi");
-    var queryCache = $cacheFactory("IpReverseLexiQuery");
+    var cache = $cacheFactory("OvhApiIpReverseLexi");
+    var queryCache = $cacheFactory("OvhApiIpReverseLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -4253,31 +4245,31 @@ angular.module("ovh-api-services").service("IpReverseLexi", ["$resource", "$cach
 }]);
 
 
-angular.module("ovh-api-services").service("IpReverse", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIpReverse", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("IpReverseLexi");
+            return $injector.get("OvhApiIpReverseLexi");
         }
     };
 }]);
 
 
-angular.module("ovh-api-services").service("License", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicense", ["$injector", function ($injector) {
     "use strict";
     return {
         Office: function () {
-            return $injector.get("LicenseOffice");
+            return $injector.get("OvhApiLicenseOffice");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("LicenseOfficeDomainLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeDomainLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("LicenseOfficeDomainLexi");
-    var queryCache = $cacheFactory("LicenseOfficeDomainLexiQuery");
+    var cache = $cacheFactory("OvhApiLicenseOfficeDomainLexi");
+    var queryCache = $cacheFactory("OvhApiLicenseOfficeDomainLexiQuery");
 
     var domains = $resource("/license/office/:serviceName/domain/:domainName", {
         serviceName: "@serviceName",
@@ -4298,13 +4290,13 @@ angular.module("ovh-api-services").service("LicenseOfficeDomainLexi", ["$resourc
     return domains;
 }]);
 
-angular.module("ovh-api-services").service("LicenseOfficeDomain", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeDomain", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("LicenseOfficeDomainLexi");
+            return $injector.get("OvhApiLicenseOfficeDomainLexi");
         }
     };
 
@@ -4312,10 +4304,10 @@ angular.module("ovh-api-services").service("LicenseOfficeDomain", ["$injector", 
 
 "use strict";
 
-angular.module("ovh-api-services").service("LicenseOfficeLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("LicenseOfficeLexi");
-    var queryCache = $cacheFactory("LicenseOfficeLexiQuery");
+    var cache = $cacheFactory("OvhApiLicenseOfficeLexi");
+    var queryCache = $cacheFactory("OvhApiLicenseOfficeLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -4345,28 +4337,28 @@ angular.module("ovh-api-services").service("LicenseOfficeLexi", ["$resource", "$
     return licensesOffice;
 }]);
 
-angular.module("ovh-api-services").service("LicenseOffice", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicenseOffice", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("LicenseOfficeLexi");
+            return $injector.get("OvhApiLicenseOfficeLexi");
         },
         Domain: function () {
-            return $injector.get("LicenseOfficeDomain");
+            return $injector.get("OvhApiLicenseOfficeDomain");
         },
         Users: function () {
-            return $injector.get("LicenseOfficeUsers");
+            return $injector.get("OvhApiLicenseOfficeUsers");
         },
         UsageStatistics: function () {
-            return $injector.get("LicenseOfficeUsageStatistics");
+            return $injector.get("OvhApiLicenseOfficeUsageStatistics");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("LicenseOfficeUsageStatisticsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsageStatisticsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("LicenseOfficeUsageStatisticsLexiQuery");
+    var queryCache = $cacheFactory("OvhApiLicenseOfficeUsageStatisticsLexiQuery");
 
     return $resource("/license/office/:serviceName/usageStatistics", {
         serviceName: "@serviceName",
@@ -4378,23 +4370,23 @@ angular.module("ovh-api-services").service("LicenseOfficeUsageStatisticsLexi", [
 
 }]);
 
-angular.module("ovh-api-services").service("LicenseOfficeUsageStatistics", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsageStatistics", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("LicenseOfficeUsageStatisticsLexi");
+            return $injector.get("OvhApiLicenseOfficeUsageStatisticsLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("LicenseOfficeUsersLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsersLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("LicenseOfficeUsersLexi");
-    var queryCache = $cacheFactory("LicenseOfficeUsersLexiQuery");
+    var cache = $cacheFactory("OvhApiLicenseOfficeUsersLexi");
+    var queryCache = $cacheFactory("OvhApiLicenseOfficeUsersLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
@@ -4424,13 +4416,13 @@ angular.module("ovh-api-services").service("LicenseOfficeUsersLexi", ["$resource
     return licenseOfficeUsers;
 }]);
 
-angular.module("ovh-api-services").service("LicenseOfficeUsers", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsers", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("LicenseOfficeUsersLexi");
+            return $injector.get("OvhApiLicenseOfficeUsersLexi");
         }
     };
 
@@ -4438,23 +4430,23 @@ angular.module("ovh-api-services").service("LicenseOfficeUsers", ["$injector", f
 
 angular
     .module("ovh-api-services")
-    .service("Metrics", ["$injector", function ($injector) {
+    .service("OvhApiMetrics", ["$injector", function ($injector) {
 
         return {
             Service: function () {
-                return $injector.get("MetricsService");
+                return $injector.get("OvhApiMetricsService");
             },
             Lexi: function () {
-                return $injector.get("Metrics");
+                return $injector.get("OvhApiMetrics");
             }
         };
     }]);
 
 angular
     .module("ovh-api-services")
-    .service("MetricsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    .service("OvhApiMetricsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-        var queryCache = $cacheFactory("MetricsLexiQuery");
+        var queryCache = $cacheFactory("OvhApiMetricsLexiQuery");
         var r = $resource("/metrics", {}, {
             query: {
                 method: "GET",
@@ -4476,7 +4468,7 @@ angular
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceConsumptionLexi", ["$resource", function ($resource) {
+    .service("OvhApiMetricsServiceConsumptionLexi", ["$resource", function ($resource) {
 
         return $resource("/metrics/:serviceName/consumption", {
             serviceName: "@serviceName"
@@ -4490,20 +4482,20 @@ angular
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceConsumption", ["$injector", function ($injector) {
+    .service("OvhApiMetricsServiceConsumption", ["$injector", function ($injector) {
 
         return {
             Lexi: function () {
-                return $injector.get("MetricsServiceConsumptionLexi");
+                return $injector.get("OvhApiMetricsServiceConsumptionLexi");
             }
         };
     }]);
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    .service("OvhApiMetricsServiceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-        var otherCache = $cacheFactory("MetricsServiceLexi");
+        var otherCache = $cacheFactory("OvhApiMetricsServiceLexi");
         var interceptor = {
             response: function (response) {
                 otherCache.removeAll();
@@ -4529,27 +4521,27 @@ angular
 
 angular
     .module("ovh-api-services")
-    .service("MetricsService", ["$injector", function ($injector) {
+    .service("OvhApiMetricsService", ["$injector", function ($injector) {
 
         return {
             Token: function () {
-                return $injector.get("MetricsServiceToken");
+                return $injector.get("OvhApiMetricsServiceToken");
             },
             Consumption: function () {
-                return $injector.get("MetricsServiceConsumption");
+                return $injector.get("OvhApiMetricsServiceConsumption");
             },
             Lexi: function () {
-                return $injector.get("MetricsServiceLexi");
+                return $injector.get("OvhApiMetricsServiceLexi");
             }
         };
     }]);
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceTokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    .service("OvhApiMetricsServiceTokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-        var otherCache = $cacheFactory("MetricsServiceTokenLexi");
-        var queryCache = $cacheFactory("MetricsServiceTokenLexiQuery");
+        var otherCache = $cacheFactory("OvhApiMetricsServiceTokenLexi");
+        var queryCache = $cacheFactory("OvhApiMetricsServiceTokenLexiQuery");
 
         var interceptor = {
             response: function (response) {
@@ -4599,16 +4591,16 @@ angular
 
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceToken", ["$injector", function ($injector) {
+    .service("OvhApiMetricsServiceToken", ["$injector", function ($injector) {
 
         return {
             Lexi: function () {
-                return $injector.get("MetricsServiceTokenLexi");
+                return $injector.get("OvhApiMetricsServiceTokenLexi");
             }
         };
     }]);
 
-angular.module("ovh-api-services").service("MyIpAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiMyIpAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/myIp", {}, {
@@ -4619,16 +4611,16 @@ angular.module("ovh-api-services").service("MyIpAapi", ["$resource", function ($
     });
 }]);
 
-angular.module("ovh-api-services").service("MyIp", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiMyIp", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("MyIpAapi");
+            return $injector.get("OvhApiMyIpAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("NewAccountCreationRulesLexi", ["$resource", "NewAccountCreationRules", function ($resource, NewAccountCreationRules) {
+angular.module("ovh-api-services").service("OvhApiNewAccountCreationRulesLexi", ["$resource", "OvhApiNewAccountCreationRules", function ($resource, OvhApiNewAccountCreationRules) {
     "use strict";
 
     return $resource("/newAccount/creationRules", {
@@ -4639,31 +4631,31 @@ angular.module("ovh-api-services").service("NewAccountCreationRulesLexi", ["$res
     }, {
         get: {
             method: "GET",
-            cache: NewAccountCreationRules.cache
+            cache: OvhApiNewAccountCreationRules.cache
         }
     }
     );
 }]);
 
-angular.module("ovh-api-services").service("NewAccountCreationRules", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiNewAccountCreationRules", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("NewAccountCreationRulesLexi");
+    var cache = $cacheFactory("OvhApiNewAccountCreationRulesLexi");
 
     return {
         Lexi: function () {
-            return $injector.get("NewAccountCreationRulesLexi");
+            return $injector.get("OvhApiNewAccountCreationRulesLexi");
         },
         cache: cache,
         resetCache: cache.removeAll
     };
 }]);
 
-angular.module("ovh-api-services").service("NewAccountLegalFormLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiNewAccountLegalFormLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("NewAccountLegalFormLexi");
-    var queryCache = $cacheFactory("NewAccountLegalFormLexiQuery");
+    var cache = $cacheFactory("OvhApiNewAccountLegalFormLexi");
+    var queryCache = $cacheFactory("OvhApiNewAccountLegalFormLexiQuery");
 
     var newAccount = $resource("/newAccount/legalform", {
         country: "@country"
@@ -4683,28 +4675,28 @@ angular.module("ovh-api-services").service("NewAccountLegalFormLexi", ["$resourc
     return newAccount;
 }]);
 
-angular.module("ovh-api-services").service("NewAccountLegalForm", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiNewAccountLegalForm", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("NewAccountLegalFormLexi");
+            return $injector.get("OvhApiNewAccountLegalFormLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("NewAccount", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiNewAccount", ["$injector", function ($injector) {
     "use strict";
     return {
         LegalForm: function () {
-            return $injector.get("NewAccountLegalForm");
+            return $injector.get("OvhApiNewAccountLegalForm");
         },
         CreationRules: function () {
-            return $injector.get("NewAccountCreationRules");
+            return $injector.get("OvhApiNewAccountCreationRules");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderCloudProjectCreditLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCreditLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/order/cloud/project/:serviceName/credit", {
@@ -4717,18 +4709,18 @@ angular.module("ovh-api-services").service("OrderCloudProjectCreditLexi", ["$res
     });
 }]);
 
-angular.module("ovh-api-services").service("OrderCloudProjectCredit", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCredit", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderCloudProjectCreditLexi");
+            return $injector.get("OvhApiOrderCloudProjectCreditLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderCloudProjectIpLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiOrderCloudProjectIpLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/order/cloud/project/:serviceName/ip", {
@@ -4742,24 +4734,24 @@ angular.module("ovh-api-services").service("OrderCloudProjectIpLexi", ["$resourc
     });
 }]);
 
-angular.module("ovh-api-services").service("OrderCloudProjectIp", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderCloudProjectIp", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Tera: angular.noop,
         Lexi: function () {
-            return $injector.get("OrderCloudProjectIpLexi");
+            return $injector.get("OvhApiOrderCloudProjectIpLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderDedicatedNashaNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderDedicatedNashaNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderDedicatedNashaNewLexiQuery");
-    var cache = $cacheFactory("OrderDedicatedNashaNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderDedicatedNashaNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderDedicatedNashaNewLexi");
     var interceptor = {
         response: function (response) {
             queryCache.removeAll();
@@ -4806,30 +4798,30 @@ angular.module("ovh-api-services").service("OrderDedicatedNashaNewLexi", ["$reso
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("OrderDedicatedNashaNew", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderDedicatedNashaNew", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderDedicatedNashaNewLexi");
+            return $injector.get("OvhApiOrderDedicatedNashaNewLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderDedicatedNasha", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderDedicatedNasha", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         New: function () {
-            return $injector.get("OrderDedicatedNashaNew");
+            return $injector.get("OvhApiOrderDedicatedNashaNew");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderFreefaxLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiOrderFreefaxLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/order/freefax/:serviceName", {
@@ -4862,26 +4854,26 @@ angular.module("ovh-api-services").service("OrderFreefaxLexi", ["$resource", fun
     });
 }]);
 
-angular.module("ovh-api-services").service("OrderFreefax", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderFreefax", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderFreefaxLexi");
+            return $injector.get("OvhApiOrderFreefaxLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderLicenseOfficeNewLexi", ["$resource", "$cacheFactory", "License", function ($resource, $cacheFactory, License) {
+angular.module("ovh-api-services").service("OvhApiOrderLicenseOfficeNewLexi", ["$resource", "$cacheFactory", "OvhApiLicense", function ($resource, $cacheFactory, OvhApiLicense) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderLicenseOfficeNewLexiQuery");
-    var cache = $cacheFactory("OrderLicenseOfficeNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderLicenseOfficeNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderLicenseOfficeNewLexi");
 
     var interceptor = {
         response: function (response) {
-            License.Office().Lexi().resetQueryCache();
+            OvhApiLicense.Office().Lexi().resetQueryCache();
             return response;
         }
     };
@@ -4895,44 +4887,44 @@ angular.module("ovh-api-services").service("OrderLicenseOfficeNewLexi", ["$resou
     });
 }]);
 
-angular.module("ovh-api-services").service("OrderLicenseOfficeNew", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderLicenseOfficeNew", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderLicenseOfficeNewLexi");
+            return $injector.get("OvhApiOrderLicenseOfficeNewLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderLicenseOffice", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderLicenseOffice", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         New: function () {
-            return $injector.get("OrderLicenseOfficeNew");
+            return $injector.get("OvhApiOrderLicenseOfficeNew");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderLicense", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderLicense", ["$injector", function ($injector) {
     "use strict";
     return {
         Office: function () {
-            return $injector.get("OrderLicenseOffice");
+            return $injector.get("OvhApiOrderLicenseOffice");
         },
         Lexi: angular.noop
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var schemaCache = $cacheFactory("OrderLexiSchema");
+    var schemaCache = $cacheFactory("OvhApiOrderLexiSchema");
 
     var orderRessource = $resource("/order", {
     }, {
@@ -4950,42 +4942,42 @@ angular.module("ovh-api-services").service("OrderLexi", ["$resource", "$cacheFac
     return orderRessource;
 }]);
 
-angular.module("ovh-api-services").service("Order", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrder", ["$injector", function ($injector) {
     "use strict";
     return {
         Router: function () {
-            return $injector.get("OrderRouter");
+            return $injector.get("OvhApiOrderRouter");
         },
         License: function () {
-            return $injector.get("OrderLicense");
+            return $injector.get("OvhApiOrderLicense");
         },
         Vrack: function () {
-            return $injector.get("OrderVrack");
+            return $injector.get("OvhApiOrderVrack");
         },
         DedicatedNasha: function () {
-            return $injector.get("OrderDedicatedNasha");
+            return $injector.get("OvhApiOrderDedicatedNasha");
         },
         Telephony: function () {
-            return $injector.get("OrderTelephony");
+            return $injector.get("OvhApiOrderTelephony");
         },
         Freefax: function () {
-            return $injector.get("OrderFreefax");
+            return $injector.get("OvhApiOrderFreefax");
         },
         Sms: function () {
-            return $injector.get("OrderSms");
+            return $injector.get("OvhApiOrderSms");
         },
         Lexi: function () {
-            return $injector.get("OrderLexi");
+            return $injector.get("OvhApiOrderLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderOverTheBoxNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderOverTheBoxNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderOverTheBoxNewLexiQuery");
-    var cache = $cacheFactory("OrderOverTheBoxNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderOverTheBoxNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderOverTheBoxNewLexi");
 
     var orderOverTheBox = $resource("/order/overTheBox/new/:duration", {
         duration: "@duration"
@@ -5014,40 +5006,40 @@ angular.module("ovh-api-services").service("OrderOverTheBoxNewLexi", ["$resource
     return orderOverTheBox;
 }]);
 
-angular.module("ovh-api-services").service("OrderOverTheBoxNew", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderOverTheBoxNew", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderOverTheBoxNewLexi");
+            return $injector.get("OvhApiOrderOverTheBoxNewLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderOverTheBox", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderOverTheBox", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         New: function () {
-            return $injector.get("OrderOverTheBoxNew");
+            return $injector.get("OvhApiOrderOverTheBoxNew");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderRouterNewLexi", ["$resource", "$cacheFactory", "Router", function ($resource, $cacheFactory, Router) {
+angular.module("ovh-api-services").service("OvhApiOrderRouterNewLexi", ["$resource", "$cacheFactory", "OvhApiRouter", function ($resource, $cacheFactory, OvhApiRouter) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderRouterNewLexiQuery");
-    var cache = $cacheFactory("OrderRouterNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderRouterNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderRouterNewLexi");
 
     var interceptor = {
         response: function (response) {
-            Router.Lexi().resetQueryCache();
+            OvhApiRouter.Lexi().resetQueryCache();
             return response;
         }
     };
@@ -5061,31 +5053,31 @@ angular.module("ovh-api-services").service("OrderRouterNewLexi", ["$resource", "
     });
 }]);
 
-angular.module("ovh-api-services").service("OrderRouterNew", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderRouterNew", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderRouterNewLexi");
+            return $injector.get("OvhApiOrderRouterNewLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderRouter", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderRouter", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         New: function () {
-            return $injector.get("OrderRouterNew");
+            return $injector.get("OvhApiOrderRouterNew");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderSmsLexi", ["$resource", "OrderSms", function ($resource, OrderSms) {
+angular.module("ovh-api-services").service("OvhApiOrderSmsLexi", ["$resource", "OvhApiOrderSms", function ($resource, OvhApiOrderSms) {
     "use strict";
 
     return $resource("/order/sms/:serviceName", {
@@ -5094,12 +5086,12 @@ angular.module("ovh-api-services").service("OrderSmsLexi", ["$resource", "OrderS
         get: {
             method: "GET",
             isArray: true,
-            cache: OrderSms.cache
+            cache: OvhApiOrderSms.cache
         },
         getCredits: {
             method: "GET",
             url: "/order/sms/:serviceName/credits",
-            cache: OrderSms.cache
+            cache: OvhApiOrderSms.cache
         },
         orderCredits: {
             method: "POST",
@@ -5108,7 +5100,7 @@ angular.module("ovh-api-services").service("OrderSmsLexi", ["$resource", "OrderS
         getNewSmsAccount: {
             method: "GET",
             url: "/order/sms/new",
-            cache: OrderSms.cache
+            cache: OvhApiOrderSms.cache
         },
         orderNewSmsAccount: {
             method: "POST",
@@ -5118,20 +5110,20 @@ angular.module("ovh-api-services").service("OrderSmsLexi", ["$resource", "OrderS
 
 }]);
 
-angular.module("ovh-api-services").service("OrderSms", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderSms", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OrderSms");
+    var cache = $cacheFactory("OvhApiOrderSms");
 
     return {
         Lexi: function () {
-            return $injector.get("OrderSmsLexi");
+            return $injector.get("OvhApiOrderSmsLexi");
         },
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderTelephonyAapi", ["$resource", "OrderTelephony", function ($resource, OrderTelephony) {
+angular.module("ovh-api-services").service("OvhApiOrderTelephonyAapi", ["$resource", "OvhApiOrderTelephony", function ($resource, OvhApiOrderTelephony) {
     "use strict";
 
     return $resource("/order/telephony", {
@@ -5142,13 +5134,13 @@ angular.module("ovh-api-services").service("OrderTelephonyAapi", ["$resource", "
             url: "/order/telephony/all",
             isArray: true,
             serviceType: "aapi",
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         }
     });
 
 }]);
 
-angular.module("ovh-api-services").service("OrderTelephonyLexi", ["$resource", "OrderTelephony", function ($resource, OrderTelephony) {
+angular.module("ovh-api-services").service("OvhApiOrderTelephonyLexi", ["$resource", "OvhApiOrderTelephony", function ($resource, OvhApiOrderTelephony) {
     "use strict";
 
     return $resource("/order/telephony/:billingAccount", {
@@ -5157,13 +5149,13 @@ angular.module("ovh-api-services").service("OrderTelephonyLexi", ["$resource", "
         get: {
             method: "GET",
             isArray: true,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         billingAccounts: {
             method: "GET",
             url: "/order/telephony",
             isArray: true,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         getNewBillingAccount: {
             method: "GET",
@@ -5179,19 +5171,19 @@ angular.module("ovh-api-services").service("OrderTelephonyLexi", ["$resource", "
             method: "GET",
             url: "/order/telephony/:billingAccount/numberGeographic",
             isArray: false,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         getNumberNogeographical: {
             method: "GET",
             url: "/order/telephony/:billingAccount/numberNogeographic",
             isArray: false,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         getNumberSpecial: {
             method: "GET",
             url: "/order/telephony/:billingAccount/numberSpecial",
             isArray: false,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         orderNumberGeographical: {
             method: "POST",
@@ -5272,28 +5264,28 @@ angular.module("ovh-api-services").service("OrderTelephonyLexi", ["$resource", "
 
 }]);
 
-angular.module("ovh-api-services").service("OrderTelephony", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderTelephony", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OrderTelephony");
+    var cache = $cacheFactory("OvhApiOrderTelephony");
 
     return {
         Lexi: function () {
-            return $injector.get("OrderTelephonyLexi");
+            return $injector.get("OvhApiOrderTelephonyLexi");
         },
         Aapi: function () {
-            return $injector.get("OrderTelephonyAapi");
+            return $injector.get("OvhApiOrderTelephonyAapi");
         },
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("OrderVrackNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderVrackNewLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderVrackNewLexiQuery");
-    var cache = $cacheFactory("OrderVrackNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderVrackNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderVrackNewLexi");
 
     var orderVrack = $resource("/order/vrack/new", {
         quantity: "@quantity"
@@ -5322,37 +5314,37 @@ angular.module("ovh-api-services").service("OrderVrackNewLexi", ["$resource", "$
     return orderVrack;
 }]);
 
-angular.module("ovh-api-services").service("OrderVrackNew", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderVrackNew", ["$injector", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderVrackNewLexi");
+            return $injector.get("OvhApiOrderVrackNewLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OrderVrack", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderVrack", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         New: function () {
-            return $injector.get("OrderVrackNew");
+            return $injector.get("OvhApiOrderVrackNew");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OverTheBoxAapi", ["$resource", "Poller", "OverTheBox", function ($resource, Poller, OverTheBox) {
+angular.module("ovh-api-services").service("OvhApiOverTheBoxAapi", ["$resource", "Poller", "OvhApiOverTheBox", function ($resource, Poller, OvhApiOverTheBox) {
     "use strict";
 
     var loadRemoteRoute = "/overTheBox/:serviceName/remoteAccesses";
     var interceptor = {
         response: function (response) {
-            OverTheBox.resetCache();
+            OvhApiOverTheBox.resetCache();
             return response.resource;
         }
     };
@@ -5365,7 +5357,7 @@ angular.module("ovh-api-services").service("OverTheBoxAapi", ["$resource", "Poll
             url: loadRemoteRoute,
             serviceType: "aapi",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         createAndAuthorize: {
             method: "POST",
@@ -5416,7 +5408,7 @@ angular.module("ovh-api-services").service("OverTheBoxAapi", ["$resource", "Poll
     return overTheBox;
 }]);
 
-angular.module("ovh-api-services").service("OverTheBoxErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiOverTheBoxErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var otbEndpoint = apiv7("/overtTheBox/:serviceName", {
@@ -5427,12 +5419,12 @@ angular.module("ovh-api-services").service("OverTheBoxErika", ["apiv7", function
 
 }]);
 
-angular.module("ovh-api-services").service("OverTheBoxLexi", ["$resource", "OverTheBox", function ($resource, OverTheBox) {
+angular.module("ovh-api-services").service("OvhApiOverTheBoxLexi", ["$resource", "OvhApiOverTheBox", function ($resource, OvhApiOverTheBox) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            OverTheBox.resetCache();
+            OvhApiOverTheBox.resetCache();
             return response.resource;
         }
     };
@@ -5441,8 +5433,8 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", ["$resource", "Over
         serviceName: "@serviceName"
     }, {
         schema: { method: "GET", url: "/overTheBox.json" },
-        query: { method: "GET", isArray: true, cache: OverTheBox.cache },
-        get: { method: "GET", cache: OverTheBox.cache },
+        query: { method: "GET", isArray: true, cache: OvhApiOverTheBox.cache },
+        get: { method: "GET", cache: OvhApiOverTheBox.cache },
         checkDevices: {
             method: "POST",
             url: "/overTheBox/devices",
@@ -5451,12 +5443,12 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", ["$resource", "Over
         getDevice: {
             method: "GET",
             url: "/overTheBox/:serviceName/device",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getServiceInfos: {
             method: "GET",
             url: "/overTheBox/:serviceName/serviceInfos",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         putService: {
             method: "PUT",
@@ -5486,17 +5478,17 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", ["$resource", "Over
             method: "GET",
             url: "/overTheBox/:serviceName/tasks",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getTask: {
             method: "GET",
             url: "/overTheBox/:serviceName/tasks/:taskId",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         loadRemote: {
             method: "GET",
             url: "/overTheBox/:serviceName/remoteAccesses/:remoteAccessId",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         createRemote: {
             method: "POST",
@@ -5517,13 +5509,13 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", ["$resource", "Over
             method: "GET",
             url: "/overTheBox/availableOffers",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getServices: {
             method: "GET",
             url: "/overTheBox",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getAvailableActions: {
             method: "GET",
@@ -5546,76 +5538,72 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", ["$resource", "Over
     return overTheBox;
 }]);
 
-angular.module("ovh-api-services").service("OverTheBox", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOverTheBox", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OverTheBox");
+    var cache = $cacheFactory("OvhApiOverTheBox");
 
     return {
         Lexi: function () {
-            return $injector.get("OverTheBoxLexi");
+            return $injector.get("OvhApiOverTheBoxLexi");
         },
         Aapi: function () {
-            return $injector.get("OverTheBoxAapi");
+            return $injector.get("OvhApiOverTheBoxAapi");
         },
         Erika: function () {
-            return $injector.get("OverTheBoxErika");
+            return $injector.get("OvhApiOverTheBoxErika");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslAccessAapi", ["$resource", "PackXdslAccess", function ($resource, PackXdslAccess) {
+angular.module("ovh-api-services").service("OvhApiPackXdslAccessAapi", ["$resource", "OvhApiPackXdslAccess", function ($resource, OvhApiPackXdslAccess) {
     "use strict";
 
-    return $resource("/pack/xdsl/:packId/access/services",
-                     {
-                         packId: "@packId"
-                     }, {
-                         query: {
-                             serviceType: "aapi",
-                             isArray: true,
-                             cache: PackXdslAccess.cache
-                         }
-                     }
-    );
+    return $resource("/pack/xdsl/:packId/access/services", {
+        packId: "@packId"
+    }, {
+        query: {
+            serviceType: "aapi",
+            isArray: true,
+            cache: OvhApiPackXdslAccess.cache
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslAccessLexi", ["$resource", "PackXdslAccess", function ($resource, PackXdslAccess) {
+angular.module("ovh-api-services").service("OvhApiPackXdslAccessLexi", ["$resource", "OvhApiPackXdslAccess", function ($resource, OvhApiPackXdslAccess) {
     "use strict";
 
-    return $resource("/pack/xdsl/:packId/xdslAccess",
-                     {
-                         packId: "@packId"
-                     }, {
-                         getServices: {
-                             url: "/pack/xdsl/:packId/xdslAccess/services",
-                             isArray: true,
-                             cache: PackXdslAccess.cache
-                         }
-                     }
-    );
+    return $resource("/pack/xdsl/:packId/xdslAccess", {
+        packId: "@packId"
+    }, {
+        getServices: {
+            url: "/pack/xdsl/:packId/xdslAccess/services",
+            isArray: true,
+            cache: OvhApiPackXdslAccess.cache
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslAccess", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslAccess", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslAccess");
+    var cache = $cacheFactory("OvhApiPackXdslAccess");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslAccessAapi");
+            return $injector.get("OvhApiPackXdslAccessAapi");
         },
         Lexi: function () {
-            return $injector.get("PackXdslAccessLexi");
+            return $injector.get("OvhApiPackXdslAccessLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslDomainActivationAapi", ["$resource", "PackXdslDomainActivation", function ($resource, PackXdslDomainActivation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivationAapi", ["$resource", "OvhApiPackXdslDomainActivation", function ($resource, OvhApiPackXdslDomainActivation) {
     "use strict";
 
     return $resource(
@@ -5627,17 +5615,17 @@ angular.module("ovh-api-services").service("PackXdslDomainActivationAapi", ["$re
             checkDisponibility: {
                 method: "POST",
                 serviceType: "aapi",
-                cache: PackXdslDomainActivation.cache
+                cache: OvhApiPackXdslDomainActivation.cache
             }
         });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslDomainActivationLexi", ["$resource", "PackXdslDomainActivation", function ($resource, PackXdslDomainActivation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivationLexi", ["$resource", "OvhApiPackXdslDomainActivation", function ($resource, OvhApiPackXdslDomainActivation) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslDomainActivation.resetCache();
+            OvhApiPackXdslDomainActivation.resetCache();
             return response.resource;
         }
     };
@@ -5654,36 +5642,35 @@ angular.module("ovh-api-services").service("PackXdslDomainActivationLexi", ["$re
             getServices: {
                 method: "GET",
                 isArray: true,
-                cache: PackXdslDomainActivation.cache
+                cache: OvhApiPackXdslDomainActivation.cache
             },
             getTlds: {
                 method: "GET",
                 url: "/pack/xdsl/:packId/domain/options/tlds",
                 isArray: true,
-                cache: PackXdslDomainActivation.cache
+                cache: OvhApiPackXdslDomainActivation.cache
             }
         });
 }]);
 
-
-angular.module("ovh-api-services").service("PackXdslDomainActivation", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivation", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslDomainActivation");
+    var cache = $cacheFactory("OvhApiPackXdslDomainActivation");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslDomainActivationLexi");
+            return $injector.get("OvhApiPackXdslDomainActivationLexi");
         },
         Aapi: function () {
-            return $injector.get("PackXdslDomainActivationAapi");
+            return $injector.get("OvhApiPackXdslDomainActivationAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeAccountAapi", ["$resource", "PackXdslExchangeAccount", function ($resource, PackXdslExchangeAccount) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountAapi", ["$resource", "OvhApiPackXdslExchangeAccount", function ($resource, OvhApiPackXdslExchangeAccount) {
     "use strict";
 
     return $resource("/pack/xdsl/:packName/exchangeAccount/email", {
@@ -5692,30 +5679,30 @@ angular.module("ovh-api-services").service("PackXdslExchangeAccountAapi", ["$res
         query: {
             isArray: true,
             serviceType: "aapi",
-            cache: PackXdslExchangeAccount.cache
+            cache: OvhApiPackXdslExchangeAccount.cache
         }
     }
     );
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeAccount", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccount", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslExchangeAccount");
+    var cache = $cacheFactory("OvhApiPackXdslExchangeAccount");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslExchangeAccountAapi");
+            return $injector.get("OvhApiPackXdslExchangeAccountAapi");
         },
         Services: function () {
-            return $injector.get("PackXdslExchangeAccountServices");
+            return $injector.get("OvhApiPackXdslExchangeAccountServices");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeAccountServicesLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountServicesLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/pack/xdsl/:packName/exchangeAccount/services/:domain", {
@@ -5732,22 +5719,22 @@ angular.module("ovh-api-services").service("PackXdslExchangeAccountServicesLexi"
     });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeAccountServices", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountServices", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslExchangeAccountServicesLexi");
+            return $injector.get("OvhApiPackXdslExchangeAccountServicesLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", ["$resource", "$http", "PackXdslExchangeIndividual", function ($resource, $http, PackXdslExchangeIndividual) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeIndividualLexi", ["$resource", "$http", "OvhApiPackXdslExchangeIndividual", function ($resource, $http, OvhApiPackXdslExchangeIndividual) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslExchangeIndividual.resetCache();
+            OvhApiPackXdslExchangeIndividual.resetCache();
             return response.resource;
         }
     };
@@ -5758,7 +5745,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", ["$
         query: {
             method: "GET",
             isArray: true,
-            cache: PackXdslExchangeIndividual.cache
+            cache: OvhApiPackXdslExchangeIndividual.cache
         },
         save: {
             method: "POST",
@@ -5768,7 +5755,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", ["$
             method: "GET",
             url: "/pack/xdsl/:packId/exchangeIndividual/options/domains",
             isArray: true,
-            cache: PackXdslExchangeIndividual.cache
+            cache: OvhApiPackXdslExchangeIndividual.cache
         }
     }
     );
@@ -5785,26 +5772,26 @@ angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", ["$
     return packXdslExchangeIndividual;
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeIndividual", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeIndividual", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslExchangeIndividual");
+    var cache = $cacheFactory("OvhApiPackXdslExchangeIndividual");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslExchangeIndividualLexi");
+            return $injector.get("OvhApiPackXdslExchangeIndividualLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeLiteLexi", ["$resource", "$http", "PackXdslExchangeLite", function ($resource, $http, PackXdslExchangeLite) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeLiteLexi", ["$resource", "$http", "OvhApiPackXdslExchangeLite", function ($resource, $http, OvhApiPackXdslExchangeLite) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslExchangeLite.resetCache();
+            OvhApiPackXdslExchangeLite.resetCache();
             return response.resource;
         }
     };
@@ -5815,7 +5802,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeLiteLexi", ["$resour
         query: {
             method: "GET",
             isArray: true,
-            cache: PackXdslExchangeLite.cache
+            cache: OvhApiPackXdslExchangeLite.cache
         },
         save: {
             method: "POST",
@@ -5836,14 +5823,14 @@ angular.module("ovh-api-services").service("PackXdslExchangeLiteLexi", ["$resour
     return packXdslExchangeLite;
 }]);
 
-angular.module("ovh-api-services").service("PackXdslExchangeLite", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeLite", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslExchangeLite");
+    var cache = $cacheFactory("OvhApiPackXdslExchangeLite");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslExchangeLiteLexi");
+            return $injector.get("OvhApiPackXdslExchangeLiteLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
@@ -5852,10 +5839,10 @@ angular.module("ovh-api-services").service("PackXdslExchangeLite", ["$injector",
 
 "use strict";
 
-angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", ["$resource", "PackXdslHostedEmail", function ($resource, PackXdslHostedEmail) {
+angular.module("ovh-api-services").service("OvhApiPackXdslHostedEmailLexi", ["$resource", "OvhApiPackXdslHostedEmail", function ($resource, OvhApiPackXdslHostedEmail) {
     var interceptor = {
         response: function (response) {
-            PackXdslHostedEmail.resetCache();
+            OvhApiPackXdslHostedEmail.resetCache();
             return response.resource;
         }
     };
@@ -5866,7 +5853,7 @@ angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", ["$resourc
         query: {
             method: "GET",
             isArray: true,
-            cache: PackXdslHostedEmail.cache
+            cache: OvhApiPackXdslHostedEmail.cache
         },
         save: {
             method: "POST",
@@ -5876,7 +5863,7 @@ angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", ["$resourc
             method: "GET",
             url: "/pack/xdsl/:packId/hostedEmail/options/domains",
             isArray: true,
-            cache: PackXdslHostedEmail.cache
+            cache: OvhApiPackXdslHostedEmail.cache
         }
     }
     );
@@ -5884,43 +5871,41 @@ angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", ["$resourc
 
 "use strict";
 
-angular.module("ovh-api-services").service("PackXdslHostedEmail", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslHostedEmail", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
 
-    var cache = $cacheFactory("PackXdslHostedEmail");
+    var cache = $cacheFactory("OvhApiPackXdslHostedEmail");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslHostedEmailLexi");
+            return $injector.get("OvhApiPackXdslHostedEmailLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslHubicAapi", ["$resource", "PackXdslHubic", function ($resource, PackXdslHubic) {
+angular.module("ovh-api-services").service("OvhApiPackXdslHubicAapi", ["$resource", "OvhApiPackXdslHubic", function ($resource, OvhApiPackXdslHubic) {
     "use strict";
 
-    return $resource("/pack/xdsl/:packId/hubic",
-                     {
-                         packId: "@packId"
-                     }, {
-                         query: {
-                             serviceType: "aapi",
-                             isArray: true,
-                             cache: PackXdslHubic.cache
-                         }
-                     }
-    );
+    return $resource("/pack/xdsl/:packId/hubic", {
+        packId: "@packId"
+    }, {
+        query: {
+            serviceType: "aapi",
+            isArray: true,
+            cache: OvhApiPackXdslHubic.cache
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslHubic", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslHubic", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslHubic");
+    var cache = $cacheFactory("OvhApiPackXdslHubic");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslHubicAapi");
+            return $injector.get("OvhApiPackXdslHubicAapi");
         },
         Lexi: angular.noop,
         resetCache: cache.removeAll,
@@ -5928,7 +5913,7 @@ angular.module("ovh-api-services").service("PackXdslHubic", ["$injector", "$cach
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslMoveLexi", ["$resource", "Poller", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiPackXdslMoveLexi", ["$resource", "Poller", function ($resource, Poller) {
     "use strict";
 
     var move = $resource("/pack/xdsl/:packName/addressMove/eligibility", {
@@ -5973,22 +5958,22 @@ angular.module("ovh-api-services").service("PackXdslMoveLexi", ["$resource", "Po
     return move;
 }]);
 
-angular.module("ovh-api-services").service("PackXdslMove", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslMove", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslMove");
+    var cache = $cacheFactory("OvhApiPackXdslMove");
 
     return {
         Aapi: angular.noop,
         Lexi: function () {
-            return $injector.get("PackXdslMoveLexi");
+            return $injector.get("OvhApiPackXdslMoveLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslAapi", ["$resource", "PackXdsl", function ($resource, PackXdsl) {
+angular.module("ovh-api-services").service("OvhApiPackXdslAapi", ["$resource", "OvhApiPackXdsl", function ($resource, OvhApiPackXdsl) {
     "use strict";
 
     var packXdslAapi = $resource("/pack/xdsl/:packId", {
@@ -5997,13 +5982,13 @@ angular.module("ovh-api-services").service("PackXdslAapi", ["$resource", "PackXd
         get: {
             serviceType: "aapi",
             isArray: false,
-            cache: PackXdsl.cache
+            cache: OvhApiPackXdsl.cache
         },
         getLines: {
             url: "/pack/xdsl/:packId/lines",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdsl.cache
+            cache: OvhApiPackXdsl.cache
         }
     }
     );
@@ -6011,7 +5996,7 @@ angular.module("ovh-api-services").service("PackXdslAapi", ["$resource", "PackXd
     return packXdslAapi;
 }]);
 
-angular.module("ovh-api-services").service("PackXdslErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiPackXdslErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var packXdslEndpoint = apiv7("/pack/xdsl/:packName", {
@@ -6028,13 +6013,13 @@ angular.module("ovh-api-services").service("PackXdslErika", ["apiv7", function (
 
 }]);
 
-angular.module("ovh-api-services").service("PackXdslLexi", ["$resource", "TelecomSidebar", "PackXdsl", function ($resource, TelecomSidebar, PackXdsl) {
+angular.module("ovh-api-services").service("OvhApiPackXdslLexi", ["$resource", "OvhApiTelecomSidebar", "OvhApiPackXdsl", function ($resource, OvhApiTelecomSidebar, OvhApiPackXdsl) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelecomSidebar.resetCache();
-            PackXdsl.resetCache();
+            OvhApiTelecomSidebar.resetCache();
+            OvhApiPackXdsl.resetCache();
             return response.resource;
         }
     };
@@ -6049,13 +6034,13 @@ angular.module("ovh-api-services").service("PackXdslLexi", ["$resource", "Teleco
         getServiceInfos: {
             method: "GET",
             url: "/pack/xdsl/:packId/serviceInfos",
-            cache: PackXdsl.cache
+            cache: OvhApiPackXdsl.cache
         },
         getServices: {
             method: "GET",
             isArray: true,
             url: "/pack/xdsl/:packId/services",
-            cache: PackXdsl.cache,
+            cache: OvhApiPackXdsl.cache,
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
                     var services = angular.fromJson(data);
@@ -6101,93 +6086,91 @@ angular.module("ovh-api-services").service("PackXdslLexi", ["$resource", "Teleco
 }]
 );
 
-angular.module("ovh-api-services").service("PackXdsl", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdsl", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdsl");
+    var cache = $cacheFactory("OvhApiPackXdsl");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslLexi");
+            return $injector.get("OvhApiPackXdslLexi");
         },
         Aapi: function () {
-            return $injector.get("PackXdslAapi");
+            return $injector.get("OvhApiPackXdslAapi");
         },
         Erika: function () {
-            return $injector.get("PackXdslErika");
+            return $injector.get("OvhApiPackXdslErika");
         },
         Task: function () {
-            return $injector.get("PackXdslTask");
+            return $injector.get("OvhApiPackXdslTask");
         },
         Access: function () {
-            return $injector.get("PackXdslAccess");
+            return $injector.get("OvhApiPackXdslAccess");
         },
         DomainActivation: function () {
-            return $injector.get("PackXdslDomainActivation");
+            return $injector.get("OvhApiPackXdslDomainActivation");
         },
         ExchangeAccount: function () {
-            return $injector.get("PackXdslExchangeAccount");
+            return $injector.get("OvhApiPackXdslExchangeAccount");
         },
         ExchangeIndividual: function () {
-            return $injector.get("PackXdslExchangeIndividual");
+            return $injector.get("OvhApiPackXdslExchangeIndividual");
         },
         ExchangeLite: function () {
-            return $injector.get("PackXdslExchangeLite");
+            return $injector.get("OvhApiPackXdslExchangeLite");
         },
         HostedEmail: function () {
-            return $injector.get("PackXdslHostedEmail");
+            return $injector.get("OvhApiPackXdslHostedEmail");
         },
         Hubic: function () {
-            return $injector.get("PackXdslHubic");
+            return $injector.get("OvhApiPackXdslHubic");
         },
         Move: function () {
-            return $injector.get("PackXdslMove");
+            return $injector.get("OvhApiPackXdslMove");
         },
         PromotionCode: function () {
-            return $injector.get("PackXdslPromotionCode");
+            return $injector.get("OvhApiPackXdslPromotionCode");
         },
         Resiliation: function () {
-            return $injector.get("PackXdslResiliation");
+            return $injector.get("OvhApiPackXdslResiliation");
         },
         ServiceInfo: function () {
-            return $injector.get("PackXdslServiceInfo");
+            return $injector.get("OvhApiPackXdslServiceInfo");
         },
         SiteBuilderStart: function () {
-            return $injector.get("PackXdslSiteBuilderStart");
+            return $injector.get("OvhApiPackXdslSiteBuilderStart");
         },
         Tasks: function () {
-            return $injector.get("PackXdslTask");
+            return $injector.get("OvhApiPackXdslTask");
         },
         VoipBillingAccount: function () {
-            return $injector.get("PackXdslVoipBillingAccount");
+            return $injector.get("OvhApiPackXdslVoipBillingAccount");
         },
         VoipEcofax: function () {
-            return $injector.get("VoipEcofax");
+            return $injector.get("OvhApiVoipEcofax");
         },
         VoipLine: function () {
-            return $injector.get("PackXdslVoipLine");
+            return $injector.get("OvhApiPackXdslVoipLine");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-/* global angular*/
-
 /**
  * @ngdoc resource
- * @name ovh-api-services.resource:PackXdslPromotionCodeLexi
+ * @name ovh-api-services.resource:OvhApiPackXdslPromotionCodeLexi
  * @module ovh-api-services
  * @description
  * Manage promotion codes. When emitted a promotion code will re-engage the customer
  *
  */
-angular.module("ovh-api-services").service("PackXdslPromotionCodeLexi", ["$resource", "PackXdslPromotionCode", function ($resource, PackXdslPromotionCode) {
+angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCodeLexi", ["$resource", "OvhApiPackXdslPromotionCode", function ($resource, OvhApiPackXdslPromotionCode) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslPromotionCode.resetCache();
+            OvhApiPackXdslPromotionCode.resetCache();
             return response.resource;
         }
     };
@@ -6198,7 +6181,7 @@ angular.module("ovh-api-services").service("PackXdslPromotionCodeLexi", ["$resou
         /**
          * @ngdoc function
          * @name capabilities
-         * @methodOf ovh-api-services.resource:PackXdslPromotionCodeLexi
+         * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCodeLexi
          * @restMethod GET
          * @description
          * Get the capabilities to emit a promotion code
@@ -6209,13 +6192,13 @@ angular.module("ovh-api-services").service("PackXdslPromotionCodeLexi", ["$resou
             url: "/pack/xdsl/:packId/promotionCode/capabilities",
             method: "GET",
             isArray: false,
-            cache: PackXdslPromotionCode.cache
+            cache: OvhApiPackXdslPromotionCode.cache
         },
 
         /**
          * @ngdoc function
          * @name generate
-         * @methodOf ovh-api-services.resource:PackXdslPromotionCodeLexi
+         * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCodeLexi
          * @restMethod GET
          * @description
          * Emit a promotion code and re-engage the customer
@@ -6231,26 +6214,24 @@ angular.module("ovh-api-services").service("PackXdslPromotionCodeLexi", ["$resou
     });
 }]);
 
-/* global angular */
-
 /**
  * @ngdoc resource
- * @name ovh-api-services.resource:PackXdslPromotionCode
+ * @name ovh-api-services.resource:OvhApiPackXdslPromotionCode
  * @module ovh-api-services
  * @description
  * Manage promotion codes. When emitted a promotion code will re-engage the customer
  *
  */
-angular.module("ovh-api-services").service("PackXdslPromotionCode", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCode", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslPromotionCode");
+    var cache = $cacheFactory("OvhApiPackXdslPromotionCode");
 
     return {
         /**
          * @ngdoc function
          * @name Lexi
-         * @methodOf ovh-api-services.resource:PackXdslPromotionCode
+         * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCode
          * @description
          * Resource requesting Aapi
          * @return {object} Resource
@@ -6260,20 +6241,20 @@ angular.module("ovh-api-services").service("PackXdslPromotionCode", ["$injector"
         /**
          * @ngdoc function
          * @name Lexi
-         * @methodOf ovh-api-services.resource:PackXdslPromotionCode
+         * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCode
          * @description
          * Resource requesting apiV6
          * @return {object} Resource
          */
         Lexi: function () {
-            return $injector.get("PackXdslPromotionCodeLexi");
+            return $injector.get("OvhApiPackXdslPromotionCodeLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslResiliationAapi", ["$resource", "PackXdslResiliation", function ($resource, PackXdslResiliation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslResiliationAapi", ["$resource", "OvhApiPackXdslResiliation", function ($resource, OvhApiPackXdslResiliation) {
     "use strict";
 
     return $resource("/pack/xdsl/canCancelResiliation/all", {
@@ -6283,32 +6264,32 @@ angular.module("ovh-api-services").service("PackXdslResiliationAapi", ["$resourc
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         },
         terms: {
             url: "/pack/xdsl/:packId/resiliationTerms",
             method: "GET",
             isArray: false,
             serviceType: "aapi",
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         },
         subServicesTerms: {
             url: "/pack/:packId/resiliate/subServicesInfos",
             method: "GET",
             isArray: false,
             serviceType: "aapi",
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         }
 
     });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslResiliationLexi", ["$resource", "PackXdslResiliation", function ($resource, PackXdslResiliation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslResiliationLexi", ["$resource", "OvhApiPackXdslResiliation", function ($resource, OvhApiPackXdslResiliation) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslResiliation.resetCache();
+            OvhApiPackXdslResiliation.resetCache();
             return response.resource;
         }
     };
@@ -6320,7 +6301,7 @@ angular.module("ovh-api-services").service("PackXdslResiliationLexi", ["$resourc
             url: "/pack/xdsl/:packName/canCancelResiliation",
             method: "GET",
             isArray: false,
-            cache: PackXdslResiliation.cache,
+            cache: OvhApiPackXdslResiliation.cache,
             transformResponse: function (data) {
                 return {
                     value: data === "true"
@@ -6343,29 +6324,29 @@ angular.module("ovh-api-services").service("PackXdslResiliationLexi", ["$resourc
             url: "/pack/xdsl/:packName/resiliationTerms",
             method: "GET",
             isArray: false,
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslResiliation", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslResiliation", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslResiliation");
+    var cache = $cacheFactory("OvhApiPackXdslResiliation");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslResiliationAapi");
+            return $injector.get("OvhApiPackXdslResiliationAapi");
         },
         Lexi: function () {
-            return $injector.get("PackXdslResiliationLexi");
+            return $injector.get("OvhApiPackXdslResiliationLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslServiceInfoAapi", ["$resource", "PackXdslServiceInfo", function ($resource, PackXdslServiceInfo) {
+angular.module("ovh-api-services").service("OvhApiPackXdslServiceInfoAapi", ["$resource", "OvhApiPackXdslServiceInfo", function ($resource, OvhApiPackXdslServiceInfo) {
     "use strict";
 
     return $resource("/pack/xdsl/:packName/serviceInfos/all", {
@@ -6375,19 +6356,19 @@ angular.module("ovh-api-services").service("PackXdslServiceInfoAapi", ["$resourc
             method: "GET",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdslServiceInfo.cache
+            cache: OvhApiPackXdslServiceInfo.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslServiceInfo", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslServiceInfo", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslServiceInfo");
+    var cache = $cacheFactory("OvhApiPackXdslServiceInfo");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslServiceInfoAapi");
+            return $injector.get("OvhApiPackXdslServiceInfoAapi");
         },
         Lexi: angular.noop,
         resetCache: cache.removeAll,
@@ -6395,48 +6376,46 @@ angular.module("ovh-api-services").service("PackXdslServiceInfo", ["$injector", 
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslSiteBuilderStartLexi", ["$resource", "PackXdslSiteBuilderStart", function ($resource, PackXdslSiteBuilderStart) {
+angular.module("ovh-api-services").service("OvhApiPackXdslSiteBuilderStartLexi", ["$resource", "OvhApiPackXdslSiteBuilderStart", function ($resource, OvhApiPackXdslSiteBuilderStart) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslSiteBuilderStart.resetCache();
+            OvhApiPackXdslSiteBuilderStart.resetCache();
             return response.resource;
         }
     };
 
-    return $resource("/pack/xdsl/:packId/siteBuilderStart/services",
-                     {
-                         packId: "@packId"
-                     }, {
-                         query: {
-                             method: "GET",
-                             isArray: true,
-                             cache: PackXdslSiteBuilderStart.cache
-                         },
-                         save: {
-                             method: "POST",
-                             interceptor: interceptor
-                         }
-                     }
-    );
+    return $resource("/pack/xdsl/:packId/siteBuilderStart/services", {
+        packId: "@packId"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: OvhApiPackXdslSiteBuilderStart.cache
+        },
+        save: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslSiteBuilderStart", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslSiteBuilderStart", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslSiteBuilderStart");
+    var cache = $cacheFactory("OvhApiPackXdslSiteBuilderStart");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslSiteBuilderStartLexi");
+            return $injector.get("OvhApiPackXdslSiteBuilderStartLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslTaskAapi", ["$resource", "PackXdslTask", function ($resource, PackXdslTask) {
+angular.module("ovh-api-services").service("OvhApiPackXdslTaskAapi", ["$resource", "OvhApiPackXdslTask", function ($resource, OvhApiPackXdslTask) {
     "use strict";
 
     var packXdslTaskAapi = $resource("/pack/xdsl/:packName/tasks", {
@@ -6447,139 +6426,131 @@ angular.module("ovh-api-services").service("PackXdslTaskAapi", ["$resource", "Pa
             url: "/pack/xdsl/:packName/tasks/detail",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdslTask.cache
+            cache: OvhApiPackXdslTask.cache
         },
         detailsAll: {
             method: "GET",
             url: "/pack/xdsl/:packName/tasks/detail/all",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdslTask.cache
+            cache: OvhApiPackXdslTask.cache
         }
     });
 
     return packXdslTaskAapi;
 }]);
 
-angular.module("ovh-api-services").service("PackXdslTaskLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiPackXdslTaskLexi", ["$resource", function ($resource) {
     "use strict";
 
     // caching tasks is a bad idea since we always want fresh data
 
     return $resource("/pack/xdsl/:packName/tasks", {
         packName: "@packName"
-    },
-                     {
-                         query: {
-                             method: "GET",
-                             isArray: true
-                         },
-                         get: {
-                             method: "GET"
-                         },
-                         save: {
-                             method: "POST"
-                         }
-                     }
-    );
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        save: {
+            method: "POST"
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslTask", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslTask", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslTask");
+    var cache = $cacheFactory("OvhApiPackXdslTask");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslTaskAapi");
+            return $injector.get("OvhApiPackXdslTaskAapi");
         },
         Lexi: function () {
-            return $injector.get("PackXdslTaskLexi");
+            return $injector.get("OvhApiPackXdslTaskLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipBillingAccountLexi", ["$resource", "PackXdslVoipBillingAccount", function ($resource, PackXdslVoipBillingAccount) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipBillingAccountLexi", ["$resource", "OvhApiPackXdslVoipBillingAccount", function ($resource, OvhApiPackXdslVoipBillingAccount) {
     "use strict";
 
-    return $resource("/pack/xdsl/:packId/voipBillingAccount/services",
-                     {
-                         packId: "@packId"
-                     },
-                     {
-                         query: {
-                             method: "GET",
-                             isArray: true,
-                             cache: PackXdslVoipBillingAccount.cache
-                         }
-                     }
-    );
+    return $resource("/pack/xdsl/:packId/voipBillingAccount/services", {
+        packId: "@packId"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: OvhApiPackXdslVoipBillingAccount.cache
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipBillingAccount", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipBillingAccount", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslVoipBillingAccount");
+    var cache = $cacheFactory("OvhApiPackXdslVoipBillingAccount");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslVoipBillingAccountLexi");
+            return $injector.get("OvhApiPackXdslVoipBillingAccountLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipEcofaxLexi", ["$resource", "PackXdslVoipEcofax", function ($resource, PackXdslVoipEcofax) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipEcofaxLexi", ["$resource", "OvhApiPackXdslVoipEcofax", function ($resource, OvhApiPackXdslVoipEcofax) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslVoipEcofax.resetCache();
+            OvhApiPackXdslVoipEcofax.resetCache();
             return response.resource;
         }
     };
 
-    return $resource("/pack/xdsl/:packId/voipEcofax/services",
-                     {
-                         packId: "@packId"
-                     },
-                     {
-                         query: {
-                             method: "GET",
-                             isArray: true,
-                             cache: PackXdslVoipEcofax.cache
-                         },
-                         save: {
-                             method: "POST",
-                             interceptor: interceptor
-                         }
-                     }
-    );
+    return $resource("/pack/xdsl/:packId/voipEcofax/services", {
+        packId: "@packId"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: OvhApiPackXdslVoipEcofax.cache
+        },
+        save: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipEcofax", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipEcofax", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslVoipEcofax");
+    var cache = $cacheFactory("OvhApiPackXdslVoipEcofax");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslVoipEcofaxLexi");
+            return $injector.get("OvhApiPackXdslVoipEcofaxLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipLineAapi", ["$resource", "PackXdslVoipLine", function ($resource, PackXdslVoipLine) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipLineAapi", ["$resource", "OvhApiPackXdslVoipLine", function ($resource, OvhApiPackXdslVoipLine) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslVoipLine.resetCache();
+            OvhApiPackXdslVoipLine.resetCache();
             return response.resource;
         }
     };
@@ -6591,7 +6562,7 @@ angular.module("ovh-api-services").service("PackXdslVoipLineAapi", ["$resource",
             url: "/pack/xdsl/:packId/voipLine/services",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdslVoipLine.cache
+            cache: OvhApiPackXdslVoipLine.cache
         },
         activate: {
             url: "/pack/xdsl/:packId/voipLines/activate",
@@ -6606,7 +6577,7 @@ angular.module("ovh-api-services").service("PackXdslVoipLineAapi", ["$resource",
     return packXdslVoipLineAapi;
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipLineErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipLineErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var res = apiv7("/pack/xdsl/:packName/voipLine", {
@@ -6624,66 +6595,64 @@ angular.module("ovh-api-services").service("PackXdslVoipLineErika", ["apiv7", fu
 }]);
 
 
-angular.module("ovh-api-services").service("PackXdslVoipLineLexi", ["$resource", "PackXdslVoipLine", function ($resource, PackXdslVoipLine) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipLineLexi", ["$resource", "OvhApiPackXdslVoipLine", function ($resource, OvhApiPackXdslVoipLine) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslVoipLine.resetCache();
+            OvhApiPackXdslVoipLine.resetCache();
             return response.resource;
         }
     };
 
     return $resource("/pack/xdsl/:packId/voipLine/services", {
         packId: "@packId"
-    },
-                     {
-                         query: {
-                             method: "GET",
-                             isArray: true,
-                             cache: PackXdslVoipLine.cache
-                         },
-                         save: {
-                             method: "POST",
-                             interceptor: interceptor
-                         },
-                         getHardwares: {
-                             method: "GET",
-                             url: "/pack/xdsl/:packId/voipLine/options/hardwares",
-                             isArray: true,
-                             cache: PackXdslVoipLine.cache
-                         },
-                         getShippingAddresses: {
-                             method: "GET",
-                             url: "/pack/xdsl/:packId/voipLine/options/shippingAddresses",
-                             isArray: true,
-                             cache: PackXdslVoipLine.cache
-                         }
-                     }
-    );
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: OvhApiPackXdslVoipLine.cache
+        },
+        save: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        getHardwares: {
+            method: "GET",
+            url: "/pack/xdsl/:packId/voipLine/options/hardwares",
+            isArray: true,
+            cache: OvhApiPackXdslVoipLine.cache
+        },
+        getShippingAddresses: {
+            method: "GET",
+            url: "/pack/xdsl/:packId/voipLine/options/shippingAddresses",
+            isArray: true,
+            cache: OvhApiPackXdslVoipLine.cache
+        }
+    });
 }]);
 
-angular.module("ovh-api-services").service("PackXdslVoipLine", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipLine", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslVoipLine");
+    var cache = $cacheFactory("OvhApiPackXdslVoipLine");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslVoipLineAapi");
+            return $injector.get("OvhApiPackXdslVoipLineAapi");
         },
         Lexi: function () {
-            return $injector.get("PackXdslVoipLineLexi");
+            return $injector.get("OvhApiPackXdslVoipLineLexi");
         },
         Erika: function () {
-            return $injector.get("PackXdslVoipLineErika");
+            return $injector.get("OvhApiPackXdslVoipLineErika");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PortalRadarServerAapi", ["$resource", "PortalRadarServer", function ($resource, PortalRadarServer) {
+angular.module("ovh-api-services").service("OvhApiPortalRadarServerAapi", ["$resource", "OvhApiPortalRadarServer", function ($resource, OvhApiPortalRadarServer) {
     "use strict";
 
     return $resource("/dedicated/server/radar/aggregate", {}, {
@@ -6691,26 +6660,26 @@ angular.module("ovh-api-services").service("PortalRadarServerAapi", ["$resource"
             method: "GET",
             serviceType: "aapi",
             isArray: true,
-            cache: PortalRadarServer.cache
+            cache: OvhApiPortalRadarServer.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("PortalRadarServer", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPortalRadarServer", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PortalRadarServer");
+    var cache = $cacheFactory("OvhApiPortalRadarServer");
 
     return {
         Aapi: function () {
-            return $injector.get("PortalRadarServerAapi");
+            return $injector.get("OvhApiPortalRadarServerAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("PriceOverTheBoxOfferLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiPriceOverTheBoxOfferLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/price/overTheBox/offer/:offerName", {
@@ -6721,21 +6690,21 @@ angular.module("ovh-api-services").service("PriceOverTheBoxOfferLexi", ["$resour
 }]);
 
 
-angular.module("ovh-api-services").service("PriceOverTheBoxOffer", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiPriceOverTheBoxOffer", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("PriceOverTheBoxOfferLexi");
+            return $injector.get("OvhApiPriceOverTheBoxOfferLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("ProductsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiProductsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("ProductsAapi");
+    var cache = $cacheFactory("OvhApiProductsAapi");
 
     var productsResource = $resource("/products", {
     }, {
@@ -6758,16 +6727,16 @@ angular.module("ovh-api-services").service("ProductsAapi", ["$resource", "$cache
     return productsResource;
 }]);
 
-angular.module("ovh-api-services").service("Products", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiProducts", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("ProductsAapi");
+            return $injector.get("OvhApiProductsAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("ServicesAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiServicesAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/services", {}, {
@@ -6777,19 +6746,19 @@ angular.module("ovh-api-services").service("ServicesAapi", ["$resource", functio
     });
 }]);
 
-angular.module("ovh-api-services").service("Services", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiServices", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("ServicesAapi");
+            return $injector.get("OvhApiServicesAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SiteBuildersAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiSiteBuildersAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("SiteBuildersAapi");
+    var cache = $cacheFactory("OvhApiSiteBuildersAapi");
 
     var siteBuildersResource = $resource("/sitebuilders", {
     }, {
@@ -6812,20 +6781,20 @@ angular.module("ovh-api-services").service("SiteBuildersAapi", ["$resource", "$c
     return siteBuildersResource;
 }]);
 
-angular.module("ovh-api-services").service("SiteBuilders", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSiteBuilders", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("SiteBuildersAapi");
+            return $injector.get("OvhApiSiteBuildersAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsBlacklistsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsBlacklistsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsBlacklistsLexi");
-    var queryCache = $cacheFactory("SmsBlacklistsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsBlacklistsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsBlacklistsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -6870,20 +6839,20 @@ angular.module("ovh-api-services").service("SmsBlacklistsLexi", ["$cacheFactory"
     return blacklistsResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsBlacklists", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsBlacklists", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsBlacklistsLexi");
+            return $injector.get("OvhApiSmsBlacklistsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsHlrLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsHlrLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsHlrLexi");
-    var queryCache = $cacheFactory("SmsHlrLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsHlrLexi");
+    var queryCache = $cacheFactory("OvhApiSmsHlrLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -6928,20 +6897,20 @@ angular.module("ovh-api-services").service("SmsHlrLexi", ["$cacheFactory", "$res
     return hlr;
 }]);
 
-angular.module("ovh-api-services").service("SmsHlr", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsHlr", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsHlrLexi");
+            return $injector.get("OvhApiSmsHlrLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsIncomingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsIncomingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsIncomingLexi");
-    var queryCache = $cacheFactory("SmsIncomingLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsIncomingLexi");
+    var queryCache = $cacheFactory("OvhApiSmsIncomingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -6994,20 +6963,20 @@ angular.module("ovh-api-services").service("SmsIncomingLexi", ["$cacheFactory", 
     return incomingResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsIncoming", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsIncoming", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsIncomingLexi");
+            return $injector.get("OvhApiSmsIncomingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsJobsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsJobsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsJobsLexi");
-    var queryCache = $cacheFactory("SmsJobsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsJobsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsJobsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7070,20 +7039,20 @@ angular.module("ovh-api-services").service("SmsJobsLexi", ["$cacheFactory", "$re
     return jobResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsJobs", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsJobs", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsJobsLexi");
+            return $injector.get("OvhApiSmsJobsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsOutgoingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsOutgoingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsOutgoingLexi");
-    var queryCache = $cacheFactory("SmsOutgoingLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsOutgoingLexi");
+    var queryCache = $cacheFactory("OvhApiSmsOutgoingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7141,21 +7110,21 @@ angular.module("ovh-api-services").service("SmsOutgoingLexi", ["$cacheFactory", 
     return outgoingResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsOutgoing", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsOutgoing", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsOutgoingLexi");
+            return $injector.get("OvhApiSmsOutgoingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsPhonebooksPhonebookContactLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsPhonebooksPhonebookContactLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsPhonebooksPhonebookContactLexi");
-    var queryCache = $cacheFactory("SmsPhonebooksPhonebookContactLexiQuery");
-    var batchCache = $cacheFactory("SmsPhonebooksPhonebookContactLexiBatch");
+    var cache = $cacheFactory("OvhApiSmsPhonebooksPhonebookContactLexi");
+    var queryCache = $cacheFactory("OvhApiSmsPhonebooksPhonebookContactLexiQuery");
+    var batchCache = $cacheFactory("OvhApiSmsPhonebooksPhonebookContactLexiBatch");
 
     var interceptor = {
         response: function (response) {
@@ -7224,20 +7193,20 @@ angular.module("ovh-api-services").service("SmsPhonebooksPhonebookContactLexi", 
     return phonebookContactResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsPhonebooksPhonebookContact", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsPhonebooksPhonebookContact", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsPhonebooksPhonebookContactLexi");
+            return $injector.get("OvhApiSmsPhonebooksPhonebookContactLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsPhonebooksLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsPhonebooksLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsPhonebooksLexi");
-    var queryCache = $cacheFactory("SmsPhonebooksLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsPhonebooksLexi");
+    var queryCache = $cacheFactory("OvhApiSmsPhonebooksLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7307,23 +7276,23 @@ angular.module("ovh-api-services").service("SmsPhonebooksLexi", ["$cacheFactory"
     return phonebooksResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsPhonebooks", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsPhonebooks", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsPhonebooksLexi");
+            return $injector.get("OvhApiSmsPhonebooksLexi");
         },
         PhonebookContact: function () {
-            return $injector.get("SmsPhonebooksPhonebookContact");
+            return $injector.get("OvhApiSmsPhonebooksPhonebookContact");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsReceiversLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsReceiversLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsReceiversLexi");
-    var queryCache = $cacheFactory("SmsReceiversLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsReceiversLexi");
+    var queryCache = $cacheFactory("OvhApiSmsReceiversLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7393,21 +7362,21 @@ angular.module("ovh-api-services").service("SmsReceiversLexi", ["$cacheFactory",
     return receiversResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsReceivers", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsReceivers", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsReceiversLexi");
+            return $injector.get("OvhApiSmsReceiversLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsSendersLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsSendersLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsSendersLexi");
-    var queryCache = $cacheFactory("SmsSendersLexiQuery");
-    var batchCache = $cacheFactory("SmsSendersLexiBatch");
+    var cache = $cacheFactory("OvhApiSmsSendersLexi");
+    var queryCache = $cacheFactory("OvhApiSmsSendersLexiQuery");
+    var batchCache = $cacheFactory("OvhApiSmsSendersLexiBatch");
 
     var interceptor = {
         response: function (response) {
@@ -7475,16 +7444,16 @@ angular.module("ovh-api-services").service("SmsSendersLexi", ["$cacheFactory", "
     return sendersResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsSenders", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsSenders", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsSendersLexi");
+            return $injector.get("OvhApiSmsSendersLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsAapi", ["$resource", "Sms", function ($resource, Sms) {
+angular.module("ovh-api-services").service("OvhApiSmsAapi", ["$resource", "OvhApiSms", function ($resource, OvhApiSms) {
     "use strict";
 
     var sms = $resource("/sms", {}, {
@@ -7492,17 +7461,17 @@ angular.module("ovh-api-services").service("SmsAapi", ["$resource", "Sms", funct
             method: "GET",
             url: "/sms/details",
             serviceType: "aapi",
-            cache: Sms.cache,
+            cache: OvhApiSms.cache,
             isArray: true
         }
     });
 
-    sms.resetCache = Sms.resetCache;
+    sms.resetCache = OvhApiSms.resetCache;
 
     return sms;
 }]);
 
-angular.module("ovh-api-services").service("SmsErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiSmsErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var smsEndpoint = apiv7("/sms/:serviceName", {
@@ -7513,11 +7482,11 @@ angular.module("ovh-api-services").service("SmsErika", ["apiv7", function (apiv7
 
 }]);
 
-angular.module("ovh-api-services").service("SmsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsLexi");
-    var queryCache = $cacheFactory("SmsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7596,63 +7565,63 @@ angular.module("ovh-api-services").service("SmsLexi", ["$cacheFactory", "$resour
     return sms;
 }]);
 
-angular.module("ovh-api-services").service("Sms", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiSms", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("Sms");
+    var cache = $cacheFactory("OvhApiSms");
 
     return {
         Aapi: function () {
-            return $injector.get("SmsAapi");
+            return $injector.get("OvhApiSmsAapi");
         },
         Lexi: function () {
-            return $injector.get("SmsLexi");
+            return $injector.get("OvhApiSmsLexi");
         },
         Erika: function () {
-            return $injector.get("SmsErika");
+            return $injector.get("OvhApiSmsErika");
         },
         Jobs: function () {
-            return $injector.get("SmsJobs");
+            return $injector.get("OvhApiSmsJobs");
         },
         Senders: function () {
-            return $injector.get("SmsSenders");
+            return $injector.get("OvhApiSmsSenders");
         },
         Blacklists: function () {
-            return $injector.get("SmsBlacklists");
+            return $injector.get("OvhApiSmsBlacklists");
         },
         Receivers: function () {
-            return $injector.get("SmsReceivers");
+            return $injector.get("OvhApiSmsReceivers");
         },
         Incoming: function () {
-            return $injector.get("SmsIncoming");
+            return $injector.get("OvhApiSmsIncoming");
         },
         Outgoing: function () {
-            return $injector.get("SmsOutgoing");
+            return $injector.get("OvhApiSmsOutgoing");
         },
         Users: function () {
-            return $injector.get("SmsUsers");
+            return $injector.get("OvhApiSmsUsers");
         },
         Hlr: function () {
-            return $injector.get("SmsHlr");
+            return $injector.get("OvhApiSmsHlr");
         },
         Templates: function () {
-            return $injector.get("SmsTemplates");
+            return $injector.get("OvhApiSmsTemplates");
         },
         Task: function () {
-            return $injector.get("SmsTask");
+            return $injector.get("OvhApiSmsTask");
         },
         VirtualNumbers: function () {
-            return $injector.get("SmsVirtualNumbers");
+            return $injector.get("OvhApiSmsVirtualNumbers");
         },
         Phonebooks: function () {
-            return $injector.get("SmsPhonebooks");
+            return $injector.get("OvhApiSmsPhonebooks");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TaskLexi", ["$resource", "Poller", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiTaskLexi", ["$resource", "Poller", function ($resource, Poller) {
     "use strict";
 
     var loadRemoteRoute = "/sms/:serviceName/task/:taskId";
@@ -7702,20 +7671,20 @@ angular.module("ovh-api-services").service("TaskLexi", ["$resource", "Poller", f
     return task;
 }]);
 
-angular.module("ovh-api-services").service("SmsTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsTask", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TaskLexi");
+            return $injector.get("OvhApiTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsTemplatesLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsTemplatesLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsTemplatesLexi");
-    var queryCache = $cacheFactory("SmsTemplatesLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsTemplatesLexi");
+    var queryCache = $cacheFactory("OvhApiSmsTemplatesLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7770,20 +7739,20 @@ angular.module("ovh-api-services").service("SmsTemplatesLexi", ["$cacheFactory",
     return templates;
 }]);
 
-angular.module("ovh-api-services").service("SmsTemplates", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsTemplates", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsTemplatesLexi");
+            return $injector.get("OvhApiSmsTemplatesLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersIncomingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersIncomingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsUsersIncomingLexi");
-    var queryCache = $cacheFactory("SmsUsersIncomingLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsUsersIncomingLexi");
+    var queryCache = $cacheFactory("OvhApiSmsUsersIncomingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7824,20 +7793,20 @@ angular.module("ovh-api-services").service("SmsUsersIncomingLexi", ["$cacheFacto
     return usersIncoming;
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersIncoming", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersIncoming", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsUsersIncomingLexi");
+            return $injector.get("OvhApiSmsUsersIncomingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersJobsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersJobsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsUserJobsLexi");
-    var queryCache = $cacheFactory("SmsUserJobsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsUserJobsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsUserJobsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7883,20 +7852,20 @@ angular.module("ovh-api-services").service("SmsUsersJobsLexi", ["$cacheFactory",
     return usersJobs;
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersJobs", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersJobs", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsUsersJobsLexi");
+            return $injector.get("OvhApiSmsUsersJobsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersOutgoingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersOutgoingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsUsersOutgoingLexi");
-    var queryCache = $cacheFactory("SmsUsersOutgoingLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsUsersOutgoingLexi");
+    var queryCache = $cacheFactory("OvhApiSmsUsersOutgoingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -7942,20 +7911,20 @@ angular.module("ovh-api-services").service("SmsUsersOutgoingLexi", ["$cacheFacto
     return usersOutgoing;
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersOutgoing", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersOutgoing", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsUsersOutgoingLexi");
+            return $injector.get("OvhApiSmsUsersOutgoingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersReceiversLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersReceiversLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsUsersReceiversLexi");
-    var queryCache = $cacheFactory("SmsUsersReceiversLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsUsersReceiversLexi");
+    var queryCache = $cacheFactory("OvhApiSmsUsersReceiversLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -8017,20 +7986,20 @@ angular.module("ovh-api-services").service("SmsUsersReceiversLexi", ["$cacheFact
     return usersReceivers;
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersReceivers", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersReceivers", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsUsersReceiversLexi");
+            return $injector.get("OvhApiSmsUsersReceiversLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsUsersLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsUsersLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsUsersLexi");
-    var queryCache = $cacheFactory("SmsUsersLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsUsersLexi");
+    var queryCache = $cacheFactory("OvhApiSmsUsersLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -8089,32 +8058,32 @@ angular.module("ovh-api-services").service("SmsUsersLexi", ["$cacheFactory", "$r
     return usersResource;
 }]);
 
-angular.module("ovh-api-services").service("SmsUsers", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsUsers", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsUsersLexi");
+            return $injector.get("OvhApiSmsUsersLexi");
         },
         Incoming: function () {
-            return $injector.get("SmsUsersIncoming");
+            return $injector.get("OvhApiSmsUsersIncoming");
         },
         Jobs: function () {
-            return $injector.get("SmsUsersJobs");
+            return $injector.get("OvhApiSmsUsersJobs");
         },
         Outgoing: function () {
-            return $injector.get("SmsUsersOutgoing");
+            return $injector.get("OvhApiSmsUsersOutgoing");
         },
         Receivers: function () {
-            return $injector.get("SmsUsersReceivers");
+            return $injector.get("OvhApiSmsUsersReceivers");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersIncomingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersIncomingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsVirtualNumbersIncomingLexi");
-    var queryCache = $cacheFactory("SmsVirtualNumbersIncomingLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsVirtualNumbersIncomingLexi");
+    var queryCache = $cacheFactory("OvhApiSmsVirtualNumbersIncomingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -8156,20 +8125,20 @@ angular.module("ovh-api-services").service("SmsVirtualNumbersIncomingLexi", ["$c
     });
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersIncoming", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersIncoming", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsVirtualNumbersIncomingLexi");
+            return $injector.get("OvhApiSmsVirtualNumbersIncomingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersJobsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersJobsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsVirtualNumbersJobsLexi");
-    var queryCache = $cacheFactory("SmsVirtualNumbersJobsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsVirtualNumbersJobsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsVirtualNumbersJobsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -8216,20 +8185,20 @@ angular.module("ovh-api-services").service("SmsVirtualNumbersJobsLexi", ["$cache
     });
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersJobs", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersJobs", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsVirtualNumbersJobsLexi");
+            return $injector.get("OvhApiSmsVirtualNumbersJobsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersOutgoingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersOutgoingLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsVirtualNumbersOutgoingLexi");
-    var queryCache = $cacheFactory("SmsVirtualNumbersOutgoingLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsVirtualNumbersOutgoingLexi");
+    var queryCache = $cacheFactory("OvhApiSmsVirtualNumbersOutgoingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -8276,20 +8245,20 @@ angular.module("ovh-api-services").service("SmsVirtualNumbersOutgoingLexi", ["$c
     });
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersOutgoing", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersOutgoing", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsVirtualNumbersOutgoingLexi");
+            return $injector.get("OvhApiSmsVirtualNumbersOutgoingLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbersLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsVirtualNumbersLexi");
-    var queryCache = $cacheFactory("SmsVirtualNumbersLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsVirtualNumbersLexi");
+    var queryCache = $cacheFactory("OvhApiSmsVirtualNumbersLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -8360,68 +8329,68 @@ angular.module("ovh-api-services").service("SmsVirtualNumbersLexi", ["$cacheFact
     return res;
 }]);
 
-angular.module("ovh-api-services").service("SmsVirtualNumbers", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbers", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsVirtualNumbersLexi");
+            return $injector.get("OvhApiSmsVirtualNumbersLexi");
         },
         Incoming: function () {
-            return $injector.get("SmsVirtualNumbersIncoming");
+            return $injector.get("OvhApiSmsVirtualNumbersIncoming");
         },
         Jobs: function () {
-            return $injector.get("SmsVirtualNumbersJobs");
+            return $injector.get("OvhApiSmsVirtualNumbersJobs");
         },
         Outgoing: function () {
-            return $injector.get("SmsVirtualNumbersOutgoing");
+            return $injector.get("OvhApiSmsVirtualNumbersOutgoing");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("StatusLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiStatusLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
     return $resource("/status");
 
 }]);
 
-angular.module("ovh-api-services").service("Status", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStatus", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("StatusLexi");
+            return $injector.get("OvhApiStatusLexi");
         },
         Task: function () {
-            return $injector.get("StatusTask");
+            return $injector.get("OvhApiStatusTask");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("StatusTaskLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiStatusTaskLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
     return $resource("/status/task");
 
 }]);
 
-angular.module("ovh-api-services").service("StatusTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStatusTask", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("StatusTaskLexi");
+            return $injector.get("OvhApiStatusTaskLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("StoreContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiStoreContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("StoreContactLexi");
-    var queryCache = $cacheFactory("StoreContactLexiQuery");
+    var cache = $cacheFactory("OvhApiStoreContactLexi");
+    var queryCache = $cacheFactory("OvhApiStoreContactLexiQuery");
 
     var contact = $resource("/store/contact/:contactId", { contactId: "@contactId" }, {
         query: { method: "GET", cache: queryCache, isArray: true },
@@ -8447,21 +8416,21 @@ angular.module("ovh-api-services").service("StoreContactLexi", ["$resource", "$c
 }]);
 
 
-angular.module("ovh-api-services").service("StoreContact", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStoreContact", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("StoreContactLexi");
+            return $injector.get("OvhApiStoreContactLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("StoreDocumentLexi", ["$resource", "$cacheFactory", "$http", "$q", function ($resource, $cacheFactory, $http, $q) {
+angular.module("ovh-api-services").service("OvhApiStoreDocumentLexi", ["$resource", "$cacheFactory", "$http", "$q", function ($resource, $cacheFactory, $http, $q) {
     "use strict";
 
-    var cache = $cacheFactory("StoreDocumentLexi");
-    var queryCache = $cacheFactory("StoreDocumentLexiQuery");
+    var cache = $cacheFactory("OvhApiStoreDocumentLexi");
+    var queryCache = $cacheFactory("OvhApiStoreDocumentLexiQuery");
 
     var docResource = $resource("/store/document/:documentId", { documentId: "@documentId" }, {
         query: { method: "GET", cache: queryCache },
@@ -8531,21 +8500,21 @@ angular.module("ovh-api-services").service("StoreDocumentLexi", ["$resource", "$
 }]);
 
 
-angular.module("ovh-api-services").service("StoreDocument", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStoreDocument", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("StoreDocumentLexi");
+            return $injector.get("OvhApiStoreDocumentLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("StorePartnerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiStorePartnerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("StorePartnerLexi");
-    var queryCache = $cacheFactory("StorePartnerLexiQuery");
+    var cache = $cacheFactory("OvhApiStorePartnerLexi");
+    var queryCache = $cacheFactory("OvhApiStorePartnerLexiQuery");
 
     var partner = $resource("/store/partner/:partnerId", { partnerId: "@partnerId" }, {
         query: { method: "GET", cache: queryCache, isArray: true },
@@ -8661,33 +8630,33 @@ angular.module("ovh-api-services").service("StorePartnerLexi", ["$resource", "$c
     return partner;
 }]);
 
-angular.module("ovh-api-services").service("StorePartner", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStorePartner", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("StorePartnerLexi");
+            return $injector.get("OvhApiStorePartnerLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("Store", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStore", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Contact: function () {
-            return $injector.get("StoreContact");
+            return $injector.get("OvhApiStoreContact");
         },
         Document: function () {
-            return $injector.get("StoreDocument");
+            return $injector.get("OvhApiStoreDocument");
         },
         Partner: function () {
-            return $injector.get("StorePartner");
+            return $injector.get("OvhApiStorePartner");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("SupplyMondialRelayLexi", ["Poller", "$q", function (Poller, $q) {
+angular.module("ovh-api-services").service("OvhApiSupplyMondialRelayLexi", ["Poller", "$q", function (Poller, $q) {
     "use strict";
 
     var mondialRelay = function () {
@@ -8753,11 +8722,11 @@ angular.module("ovh-api-services").service("SupplyMondialRelayLexi", ["Poller", 
     return mondialRelay;
 }]);
 
-angular.module("ovh-api-services").service("SupplyMondialRelay", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSupplyMondialRelay", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SupplyMondialRelayLexi");
+            return $injector.get("OvhApiSupplyMondialRelayLexi");
         },
         Aapi: function () {
             return angular.noop();
@@ -8767,10 +8736,10 @@ angular.module("ovh-api-services").service("SupplyMondialRelay", ["$injector", f
 
 "use strict";
 
-angular.module("ovh-api-services").service("SupportLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiSupportLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("SupportLexi");
-    var queryCache = $cacheFactory("SupportLexiQuery");
+    var cache = $cacheFactory("OvhApiSupportLexi");
+    var queryCache = $cacheFactory("OvhApiSupportLexiQuery");
 
     var support = $resource("/support/tickets/:id", {
         id: "@id"
@@ -8813,16 +8782,16 @@ angular.module("ovh-api-services").service("SupportLexi", ["$resource", "$cacheF
     return support;
 }]);
 
-angular.module("ovh-api-services").service("Support", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSupport", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SupportLexi");
+            return $injector.get("OvhApiSupportLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelecomHomeDashboardAapi", ["$resource", "TelecomHomeDashboard", function ($resource, TelecomHomeDashboard) {
+angular.module("ovh-api-services").service("OvhApiTelecomHomeDashboardAapi", ["$resource", "OvhApiTelecomHomeDashboard", function ($resource, OvhApiTelecomHomeDashboard) {
     "use strict";
 
     return $resource("/telecom/homeDashboard", {}, {
@@ -8830,45 +8799,45 @@ angular.module("ovh-api-services").service("TelecomHomeDashboardAapi", ["$resour
             method: "GET",
             serviceType: "aapi",
             isArray: false,
-            cache: TelecomHomeDashboard.cache
+            cache: OvhApiTelecomHomeDashboard.cache
         },
         incidents: {
             url: "/telecom/homeDashboard/incidents",
             serviceType: "aapi",
             method: "GET",
             isArray: false,
-            cache: TelecomHomeDashboard.cache
+            cache: OvhApiTelecomHomeDashboard.cache
         },
         services: {
             url: "/telecom/homeDashboard/services",
             serviceType: "aapi",
             method: "GET",
             isArray: false,
-            cache: TelecomHomeDashboard.cache
+            cache: OvhApiTelecomHomeDashboard.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("TelecomHomeDashboard", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelecomHomeDashboard", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelecomHomeDashboard");
+    var cache = $cacheFactory("OvhApiTelecomHomeDashboard");
 
     return {
         Aapi: function () {
-            return $injector.get("TelecomHomeDashboardAapi");
+            return $injector.get("OvhApiTelecomHomeDashboardAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelecomPreferencesAapi", ["$resource", "TelecomPreferences", function ($resource, TelecomPreferences) {
+angular.module("ovh-api-services").service("OvhApiTelecomPreferencesAapi", ["$resource", "OvhApiTelecomPreferences", function ($resource, OvhApiTelecomPreferences) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelecomPreferences.resetCache();
+            OvhApiTelecomPreferences.resetCache();
             return response.data;
         }
     };
@@ -8878,7 +8847,7 @@ angular.module("ovh-api-services").service("TelecomPreferencesAapi", ["$resource
             method: "GET",
             serviceType: "aapi",
             isArray: false,
-            cache: TelecomPreferences.cache
+            cache: OvhApiTelecomPreferences.cache
         },
         write: {
             method: "POST",
@@ -8889,21 +8858,21 @@ angular.module("ovh-api-services").service("TelecomPreferencesAapi", ["$resource
     });
 }]);
 
-angular.module("ovh-api-services").service("TelecomPreferences", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelecomPreferences", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelecomPreferences");
+    var cache = $cacheFactory("OvhApiTelecomPreferences");
 
     return {
         Aapi: function () {
-            return $injector.get("TelecomPreferencesAapi");
+            return $injector.get("OvhApiTelecomPreferencesAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelecomSidebarAapi", ["$resource", "TelecomSidebar", function ($resource, TelecomSidebar) {
+angular.module("ovh-api-services").service("OvhApiTelecomSidebarAapi", ["$resource", "OvhApiTelecomSidebar", function ($resource, OvhApiTelecomSidebar) {
     "use strict";
 
     var telecomSidebar = $resource("/telecom/sidebar", {}, {
@@ -8911,51 +8880,51 @@ angular.module("ovh-api-services").service("TelecomSidebarAapi", ["$resource", "
             method: "GET",
             url: "/telecom/sidebar",
             serviceType: "aapi",
-            cache: TelecomSidebar.cache
+            cache: OvhApiTelecomSidebar.cache
         },
         count: {
             method: "GET",
             url: "/telecom/sidebar/count",
             serviceType: "aapi",
-            cache: TelecomSidebar.cache
+            cache: OvhApiTelecomSidebar.cache
         }
     });
 
     return telecomSidebar;
 }]);
 
-angular.module("ovh-api-services").service("TelecomSidebar", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelecomSidebar", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelecomSidebar");
+    var cache = $cacheFactory("OvhApiTelecomSidebar");
 
     return {
         Aapi: function () {
-            return $injector.get("TelecomSidebarAapi");
+            return $injector.get("OvhApiTelecomSidebarAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("Telecom", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelecom", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("Telecom");
+    var cache = $cacheFactory("OvhApiTelecom");
 
     return {
         resetCache: cache.removeAll,
         cache: cache,
         HomeDashboard: function () {
-            return $injector.get("TelecomHomeDashboard");
+            return $injector.get("OvhApiTelecomHomeDashboard");
         },
         Preferences: function () {
-            return $injector.get("TelecomPreferences");
+            return $injector.get("OvhApiTelecomPreferences");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberAapi", ["$resource", "TelephonyAbbreviatedNumber", function ($resource, TelephonyAbbreviatedNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAbbreviatedNumberAapi", ["$resource", "OvhApiTelephonyAbbreviatedNumber", function ($resource, OvhApiTelephonyAbbreviatedNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/abbreviatedNumber", {
@@ -8966,18 +8935,18 @@ angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberAapi", ["$
             url: "/telephony/:billingAccount/abbreviatedNumber",
             serviceType: "aapi",
             isArray: true,
-            cache: TelephonyAbbreviatedNumber.cache
+            cache: OvhApiTelephonyAbbreviatedNumber.cache
         }
     });
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberLexi", ["$resource", "TelephonyAbbreviatedNumber", function ($resource, TelephonyAbbreviatedNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAbbreviatedNumberLexi", ["$resource", "OvhApiTelephonyAbbreviatedNumber", function ($resource, OvhApiTelephonyAbbreviatedNumber) {
 
     var interceptor = {
         response: function (response) {
-            TelephonyAbbreviatedNumber.resetCache();
+            OvhApiTelephonyAbbreviatedNumber.resetCache();
             return response.resource;
         }
     };
@@ -8989,13 +8958,13 @@ angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberLexi", ["$
             method: "GET",
             isArray: true,
             url: "/telephony/:billingAccount/abbreviatedNumber",
-            cache: TelephonyAbbreviatedNumber.cache
+            cache: OvhApiTelephonyAbbreviatedNumber.cache
         },
         detail: {
             method: "GET",
             isArray: false,
             url: "/telephony/:billingAccount/abbreviatedNumber/:abbreviatedNumber",
-            cache: TelephonyAbbreviatedNumber.cache
+            cache: OvhApiTelephonyAbbreviatedNumber.cache
         },
         remove: {
             method: "DELETE",
@@ -9019,28 +8988,28 @@ angular.module("ovh-api-services").service("TelephonyAbbreviatedNumberLexi", ["$
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyAbbreviatedNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAbbreviatedNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyAbbreviatedNumber");
+    var cache = $cacheFactory("OvhApiTelephonyAbbreviatedNumber");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyAbbreviatedNumberLexi");
+            return $injector.get("OvhApiTelephonyAbbreviatedNumberLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyAbbreviatedNumberAapi");
+            return $injector.get("OvhApiTelephonyAbbreviatedNumberAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyAliasesLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAliasesLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyAliasesLexi");
-    var queryCache = $cacheFactory("TelephonyAliasesLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyAliasesLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyAliasesLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9096,19 +9065,19 @@ angular.module("ovh-api-services").service("TelephonyAliasesLexi", ["$resource",
     return aliases;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyAliases", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAliases", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyAliasesLexi");
+            return $injector.get("OvhApiTelephonyAliasesLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyConferenceParticipantsAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceParticipantsAapi", ["$resource", function ($resource) {
 
     return $resource("/telephony/:billingAccount/conference/:serviceName/participants", {
         billingAccount: "@billingAccount",
@@ -9123,7 +9092,7 @@ angular.module("ovh-api-services").service("TelephonyConferenceParticipantsAapi"
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyConferenceParticipantsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceParticipantsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/conference/:serviceName/participants/:id", {
@@ -9164,19 +9133,19 @@ angular.module("ovh-api-services").service("TelephonyConferenceParticipantsLexi"
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyConferenceParticipants", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceParticipants", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyConferenceParticipantsLexi");
+            return $injector.get("OvhApiTelephonyConferenceParticipantsLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyConferenceParticipantsAapi");
+            return $injector.get("OvhApiTelephonyConferenceParticipantsAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyConferenceLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/conference/:serviceName", {
@@ -9217,22 +9186,22 @@ angular.module("ovh-api-services").service("TelephonyConferenceLexi", ["$resourc
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyConference", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConference", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyConferenceLexi");
+            return $injector.get("OvhApiTelephonyConferenceLexi");
         },
         Participants: function () {
-            return $injector.get("TelephonyConferenceParticipants");
+            return $injector.get("OvhApiTelephonyConferenceParticipants");
         },
         WebAccess: function () {
-            return $injector.get("TelephonyConferenceWebAccess");
+            return $injector.get("OvhApiTelephonyConferenceWebAccess");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyConferenceWebAccessLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceWebAccessLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/conference/:serviceName/webAccess/:id", {
@@ -9256,20 +9225,20 @@ angular.module("ovh-api-services").service("TelephonyConferenceWebAccessLexi", [
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyConferenceWebAccess", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceWebAccess", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyConferenceWebAccessLexi");
+            return $injector.get("OvhApiTelephonyConferenceWebAccessLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgentQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingHuntingAgentQueueLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingHuntingAgentQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9325,21 +9294,21 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgentQueu
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgentQueue", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingAgentQueue", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingAgentQueueLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingHuntingAgentLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingHuntingAgentLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingAgentLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingAgentLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9401,20 +9370,20 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgentLexi
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgent", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingAgent", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingAgentLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingAgentLexi");
         },
         Queue: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingAgentQueue");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingAgentQueue");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueAgentErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueAgentErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var endpoint = apiv7("/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/agent/:agentId", {
@@ -9432,11 +9401,11 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueAgen
     return endpoint;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingHuntingQueueAgentLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingHuntingQueueAgentLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingQueueAgentLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingQueueAgentLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9499,20 +9468,20 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueAgen
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueAgent", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueAgent", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueAgentLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueAgentLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueAgentErika");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueAgentErika");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLiveCallsErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var endpoint = apiv7("/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id", {
@@ -9525,7 +9494,7 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLive
     return endpoint;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLiveCallsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsLexi", ["$resource", function ($resource) {
     "use strict";
 
     var res = $resource("/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id", {
@@ -9570,24 +9539,24 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLive
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLiveCalls", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueLiveCalls", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueLiveCallsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueLiveCallsErika");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsErika");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingHuntingQueueLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingHuntingQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingQueueLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingQueueLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9637,26 +9606,26 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLexi
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueue", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueue", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueLexi");
         },
         Agent: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueAgent");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueAgent");
         },
         LiveCalls: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueueLiveCalls");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueueLiveCalls");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingHuntingLexi");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingLexi");
 
     var interceptor = {
         response: function (response) {
@@ -9686,27 +9655,27 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingLexi", ["
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHunting", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHunting", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingLexi");
         },
         Queue: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingQueue");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingQueue");
         },
         Agent: function () {
-            return $injector.get("TelephonyEasyHuntingHuntingAgent");
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingAgent");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingRecordsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingRecordsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingRecordsLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingRecordsLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingRecordsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingRecordsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9760,21 +9729,21 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingRecordsLexi", ["
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingRecords", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingRecords", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingRecordsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingRecordsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListConditionsConditionsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenListConditionsConditionsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingScreenListConditionsConditionsLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingScreenListConditionsConditionsLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingScreenListConditionsConditionsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingScreenListConditionsConditionsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9837,20 +9806,20 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListCondit
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListConditionsConditions", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenListConditionsConditions", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingScreenListConditionsConditionsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsConditionsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListConditionsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenListConditionsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingScreenListConditionsLexi");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingScreenListConditionsLexi");
 
     var interceptor = {
         response: function (response) {
@@ -9880,20 +9849,20 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListCondit
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListConditions", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenListConditions", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingScreenListConditionsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsLexi");
         },
         Conditions: function () {
-            return $injector.get("TelephonyEasyHuntingScreenListConditionsConditions");
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsConditions");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingSoundLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingSoundLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyHunting/:serviceName/sound/:soundId", {
@@ -9914,21 +9883,21 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingSoundLexi", ["$r
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingSound", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingSound", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingSoundLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingSoundLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -9977,32 +9946,32 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingLexi", ["$resour
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHunting", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHunting", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingLexi");
         },
         Sound: function () {
-            return $injector.get("TelephonyEasyHuntingSound");
+            return $injector.get("OvhApiTelephonyEasyHuntingSound");
         },
         Hunting: function () {
-            return $injector.get("TelephonyEasyHuntingHunting");
+            return $injector.get("OvhApiTelephonyEasyHuntingHunting");
         },
         ScreenListConditions: function () {
-            return $injector.get("TelephonyEasyHuntingScreenListConditions");
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditions");
         },
         TimeConditions: function () {
-            return $injector.get("TelephonyEasyHuntingTimeConditions");
+            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditions");
         },
         Records: function () {
-            return $injector.get("TelephonyEasyHuntingRecords");
+            return $injector.get("OvhApiTelephonyEasyHuntingRecords");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingTimeConditionsConditionsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeConditionsConditionsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyHunting/:serviceName/timeConditions/conditions/:conditionId", {
@@ -10027,17 +9996,17 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingTimeConditionsCo
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingTimeConditionsConditions", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeConditionsConditions", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingTimeConditionsConditionsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditionsConditionsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingTimeConditionsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeConditionsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyHunting/:serviceName/timeConditions", {
@@ -10051,20 +10020,20 @@ angular.module("ovh-api-services").service("TelephonyEasyHuntingTimeConditionsLe
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyHuntingTimeConditions", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeConditions", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingTimeConditionsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditionsLexi");
         },
         Conditions: function () {
-            return $injector.get("TelephonyEasyHuntingTimeConditionsConditions");
+            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditionsConditions");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyPabxLexi", ["$resource", "TelephonyEasyPabx", function ($resource, TelephonyEasyPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", ["$resource", "OvhApiTelephonyEasyPabx", function ($resource, OvhApiTelephonyEasyPabx) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyPabx/:serviceName", {
@@ -10074,23 +10043,23 @@ angular.module("ovh-api-services").service("TelephonyEasyPabxLexi", ["$resource"
         query: {
             method: "GET",
             isArray: true,
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         get: {
             method: "GET",
             isArray: false,
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         getHunting: {
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting",
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         queryAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent",
             isArray: true,
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         getAgent: {
             method: "GET",
@@ -10098,30 +10067,30 @@ angular.module("ovh-api-services").service("TelephonyEasyPabxLexi", ["$resource"
             params: {
                 agentNumber: "@"
             },
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         }
     }
     );
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEasyPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyPabx");
+    var cache = $cacheFactory("OvhApiTelephonyEasyPabx");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyPabxLexi");
+            return $injector.get("OvhApiTelephonyEasyPabxLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEventtokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEventtokenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("TelephonyEventtokenLexiQuery");
+    var queryCache = $cacheFactory("OvhApiTelephonyEventtokenLexiQuery");
     var interceptor = {
         response: function (response) {
             queryCache.removeAll();
@@ -10144,24 +10113,21 @@ angular.module("ovh-api-services").service("TelephonyEventtokenLexi", ["$resourc
     return eventtokens;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyEventtoken",
-                                           ["$injector", function ($injector) {
-
-                                               "use strict";
-
-                                               return {
-                                                   Lexi: function () {
-                                                       return $injector.get("TelephonyEventtokenLexi");
-                                                   }
-                                               };
-
-                                           }]);
-
-angular.module("ovh-api-services").service("TelephonyFaxCampaignsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEventtoken", ["$injector", function ($injector) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyFaxCampaignsLexi");
-    var queryCache = $cacheFactory("TelephonyFaxCampaignsLexiQuery");
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiTelephonyEventtokenLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxCampaignsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiTelephonyFaxCampaignsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyFaxCampaignsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -10222,16 +10188,16 @@ angular.module("ovh-api-services").service("TelephonyFaxCampaignsLexi", ["$cache
     return campaignsResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyFaxCampaigns", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxCampaigns", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyFaxCampaignsLexi");
+            return $injector.get("OvhApiTelephonyFaxCampaignsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyFaxAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxAapi", ["$resource", function ($resource) {
     "use strict";
 
     var fax = $resource("/fax", {}, {
@@ -10246,7 +10212,7 @@ angular.module("ovh-api-services").service("TelephonyFaxAapi", ["$resource", fun
     return fax;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyFaxErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var telephonyFaxEndpoint = apiv7("/telephony/:billingAccount/fax/:serviceName", {
@@ -10258,11 +10224,11 @@ angular.module("ovh-api-services").service("TelephonyFaxErika", ["apiv7", functi
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyFaxLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyFaxLexi");
-    var queryCache = $cacheFactory("TelephonyFaxLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyFaxLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyFaxLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -10341,28 +10307,28 @@ angular.module("ovh-api-services").service("TelephonyFaxLexi", ["$cacheFactory",
     return faxResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyFax", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFax", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyFaxLexi");
+            return $injector.get("OvhApiTelephonyFaxLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyFaxAapi");
+            return $injector.get("OvhApiTelephonyFaxAapi");
         },
         Erika: function () {
-            return $injector.get("TelephonyFaxErika");
+            return $injector.get("OvhApiTelephonyFaxErika");
         },
         Campaigns: function () {
-            return $injector.get("TelephonyFaxCampaigns");
+            return $injector.get("OvhApiTelephonyFaxCampaigns");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyHistoryConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyHistoryConsumptionLexi");
+    var cache = $cacheFactory("OvhApiTelephonyHistoryConsumptionLexi");
 
     return $resource("/telephony/:billingAccount/historyConsumption/:date", {
         billingAccount: "@billingAccount",
@@ -10394,20 +10360,20 @@ angular.module("ovh-api-services").service("TelephonyHistoryConsumptionLexi", ["
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyHistoryConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryConsumption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyHistoryConsumptionLexi");
+            return $injector.get("OvhApiTelephonyHistoryConsumptionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyHistoryRepaymentConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryRepaymentConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyHistoryRepaymentConsumptionLexi");
+    var cache = $cacheFactory("OvhApiTelephonyHistoryRepaymentConsumptionLexi");
 
     return $resource("/telephony/:billingAccount/historyRepaymentConsumption/:date", {
         billingAccount: "@billingAccount",
@@ -10443,20 +10409,20 @@ angular.module("ovh-api-services").service("TelephonyHistoryRepaymentConsumption
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyHistoryRepaymentConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryRepaymentConsumption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyHistoryRepaymentConsumptionLexi");
+            return $injector.get("OvhApiTelephonyHistoryRepaymentConsumptionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyHistoryTollfreeConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryTollfreeConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyHistoryTollfreeConsumptionLexi");
+    var cache = $cacheFactory("OvhApiTelephonyHistoryTollfreeConsumptionLexi");
 
     return $resource("/telephony/:billingAccount/historyTollfreeConsumption/:date", {
         billingAccount: "@billingAccount",
@@ -10488,17 +10454,17 @@ angular.module("ovh-api-services").service("TelephonyHistoryTollfreeConsumptionL
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyHistoryTollfreeConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryTollfreeConsumption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyHistoryTollfreeConsumptionLexi");
+            return $injector.get("OvhApiTelephonyHistoryTollfreeConsumptionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberAapi", ["$resource", "TelephonyLineAbbreviatedNumber", function ($resource, TelephonyLineAbbreviatedNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAbbreviatedNumberAapi", ["$resource", "OvhApiTelephonyLineAbbreviatedNumber", function ($resource, OvhApiTelephonyLineAbbreviatedNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/line/:serviceName/abbreviatedNumber", {
@@ -10510,18 +10476,18 @@ angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberAapi",
             url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber",
             serviceType: "aapi",
             isArray: true,
-            cache: TelephonyLineAbbreviatedNumber.cache
+            cache: OvhApiTelephonyLineAbbreviatedNumber.cache
         }
     });
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi", ["$resource", "TelephonyLineAbbreviatedNumber", function ($resource, TelephonyLineAbbreviatedNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAbbreviatedNumberLexi", ["$resource", "OvhApiTelephonyLineAbbreviatedNumber", function ($resource, OvhApiTelephonyLineAbbreviatedNumber) {
 
     var interceptor = {
         response: function (response) {
-            TelephonyLineAbbreviatedNumber.resetCache();
+            OvhApiTelephonyLineAbbreviatedNumber.resetCache();
             return response.resource;
         }
     };
@@ -10534,13 +10500,13 @@ angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi",
             method: "GET",
             isArray: true,
             url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber",
-            cache: TelephonyLineAbbreviatedNumber.cache
+            cache: OvhApiTelephonyLineAbbreviatedNumber.cache
         },
         detail: {
             method: "GET",
             isArray: false,
             url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
-            cache: TelephonyLineAbbreviatedNumber.cache
+            cache: OvhApiTelephonyLineAbbreviatedNumber.cache
         },
         remove: {
             method: "DELETE",
@@ -10564,27 +10530,27 @@ angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi",
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAbbreviatedNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineAbbreviatedNumber");
+    var cache = $cacheFactory("OvhApiTelephonyLineAbbreviatedNumber");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineAbbreviatedNumberLexi");
+            return $injector.get("OvhApiTelephonyLineAbbreviatedNumberLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyLineAbbreviatedNumberAapi");
+            return $injector.get("OvhApiTelephonyLineAbbreviatedNumberAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineAllAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAllAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineAllAapi");
+    var cache = $cacheFactory("OvhApiTelephonyLineAllAapi");
 
     var telephonyAll = $resource("/telephony/line/all", {}, {
         query: {
@@ -10621,16 +10587,16 @@ angular.module("ovh-api-services").service("TelephonyLineAllAapi", ["$resource",
     return telephonyAll;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineAll", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAll", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("TelephonyLineAllAapi");
+            return $injector.get("OvhApiTelephonyLineAllAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineClick2CallLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/line/:serviceName/click2Call", {
@@ -10646,23 +10612,23 @@ angular.module("ovh-api-services").service("TelephonyLineClick2CallLexi", ["$res
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineClick2Call", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2Call", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineClick2CallLexi");
+            return $injector.get("OvhApiTelephonyLineClick2CallLexi");
         },
         User: function () {
-            return $injector.get("TelephonyLineClick2CallUser");
+            return $injector.get("OvhApiTelephonyLineClick2CallUser");
         },
         Aapi: angular.noop
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineClick2CallUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineClick2CallUserLexi");
+    var cache = $cacheFactory("OvhApiTelephonyLineClick2CallUserLexi");
 
     var interceptor = {
         response: function (response) {
@@ -10717,17 +10683,17 @@ angular.module("ovh-api-services").service("TelephonyLineClick2CallUserLexi", ["
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineClick2CallUser", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUser", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineClick2CallUserLexi");
+            return $injector.get("OvhApiTelephonyLineClick2CallUserLexi");
         },
         Aapi: angular.noop
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineOffersLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineOffersLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/line/offers", null, {
@@ -10743,21 +10709,21 @@ angular.module("ovh-api-services").service("TelephonyLineOffersLexi", ["$resourc
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineOffers", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineOffers", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineOffersLexi");
+            return $injector.get("OvhApiTelephonyLineOffersLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", ["$resource", "TelephonyLineOptions", function ($resource, TelephonyLineOptions) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineOptionsLexi", ["$resource", "OvhApiTelephonyLineOptions", function ($resource, OvhApiTelephonyLineOptions) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelephonyLineOptions.resetCache();
+            OvhApiTelephonyLineOptions.resetCache();
             return response.resource;
         }
     };
@@ -10769,7 +10735,7 @@ angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", ["$resour
         get: {
             method: "GET",
             isArray: false,
-            cache: TelephonyLineOptions.cache
+            cache: OvhApiTelephonyLineOptions.cache
         },
         update: {
             method: "PUT",
@@ -10780,13 +10746,13 @@ angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", ["$resour
             url: "/telephony/:billingAccount/line/:serviceName/options/availableCodecs",
             method: "GET",
             isArray: true,
-            cache: TelephonyLineOptions.cache
+            cache: OvhApiTelephonyLineOptions.cache
         },
         defaultCodecs: {
             url: "/telephony/:billingAccount/line/:serviceName/options/defaultCodecs",
             method: "GET",
             isArray: false,
-            cache: TelephonyLineOptions.cache,
+            cache: OvhApiTelephonyLineOptions.cache,
             transformResponse: function (data) {
                 // because $resource returns an array of char when response is a simple string
                 return {
@@ -10797,24 +10763,24 @@ angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", ["$resour
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineOptions", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineOptions", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineOptions");
+    var cache = $cacheFactory("OvhApiTelephonyLineOptions");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineOptionsLexi");
+            return $injector.get("OvhApiTelephonyLineOptionsLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhoneFunctionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneFunctionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLinePhoneFunctionLexi");
+    var cache = $cacheFactory("OvhApiTelephonyLinePhoneFunctionLexi");
 
     /**
      * uncomment when post
@@ -10858,22 +10824,22 @@ angular.module("ovh-api-services").service("TelephonyLinePhoneFunctionLexi", ["$
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineFunctionPhone", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineFunctionPhone", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinePhoneFunctionLexi");
+            return $injector.get("OvhApiTelephonyLinePhoneFunctionLexi");
         },
         Aapi: angular.noop
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhonePhonebookPhonebookContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhonePhonebookPhonebookContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLinePhonePhonebookPhonebookContactLexi");
-    var queryCache = $cacheFactory("TelephonyLinePhonePhonebookPhonebookContactLexiQuery");
-    var batchCache = $cacheFactory("TelephonyLinePhonePhonebookPhonebookContactLexiBatch");
+    var cache = $cacheFactory("OvhApiTelephonyLinePhonePhonebookPhonebookContactLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyLinePhonePhonebookPhonebookContactLexiQuery");
+    var batchCache = $cacheFactory("OvhApiTelephonyLinePhonePhonebookPhonebookContactLexiBatch");
 
     var interceptor = {
         response: function (response) {
@@ -10943,21 +10909,21 @@ angular.module("ovh-api-services").service("TelephonyLinePhonePhonebookPhonebook
     return phonebookContactResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhonePhonebookPhonebookContact", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhonePhonebookPhonebookContact", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinePhonePhonebookPhonebookContactLexi");
+            return $injector.get("OvhApiTelephonyLinePhonePhonebookPhonebookContactLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhonePhonebookLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhonePhonebookLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLinePhonePhonebookLexi");
-    var queryCache = $cacheFactory("TelephonyLinePhonePhonebookLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyLinePhonePhonebookLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyLinePhonePhonebookLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -11027,24 +10993,24 @@ angular.module("ovh-api-services").service("TelephonyLinePhonePhonebookLexi", ["
     return phonebookResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhonePhonebook", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhonePhonebook", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinePhonePhonebookLexi");
+            return $injector.get("OvhApiTelephonyLinePhonePhonebookLexi");
         },
         PhonebookContact: function () {
-            return $injector.get("TelephonyLinePhonePhonebookPhonebookContact");
+            return $injector.get("OvhApiTelephonyLinePhonePhonebookPhonebookContact");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhoneRMALexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneRMALexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLinePhoneRMALexiCache");
-    var queryCache = $cacheFactory("TelephonyLinePhoneRMALexiQueryCache");
+    var cache = $cacheFactory("OvhApiTelephonyLinePhoneRMALexiCache");
+    var queryCache = $cacheFactory("OvhApiTelephonyLinePhoneRMALexiQueryCache");
 
     var interceptor = {
         response: function (response) {
@@ -11084,20 +11050,20 @@ angular.module("ovh-api-services").service("TelephonyLinePhoneRMALexi", ["$resou
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhoneRMA", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneRMA", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinePhoneRMALexi");
+            return $injector.get("OvhApiTelephonyLinePhoneRMALexi");
         },
         Aapi: angular.noop
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhoneLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLinePhoneLexi");
+    var cache = $cacheFactory("OvhApiTelephonyLinePhoneLexi");
 
     var interceptor = {
         response: function (response) {
@@ -11149,29 +11115,29 @@ angular.module("ovh-api-services").service("TelephonyLinePhoneLexi", ["$resource
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinePhone", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhone", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinePhoneLexi");
+            return $injector.get("OvhApiTelephonyLinePhoneLexi");
         },
         Aapi: angular.noop,
         FunctionKey: function () {
-            return $injector.get("TelephonyLineFunctionPhone");
+            return $injector.get("OvhApiTelephonyLineFunctionPhone");
         },
         Phonebook: function () {
-            return $injector.get("TelephonyLinePhonePhonebook");
+            return $injector.get("OvhApiTelephonyLinePhonePhonebook");
         },
         RMA: function () {
-            return $injector.get("TelephonyLinePhoneRMA");
+            return $injector.get("OvhApiTelephonyLinePhoneRMA");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineAapi");
+    var cache = $cacheFactory("OvhApiTelephonyLineAapi");
 
     var telephonyAll = $resource("/telephony/line", {}, {
         get: {
@@ -11189,7 +11155,7 @@ angular.module("ovh-api-services").service("TelephonyLineAapi", ["$resource", "$
     return telephonyAll;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var telephonyLineEndpoint = apiv7("/telephony/:billingAccount/line/:serviceName", {
@@ -11201,11 +11167,11 @@ angular.module("ovh-api-services").service("TelephonyLineErika", ["apiv7", funct
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLineLexi", ["$cacheFactory", "$resource", "$q", "$http", function ($cacheFactory, $resource, $q, $http) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineLexi", ["$cacheFactory", "$resource", "$q", "$http", function ($cacheFactory, $resource, $q, $http) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineLexi");
-    var queryCache = $cacheFactory("TelephonyLineLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyLineLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyLineLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -11381,37 +11347,37 @@ angular.module("ovh-api-services").service("TelephonyLineLexi", ["$cacheFactory"
     return lineResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLine", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLine", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineLexi");
+            return $injector.get("OvhApiTelephonyLineLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyLineAapi");
+            return $injector.get("OvhApiTelephonyLineAapi");
         },
         Erika: function () {
-            return $injector.get("TelephonyLineErika");
+            return $injector.get("OvhApiTelephonyLineErika");
         },
         AbbreviatedNumber: function () {
-            return $injector.get("TelephonyLineAbbreviatedNumber");
+            return $injector.get("OvhApiTelephonyLineAbbreviatedNumber");
         },
         Phone: function () {
-            return $injector.get("TelephonyLinePhone");
+            return $injector.get("OvhApiTelephonyLinePhone");
         },
         Options: function () {
-            return $injector.get("TelephonyLineOptions");
+            return $injector.get("OvhApiTelephonyLineOptions");
         },
         Click2Call: function () {
-            return $injector.get("TelephonyLineClick2Call");
+            return $injector.get("OvhApiTelephonyLineClick2Call");
         },
         Offers: function () {
-            return $injector.get("TelephonyLineOffers");
+            return $injector.get("OvhApiTelephonyLineOffers");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLinesLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinesLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/lines/:serviceName", {
@@ -11447,17 +11413,17 @@ angular.module("ovh-api-services").service("TelephonyLinesLexi", ["$resource", f
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyLines", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLines", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinesLexi");
+            return $injector.get("OvhApiTelephonyLinesLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyMiniPabxLexi", ["$resource", "TelephonyMiniPabx", function ($resource, TelephonyMiniPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", ["$resource", "OvhApiTelephonyMiniPabx", function ($resource, OvhApiTelephonyMiniPabx) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/miniPabx/:serviceName", {
@@ -11467,23 +11433,23 @@ angular.module("ovh-api-services").service("TelephonyMiniPabxLexi", ["$resource"
         query: {
             method: "GET",
             isArray: true,
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         get: {
             method: "GET",
             isArray: false,
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         getHunting: {
             method: "GET",
             url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting",
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         queryAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/agent",
             isArray: true,
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         getAgent: {
             method: "GET",
@@ -11491,27 +11457,27 @@ angular.module("ovh-api-services").service("TelephonyMiniPabxLexi", ["$resource"
             params: {
                 agentNumber: "@"
             },
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         }
     }
     );
 }]);
 
-angular.module("ovh-api-services").service("TelephonyMiniPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyMiniPabx");
+    var cache = $cacheFactory("OvhApiTelephonyMiniPabx");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyMiniPabxLexi");
+            return $injector.get("OvhApiTelephonyMiniPabxLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyNumberAapi", ["$resource", "TelephonyNumber", function ($resource, TelephonyNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumberAapi", ["$resource", "OvhApiTelephonyNumber", function ($resource, OvhApiTelephonyNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/number", {
@@ -11520,35 +11486,33 @@ angular.module("ovh-api-services").service("TelephonyNumberAapi", ["$resource", 
         query: {
             method: "GET",
             isArray: true,
-            cache: TelephonyNumber.cache,
+            cache: OvhApiTelephonyNumber.cache,
             serviceType: "aapi"
         },
         all: {
             method: "GET",
             url: "/telephony/numbers/all",
             isArray: true,
-            cache: TelephonyNumber.cache,
+            cache: OvhApiTelephonyNumber.cache,
             serviceType: "aapi"
         },
         prices: {
             method: "GET",
             url: "/telephony/:billingAccount/number/:country/prices",
             isArray: true,
-            cache: TelephonyNumber.cache,
+            cache: OvhApiTelephonyNumber.cache,
             serviceType: "aapi"
         },
         orderableByRange: {
             method: "GET",
             url: "/telephony/:country/:billingAccount/number/:type/range/:range",
             isArray: false,
-
-            // cache      : TelephonyNumber.cache,
             serviceType: "aapi"
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyNumberErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumberErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var telephonyNumberEndpoint = apiv7("/telephony/:billingAccount/number/:serviceName", {
@@ -11560,7 +11524,7 @@ angular.module("ovh-api-services").service("TelephonyNumberErika", ["apiv7", fun
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyNumberLexi", ["$resource", "TelephonyNumber", function ($resource, TelephonyNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumberLexi", ["$resource", "OvhApiTelephonyNumber", function ($resource, OvhApiTelephonyNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/number/:serviceName", {
@@ -11573,25 +11537,25 @@ angular.module("ovh-api-services").service("TelephonyNumberLexi", ["$resource", 
             headers: {
                 "X-Ovh-Batch": ","
             },
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         getZones: {
             method: "GET",
             url: "/telephony/number/zones",
             isArray: true,
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         getRanges: {
             method: "GET",
             url: "/telephony/number/ranges",
             isArray: true,
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         getSpecificNumbers: {
             method: "GET",
             url: "/telephony/number/specificNumbers",
             isArray: true,
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         edit: {
             method: "PUT"
@@ -11620,27 +11584,27 @@ angular.module("ovh-api-services").service("TelephonyNumberLexi", ["$resource", 
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumber", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyNumber");
+    var cache = $cacheFactory("OvhApiTelephonyNumber");
 
     return {
         Aapi: function () {
-            return $injector.get("TelephonyNumberAapi");
+            return $injector.get("OvhApiTelephonyNumberAapi");
         },
         Lexi: function () {
-            return $injector.get("TelephonyNumberLexi");
+            return $injector.get("OvhApiTelephonyNumberLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyNumberErika");
+            return $injector.get("OvhApiTelephonyNumberErika");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOfferTaskLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOfferTaskLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/offerTask/:taskId", {
@@ -11657,17 +11621,17 @@ angular.module("ovh-api-services").service("TelephonyOfferTaskLexi", ["$resource
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOfferTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOfferTask", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOfferTaskLexi");
+            return $injector.get("OvhApiTelephonyOfferTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionConditionScreenListLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenListLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/conditionScreenList/:conditionId", {
@@ -11695,17 +11659,17 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionCon
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionConditionScreenList", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenList", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionScreenListLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenListLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionConditionTimeLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionConditionTimeLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/conditionTime/:conditionId", {
@@ -11733,17 +11697,17 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionCon
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionConditionTime", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionConditionTime", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionTimeLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionTimeLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionRuleLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionRuleLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/rule/:ruleId", {
@@ -11771,17 +11735,17 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionRul
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionRule", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionRule", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionRuleLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionRuleLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId", {
@@ -11808,26 +11772,26 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionLex
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtension", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtension", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Rule: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionRule");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionRule");
         },
         ConditionScreenList: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionScreenList");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenList");
         },
         ConditionTime: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionTime");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionTime");
         },
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId", {
@@ -11853,24 +11817,24 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanLexi", ["$re
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplan", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplan", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Extension: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtension");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtension");
         },
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgentQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingAgentQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabxHuntingAgentQueueLexi");
-    var queryCache = $cacheFactory("TelephonyOvhPabxHuntingAgentQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingAgentQueueLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingAgentQueueLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -11926,21 +11890,21 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgentQueueLex
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgentQueue", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingAgentQueue", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingAgentQueueLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingAgentQueueLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabxHuntingAgentLexi");
-    var queryCache = $cacheFactory("TelephonyOvhPabxHuntingAgentLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingAgentLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingAgentLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -12007,24 +11971,24 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgentLexi", [
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgent", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingAgent", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingAgentLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingAgentLexi");
         },
         Queue: function () {
-            return $injector.get("TelephonyOvhPabxHuntingAgentQueue");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingAgentQueue");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueAgentLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabxHuntingQueueAgentLexi");
-    var queryCache = $cacheFactory("TelephonyOvhPabxHuntingQueueAgentLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingQueueAgentLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingQueueAgentLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -12087,17 +12051,17 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueAgentLex
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueAgent", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueAgent", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingQueueAgentLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingQueueAgentLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLiveCallsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueLiveCallsLexi", ["$resource", function ($resource) {
     "use strict";
 
     var res = $resource("/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id", {
@@ -12142,21 +12106,21 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLiveCall
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLiveCalls", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueLiveCalls", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingQueueLiveCallsLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingQueueLiveCallsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabxHuntingQueueLexi");
-    var queryCache = $cacheFactory("TelephonyOvhPabxHuntingQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingQueueLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingQueueLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -12221,26 +12185,26 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLexi", [
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueue", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueue", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingQueueLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingQueueLexi");
         },
         Agent: function () {
-            return $injector.get("TelephonyOvhPabxHuntingQueueAgent");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingQueueAgent");
         },
         LiveCalls: function () {
-            return $injector.get("TelephonyOvhPabxHuntingQueueLiveCalls");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingQueueLiveCalls");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabxHuntingLexi");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingLexi");
 
     var interceptor = {
         response: function (response) {
@@ -12270,23 +12234,23 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingLexi", ["$res
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxHunting", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHunting", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingLexi");
         },
         Queue: function () {
-            return $injector.get("TelephonyOvhPabxHuntingQueue");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingQueue");
         },
         Agent: function () {
-            return $injector.get("TelephonyOvhPabxHuntingAgent");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingAgent");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxMenuEntryLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxMenuEntryLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/menu/:menuId/entry/:entryId", {
@@ -12313,17 +12277,17 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxMenuEntryLexi", ["$r
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxMenuEntry", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxMenuEntry", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxMenuEntryLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxMenuEntryLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxMenuLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxMenuLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/menu/:menuId", {
@@ -12349,24 +12313,24 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxMenuLexi", ["$resour
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxMenu", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxMenu", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxMenuLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxMenuLexi");
         },
         Entry: function () {
-            return $injector.get("TelephonyOvhPabxMenuEntry");
+            return $injector.get("OvhApiTelephonyOvhPabxMenuEntry");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxRecordsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxRecordsLexi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabxRecordsLexi");
-    var queryCache = $cacheFactory("TelephonyOvhPabxRecordsLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabxRecordsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyOvhPabxRecordsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -12420,17 +12384,17 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxRecordsLexi", ["$cac
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxRecords", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxRecords", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxRecordsLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxRecordsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxSoundLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxSoundLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/sound/:soundId", {
@@ -12448,22 +12412,22 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxSoundLexi", ["$resou
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxSound", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxSound", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxSoundLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxSoundLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", ["$resource", "TelephonyOvhPabx", function ($resource, TelephonyOvhPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxLexi", ["$resource", "OvhApiTelephonyOvhPabx", function ($resource, OvhApiTelephonyOvhPabx) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelephonyOvhPabx.resetCache();
+            OvhApiTelephonyOvhPabx.resetCache();
             return response.resource;
         }
     };
@@ -12471,18 +12435,18 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", ["$resource",
     var telephonyOvhPabx = $resource("/telephony/:billingAccount/ovhPabx", {
         billingAccount: "@billingAccount"
     }, {
-        query: { method: "GET", isArray: true, cache: TelephonyOvhPabx.cache },
+        query: { method: "GET", isArray: true, cache: OvhApiTelephonyOvhPabx.cache },
         get: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getHunting: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -12490,14 +12454,14 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", ["$resource",
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/agent",
             isArray: true,
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/agent/:agentId",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -12505,14 +12469,14 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", ["$resource",
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue",
             isArray: true,
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getQueue: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -12534,14 +12498,14 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", ["$resource",
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/agent",
             isArray: true,
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getTier: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/agent/:agentId",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -12574,39 +12538,39 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", ["$resource",
     return telephonyOvhPabx;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabx");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabx");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxLexi");
         },
         Dialplan: function () {
-            return $injector.get("TelephonyOvhPabxDialplan");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplan");
         },
         Sound: function () {
-            return $injector.get("TelephonyOvhPabxSound");
+            return $injector.get("OvhApiTelephonyOvhPabxSound");
         },
         Menu: function () {
-            return $injector.get("TelephonyOvhPabxMenu");
+            return $injector.get("OvhApiTelephonyOvhPabxMenu");
         },
         Hunting: function () {
-            return $injector.get("TelephonyOvhPabxHunting");
+            return $injector.get("OvhApiTelephonyOvhPabxHunting");
         },
         Records: function () {
-            return $injector.get("TelephonyOvhPabxRecords");
+            return $injector.get("OvhApiTelephonyOvhPabxRecords");
         },
         Tts: function () {
-            return $injector.get("TelephonyOvhPabxTts");
+            return $injector.get("OvhApiTelephonyOvhPabxTts");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxTtsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxTtsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/tts/:id", {
@@ -12632,22 +12596,22 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxTtsLexi", ["$resourc
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyOvhPabxTts", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxTts", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxTtsLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxTtsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyPhonebookPhonebookContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPhonebookPhonebookContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyPhonebookPhonebookContactLexi");
-    var queryCache = $cacheFactory("TelephonyPhonebookPhonebookContactLexiQuery");
-    var batchCache = $cacheFactory("TelephonyPhonebookPhonebookContactLexiBatch");
+    var cache = $cacheFactory("OvhApiTelephonyPhonebookPhonebookContactLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyPhonebookPhonebookContactLexiQuery");
+    var batchCache = $cacheFactory("OvhApiTelephonyPhonebookPhonebookContactLexiBatch");
 
     var interceptor = {
         response: function (response) {
@@ -12716,21 +12680,21 @@ angular.module("ovh-api-services").service("TelephonyPhonebookPhonebookContactLe
     return phonebookContactResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyPhonebookPhonebookContact", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPhonebookPhonebookContact", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyPhonebookPhonebookContactLexi");
+            return $injector.get("OvhApiTelephonyPhonebookPhonebookContactLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyPhonebookLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPhonebookLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyPhonebookLexi");
-    var queryCache = $cacheFactory("TelephonyPhonebookLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyPhonebookLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyPhonebookLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -12799,20 +12763,20 @@ angular.module("ovh-api-services").service("TelephonyPhonebookLexi", ["$resource
     return phonebookResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyPhonebook", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPhonebook", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyPhonebookLexi");
+            return $injector.get("OvhApiTelephonyPhonebookLexi");
         },
         PhonebookContact: function () {
-            return $injector.get("TelephonyPhonebookPhonebookContact");
+            return $injector.get("OvhApiTelephonyPhonebookPhonebookContact");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyPortabilityLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPortabilityLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/portability/:id", {
@@ -12835,12 +12799,12 @@ angular.module("ovh-api-services").service("TelephonyPortabilityLexi", ["$resour
 }]);
 
 
-angular.module("ovh-api-services").service("TelephonyPortability", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPortability", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyPortabilityLexi");
+            return $injector.get("OvhApiTelephonyPortabilityLexi");
         }
     };
 }]);
@@ -12848,7 +12812,7 @@ angular.module("ovh-api-services").service("TelephonyPortability", ["$injector",
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyRedirectLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRedirectLexi", ["$resource", function ($resource) {
 
     return $resource("/telephony/:billingAccount/:featureType/:serviceName", {
         billingAccount: "@billingAccount",
@@ -12864,16 +12828,16 @@ angular.module("ovh-api-services").service("TelephonyRedirectLexi", ["$resource"
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyRedirect", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRedirect", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyRedirectLexi");
+            return $injector.get("OvhApiTelephonyRedirectLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyRsvaLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRsvaLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/rsva/:serviceName", {
@@ -12908,21 +12872,21 @@ angular.module("ovh-api-services").service("TelephonyRsvaLexi", ["$resource", fu
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyRsva", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRsva", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyRsvaLexi");
+            return $injector.get("OvhApiTelephonyRsvaLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonySchedulerEventsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonySchedulerEventsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonySchedulerEventsLexi");
-    var queryCache = $cacheFactory("TelephonySchedulerEventsLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonySchedulerEventsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonySchedulerEventsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -12991,21 +12955,21 @@ angular.module("ovh-api-services").service("TelephonySchedulerEventsLexi", ["$re
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonySchedulerEvents", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonySchedulerEvents", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonySchedulerEventsLexi");
+            return $injector.get("OvhApiTelephonySchedulerEventsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonySchedulerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonySchedulerLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonySchedulerLexi");
-    var queryCache = $cacheFactory("TelephonySchedulerLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonySchedulerLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonySchedulerLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -13065,24 +13029,24 @@ angular.module("ovh-api-services").service("TelephonySchedulerLexi", ["$resource
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyScheduler", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyScheduler", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonySchedulerLexi");
+            return $injector.get("OvhApiTelephonySchedulerLexi");
         },
         Events: function () {
-            return $injector.get("TelephonySchedulerEvents");
+            return $injector.get("OvhApiTelephonySchedulerEvents");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyScreenListsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyScreenListsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyScreenListsLexi");
-    var queryCache = $cacheFactory("TelephonyScreenListsLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyScreenListsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyScreenListsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -13132,21 +13096,21 @@ angular.module("ovh-api-services").service("TelephonyScreenListsLexi", ["$resour
     return screenListResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyScreenLists", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyScreenLists", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyScreenListsLexi");
+            return $injector.get("OvhApiTelephonyScreenListsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyScreenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyScreenLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyScreenLexi");
-    var queryCache = $cacheFactory("TelephonyScreenLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyScreenLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyScreenLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -13191,20 +13155,20 @@ angular.module("ovh-api-services").service("TelephonyScreenLexi", ["$resource", 
     return screenResource;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyScreen", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyScreen", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyScreenLexi");
+            return $injector.get("OvhApiTelephonyScreenLexi");
         },
         ScreenLists: function () {
-            return $injector.get("TelephonyScreenLists");
+            return $injector.get("OvhApiTelephonyScreenLists");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceFaxConsumptionErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceFaxConsumptionErika", ["apiv7", function (apiv7) {
     "use strict";
 
     return apiv7("/telephony/:billingAccount/service/:serviceName/faxConsumption/:consumptionId", {
@@ -13215,11 +13179,11 @@ angular.module("ovh-api-services").service("TelephonyServiceFaxConsumptionErika"
 }]);
 
 
-angular.module("ovh-api-services").service("TelephonyServiceFaxConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceFaxConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceFaxConsumptionLexi");
-    var queryCache = $cacheFactory("TelephonyServiceFaxConsumptionLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyServiceFaxConsumptionLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyServiceFaxConsumptionLexiQuery");
 
     var faxConsumption = $resource("/telephony/:billingAccount/service/:serviceName/faxConsumption/:consumptionId", {
         billingAccount: "@billingAccount",
@@ -13256,20 +13220,20 @@ angular.module("ovh-api-services").service("TelephonyServiceFaxConsumptionLexi",
     return faxConsumption;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceFaxConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceFaxConsumption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceFaxConsumptionLexi");
+            return $injector.get("OvhApiTelephonyServiceFaxConsumptionLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyServiceFaxConsumptionErika");
+            return $injector.get("OvhApiTelephonyServiceFaxConsumptionErika");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceOfferTaskLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceOfferTaskLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/service/:serviceName/offerTask/:taskId", {
@@ -13287,21 +13251,19 @@ angular.module("ovh-api-services").service("TelephonyServiceOfferTaskLexi", ["$r
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceOfferTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceOfferTask", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceOfferTaskLexi");
+            return $injector.get("OvhApiTelephonyServiceOfferTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceRepaymentConsumptionAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceRepaymentConsumptionAapi", ["$resource", function ($resource) {
     "use strict";
 
-    // this URL isn't called but the `repayment` call use this one under the hood.
-    // if you encounter any problem, you can pleaser refer to mister JC Alleman. Cheers.
     return $resource("/telephony/:billingAccount/service/:serviceName/repaymentConsumption/:consumptionId", {
         billingAccount: "@billingAccount",
         serviceName: "@serviceName",
@@ -13316,12 +13278,12 @@ angular.module("ovh-api-services").service("TelephonyServiceRepaymentConsumption
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceRepaymentConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceRepaymentConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceRepaymentConsumptionLexi");
-    var queryCache = $cacheFactory("TelephonyServiceRepaymentConsumptionLexiQuery");
-    var batchCache = $cacheFactory("TelephonyServiceRepaymentConsumptionLexiBatch");
+    var cache = $cacheFactory("OvhApiTelephonyServiceRepaymentConsumptionLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyServiceRepaymentConsumptionLexiQuery");
+    var batchCache = $cacheFactory("OvhApiTelephonyServiceRepaymentConsumptionLexiBatch");
 
     var res = $resource("/telephony/:billingAccount/service/:serviceName/repaymentConsumption/:consumptionId", {
         billingAccount: "@billingAccount",
@@ -13368,19 +13330,19 @@ angular.module("ovh-api-services").service("TelephonyServiceRepaymentConsumption
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceRepaymentConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceRepaymentConsumption", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("TelephonyServiceRepaymentConsumptionAapi");
+            return $injector.get("OvhApiTelephonyServiceRepaymentConsumptionAapi");
         },
         Lexi: function () {
-            return $injector.get("TelephonyServiceRepaymentConsumptionLexi");
+            return $injector.get("OvhApiTelephonyServiceRepaymentConsumptionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceTaskLexi", ["$resource", "Poller", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceTaskLexi", ["$resource", "Poller", function ($resource, Poller) {
     "use strict";
 
     var loadRemoteRoute = "/telephony/:billingAccount/service/:serviceName/task/:taskId";
@@ -13436,22 +13398,22 @@ angular.module("ovh-api-services").service("TelephonyServiceTaskLexi", ["$resour
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceTask", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceTaskLexi");
+            return $injector.get("OvhApiTelephonyServiceTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceLexi");
-    var queryCache = $cacheFactory("TelephonyServiceLexiQuery");
-    var queryOfferCache = $cacheFactory("TelephonyServiceOfferLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyServiceLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyServiceLexiQuery");
+    var queryOfferCache = $cacheFactory("OvhApiTelephonyServiceOfferLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -13561,7 +13523,7 @@ angular.module("ovh-api-services").service("TelephonyServiceLexi", ["$resource",
     return telephonyService;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var endpoint = apiv7("/telephony/:billingAccount/service/:serviceName", {
@@ -13572,37 +13534,37 @@ angular.module("ovh-api-services").service("TelephonyServiceErika", ["apiv7", fu
     return endpoint;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyService", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyService", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceLexi");
+            return $injector.get("OvhApiTelephonyServiceLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyServiceErika");
+            return $injector.get("OvhApiTelephonyServiceErika");
         },
         VoiceConsumption: function () {
-            return $injector.get("TelephonyServiceVoiceConsumption");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumption");
         },
         FaxConsumption: function () {
-            return $injector.get("TelephonyServiceFaxConsumption");
+            return $injector.get("OvhApiTelephonyServiceFaxConsumption");
         },
         Task: function () {
-            return $injector.get("TelephonyServiceTask");
+            return $injector.get("OvhApiTelephonyServiceTask");
         },
         OfferTask: function () {
-            return $injector.get("TelephonyServiceOfferTask");
+            return $injector.get("OvhApiTelephonyServiceOfferTask");
         },
         RepaymentConsumption: function () {
-            return $injector.get("TelephonyServiceRepaymentConsumption");
+            return $injector.get("OvhApiTelephonyServiceRepaymentConsumption");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumptionAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceVoiceConsumptionAapi");
+    var cache = $cacheFactory("OvhApiTelephonyServiceVoiceConsumptionAapi");
 
     return $resource("/telephony/:billingAccount/consumption", {
         billingAccount: "@billingAccount"
@@ -13616,7 +13578,7 @@ angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionAapi
     );
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumptionErika", ["apiv7", function (apiv7) {
     "use strict";
 
     return apiv7("/telephony/:billingAccount/service/:serviceName/voiceConsumption/:consumptionId", {
@@ -13626,11 +13588,11 @@ angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionErik
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceVoiceConsumptionLexi");
-    var queryCache = $cacheFactory("TelephonyServiceVoiceConsumptionLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyServiceVoiceConsumptionLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyServiceVoiceConsumptionLexiQuery");
 
     var voiceConsumption = $resource("/telephony/:billingAccount/service/:serviceName/voiceConsumption/:consumptionId", {
         billingAccount: "@billingAccount",
@@ -13672,23 +13634,23 @@ angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumptionLexi
     return voiceConsumption;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceVoiceConsumptionLexi");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyServiceVoiceConsumptionErika");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionErika");
         },
         Aapi: function () {
-            return $injector.get("TelephonyServiceVoiceConsumptionAapi");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTaskLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTaskLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/task/:taskId", {
@@ -13706,16 +13668,16 @@ angular.module("ovh-api-services").service("TelephonyTaskLexi", ["$resource", fu
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTask", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyTaskLexi");
+            return $injector.get("OvhApiTelephonyTaskLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony", {}, {
@@ -13751,7 +13713,7 @@ angular.module("ovh-api-services").service("TelephonyAapi", ["$resource", functi
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var telephonyEndpoint = apiv7("/telephony/:billingAccount", {
@@ -13764,17 +13726,17 @@ angular.module("ovh-api-services").service("TelephonyErika", ["apiv7", function 
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyLexi", ["$resource", "$cacheFactory", "TelephonyLineAllAapi", function ($resource, $cacheFactory, TelephonyLineAllAapi) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLexi", ["$resource", "$cacheFactory", "OvhApiTelephonyLineAllAapi", function ($resource, $cacheFactory, OvhApiTelephonyLineAllAapi) {
 
-    var cache = $cacheFactory("TelephonyLexi");
-    var schemaCache = $cacheFactory("TelephonyLexiSchema");
-    var queryCache = $cacheFactory("TelephonyLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyLexi");
+    var schemaCache = $cacheFactory("OvhApiTelephonyLexiSchema");
+    var queryCache = $cacheFactory("OvhApiTelephonyLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            TelephonyLineAllAapi.resetCache();
+            OvhApiTelephonyLineAllAapi.resetCache();
             return response.resource;
         }
     };
@@ -13908,100 +13870,100 @@ angular.module("ovh-api-services").service("TelephonyLexi", ["$resource", "$cach
     return billingAccounts;
 }]);
 
-angular.module("ovh-api-services").service("Telephony", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephony", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLexi");
+            return $injector.get("OvhApiTelephonyLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyAapi");
+            return $injector.get("OvhApiTelephonyAapi");
         },
         Erika: function () {
-            return $injector.get("TelephonyErika");
+            return $injector.get("OvhApiTelephonyErika");
         },
         AbbreviatedNumber: function () {
-            return $injector.get("TelephonyAbbreviatedNumber");
+            return $injector.get("OvhApiTelephonyAbbreviatedNumber");
         },
         Eventtoken: function () {
-            return $injector.get("TelephonyEventtoken");
+            return $injector.get("OvhApiTelephonyEventtoken");
         },
         Fax: function () {
-            return $injector.get("TelephonyFax");
+            return $injector.get("OvhApiTelephonyFax");
         },
         OfferTask: function () {
-            return $injector.get("TelephonyOfferTask");
+            return $injector.get("OvhApiTelephonyOfferTask");
         },
         Line: function () {
-            return $injector.get("TelephonyLine");
+            return $injector.get("OvhApiTelephonyLine");
         },
         Lines: function () {
-            return $injector.get("TelephonyLines");
+            return $injector.get("OvhApiTelephonyLines");
         },
         Number: function () {
-            return $injector.get("TelephonyNumber");
+            return $injector.get("OvhApiTelephonyNumber");
         },
         Redirect: function () {
-            return $injector.get("TelephonyRedirect");
+            return $injector.get("OvhApiTelephonyRedirect");
         },
         Voicemail: function () {
-            return $injector.get("TelephonyVoicemail");
+            return $injector.get("OvhApiTelephonyVoicemail");
         },
         Service: function () {
-            return $injector.get("TelephonyService");
+            return $injector.get("OvhApiTelephonyService");
         },
         TimeCondition: function () {
-            return $injector.get("TelephonyTimeCondition");
+            return $injector.get("OvhApiTelephonyTimeCondition");
         },
         HistoryConsumption: function () {
-            return $injector.get("TelephonyHistoryConsumption");
+            return $injector.get("OvhApiTelephonyHistoryConsumption");
         },
         HistoryRepaymentConsumption: function () {
-            return $injector.get("TelephonyHistoryRepaymentConsumption");
+            return $injector.get("OvhApiTelephonyHistoryRepaymentConsumption");
         },
         HistoryTollfreeConsumption: function () {
-            return $injector.get("TelephonyHistoryTollfreeConsumption");
+            return $injector.get("OvhApiTelephonyHistoryTollfreeConsumption");
         },
         Screen: function () {
-            return $injector.get("TelephonyScreen");
+            return $injector.get("OvhApiTelephonyScreen");
         },
         Portability: function () {
-            return $injector.get("TelephonyPortability");
+            return $injector.get("OvhApiTelephonyPortability");
         },
         Scheduler: function () {
-            return $injector.get("TelephonyScheduler");
+            return $injector.get("OvhApiTelephonyScheduler");
         },
         Aliases: function () {
-            return $injector.get("TelephonyAliases");
+            return $injector.get("OvhApiTelephonyAliases");
         },
         Phonebook: function () {
-            return $injector.get("TelephonyPhonebook");
+            return $injector.get("OvhApiTelephonyPhonebook");
         },
         EasyHunting: function () {
-            return $injector.get("TelephonyEasyHunting");
+            return $injector.get("OvhApiTelephonyEasyHunting");
         },
         Rsva: function () {
-            return $injector.get("TelephonyRsva");
+            return $injector.get("OvhApiTelephonyRsva");
         },
         Conference: function () {
-            return $injector.get("TelephonyConference");
+            return $injector.get("OvhApiTelephonyConference");
         },
         Vxml: function () {
-            return $injector.get("TelephonyVxml");
+            return $injector.get("OvhApiTelephonyVxml");
         },
         Trunks: function () {
-            return $injector.get("TelephonyTrunks");
+            return $injector.get("OvhApiTelephonyTrunks");
         },
         OvhPabx: function () {
-            return $injector.get("TelephonyOvhPabx");
+            return $injector.get("OvhApiTelephonyOvhPabx");
         },
         Task: function () {
-            return $injector.get("TelephonyTask");
+            return $injector.get("OvhApiTelephonyTask");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTimeConditionConditionLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionConditionLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/timeCondition/:serviceName/condition/:id", {
@@ -14026,17 +13988,17 @@ angular.module("ovh-api-services").service("TelephonyTimeConditionConditionLexi"
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTimeConditionCondition", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionCondition", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyTimeConditionConditionLexi");
+            return $injector.get("OvhApiTelephonyTimeConditionConditionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTimeConditionAapi", ["$resource", "TelephonyTimeCondition", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", ["$resource", "TelephonyTimeCondition", function ($resource, TelephonyTimeCondition) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/timeCondition", {
@@ -14055,7 +14017,7 @@ angular.module("ovh-api-services").service("TelephonyTimeConditionAapi", ["$reso
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyTimeConditionLexi", ["$resource", "TelephonyTimeCondition", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", ["$resource", "TelephonyTimeCondition", function ($resource, TelephonyTimeCondition) {
 
     var interceptor = {
         response: function (response) {
@@ -14114,20 +14076,20 @@ angular.module("ovh-api-services").service("TelephonyTimeConditionLexi", ["$reso
 
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTimeCondition", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeCondition", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyTimeCondition");
+    var cache = $cacheFactory("OvhApiTelephonyTimeCondition");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyTimeConditionLexi");
+            return $injector.get("OvhApiTelephonyTimeConditionLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyTimeConditionAapi");
+            return $injector.get("OvhApiTelephonyTimeConditionAapi");
         },
         Condition: function () {
-            return $injector.get("TelephonyTimeConditionCondition");
+            return $injector.get("OvhApiTelephonyTimeConditionCondition");
         },
         resetCache: cache.removeAll,
         cache: cache
@@ -14136,10 +14098,10 @@ angular.module("ovh-api-services").service("TelephonyTimeCondition", ["$injector
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyTrunksLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTrunksLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("TelephonyTrunksLexi");
-    var queryCache = $cacheFactory("TelephonyTrunksLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyTrunksLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyTrunksLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -14194,17 +14156,17 @@ angular.module("ovh-api-services").service("TelephonyTrunksLexi", ["$resource", 
     return res;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyTrunks", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTrunks", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyTrunksLexi");
+            return $injector.get("OvhApiTelephonyTrunksLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("TelephonyVoicemailDirectoriesErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailDirectoriesErika", ["apiv7", function (apiv7) {
     "use strict";
 
     return apiv7("/telephony/:billingAccount/voicemail/:serviceName/directories/:id", {
@@ -14216,10 +14178,10 @@ angular.module("ovh-api-services").service("TelephonyVoicemailDirectoriesErika",
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyVoicemailDirectoriesLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailDirectoriesLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("TelephonyVoicemailDirectoriesLexi");
-    var queryCache = $cacheFactory("TelephonyVoicemailDirectoriesLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyVoicemailDirectoriesLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyVoicemailDirectoriesLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -14278,25 +14240,25 @@ angular.module("ovh-api-services").service("TelephonyVoicemailDirectoriesLexi", 
     return voicemailDirectories;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyVoicemailDirectories", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailDirectories", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyVoicemailDirectoriesLexi");
+            return $injector.get("OvhApiTelephonyVoicemailDirectoriesLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyVoicemailDirectoriesErika");
+            return $injector.get("OvhApiTelephonyVoicemailDirectoriesErika");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyVoicemailGreetingsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailGreetingsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("TelephonyVoicemailGreetingsLexi");
-    var queryCache = $cacheFactory("TelephonyVoicemailGreetingsLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyVoicemailGreetingsLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyVoicemailGreetingsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -14351,22 +14313,22 @@ angular.module("ovh-api-services").service("TelephonyVoicemailGreetingsLexi", ["
     return voicemailGreetings;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyVoicemailGreetings", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailGreetings", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyVoicemailGreetingsLexi");
+            return $injector.get("OvhApiTelephonyVoicemailGreetingsLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyVoicemailLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("TelephonyVoicemailLexi");
-    var queryCache = $cacheFactory("TelephonyVoicemailLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyVoicemailLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyVoicemailLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -14417,25 +14379,25 @@ angular.module("ovh-api-services").service("TelephonyVoicemailLexi", ["$resource
     return voicemail;
 }]);
 
-angular.module("ovh-api-services").service("TelephonyVoicemail", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemail", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyVoicemailLexi");
+            return $injector.get("OvhApiTelephonyVoicemailLexi");
         },
         Greetings: function () {
-            return $injector.get("TelephonyVoicemailGreetings");
+            return $injector.get("OvhApiTelephonyVoicemailGreetings");
         },
         Directories: function () {
-            return $injector.get("TelephonyVoicemailDirectories");
+            return $injector.get("OvhApiTelephonyVoicemailDirectories");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyVxmlLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVxmlLexi", ["$resource", function ($resource) {
 
     return $resource("/telephony/:billingAccount/vxml/:serviceName", {
         billingAccount: "@billingAccount",
@@ -14454,17 +14416,17 @@ angular.module("ovh-api-services").service("TelephonyVxmlLexi", ["$resource", fu
     });
 }]);
 
-angular.module("ovh-api-services").service("TelephonyVxml", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVxml", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyVxmlLexi");
+            return $injector.get("OvhApiTelephonyVxmlLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserAgreementsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserAgreementsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/agreements/:id", {
@@ -14481,18 +14443,18 @@ angular.module("ovh-api-services").service("UserAgreementsLexi", ["$resource", f
     });
 }]);
 
-angular.module("ovh-api-services").service("UserAgreements", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserAgreements", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserAgreementsLexi");
+            return $injector.get("OvhApiUserAgreementsLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserAlertsAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserAlertsAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/alerts", {}, {
@@ -14506,19 +14468,19 @@ angular.module("ovh-api-services").service("UserAlertsAapi", ["$resource", funct
 }]);
 
 
-angular.module("ovh-api-services").service("UserAlerts", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserAlerts", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("UserAlertsAapi");
+            return $injector.get("OvhApiUserAlertsAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("UserLexi");
+    var cache = $cacheFactory("OvhApiUserLexi");
 
     var interceptor = {
         response: function (response) {
@@ -14541,77 +14503,77 @@ angular.module("ovh-api-services").service("UserLexi", ["$resource", "$cacheFact
 
 }]);
 
-angular.module("ovh-api-services").service("User", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUser", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("UserLexi");
+            return $injector.get("OvhApiUserLexi");
         },
         Agreements: function () {
-            return $injector.get("UserAgreements");
+            return $injector.get("OvhApiUserAgreements");
         },
         SshKey: function () {
-            return $injector.get("UserSshKey");
+            return $injector.get("OvhApiUserSshKey");
         },
         Bill: function () {
-            return $injector.get("UserBill");
+            return $injector.get("OvhApiUserBill");
         },
         Order: function () {
-            return $injector.get("UserOrder");
+            return $injector.get("OvhApiUserOrder");
         },
         OvhAccount: function () {
-            return $injector.get("UserOvhAccount");
+            return $injector.get("OvhApiUserOvhAccount");
         },
         FidelityAccount: function () {
-            return $injector.get("UserFidelityAccount");
+            return $injector.get("OvhApiUserFidelityAccount");
         },
         PaymentMean: function () {
-            return $injector.get("UserPaymentMean");
+            return $injector.get("OvhApiUserPaymentMean");
         },
         AvailableAutomaticPaymentMeans: function () {
-            return $injector.get("UserAvailableAutomaticPaymentMeans");
+            return $injector.get("OvhApiUserAvailableAutomaticPaymentMeans");
         },
         Document: function () {
-            return $injector.get("UserDocument");
+            return $injector.get("OvhApiUserDocument");
         },
         Contact: function () {
-            return $injector.get("UserContact");
+            return $injector.get("OvhApiUserContact");
         },
         Task: function () {
-            return $injector.get("UserTask");
+            return $injector.get("OvhApiUserTask");
         },
         Telephony: function () {
-            return $injector.get("UserTelephony");
+            return $injector.get("OvhApiUserTelephony");
         },
         Fax: function () {
-            return $injector.get("UserFax");
+            return $injector.get("OvhApiUserFax");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserAvailableAutomaticPaymentMeansLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserAvailableAutomaticPaymentMeansLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("UserAvailableAutomaticPaymentMeansLexi");
+    var cache = $cacheFactory("OvhApiUserAvailableAutomaticPaymentMeansLexi");
 
     return $resource("/me/availableAutomaticPaymentMeans", { }, {
         get: { method: "GET", cache: cache, isArray: false }
     });
 }]);
 
-angular.module("ovh-api-services").service("UserAvailableAutomaticPaymentMeans", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserAvailableAutomaticPaymentMeans", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Tera: angular.noop,
         Lexi: function () {
-            return $injector.get("UserAvailableAutomaticPaymentMeansLexi");
+            return $injector.get("OvhApiUserAvailableAutomaticPaymentMeansLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserBillDetailsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserBillDetailsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/bill/:billId/details/:billDetailId", {
@@ -14620,18 +14582,18 @@ angular.module("ovh-api-services").service("UserBillDetailsLexi", ["$resource", 
     });
 }]);
 
-angular.module("ovh-api-services").service("UserBillDetails", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserBillDetails", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserBillDetailsLexi");
+            return $injector.get("OvhApiUserBillDetailsLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserBillAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserBillAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/bill", {}, {
@@ -14644,11 +14606,11 @@ angular.module("ovh-api-services").service("UserBillAapi", ["$resource", functio
     });
 }]);
 
-angular.module("ovh-api-services").service("UserBillLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserBillLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
     // we don't need cache for query : it's just list of IDs and we don't know if a new bill is emited
-    var cache = $cacheFactory("UserBillLexi");
+    var cache = $cacheFactory("OvhApiUserBillLexi");
 
     var userBillResource = $resource("/me/bill/:billId", {
         billId: "@billId"
@@ -14664,26 +14626,26 @@ angular.module("ovh-api-services").service("UserBillLexi", ["$resource", "$cache
     return userBillResource;
 }]);
 
-angular.module("ovh-api-services").service("UserBill", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserBill", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("UserBillAapi");
+            return $injector.get("OvhApiUserBillAapi");
         },
         Lexi: function () {
-            return $injector.get("UserBillLexi");
+            return $injector.get("OvhApiUserBillLexi");
         },
         Details: function () {
-            return $injector.get("UserBillDetails");
+            return $injector.get("OvhApiUserBillDetails");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserContactErika", ["$resource", "$cacheFactory", "Apiv7Endpoint", function ($resource, $cacheFactory, Apiv7Endpoint) {
+angular.module("ovh-api-services").service("OvhApiUserContactErika", ["$resource", "$cacheFactory", "Apiv7Endpoint", function ($resource, $cacheFactory, Apiv7Endpoint) {
     "use strict";
 
-    var queryCache = $cacheFactory("UserContactErikaQuery");
-    var otherCache = $cacheFactory("UserContactErika");
+    var queryCache = $cacheFactory("OvhApiUserContactErikaQuery");
+    var otherCache = $cacheFactory("OvhApiUserContactErika");
 
     var userContactResource = new Apiv7Endpoint("/me/contact/:contactId", {
         contactId: "@contactId"
@@ -14713,11 +14675,11 @@ angular.module("ovh-api-services").service("UserContactErika", ["$resource", "$c
     return userContactResource;
 }]);
 
-angular.module("ovh-api-services").service("UserContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserContactLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("UserContactQueryLexi");
-    var cache = $cacheFactory("UserContactLexi");
+    var queryCache = $cacheFactory("OvhApiUserContactQueryLexi");
+    var cache = $cacheFactory("OvhApiUserContactLexi");
 
     var interceptor = {
         response: function (response) {
@@ -14751,25 +14713,25 @@ angular.module("ovh-api-services").service("UserContactLexi", ["$resource", "$ca
 
 }]);
 
-angular.module("ovh-api-services").service("UserContact", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserContact", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserContactLexi");
+            return $injector.get("OvhApiUserContactLexi");
         },
         Erika: function () {
-            return $injector.get("UserContactErika");
+            return $injector.get("OvhApiUserContactErika");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserDocumentLexi", ["$resource", "$cacheFactory", "$window", "$http", function ($resource, $cacheFactory, $window, $http) {
+angular.module("ovh-api-services").service("OvhApiUserDocumentLexi", ["$resource", "$cacheFactory", "$window", "$http", function ($resource, $cacheFactory, $window, $http) {
     "use strict";
 
-    var cache = $cacheFactory("UserDocumentLexi");
-    var queryCache = $cacheFactory("UserDocumentLexiQuery");
+    var cache = $cacheFactory("OvhApiUserDocumentLexi");
+    var queryCache = $cacheFactory("OvhApiUserDocumentLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -14842,27 +14804,27 @@ angular.module("ovh-api-services").service("UserDocumentLexi", ["$resource", "$c
     return docResource;
 }]);
 
-angular.module("ovh-api-services").service("UserDocument", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserDocument", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserDocumentLexi");
+            return $injector.get("OvhApiUserDocumentLexi");
         }
     };
 }]);
 
 
-angular.module("ovh-api-services").service("UserFax", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserFax", ["$injector", function ($injector) {
     "use strict";
     return {
         CustomDomains: function () {
-            return $injector.get("UserFaxCustomDomains");
+            return $injector.get("OvhApiUserFaxCustomDomains");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserFaxCustomDomainsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserFaxCustomDomainsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/fax/customDomains/:id", {
@@ -14884,16 +14846,16 @@ angular.module("ovh-api-services").service("UserFaxCustomDomainsLexi", ["$resour
     });
 }]);
 
-angular.module("ovh-api-services").service("UserFaxCustomDomains", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserFaxCustomDomains", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("UserFaxCustomDomainsLexi");
+            return $injector.get("OvhApiUserFaxCustomDomainsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserFeedbackAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserFeedbackAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me", {}, {
@@ -14906,10 +14868,10 @@ angular.module("ovh-api-services").service("UserFeedbackAapi", ["$resource", fun
 }]);
 
 
-angular.module("ovh-api-services").service("UserFidelityAccountLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserFidelityAccountLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("UserFidelityAccountLexi");
+    var cache = $cacheFactory("OvhApiUserFidelityAccountLexi");
 
     var userFidelityResource = $resource("/me/fidelityAccount", {}, {
         get: {
@@ -14925,18 +14887,18 @@ angular.module("ovh-api-services").service("UserFidelityAccountLexi", ["$resourc
     return userFidelityResource;
 }]);
 
-angular.module("ovh-api-services").service("UserFidelityAccount", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserFidelityAccount", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserFidelityAccountLexi");
+            return $injector.get("OvhApiUserFidelityAccountLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserOrderErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiUserOrderErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var userOrderEndpoint = apiv7("/me/order/:orderId", {
@@ -14946,11 +14908,11 @@ angular.module("ovh-api-services").service("UserOrderErika", ["apiv7", function 
     return userOrderEndpoint;
 }]);
 
-angular.module("ovh-api-services").service("UserOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("UserOrderLexi");
-    var queryCache = $cacheFactory("UserOrderLexiQuery");
+    var otherCache = $cacheFactory("OvhApiUserOrderLexi");
+    var queryCache = $cacheFactory("OvhApiUserOrderLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -14968,10 +14930,10 @@ angular.module("ovh-api-services").service("UserOrderLexi", ["$resource", "$cach
             method: "GET",
 
             /**
-                 * This endpoint returns a bared, quoted string like "unPaid".
-                 * $resource does not handle that gracefully.
-                 * So lets make a clean object out of that response
-                 */
+             * This endpoint returns a bared, quoted string like "unPaid".
+             * $resource does not handle that gracefully.
+             * So lets make a clean object out of that response
+             */
             transformResponse: function (response, headers, httpCode) {
                 if (httpCode === 200) {
                     return { status: angular.fromJson(response) };
@@ -15000,25 +14962,25 @@ angular.module("ovh-api-services").service("UserOrderLexi", ["$resource", "$cach
     return userOrderResource;
 }]);
 
-angular.module("ovh-api-services").service("UserOrder", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserOrder", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Tera: angular.noop,
         Lexi: function () {
-            return $injector.get("UserOrderLexi");
+            return $injector.get("OvhApiUserOrderLexi");
         },
         Erika: function () {
-            return $injector.get("UserOrderErika");
+            return $injector.get("OvhApiUserOrderErika");
         },
         PayRegisteredPaymentMean: function () {
-            return $injector.get("UserOrderPayRegisteredPaymentMean");
+            return $injector.get("OvhApiUserOrderPayRegisteredPaymentMean");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserOvhAccountAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserOvhAccountAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/ovhAccount/all", {}, {
@@ -15031,11 +14993,11 @@ angular.module("ovh-api-services").service("UserOvhAccountAapi", ["$resource", f
 }]);
 
 angular.module("ovh-api-services")
-    .service("UserOvhAccountLexi", ["$resource", "$cacheFactory", "UserLexi", function ($resource, $cacheFactory, UserLexi) {
+    .service("UserOvhAccountLexi", ["$resource", "$cacheFactory", "OvhApiUserLexi", function ($resource, $cacheFactory, OvhApiUserLexi) {
         "use strict";
 
-        var cache = $cacheFactory("UserOvhAccountLexi");
-        var queryCache = $cacheFactory("UserOvhAccountLexiQuery");
+        var cache = $cacheFactory("OvhApiUserOvhAccountLexi");
+        var queryCache = $cacheFactory("OvhApiUserOvhAccountLexiQuery");
 
         var resource = $resource("/me/ovhAccount/:ovhAccountId", {
             ovhAccountId: "@ovhAccountId"
@@ -15045,7 +15007,7 @@ angular.module("ovh-api-services")
         });
 
         resource.getBalance = function () {
-            return UserLexi.get().$promise
+            return OvhApiUserLexi.get().$promise
                 .then(function (userInfo) {
                     return resource.get({ ovhAccountId: userInfo.ovhSubsidiary }).$promise;
                 })
@@ -15065,19 +15027,19 @@ angular.module("ovh-api-services")
         return resource;
     }]);
 
-angular.module("ovh-api-services").service("UserOvhAccount", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserOvhAccount", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("UserOvhAccountAapi");
+            return $injector.get("OvhApiUserOvhAccountAapi");
         },
         Lexi: function () {
-            return $injector.get("UserOvhAccountLexi");
+            return $injector.get("OvhApiUserOvhAccountLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanBankAccountLexi", ["$resource", "$q", function ($resource, $q) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanBankAccountLexi", ["$resource", "$q", function ($resource, $q) {
     "use strict";
 
     var resource = $resource("/me/paymentMean/bankAccount/:id", {
@@ -15105,18 +15067,18 @@ angular.module("ovh-api-services").service("UserPaymentMeanBankAccountLexi", ["$
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanBankAccount", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanBankAccount", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserPaymentMeanBankAccountLexi");
+            return $injector.get("OvhApiUserPaymentMeanBankAccountLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanCreditCardLexi", ["$resource", "$q", function ($resource, $q) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanCreditCardLexi", ["$resource", "$q", function ($resource, $q) {
     "use strict";
 
     var resource = $resource("/me/paymentMean/creditCard/:id", {
@@ -15153,18 +15115,18 @@ angular.module("ovh-api-services").service("UserPaymentMeanCreditCardLexi", ["$r
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanCreditCard", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanCreditCard", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserPaymentMeanCreditCardLexi");
+            return $injector.get("OvhApiUserPaymentMeanCreditCardLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanPaypalLexi", ["$resource", "$q", function ($resource, $q) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanPaypalLexi", ["$resource", "$q", function ($resource, $q) {
     "use strict";
 
     var resource = $resource("/me/paymentMean/paypal/:id", {
@@ -15191,33 +15153,33 @@ angular.module("ovh-api-services").service("UserPaymentMeanPaypalLexi", ["$resou
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanPaypal", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanPaypal", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserPaymentMeanPaypalLexi");
+            return $injector.get("OvhApiUserPaymentMeanPaypalLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMeanLexi", ["UserPaymentMeanBankAccount", "UserPaymentMeanCreditCard", "UserPaymentMeanPaypal", function (UserPaymentMeanBankAccount, UserPaymentMeanCreditCard, UserPaymentMeanPaypal) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanLexi", ["OvhApiUserPaymentMeanBankAccount", "OvhApiUserPaymentMeanCreditCard", "OvhApiUserPaymentMeanPaypal", function (OvhApiUserPaymentMeanBankAccount, OvhApiUserPaymentMeanCreditCard, OvhApiUserPaymentMeanPaypal) {
     "use strict";
 
     return {
         getDefaultPaymentMean: function () {
-            return UserPaymentMeanCreditCard.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanCreditCard) {
+            return OvhApiUserPaymentMeanCreditCard.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanCreditCard) {
                 if (defaultPaymentMeanCreditCard) {
                     defaultPaymentMeanCreditCard.paymentType = "creditCard";
                     return defaultPaymentMeanCreditCard;
                 }
-                return UserPaymentMeanPaypal.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanPaypal) {
+                return OvhApiUserPaymentMeanPaypal.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanPaypal) {
                     if (defaultPaymentMeanPaypal) {
                         defaultPaymentMeanPaypal.paymentType = "paypal";
                         return defaultPaymentMeanPaypal;
                     }
-                    return UserPaymentMeanBankAccount.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanBankAccount) {
+                    return OvhApiUserPaymentMeanBankAccount.Lexi().getDefaultPaymentMean().then(function (defaultPaymentMeanBankAccount) {
                         if (defaultPaymentMeanBankAccount) {
                             defaultPaymentMeanBankAccount.paymentType = "bankAccount";
                             return defaultPaymentMeanBankAccount;
@@ -15233,28 +15195,28 @@ angular.module("ovh-api-services").service("UserPaymentMeanLexi", ["UserPaymentM
     };
 }]);
 
-angular.module("ovh-api-services").service("UserPaymentMean", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMean", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserPaymentMeanLexi");
+            return $injector.get("OvhApiUserPaymentMeanLexi");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("UserSshKey", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserSshKey", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserSshKeyLexi");
+            return $injector.get("OvhApiUserSshKeyLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserSshKeyLexi", ["$injector", "$resource", function ($injector, $resource) {
+angular.module("ovh-api-services").service("OvhApiUserSshKeyLexi", ["$injector", "$resource", function ($injector, $resource) {
     "use strict";
 
     var req = $resource("/api/me/sshKey");
@@ -15262,7 +15224,7 @@ angular.module("ovh-api-services").service("UserSshKeyLexi", ["$injector", "$res
     return req;
 }]);
 
-angular.module("ovh-api-services").service("UserTaskContactChangeLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserTaskContactChangeLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/task/contactChange/:id", {
@@ -15298,43 +15260,43 @@ angular.module("ovh-api-services").service("UserTaskContactChangeLexi", ["$resou
 }]);
 
 
-angular.module("ovh-api-services").service("UserTaskContactChange", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTaskContactChange", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("UserTaskContactChangeLexi");
+            return $injector.get("OvhApiUserTaskContactChangeLexi");
         }
     };
 }]);
 
 
-angular.module("ovh-api-services").service("UserTask", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTask", ["$injector", function ($injector) {
     "use strict";
     return {
         ContactChange: function () {
-            return $injector.get("UserTaskContactChange");
+            return $injector.get("OvhApiUserTaskContactChange");
         }
     };
 }]);
 
 
-angular.module("ovh-api-services").service("UserTelephony", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTelephony", ["$injector", function ($injector) {
     "use strict";
     return {
         DefaultIpRestriction: function () {
-            return $injector.get("UserTelephonyDefaultIpRestriction");
+            return $injector.get("OvhApiUserTelephonyDefaultIpRestriction");
         },
         Settings: function () {
-            return $injector.get("UserTelephonySettings");
+            return $injector.get("OvhApiUserTelephonySettings");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserTelephonyDefaultIpRestrictionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserTelephonyDefaultIpRestrictionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("UserTelephonyDefaultIpRestrictionLexi");
-    var queryCache = $cacheFactory("UserTelephonyDefaultIpRestrictionLexiQuery");
+    var cache = $cacheFactory("OvhApiUserTelephonyDefaultIpRestrictionLexi");
+    var queryCache = $cacheFactory("OvhApiUserTelephonyDefaultIpRestrictionLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -15390,17 +15352,17 @@ angular.module("ovh-api-services").service("UserTelephonyDefaultIpRestrictionLex
     return res;
 }]);
 
-angular.module("ovh-api-services").service("UserTelephonyDefaultIpRestriction", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTelephonyDefaultIpRestriction", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserTelephonyDefaultIpRestrictionLexi");
+            return $injector.get("OvhApiUserTelephonyDefaultIpRestrictionLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserTelephonySettingsLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserTelephonySettingsLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/telephony/settings", {}, {
@@ -15413,17 +15375,17 @@ angular.module("ovh-api-services").service("UserTelephonySettingsLexi", ["$resou
     });
 }]);
 
-angular.module("ovh-api-services").service("UserTelephonySettings", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTelephonySettings", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserTelephonySettingsLexi");
+            return $injector.get("OvhApiUserTelephonySettingsLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("UserVipStatusLexi", ["$injector", "$resource", function ($injector, $resource) {
+angular.module("ovh-api-services").service("OvhApiUserVipStatusLexi", ["$injector", "$resource", function ($injector, $resource) {
     "use strict";
 
     var req = $resource("/me/vipStatus");
@@ -15431,17 +15393,17 @@ angular.module("ovh-api-services").service("UserVipStatusLexi", ["$injector", "$
     return req;
 }]);
 
-angular.module("ovh-api-services").service("UserVipStatus", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserVipStatus", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserVipStatusLexi");
+            return $injector.get("OvhApiUserVipStatusLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("ValidateAapi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiValidateAapi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/validate", {}, {
@@ -15454,11 +15416,11 @@ angular.module("ovh-api-services").service("ValidateAapi", ["$resource", functio
     });
 }]);
 
-angular.module("ovh-api-services").service("VeeamLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVeeamLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VeeamLexi");
-    var queryCache = $cacheFactory("VeeamLexiQuery");
+    var cache = $cacheFactory("OvhApiVeeamLexi");
+    var queryCache = $cacheFactory("OvhApiVeeamLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.removeAll();
@@ -15562,20 +15524,20 @@ angular.module("ovh-api-services").service("VeeamLexi", ["$resource", "$cacheFac
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("Veeam", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVeeam", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("VeeamLexi");
+            return $injector.get("OvhApiVeeamLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("VpsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVpsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VpsAapi");
+    var cache = $cacheFactory("OvhApiVpsAapi");
 
     var vpsResource = $resource("/vps/:serviceName", {
         serviceName: "@serviceName"
@@ -15599,11 +15561,11 @@ angular.module("ovh-api-services").service("VpsAapi", ["$resource", "$cacheFacto
     return vpsResource;
 }]);
 
-angular.module("ovh-api-services").service("VpsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVpsLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VpsLexi");
-    var queryCache = $cacheFactory("VpsLexiQuery");
+    var cache = $cacheFactory("OvhApiVpsLexi");
+    var queryCache = $cacheFactory("OvhApiVpsLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -15639,15 +15601,15 @@ angular.module("ovh-api-services").service("VpsLexi", ["$resource", "$cacheFacto
     return vps;
 }]);
 
-angular.module("ovh-api-services").service("Vps", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVps", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("VpsLexi");
+            return $injector.get("OvhApiVpsLexi");
         },
         Aapi: function () {
-            return $injector.get("VpsAapi");
+            return $injector.get("OvhApiVpsAapi");
         }
     };
 
@@ -15655,10 +15617,10 @@ angular.module("ovh-api-services").service("Vps", ["$injector", function ($injec
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackCloudProjectLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackCloudProjectLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("VrackCloudProjectLexi");
-    var queryCache = $cacheFactory("VrackCloudProjectLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackCloudProjectLexi");
+    var queryCache = $cacheFactory("OvhApiVrackCloudProjectLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -15692,21 +15654,21 @@ angular.module("ovh-api-services").service("VrackCloudProjectLexi", ["$resource"
     return vrackCloudProject;
 }]);
 
-angular.module("ovh-api-services").service("VrackCloudProject", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackCloudProject", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackCloudProjectLexi");
+            return $injector.get("OvhApiVrackCloudProjectLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackDedicatedCloudLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloudLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("VrackDedicatedCloudLexi");
-    var queryCache = $cacheFactory("VrackDedicatedCloudLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackDedicatedCloudLexi");
+    var queryCache = $cacheFactory("OvhApiVrackDedicatedCloudLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -15742,25 +15704,25 @@ angular.module("ovh-api-services").service("VrackDedicatedCloudLexi", ["$resourc
     return vrackDedicatedCloud;
 }]);
 
-angular.module("ovh-api-services").service("VrackDedicatedCloud", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloud", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackDedicatedCloudLexi");
+            return $injector.get("OvhApiVrackDedicatedCloudLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackDedicatedCloudDatacenterLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloudDatacenterLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackDedicatedCloudDatacenterLexi");
+    var cache = $cacheFactory("OvhApiVrackDedicatedCloudDatacenterLexi");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -15784,33 +15746,33 @@ angular.module("ovh-api-services").service("VrackDedicatedCloudDatacenterLexi", 
 
     vrackDedicatedCloud.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackDedicatedCloud;
 }]);
 
-angular.module("ovh-api-services").service("VrackDedicatedCloudDatacenter", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloudDatacenter", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackDedicatedCloudDatacenterLexi");
+            return $injector.get("OvhApiVrackDedicatedCloudDatacenterLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackDedicatedConnectLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedConnectLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackDedicatedConnectLexi");
-    var queryCache = $cacheFactory("VrackDedicatedConnectLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackDedicatedConnectLexi");
+    var queryCache = $cacheFactory("OvhApiVrackDedicatedConnectLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -15832,38 +15794,38 @@ angular.module("ovh-api-services").service("VrackDedicatedConnectLexi", ["$resou
 
     vrackDedicatedConnect.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     vrackDedicatedConnect.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackDedicatedConnect;
 }]);
 
-angular.module("ovh-api-services").service("VrackDedicatedConnect", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedConnect", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackDedicatedConnectLexi");
+            return $injector.get("OvhApiVrackDedicatedConnectLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackDedicatedServerLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedServerLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackDedicatedServerLexi");
-    var queryCache = $cacheFactory("VrackDedicatedServerLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackDedicatedServerLexi");
+    var queryCache = $cacheFactory("OvhApiVrackDedicatedServerLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -15885,35 +15847,35 @@ angular.module("ovh-api-services").service("VrackDedicatedServerLexi", ["$resour
 
     vrackDedicatedServer.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     vrackDedicatedServer.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackDedicatedServer;
 }]);
 
-angular.module("ovh-api-services").service("VrackDedicatedServer", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedServer", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackDedicatedServerLexi");
+            return $injector.get("OvhApiVrackDedicatedServerLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("DedicatedServerInterfaceLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServerInterfaceLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedServerInterfaceLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDedicatedServerInterfaceLexiQuery");
 
     var interceptor = {
         response: function (response) {
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -15953,38 +15915,38 @@ angular.module("ovh-api-services").service("DedicatedServerInterfaceLexi", ["$re
 
     resource.resetAllCache = function () {
         resource.resetQueryCache();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     resource.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return resource;
 }]);
 
-angular.module("ovh-api-services").service("DedicatedServerInterface", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServerInterface", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DedicatedServerInterfaceLexi");
+            return $injector.get("OvhApiDedicatedServerInterfaceLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackIpLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackIpLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackIpLexi");
-    var queryCache = $cacheFactory("VrackIpLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackIpLexi");
+    var queryCache = $cacheFactory("OvhApiVrackIpLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -16006,38 +15968,38 @@ angular.module("ovh-api-services").service("VrackIpLexi", ["$resource", "$cacheF
 
     vrackIp.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     vrackIp.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackIp;
 }]);
 
-angular.module("ovh-api-services").service("VrackIp", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackIp", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackIpLexi");
+            return $injector.get("OvhApiVrackIpLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackLegacyVrackLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackLegacyVrackLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackLegacyVrackLexi");
-    var queryCache = $cacheFactory("VrackLegacyVrackLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackLegacyVrackLexi");
+    var queryCache = $cacheFactory("OvhApiVrackLegacyVrackLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -16059,38 +16021,38 @@ angular.module("ovh-api-services").service("VrackLegacyVrackLexi", ["$resource",
 
     vrackLegacyVrack.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     vrackLegacyVrack.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackLegacyVrack;
 }]);
 
-angular.module("ovh-api-services").service("VrackLegacyVrack", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackLegacyVrack", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackLegacyVrackLexi");
+            return $injector.get("OvhApiVrackLegacyVrackLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackNashaLexi", ["$resource", "$cacheFactory", "Vrack", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackNashaLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackNashaLexi");
-    var queryCache = $cacheFactory("VrackNashaLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackNashaLexi");
+    var queryCache = $cacheFactory("OvhApiVrackNashaLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -16113,35 +16075,35 @@ angular.module("ovh-api-services").service("VrackNashaLexi", ["$resource", "$cac
 
     vrackNasha.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     vrackNasha.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackNasha;
 }]);
 
-angular.module("ovh-api-services").service("VrackNasha", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackNasha", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackNashaLexi");
+            return $injector.get("OvhApiVrackNashaLexi");
         }
     };
 }]);
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackLexi", ["$resource", "VrackPublicCloud", "CloudProject", "Vrack", function ($resource, VrackPublicCloud, CloudProject, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackLexi", ["$resource", "OvhApiVrackPublicCloud", "OvhApiCloudProject", "OvhApiVrack", function ($resource, OvhApiVrackPublicCloud, OvhApiCloudProject, OvhApiVrack) {
 
     var interceptor = {
         response: function (response) {
-            VrackPublicCloud.resetCache();
-            CloudProject.resetCache();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrackPublicCloud.resetCache();
+            OvhApiCloudProject.resetCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -16152,13 +16114,13 @@ angular.module("ovh-api-services").service("VrackLexi", ["$resource", "VrackPubl
         project: {
             method: "GET",
             url: "/vrack/:serviceName/cloudProject/:projectId ",
-            cache: VrackPublicCloud.cache
+            cache: OvhApiVrackPublicCloud.cache
         },
         projects: {
             method: "GET",
             url: "/vrack/:serviceName/cloudProject",
             isArray: true,
-            cache: VrackPublicCloud.cache
+            cache: OvhApiVrackPublicCloud.cache
         },
         addProject: {
             method: "POST",
@@ -16175,24 +16137,24 @@ angular.module("ovh-api-services").service("VrackLexi", ["$resource", "VrackPubl
     return vracks;
 }]);
 
-angular.module("ovh-api-services").service("VrackPublicCloud", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackPublicCloud", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VrackPublicCloud");
+    var cache = $cacheFactory("OvhApiVrackPublicCloud");
 
     return {
         Lexi: function () {
-            return $injector.get("VrackPublicCloudLexi");
+            return $injector.get("OvhApiVrackPublicCloudLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("VrackAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VrackAapi");
+    var cache = $cacheFactory("OvhApiVrackAapi");
 
     var vrackResource = $resource("/vrack/:serviceName", {
         serviceName: "@serviceName"
@@ -16233,16 +16195,16 @@ angular.module("ovh-api-services").service("VrackAapi", ["$resource", "$cacheFac
 
 "use strict";
 
-angular.module("ovh-api-services").service("VrackLexi", ["$resource", "$cacheFactory", "VrackAapi", function ($resource, $cacheFactory, VrackAapi) {
+angular.module("ovh-api-services").service("OvhApiVrackLexi", ["$resource", "$cacheFactory", "OvhApiVrackAapi", function ($resource, $cacheFactory, OvhApiVrackAapi) {
 
-    var cache = $cacheFactory("VrackLexi");
-    var queryCache = $cacheFactory("VrackLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackLexi");
+    var queryCache = $cacheFactory("OvhApiVrackLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            VrackAapi.resetCache();
+            OvhApiVrackAapi.resetCache();
             return response;
         }
     };
@@ -16281,46 +16243,46 @@ angular.module("ovh-api-services").service("VrackLexi", ["$resource", "$cacheFac
     return vracks;
 }]);
 
-angular.module("ovh-api-services").service("Vrack", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrack", ["$injector", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("VrackAapi");
+            return $injector.get("OvhApiVrackAapi");
         },
         Lexi: function () {
-            return $injector.get("VrackLexi");
+            return $injector.get("OvhApiVrackLexi");
         },
         CloudProject: function () {
-            return $injector.get("VrackCloudProject");
+            return $injector.get("OvhApiVrackCloudProject");
         },
         DedicatedCloud: function () {
-            return $injector.get("VrackDedicatedCloud");
+            return $injector.get("OvhApiVrackDedicatedCloud");
         },
         DedicatedServer: function () {
-            return $injector.get("VrackDedicatedServer");
+            return $injector.get("OvhApiVrackDedicatedServer");
         },
         DedicatedServerInterface: function () {
-            return $injector.get("DedicatedServerInterface");
+            return $injector.get("OvhApiDedicatedServerInterface");
         },
         DedicatedConnect: function () {
-            return $injector.get("VrackDedicatedConnect");
+            return $injector.get("OvhApiVrackDedicatedConnect");
         },
         Ip: function () {
-            return $injector.get("VrackIp");
+            return $injector.get("OvhApiVrackIp");
         },
         LegacyVrack: function () {
-            return $injector.get("VrackLegacyVrack");
+            return $injector.get("OvhApiVrackLegacyVrack");
         },
         Nasha: function () {
-            return $injector.get("VrackNasha");
+            return $injector.get("OvhApiVrackNasha");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslDeconsolidationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslDeconsolidationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("xdslDeconsolidationLexi");
+    var cache = $cacheFactory("OvhApixdslDeconsolidationLexi");
 
     return $resource(
         "/xdsl/:xdslId", {
@@ -16339,11 +16301,11 @@ angular.module("ovh-api-services").service("XdslDeconsolidationLexi", ["$resourc
     );
 }]);
 
-angular.module("ovh-api-services").service("XdslDeconsolidation", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiXdslDeconsolidation", ["$injector", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("XdslDeconsolidationLexi");
+            return $injector.get("OvhApiXdslDeconsolidationLexi");
         },
         Aapi: function () {
             return angular.noop;
@@ -16352,7 +16314,7 @@ angular.module("ovh-api-services").service("XdslDeconsolidation", ["$injector", 
 }]);
 
 /* global angular*/
-angular.module("ovh-api-services").service("XdslDiagnosticAapi", ["$resource", "Poller", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiXdslDiagnosticAapi", ["$resource", "Poller", function ($resource, Poller) {
     "use strict";
 
     var route = "/xdsl/:xdslId/diagnostic";
@@ -16393,46 +16355,42 @@ angular.module("ovh-api-services").service("XdslDiagnosticAapi", ["$resource", "
     return diagnostic;
 }]);
 
-/* global angular*/
-angular.module("ovh-api-services").service("XdslDiagnosticLexi",
-                                           ["$resource", function ($resource) {
-                                               "use strict";
-
-                                               var route = "/xdsl/:xdslId/diagnostic";
-
-                                               var diagnostic = $resource(route, {
-                                                   xdslId: "@xdslId"
-                                               }, {
-                                                   launchDiagnostic: {
-                                                       method: "POST",
-                                                       isArray: false
-                                                   }
-                                               });
-
-                                               return diagnostic;
-
-                                           }]
-);
-
-/* global angular*/
-angular.module("ovh-api-services").service("XdslDiagnostic", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslDiagnosticLexi", ["$resource", function ($resource) {
     "use strict";
 
-    var cache = $cacheFactory("XdslDiagnostic");
+    var route = "/xdsl/:xdslId/diagnostic";
+
+    var diagnostic = $resource(route, {
+        xdslId: "@xdslId"
+    }, {
+        launchDiagnostic: {
+            method: "POST",
+            isArray: false
+        }
+    });
+
+    return diagnostic;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslDiagnostic", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslDiagnostic");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslDiagnosticLexi");
+            return $injector.get("OvhApiXdslDiagnosticLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslDiagnosticAapi");
+            return $injector.get("OvhApiXdslDiagnosticAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslEligibilityLexi", ["$resource", "XdslEligibility", function ($resource, XdslEligibility) {
+angular.module("ovh-api-services").service("OvhApiXdslEligibilityLexi", ["$resource", "OvhApiXdslEligibility", function ($resource, OvhApiXdslEligibility) {
     "use strict";
 
     return $resource("/xdsl/eligibility", {
@@ -16441,32 +16399,32 @@ angular.module("ovh-api-services").service("XdslEligibilityLexi", ["$resource", 
             method: "GET",
             isArray: true,
             url: "/xdsl/eligibility/cities",
-            cache: XdslEligibility.cache
+            cache: OvhApiXdslEligibility.cache
         },
         getStreets: {
             method: "GET",
             isArray: true,
             url: "/xdsl/eligibility/streets",
-            cache: XdslEligibility.cache
+            cache: OvhApiXdslEligibility.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslEligibility", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslEligibility", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslEligibility");
+    var cache = $cacheFactory("OvhApiXdslEligibility");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslEligibilityLexi");
+            return $injector.get("OvhApiXdslEligibilityLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslIpsAapi", ["$resource", "XdslIps", function ($resource, XdslIps) {
+angular.module("ovh-api-services").service("OvhApiXdslIpsAapi", ["$resource", "OvhApiXdslIps", function ($resource, OvhApiXdslIps) {
     "use strict";
 
     var xdslIps = $resource("/xdsl/:xdslId/ips", {
@@ -16477,26 +16435,26 @@ angular.module("ovh-api-services").service("XdslIpsAapi", ["$resource", "XdslIps
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslIps.cache
+            cache: OvhApiXdslIps.cache
         },
         reverse: {
             method: "GET",
             isArray: true,
             serviceType: "aapi",
             url: "/xdsl/reverseDns/:ipBlock",
-            cache: XdslIps.cache
+            cache: OvhApiXdslIps.cache
         }
     });
 
     return xdslIps;
 }]);
 
-angular.module("ovh-api-services").service("XdslIpsLexi", ["$resource", "XdslIps", function ($resource, XdslIps) {
+angular.module("ovh-api-services").service("OvhApiXdslIpsLexi", ["$resource", "OvhApiXdslIps", function ($resource, OvhApiXdslIps) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslIps.resetCache();
+            OvhApiXdslIps.resetCache();
             return response.resource;
         }
     };
@@ -16521,7 +16479,7 @@ angular.module("ovh-api-services").service("XdslIpsLexi", ["$resource", "XdslIps
         price: {
             method: "GET",
             url: "/price/xdsl/options/ipv4/:ipRange",
-            cache: XdslIps.cache
+            cache: OvhApiXdslIps.cache
         },
         unOrder: {
             method: "DELETE",
@@ -16541,24 +16499,24 @@ angular.module("ovh-api-services").service("XdslIpsLexi", ["$resource", "XdslIps
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslIps", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslIps", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslIps");
+    var cache = $cacheFactory("OvhApiXdslIps");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslIpsLexi");
+            return $injector.get("OvhApiXdslIpsLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslIpsAapi");
+            return $injector.get("OvhApiXdslIpsAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslLinesDslamPortAapi", ["$resource", "XdslLinesDslamPort", function ($resource, XdslLinesDslamPort) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPortAapi", ["$resource", "OvhApiXdslLinesDslamPort", function ($resource, OvhApiXdslLinesDslamPort) {
     "use strict";
 
     var xdslLinesDslamPortAapi = $resource("/xdsl/:xdslId/lines/:number/dslamPort", {
@@ -16570,7 +16528,7 @@ angular.module("ovh-api-services").service("XdslLinesDslamPortAapi", ["$resource
             url: "/xdsl/:xdslId/lines/:number/dslamPort/availableProfiles",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslLinesDslamPort.cache
+            cache: OvhApiXdslLinesDslamPort.cache
         }
     }
     );
@@ -16578,13 +16536,13 @@ angular.module("ovh-api-services").service("XdslLinesDslamPortAapi", ["$resource
     return xdslLinesDslamPortAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslLinesDslamPortLexi", ["$resource", "XdslLinesDslamPort", function ($resource, XdslLinesDslamPort) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPortLexi", ["$resource", "OvhApiXdslLinesDslamPort", function ($resource, OvhApiXdslLinesDslamPort) {
     "use strict";
 
     var resourceUrl = "/:basePath/xdsl/:xdslId/lines/:number/dslamPort";
     var interceptor = {
         response: function (response) {
-            XdslLinesDslamPort.resetCache();
+            OvhApiXdslLinesDslamPort.resetCache();
             return response.resource;
         }
     };
@@ -16610,24 +16568,24 @@ angular.module("ovh-api-services").service("XdslLinesDslamPortLexi", ["$resource
     return xdslLinesDslamPortLexi;
 }]);
 
-angular.module("ovh-api-services").service("XdslLinesDslamPort", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPort", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslLinesDslamPort");
+    var cache = $cacheFactory("OvhApiXdslLinesDslamPort");
 
     return {
         Aapi: function () {
-            return $injector.get("XdslLinesDslamPortAapi");
+            return $injector.get("OvhApiXdslLinesDslamPortAapi");
         },
         Lexi: function () {
-            return $injector.get("XdslLinesDslamPortLexi");
+            return $injector.get("OvhApiXdslLinesDslamPortLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslLinesErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var xdslLinesEndpoint = apiv7("/xdsl/:serviceName/lines/:number", {
@@ -16639,46 +16597,45 @@ angular.module("ovh-api-services").service("XdslLinesErika", ["apiv7", function 
 
 }]);
 
-angular.module("ovh-api-services").service("XdslLinesLexi", ["$resource", "XdslLines", function ($resource, XdslLines) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesLexi", ["$resource", "OvhApiXdslLines", function ($resource, OvhApiXdslLines) {
     "use strict";
 
-    return $resource("/xdsl/:xdslId/lines/:number",
-                     {
-                         xdslId: "@xdslId",
-                         number: "@number"
-                     }, {
-                         getStatistics: {
-                             method: "GET",
-                             url: "/xdsl/:xdslId/lines/:number/statistics",
-                             cache: XdslLines.cache
-                         }
-                     });
+    return $resource("/xdsl/:xdslId/lines/:number", {
+        xdslId: "@xdslId",
+        number: "@number"
+    }, {
+        getStatistics: {
+            method: "GET",
+            url: "/xdsl/:xdslId/lines/:number/statistics",
+            cache: OvhApiXdslLines.cache
+        }
+    });
 }]
 );
 
-angular.module("ovh-api-services").service("XdslLines", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslLines", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslLines");
+    var cache = $cacheFactory("OvhApiXdslLines");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslLinesLexi");
+            return $injector.get("OvhApiXdslLinesLexi");
         },
         Erika: function () {
-            return $injector.get("XdslLinesErika");
+            return $injector.get("OvhApiXdslLinesErika");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemDevicesAapi", ["$resource", "XdslModemDevices", function ($resource, XdslModemDevices) {
+angular.module("ovh-api-services").service("OvhApiXdslModemDevicesAapi", ["$resource", "OvhApiXdslModemDevices", function ($resource, OvhApiXdslModemDevices) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemDevices.resetCache();
+            OvhApiXdslModemDevices.resetCache();
             return response.resource;
         }
     };
@@ -16691,7 +16648,7 @@ angular.module("ovh-api-services").service("XdslModemDevicesAapi", ["$resource",
             url: "/xdsl/:xdslId/modem/connectedDevices",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslModemDevices.cache
+            cache: OvhApiXdslModemDevices.cache
         },
         refresh: {
             method: "POST",
@@ -16702,22 +16659,22 @@ angular.module("ovh-api-services").service("XdslModemDevicesAapi", ["$resource",
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslModemDevices", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemDevices", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemDevices");
+    var cache = $cacheFactory("OvhApiXdslModemDevices");
 
     return {
         Lexi: angular.noop,
         Aapi: function () {
-            return $injector.get("XdslModemDevicesAapi");
+            return $injector.get("OvhApiXdslModemDevicesAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanDhcpDHCPStaticAddressesLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpDHCPStaticAddressesLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/xdsl/:xdslId/modem/lan/:lanName/dhcp/:dhcpName/DHCPStaticAddresses/:MACAddress", {
@@ -16736,20 +16693,20 @@ angular.module("ovh-api-services").service("XdslModemLanDhcpDHCPStaticAddressesL
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanDhcpDHCPStaticAddresses", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpDHCPStaticAddresses", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLanDhcpDHCPStaticAddressesLexi");
+            return $injector.get("OvhApiXdslModemLanDhcpDHCPStaticAddressesLexi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanDhcpAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemLanDhcpAapi");
+    var cache = $cacheFactory("OvhApiXdslModemLanDhcpAapi");
 
     var xdslModemLanDhcpAapi = $resource("/xdsl/:xdslId/modem/lan/dhcp", {
         xdslId: "@xdslId"
@@ -16769,13 +16726,13 @@ angular.module("ovh-api-services").service("XdslModemLanDhcpAapi", ["$resource",
     return xdslModemLanDhcpAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanDhcpLexi", ["$resource", "$cacheFactory", "XdslModemLanDhcpAapi", function ($resource, $cacheFactory, XdslModemLanDhcpAapi) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpLexi", ["$resource", "$cacheFactory", "OvhApiXdslModemLanDhcpAapi", function ($resource, $cacheFactory, OvhApiXdslModemLanDhcpAapi) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemLanDhcpLexi");
+    var cache = $cacheFactory("OvhApiXdslModemLanDhcpLexi");
     var interceptor = {
         response: function (response) {
-            XdslModemLanDhcpAapi.resetCache();
+            OvhApiXdslModemLanDhcpAapi.resetCache();
             cache.removeAll();
             return response.resource;
         }
@@ -16802,23 +16759,23 @@ angular.module("ovh-api-services").service("XdslModemLanDhcpLexi", ["$resource",
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanDhcp", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcp", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLanDhcpLexi");
+            return $injector.get("OvhApiXdslModemLanDhcpLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemLanDhcpAapi");
+            return $injector.get("OvhApiXdslModemLanDhcpAapi");
         },
         DHCPStaticAddress: function () {
-            return $injector.get("XdslModemLanDhcpDHCPStaticAddresses");
+            return $injector.get("OvhApiXdslModemLanDhcpDHCPStaticAddresses");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanAapi", ["$resource", "XdslModemLan", function ($resource, XdslModemLan) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanAapi", ["$resource", "OvhApiXdslModemLan", function ($resource, OvhApiXdslModemLan) {
     "use strict";
 
     var xdslModemLanAapi = $resource("/xdsl/:xdslId/modem/lan/details", {
@@ -16828,19 +16785,19 @@ angular.module("ovh-api-services").service("XdslModemLanAapi", ["$resource", "Xd
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslModemLan.cache
+            cache: OvhApiXdslModemLan.cache
         }
     });
 
     return xdslModemLanAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLanLexi", ["$resource", "XdslModemLan", function ($resource, XdslModemLan) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanLexi", ["$resource", "OvhApiXdslModemLan", function ($resource, OvhApiXdslModemLan) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemLan.resetCache();
+            OvhApiXdslModemLan.resetCache();
             return response.resource;
         }
     };
@@ -16851,7 +16808,7 @@ angular.module("ovh-api-services").service("XdslModemLanLexi", ["$resource", "Xd
     }, {
         get: {
             method: "GET",
-            cache: XdslModemLan.cache
+            cache: OvhApiXdslModemLan.cache
         },
         update: {
             method: "PUT",
@@ -16860,42 +16817,40 @@ angular.module("ovh-api-services").service("XdslModemLanLexi", ["$resource", "Xd
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslModemLan", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLan", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemLan");
+    var cache = $cacheFactory("OvhApiXdslModemLan");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLanLexi");
+            return $injector.get("OvhApiXdslModemLanLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemLanAapi");
+            return $injector.get("OvhApiXdslModemLanAapi");
         },
         Dhcp: function () {
-            return $injector.get("XdslModemLanDhcp");
+            return $injector.get("OvhApiXdslModemLanDhcp");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemPortAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemPortAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemPortAapi");
+    var cache = $cacheFactory("OvhApiXdslModemPortAapi");
 
-    var xdslModemPortAapi = $resource("/xdsl/:xdslId/modem/portMappings",
-                                      {
-                                          xdslId: "@xdslId"
-                                      }, {
-                                          query: {
-                                              serviceType: "aapi",
-                                              isArray: true,
-                                              cache: cache
-                                          }
-                                      }
-    );
+    var xdslModemPortAapi = $resource("/xdsl/:xdslId/modem/portMappings", {
+        xdslId: "@xdslId"
+    }, {
+        query: {
+            serviceType: "aapi",
+            isArray: true,
+            cache: cache
+        }
+    });
 
     xdslModemPortAapi.resetCache = function () {
         cache.removeAll();
@@ -16904,12 +16859,12 @@ angular.module("ovh-api-services").service("XdslModemPortAapi", ["$resource", "$
     return xdslModemPortAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslModemPortLexi", ["$resource", "XdslModemPort", function ($resource, XdslModemPort) {
+angular.module("ovh-api-services").service("OvhApiXdslModemPortLexi", ["$resource", "OvhApiXdslModemPort", function ($resource, OvhApiXdslModemPort) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemPort.resetCache();
+            OvhApiXdslModemPort.resetCache();
             return response.resource;
         }
     };
@@ -16920,12 +16875,12 @@ angular.module("ovh-api-services").service("XdslModemPortLexi", ["$resource", "X
     }, {
         get: {
             method: "GET",
-            cache: XdslModemPort.cache
+            cache: OvhApiXdslModemPort.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: XdslModemPort.cache
+            cache: OvhApiXdslModemPort.cache
         },
         update: {
             method: "PUT",
@@ -16939,24 +16894,24 @@ angular.module("ovh-api-services").service("XdslModemPortLexi", ["$resource", "X
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslModemPort", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemPort", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemPort");
+    var cache = $cacheFactory("OvhApiXdslModemPort");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemPortLexi");
+            return $injector.get("OvhApiXdslModemPortLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemPortAapi");
+            return $injector.get("OvhApiXdslModemPortAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemRebootLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiXdslModemRebootLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/xdsl/:xdslId/modem/reboot", {
@@ -16966,46 +16921,43 @@ angular.module("ovh-api-services").service("XdslModemRebootLexi", ["$resource", 
 }]
 );
 
-angular.module("ovh-api-services").service("XdslModemReboot", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemReboot", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemReboot");
+    var cache = $cacheFactory("OvhApiXdslModemReboot");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemRebootLexi");
+            return $injector.get("OvhApiXdslModemRebootLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemResetLexi",
-                                           ["$resource", function ($resource) {
-                                               "use strict";
-
-                                               return $resource("/xdsl/:xdslId/modem/reset", {
-                                                   xdslId: "@xdslId"
-                                               });
-
-                                           }]
-);
-
-angular.module("ovh-api-services").service("XdslModemReset", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemResetLexi", ["$resource", function ($resource) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemReset");
+    return $resource("/xdsl/:xdslId/modem/reset", {
+        xdslId: "@xdslId"
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemReset", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemReset");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemResetLexi");
+            return $injector.get("OvhApiXdslModemResetLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemWifiAapi", ["$resource", "XdslModemWifi", function ($resource, XdslModemWifi) {
+angular.module("ovh-api-services").service("OvhApiXdslModemWifiAapi", ["$resource", "OvhApiXdslModemWifi", function ($resource, OvhApiXdslModemWifi) {
     "use strict";
 
     var xdslModemWifiAapi = $resource("/xdsl/:xdslId/modem/wifi/details", {
@@ -17016,19 +16968,19 @@ angular.module("ovh-api-services").service("XdslModemWifiAapi", ["$resource", "X
             url: "/xdsl/:xdslId/modem/wifi/details",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslModemWifi.cache
+            cache: OvhApiXdslModemWifi.cache
         }
     });
 
     return xdslModemWifiAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslModemWifiLexi", ["$resource", "XdslModemWifi", function ($resource, XdslModemWifi) {
+angular.module("ovh-api-services").service("OvhApiXdslModemWifiLexi", ["$resource", "OvhApiXdslModemWifi", function ($resource, OvhApiXdslModemWifi) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemWifi.resetCache();
+            OvhApiXdslModemWifi.resetCache();
             return response.resource;
         }
     };
@@ -17039,7 +16991,7 @@ angular.module("ovh-api-services").service("XdslModemWifiLexi", ["$resource", "X
     }, {
         get: {
             method: "GET",
-            cache: XdslModemWifi.cache
+            cache: OvhApiXdslModemWifi.cache
         },
         update: {
             method: "PUT",
@@ -17048,24 +17000,24 @@ angular.module("ovh-api-services").service("XdslModemWifiLexi", ["$resource", "X
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslModemWifi", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemWifi", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemWifi");
+    var cache = $cacheFactory("OvhApiXdslModemWifi");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemWifiLexi");
+            return $injector.get("OvhApiXdslModemWifiLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemWifiAapi");
+            return $injector.get("OvhApiXdslModemWifiAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslModemAapi", ["$resource", "Poller", "XdslModem", function ($resource, Poller, XdslModem) {
+angular.module("ovh-api-services").service("OvhApiXdslModemAapi", ["$resource", "Poller", "OvhApiXdslModem", function ($resource, Poller, OvhApiXdslModem) {
     "use strict";
 
     var modem = $resource("/xdsl/:xdslId/modem", {
@@ -17073,11 +17025,11 @@ angular.module("ovh-api-services").service("XdslModemAapi", ["$resource", "Polle
     }, {
         get: {
             method: "GET",
-            cache: XdslModem.cache
+            cache: OvhApiXdslModem.cache
         },
         query: {
             method: "GET",
-            cache: XdslModem.cache,
+            cache: OvhApiXdslModem.cache,
             isArray: true
         }
     });
@@ -17112,12 +17064,12 @@ angular.module("ovh-api-services").service("XdslModemAapi", ["$resource", "Polle
 }]
 );
 
-angular.module("ovh-api-services").service("XdslModemLexi", ["$resource", "XdslModem", function ($resource, XdslModem) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLexi", ["$resource", "OvhApiXdslModem", function ($resource, OvhApiXdslModem) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModem.resetCache();
+            OvhApiXdslModem.resetCache();
             return response.resource;
         }
     };
@@ -17127,7 +17079,7 @@ angular.module("ovh-api-services").service("XdslModemLexi", ["$resource", "XdslM
     }, {
         get: {
             method: "GET",
-            cache: XdslModem.cache
+            cache: OvhApiXdslModem.cache
         },
         update: {
             method: "PUT",
@@ -17138,45 +17090,45 @@ angular.module("ovh-api-services").service("XdslModemLexi", ["$resource", "XdslM
 }]
 );
 
-angular.module("ovh-api-services").service("XdslModem", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModem", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModem");
+    var cache = $cacheFactory("OvhApiXdslModem");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLexi");
+            return $injector.get("OvhApiXdslModemLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemAapi");
+            return $injector.get("OvhApiXdslModemAapi");
         },
         resetCache: function () {
             cache.removeAll();
 
         },
         ConnectedDevices: function () {
-            return $injector.get("XdslModemDevices");
+            return $injector.get("OvhApiXdslModemDevices");
         },
         Lan: function () {
-            return $injector.get("XdslModemLan");
+            return $injector.get("OvhApiXdslModemLan");
         },
         Port: function () {
-            return $injector.get("XdslModemPort");
+            return $injector.get("OvhApiXdslModemPort");
         },
         Reboot: function () {
-            return $injector.get("XdslModemReboot");
+            return $injector.get("OvhApiXdslModemReboot");
         },
         Reset: function () {
-            return $injector.get("XdslModemReset");
+            return $injector.get("OvhApiXdslModemReset");
         },
         Wifi: function () {
-            return $injector.get("XdslModemWifi");
+            return $injector.get("OvhApiXdslModemWifi");
         },
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslNotificationsAapi", ["$resource", "XdslNotifications", function ($resource, XdslNotifications) {
+angular.module("ovh-api-services").service("OvhApiXdslNotificationsAapi", ["$resource", "OvhApiXdslNotifications", function ($resource, OvhApiXdslNotifications) {
     "use strict";
 
     var xdslNotificationsAapi = $resource("/xdsl/:xdslId/monitoringNotifications", {
@@ -17186,19 +17138,19 @@ angular.module("ovh-api-services").service("XdslNotificationsAapi", ["$resource"
             method: "GET",
             serviceType: "aapi",
             isArray: true,
-            cache: XdslNotifications.cache
+            cache: OvhApiXdslNotifications.cache
         }
     });
 
     return xdslNotificationsAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslNotificationsLexi", ["$resource", "XdslNotifications", function ($resource, XdslNotifications) {
+angular.module("ovh-api-services").service("OvhApiXdslNotificationsLexi", ["$resource", "OvhApiXdslNotifications", function ($resource, OvhApiXdslNotifications) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslNotifications.resetCache();
+            OvhApiXdslNotifications.resetCache();
             return response.resource;
         }
     };
@@ -17210,7 +17162,7 @@ angular.module("ovh-api-services").service("XdslNotificationsLexi", ["$resource"
         query: {
             method: "GET",
             isArray: true,
-            cache: XdslNotifications.cache
+            cache: OvhApiXdslNotifications.cache
         },
         add: {
             method: "POST",
@@ -17229,24 +17181,24 @@ angular.module("ovh-api-services").service("XdslNotificationsLexi", ["$resource"
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslNotifications", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslNotifications", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslNotifications");
+    var cache = $cacheFactory("OvhApiXdslNotifications");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslNotificationsLexi");
+            return $injector.get("OvhApiXdslNotificationsLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslNotificationsAapi");
+            return $injector.get("OvhApiXdslNotificationsAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslOrderFollowupAapi", ["$resource", "XdslOrderFollowup", function ($resource, XdslOrderFollowup) {
+angular.module("ovh-api-services").service("OvhApiXdslOrderFollowupAapi", ["$resource", "OvhApiXdslOrderFollowup", function ($resource, OvhApiXdslOrderFollowup) {
     "use strict";
 
     return $resource("/xdsl/orderFollowup", {
@@ -17255,26 +17207,26 @@ angular.module("ovh-api-services").service("XdslOrderFollowupAapi", ["$resource"
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslOrderFollowup.cache
+            cache: OvhApiXdslOrderFollowup.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslOrderFollowup", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslOrderFollowup", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslOrderFollowup");
+    var cache = $cacheFactory("OvhApiXdslOrderFollowup");
 
     return {
         Aapi: function () {
-            return $injector.get("XdslOrderFollowupAapi");
+            return $injector.get("OvhApiXdslOrderFollowupAapi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslResiliationAapi", ["$resource", "XdslResiliation", function ($resource, XdslResiliation) {
+angular.module("ovh-api-services").service("OvhApiXdslResiliationAapi", ["$resource", "OvhApiXdslResiliation", function ($resource, OvhApiXdslResiliation) {
     "use strict";
 
     return $resource("/xdsl/canCancelResiliation/all", {
@@ -17283,19 +17235,19 @@ angular.module("ovh-api-services").service("XdslResiliationAapi", ["$resource", 
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslResiliation.cache
+            cache: OvhApiXdslResiliation.cache
         },
         terms: {
             url: "/xdsl/:serviceName/resiliationTerms",
             method: "GET",
             isArray: false,
             serviceType: "aapi",
-            cache: XdslResiliation.cache
+            cache: OvhApiXdslResiliation.cache
         }
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslResiliationLexi", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiXdslResiliationLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/xdsl/:serviceName/canCancelResiliation", {
@@ -17330,24 +17282,24 @@ angular.module("ovh-api-services").service("XdslResiliationLexi", ["$resource", 
     });
 }]);
 
-angular.module("ovh-api-services").service("XdslResiliation", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslResiliation", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslResiliation");
+    var cache = $cacheFactory("OvhApiXdslResiliation");
 
     return {
         Aapi: function () {
-            return $injector.get("XdslResiliationAapi");
+            return $injector.get("OvhApiXdslResiliationAapi");
         },
         Lexi: function () {
-            return $injector.get("XdslResiliationLexi");
+            return $injector.get("OvhApiXdslResiliationLexi");
         },
         resetCache: cache.removeAll,
         cache: cache
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslTasksCurrentAapi", ["$resource", "Poller", "XdslTasksCurrent", function ($resource, Poller, XdslTasksCurrent) {
+angular.module("ovh-api-services").service("OvhApiXdslTasksCurrentAapi", ["$resource", "Poller", "OvhApiXdslTasksCurrent", function ($resource, Poller, OvhApiXdslTasksCurrent) {
     "use strict";
 
     var url = "/xdsl/:xdslId/tasks/current";
@@ -17357,7 +17309,7 @@ angular.module("ovh-api-services").service("XdslTasksCurrentAapi", ["$resource",
     }, {
         query: {
             method: "GET",
-            cache: XdslTasksCurrent.cache,
+            cache: OvhApiXdslTasksCurrent.cache,
             isArray: true
         }
     });
@@ -17388,18 +17340,18 @@ angular.module("ovh-api-services").service("XdslTasksCurrentAapi", ["$resource",
 }]
 );
 
-angular.module("ovh-api-services").service("XdslTasksCurrent", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiXdslTasksCurrent", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         Aapi: function () {
-            return $injector.get("XdslTasksCurrentAapi");
+            return $injector.get("OvhApiXdslTasksCurrentAapi");
         }
     };
 }]);
 
-angular.module("ovh-api-services").service("XdslAapi", ["$resource", "Xdsl", function ($resource, Xdsl) {
+angular.module("ovh-api-services").service("OvhApiXdslAapi", ["$resource", "OvhApiXdsl", function ($resource, OvhApiXdsl) {
     "use strict";
 
     var xdslAapi = $resource("/xdsl/:serviceName/statistics/:type/period/:period", {
@@ -17410,7 +17362,7 @@ angular.module("ovh-api-services").service("XdslAapi", ["$resource", "Xdsl", fun
         statistics: {
             method: "GET",
             serviceType: "aapi",
-            cache: Xdsl.cache
+            cache: OvhApiXdsl.cache
         }
     }
     );
@@ -17418,7 +17370,7 @@ angular.module("ovh-api-services").service("XdslAapi", ["$resource", "Xdsl", fun
     return xdslAapi;
 }]);
 
-angular.module("ovh-api-services").service("XdslErika", ["apiv7", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiXdslErika", ["apiv7", function (apiv7) {
     "use strict";
 
     var xdslEndpoint = apiv7("/xdsl/:serviceName", {
@@ -17429,13 +17381,13 @@ angular.module("ovh-api-services").service("XdslErika", ["apiv7", function (apiv
 
 }]);
 
-angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "TelecomSidebar", function ($resource, Xdsl, TelecomSidebar) {
+angular.module("ovh-api-services").service("OvhApiXdslLexi", ["$resource", "OvhApiXdsl", "OvhApiTelecomSidebar", function ($resource, OvhApiXdsl, OvhApiTelecomSidebar) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelecomSidebar.resetCache();
-            Xdsl.resetCache();
+            OvhApiTelecomSidebar.resetCache();
+            OvhApiXdsl.resetCache();
             return response.resource;
         }
     };
@@ -17447,7 +17399,7 @@ angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "Te
             query: {
                 method: "GET",
                 isArray: true,
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             put: {
                 method: "PUT",
@@ -17458,11 +17410,11 @@ angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "Te
                 method: "GET",
                 url: "/xdsl/:xdslId/orderFollowup",
                 isArray: true,
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             incidents: {
                 method: "GET",
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             requestTotalDeconsolidation: {
                 method: "POST",
@@ -17472,13 +17424,13 @@ angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "Te
             statistics: {
                 method: "GET",
                 url: "/xdsl/:xdslId/statistics",
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             lines: {
                 method: "GET",
                 url: "/xdsl/:xdslId/lines",
                 isArray: true,
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             eligibilityCities: {
                 method: "GET",
@@ -17501,26 +17453,26 @@ angular.module("ovh-api-services").service("XdslLexi", ["$resource", "Xdsl", "Te
     );
 }]);
 
-angular.module("ovh-api-services").service("Xdsl", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdsl", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("Xdsl");
+    var cache = $cacheFactory("OvhApiXdsl");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslLexi");
+            return $injector.get("OvhApiXdslLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslAapi");
+            return $injector.get("OvhApiXdslAapi");
         },
         Erika: function () {
-            return $injector.get("XdslErika");
+            return $injector.get("OvhApiXdslErika");
         },
         Lines: function () {
-            return $injector.get("XdslLines");
+            return $injector.get("OvhApiXdslLines");
         },
         Modem: function () {
-            return $injector.get("XdslModem");
+            return $injector.get("OvhApiXdslModem");
         },
         resetCache: cache.removeAll,
         cache: cache

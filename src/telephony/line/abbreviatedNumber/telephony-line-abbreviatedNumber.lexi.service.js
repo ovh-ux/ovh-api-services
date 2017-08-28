@@ -1,10 +1,10 @@
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi", function ($resource, TelephonyLineAbbreviatedNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAbbreviatedNumberLexi", function ($resource, OvhApiTelephonyLineAbbreviatedNumber) {
 
     var interceptor = {
         response: function (response) {
-            TelephonyLineAbbreviatedNumber.resetCache();
+            OvhApiTelephonyLineAbbreviatedNumber.resetCache();
             return response.resource;
         }
     };
@@ -17,13 +17,13 @@ angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberLexi",
             method: "GET",
             isArray: true,
             url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber",
-            cache: TelephonyLineAbbreviatedNumber.cache
+            cache: OvhApiTelephonyLineAbbreviatedNumber.cache
         },
         detail: {
             method: "GET",
             isArray: false,
             url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber/:abbreviatedNumber",
-            cache: TelephonyLineAbbreviatedNumber.cache
+            cache: OvhApiTelephonyLineAbbreviatedNumber.cache
         },
         remove: {
             method: "DELETE",

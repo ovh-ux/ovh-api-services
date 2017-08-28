@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectForecastLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectForecastLexi", function ($resource) {
     "use strict";
 
     return $resource("/cloud/project/:serviceName/forecast", {

@@ -1,8 +1,8 @@
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceLexi", function ($resource, $cacheFactory) {
+    .service("OvhApiMetricsServiceLexi", function ($resource, $cacheFactory) {
 
-        var otherCache = $cacheFactory("MetricsServiceLexi");
+        var otherCache = $cacheFactory("OvhApiMetricsServiceLexi");
         var interceptor = {
             response: function (response) {
                 otherCache.removeAll();

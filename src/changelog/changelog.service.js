@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("Changelog", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiChangelog", function ($injector) {
     "use strict";
 
     return {
         Aapi: function () {
-            return $injector.get("ChangelogAapi");
+            return $injector.get("OvhApiChangelogAapi");
         }
     };
 });

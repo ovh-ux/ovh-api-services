@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("CloudProjectRegionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectRegionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectRegionLexiQuery");
-    var cache = $cacheFactory("CloudProjectRegionLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectRegionLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectRegionLexi");
 
     var regions = $resource("/cloud/project/:serviceName/region/:id", {
         serviceName: "@serviceName",

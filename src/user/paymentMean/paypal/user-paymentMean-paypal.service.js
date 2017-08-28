@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("UserPaymentMeanPaypal", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserPaymentMeanPaypal", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserPaymentMeanPaypalLexi");
+            return $injector.get("OvhApiUserPaymentMeanPaypalLexi");
         }
     };
 

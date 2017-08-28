@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DedicatedCloudFilerLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFilerLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCloudFilerLexiQuery");
-    var cache = $cacheFactory("DedicatedCloudFilerLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudFilerLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedCloudFilerLexi");
 
     var filerResource = $resource("/dedicatedCloud/:serviceName/filer/:filerId", {
         serviceName: "@serviceName",

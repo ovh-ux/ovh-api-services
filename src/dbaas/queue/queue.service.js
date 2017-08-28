@@ -1,15 +1,15 @@
-angular.module("ovh-api-services").service("DbaasQueue", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueue", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DbaasQueueLexi");
+            return $injector.get("OvhApiDbaasQueueLexi");
         },
         Key: function () {
-            return $injector.get("DbaasQueueKey");
+            return $injector.get("OvhApiDbaasQueueKey");
         },
         Region: function () {
-            return $injector.get("DbaasQueueRegion");
+            return $injector.get("OvhApiDbaasQueueRegion");
         }
     };
 });

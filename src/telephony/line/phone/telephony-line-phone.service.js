@@ -1,18 +1,18 @@
-angular.module("ovh-api-services").service("TelephonyLinePhone", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhone", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLinePhoneLexi");
+            return $injector.get("OvhApiTelephonyLinePhoneLexi");
         },
         Aapi: angular.noop,
         FunctionKey: function () {
-            return $injector.get("TelephonyLineFunctionPhone");
+            return $injector.get("OvhApiTelephonyLineFunctionPhone");
         },
         Phonebook: function () {
-            return $injector.get("TelephonyLinePhonePhonebook");
+            return $injector.get("OvhApiTelephonyLinePhonePhonebook");
         },
         RMA: function () {
-            return $injector.get("TelephonyLinePhoneRMA");
+            return $injector.get("OvhApiTelephonyLinePhoneRMA");
         }
     };
 });

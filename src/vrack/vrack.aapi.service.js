@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("VrackAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VrackAapi");
+    var cache = $cacheFactory("OvhApiVrackAapi");
 
     var vrackResource = $resource("/vrack/:serviceName", {
         serviceName: "@serviceName"

@@ -1,13 +1,13 @@
-angular.module("ovh-api-services").service("OrderLicenseOfficeNewLexi", function ($resource, $cacheFactory, License) {
+angular.module("ovh-api-services").service("OvhApiOrderLicenseOfficeNewLexi", function ($resource, $cacheFactory, OvhApiLicense) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderLicenseOfficeNewLexiQuery");
-    var cache = $cacheFactory("OrderLicenseOfficeNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderLicenseOfficeNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderLicenseOfficeNewLexi");
 
     var interceptor = {
         response: function (response) {
-            License.Office().Lexi().resetQueryCache();
+            OvhApiLicense.Office().Lexi().resetQueryCache();
             return response;
         }
     };

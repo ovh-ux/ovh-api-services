@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("TelephonyMiniPabx", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabx", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyMiniPabx");
+    var cache = $cacheFactory("OvhApiTelephonyMiniPabx");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyMiniPabxLexi");
+            return $injector.get("OvhApiTelephonyMiniPabxLexi");
         },
         resetCache: cache.removeAll,
         cache: cache

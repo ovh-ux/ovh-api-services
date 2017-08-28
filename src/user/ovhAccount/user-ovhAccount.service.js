@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("UserOvhAccount", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserOvhAccount", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("UserOvhAccountAapi");
+            return $injector.get("OvhApiUserOvhAccountAapi");
         },
         Lexi: function () {
-            return $injector.get("UserOvhAccountLexi");
+            return $injector.get("OvhApiUserOvhAccountLexi");
         }
     };
 });

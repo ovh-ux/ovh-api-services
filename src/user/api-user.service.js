@@ -1,47 +1,47 @@
-angular.module("ovh-api-services").service("User", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUser", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("UserLexi");
+            return $injector.get("OvhApiUserLexi");
         },
         Agreements: function () {
-            return $injector.get("UserAgreements");
+            return $injector.get("OvhApiUserAgreements");
         },
         SshKey: function () {
-            return $injector.get("UserSshKey");
+            return $injector.get("OvhApiUserSshKey");
         },
         Bill: function () {
-            return $injector.get("UserBill");
+            return $injector.get("OvhApiUserBill");
         },
         Order: function () {
-            return $injector.get("UserOrder");
+            return $injector.get("OvhApiUserOrder");
         },
         OvhAccount: function () {
-            return $injector.get("UserOvhAccount");
+            return $injector.get("OvhApiUserOvhAccount");
         },
         FidelityAccount: function () {
-            return $injector.get("UserFidelityAccount");
+            return $injector.get("OvhApiUserFidelityAccount");
         },
         PaymentMean: function () {
-            return $injector.get("UserPaymentMean");
+            return $injector.get("OvhApiUserPaymentMean");
         },
         AvailableAutomaticPaymentMeans: function () {
-            return $injector.get("UserAvailableAutomaticPaymentMeans");
+            return $injector.get("OvhApiUserAvailableAutomaticPaymentMeans");
         },
         Document: function () {
-            return $injector.get("UserDocument");
+            return $injector.get("OvhApiUserDocument");
         },
         Contact: function () {
-            return $injector.get("UserContact");
+            return $injector.get("OvhApiUserContact");
         },
         Task: function () {
-            return $injector.get("UserTask");
+            return $injector.get("OvhApiUserTask");
         },
         Telephony: function () {
-            return $injector.get("UserTelephony");
+            return $injector.get("OvhApiUserTelephony");
         },
         Fax: function () {
-            return $injector.get("UserFax");
+            return $injector.get("OvhApiUserFax");
         }
     };
 });

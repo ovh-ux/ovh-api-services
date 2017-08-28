@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyEasyPabxLexi", function ($resource, TelephonyEasyPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", function ($resource, OvhApiTelephonyEasyPabx) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyPabx/:serviceName", {
@@ -8,23 +8,23 @@ angular.module("ovh-api-services").service("TelephonyEasyPabxLexi", function ($r
         query: {
             method: "GET",
             isArray: true,
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         get: {
             method: "GET",
             isArray: false,
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         getHunting: {
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting",
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         queryAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent",
             isArray: true,
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         },
         getAgent: {
             method: "GET",
@@ -32,7 +32,7 @@ angular.module("ovh-api-services").service("TelephonyEasyPabxLexi", function ($r
             params: {
                 agentNumber: "@"
             },
-            cache: TelephonyEasyPabx.cache
+            cache: OvhApiTelephonyEasyPabx.cache
         }
     }
     );

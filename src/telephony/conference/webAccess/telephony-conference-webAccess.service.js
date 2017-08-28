@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("TelephonyConferenceWebAccess", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceWebAccess", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyConferenceWebAccessLexi");
+            return $injector.get("OvhApiTelephonyConferenceWebAccessLexi");
         }
     };
 });

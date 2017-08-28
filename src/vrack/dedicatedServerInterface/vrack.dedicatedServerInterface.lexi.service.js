@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("DedicatedServerInterfaceLexi", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServerInterfaceLexi", function ($resource, $cacheFactory, OvhApiVrack) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedServerInterfaceLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDedicatedServerInterfaceLexiQuery");
 
     var interceptor = {
         response: function (response) {
             queryCache.removeAll();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -46,12 +46,12 @@ angular.module("ovh-api-services").service("DedicatedServerInterfaceLexi", funct
 
     resource.resetAllCache = function () {
         resource.resetQueryCache();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     resource.resetQueryCache = function () {
         queryCache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return resource;

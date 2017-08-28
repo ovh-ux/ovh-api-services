@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("TelephonyLineClick2CallUser", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUser", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyLineClick2CallUserLexi");
+            return $injector.get("OvhApiTelephonyLineClick2CallUserLexi");
         },
         Aapi: angular.noop
     };

@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("CloudProjectSshKey", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectSshKey", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectSshKeyLexi");
+            return $injector.get("OvhApiCloudProjectSshKeyLexi");
         }
     };
 

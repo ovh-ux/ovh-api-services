@@ -1,15 +1,15 @@
-angular.module("ovh-api-services").service("TelephonyServiceVoiceConsumption", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumption", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceVoiceConsumptionLexi");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyServiceVoiceConsumptionErika");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionErika");
         },
         Aapi: function () {
-            return $injector.get("TelephonyServiceVoiceConsumptionAapi");
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionAapi");
         }
     };
 });

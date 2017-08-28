@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("OverTheBoxLexi", function ($resource, OverTheBox) {
+angular.module("ovh-api-services").service("OvhApiOverTheBoxLexi", function ($resource, OvhApiOverTheBox) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            OverTheBox.resetCache();
+            OvhApiOverTheBox.resetCache();
             return response.resource;
         }
     };
@@ -12,8 +12,8 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", function ($resource
         serviceName: "@serviceName"
     }, {
         schema: { method: "GET", url: "/overTheBox.json" },
-        query: { method: "GET", isArray: true, cache: OverTheBox.cache },
-        get: { method: "GET", cache: OverTheBox.cache },
+        query: { method: "GET", isArray: true, cache: OvhApiOverTheBox.cache },
+        get: { method: "GET", cache: OvhApiOverTheBox.cache },
         checkDevices: {
             method: "POST",
             url: "/overTheBox/devices",
@@ -22,12 +22,12 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", function ($resource
         getDevice: {
             method: "GET",
             url: "/overTheBox/:serviceName/device",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getServiceInfos: {
             method: "GET",
             url: "/overTheBox/:serviceName/serviceInfos",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         putService: {
             method: "PUT",
@@ -57,17 +57,17 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", function ($resource
             method: "GET",
             url: "/overTheBox/:serviceName/tasks",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getTask: {
             method: "GET",
             url: "/overTheBox/:serviceName/tasks/:taskId",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         loadRemote: {
             method: "GET",
             url: "/overTheBox/:serviceName/remoteAccesses/:remoteAccessId",
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         createRemote: {
             method: "POST",
@@ -88,13 +88,13 @@ angular.module("ovh-api-services").service("OverTheBoxLexi", function ($resource
             method: "GET",
             url: "/overTheBox/availableOffers",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getServices: {
             method: "GET",
             url: "/overTheBox",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         getAvailableActions: {
             method: "GET",

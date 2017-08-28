@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("TelephonyHistoryConsumptionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryConsumptionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyHistoryConsumptionLexi");
+    var cache = $cacheFactory("OvhApiTelephonyHistoryConsumptionLexi");
 
     return $resource("/telephony/:billingAccount/historyConsumption/:date", {
         billingAccount: "@billingAccount",

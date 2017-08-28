@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionConditionScreenList", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenList", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionScreenListLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenListLexi");
         }
     };
 });

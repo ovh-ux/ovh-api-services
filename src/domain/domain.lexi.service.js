@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DomainLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDomainLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DomainLexi");
-    var queryCache = $cacheFactory("DomainLexiQuery");
+    var cache = $cacheFactory("OvhApiDomainLexi");
+    var queryCache = $cacheFactory("OvhApiDomainLexiQuery");
 
     var domain = $resource("/domain/:serviceName", {
         serviceName: "@serviceName"

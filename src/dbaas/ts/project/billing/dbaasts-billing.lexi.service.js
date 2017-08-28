@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DBaasTsProjectBillingLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectBillingLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DBaasTsProjectBillingLexi");
+    var cache = $cacheFactory("OvhApiDBaasTsProjectBillingLexi");
 
     var billingResource = $resource("/dbaas/timeseries/:serviceName/consumption", {
         serviceName: "@serviceName"

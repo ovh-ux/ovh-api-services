@@ -1,16 +1,16 @@
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyLexi", function ($resource, $cacheFactory, TelephonyLineAllAapi) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLexi", function ($resource, $cacheFactory, OvhApiTelephonyLineAllAapi) {
 
-    var cache = $cacheFactory("TelephonyLexi");
-    var schemaCache = $cacheFactory("TelephonyLexiSchema");
-    var queryCache = $cacheFactory("TelephonyLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyLexi");
+    var schemaCache = $cacheFactory("OvhApiTelephonyLexiSchema");
+    var queryCache = $cacheFactory("OvhApiTelephonyLexiQuery");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
             queryCache.removeAll();
-            TelephonyLineAllAapi.resetCache();
+            OvhApiTelephonyLineAllAapi.resetCache();
             return response.resource;
         }
     };

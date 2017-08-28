@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("TelecomHomeDashboard", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelecomHomeDashboard", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelecomHomeDashboard");
+    var cache = $cacheFactory("OvhApiTelecomHomeDashboard");
 
     return {
         Aapi: function () {
-            return $injector.get("TelecomHomeDashboardAapi");
+            return $injector.get("OvhApiTelecomHomeDashboardAapi");
         },
         resetCache: cache.removeAll,
         cache: cache

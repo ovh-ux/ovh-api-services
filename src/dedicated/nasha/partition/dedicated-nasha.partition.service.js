@@ -1,21 +1,21 @@
-angular.module("ovh-api-services").service("DedicatedNashaPartition", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartition", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionLexi");
         },
         CustomSnapshot: function () {
-            return $injector.get("DedicatedNashaPartitionCustomSnapshot");
+            return $injector.get("OvhApiDedicatedNashaPartitionCustomSnapshot");
         },
         Snapshot: function () {
-            return $injector.get("DedicatedNashaPartitionSnapshot");
+            return $injector.get("OvhApiDedicatedNashaPartitionSnapshot");
         },
         Access: function () {
-            return $injector.get("DedicatedNashaPartitionAccess");
+            return $injector.get("OvhApiDedicatedNashaPartitionAccess");
         },
         Options: function () {
-            return $injector.get("DedicatedNashaPartitionOptions");
+            return $injector.get("OvhApiDedicatedNashaPartitionOptions");
         }
     };
 });

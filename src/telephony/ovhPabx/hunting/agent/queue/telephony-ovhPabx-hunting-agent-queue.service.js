@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingAgentQueue", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingAgentQueue", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxHuntingAgentQueueLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingAgentQueueLexi");
         }
     };
 });

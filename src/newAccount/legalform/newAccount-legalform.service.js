@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("NewAccountLegalForm", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiNewAccountLegalForm", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("NewAccountLegalFormLexi");
+            return $injector.get("OvhApiNewAccountLegalFormLexi");
         }
     };
 });

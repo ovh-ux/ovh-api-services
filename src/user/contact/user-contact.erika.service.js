@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("UserContactErika", function ($resource, $cacheFactory, Apiv7Endpoint) {
+angular.module("ovh-api-services").service("OvhApiUserContactErika", function ($resource, $cacheFactory, Apiv7Endpoint) {
     "use strict";
 
-    var queryCache = $cacheFactory("UserContactErikaQuery");
-    var otherCache = $cacheFactory("UserContactErika");
+    var queryCache = $cacheFactory("OvhApiUserContactErikaQuery");
+    var otherCache = $cacheFactory("OvhApiUserContactErika");
 
     var userContactResource = new Apiv7Endpoint("/me/contact/:contactId", {
         contactId: "@contactId"

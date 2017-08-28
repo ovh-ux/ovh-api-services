@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DBaasTsProjectQuota", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectQuota", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsProjectQuotaLexi");
+            return $injector.get("OvhApiDBaasTsProjectQuotaLexi");
         }
     };
 });

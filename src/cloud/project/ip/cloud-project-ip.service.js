@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("CloudProjectIp", function (CloudProjectIpFailover) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectIp", function (OvhApiCloudProjectIpFailover) {
 
     "use strict";
 
     return {
-        failover: CloudProjectIpFailover
+        failover: OvhApiCloudProjectIpFailover
     };
 
 }

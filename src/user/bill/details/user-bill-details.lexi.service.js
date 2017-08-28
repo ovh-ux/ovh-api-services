@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("UserBillDetailsLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserBillDetailsLexi", function ($resource) {
     "use strict";
 
     return $resource("/me/bill/:billId/details/:billDetailId", {

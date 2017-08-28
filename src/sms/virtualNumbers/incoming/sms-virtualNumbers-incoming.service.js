@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("SmsVirtualNumbersIncoming", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersIncoming", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsVirtualNumbersIncomingLexi");
+            return $injector.get("OvhApiSmsVirtualNumbersIncomingLexi");
         }
     };
 });

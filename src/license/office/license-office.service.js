@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("LicenseOffice", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicenseOffice", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("LicenseOfficeLexi");
+            return $injector.get("OvhApiLicenseOfficeLexi");
         },
         Domain: function () {
-            return $injector.get("LicenseOfficeDomain");
+            return $injector.get("OvhApiLicenseOfficeDomain");
         },
         Users: function () {
-            return $injector.get("LicenseOfficeUsers");
+            return $injector.get("OvhApiLicenseOfficeUsers");
         },
         UsageStatistics: function () {
-            return $injector.get("LicenseOfficeUsageStatistics");
+            return $injector.get("OvhApiLicenseOfficeUsageStatistics");
         }
     };
 });

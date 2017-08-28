@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("SupplyMondialRelayLexi", function (Poller, $q) {
+angular.module("ovh-api-services").service("OvhApiSupplyMondialRelayLexi", function (Poller, $q) {
     "use strict";
 
     var mondialRelay = function () {

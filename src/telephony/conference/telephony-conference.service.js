@@ -1,14 +1,14 @@
-angular.module("ovh-api-services").service("TelephonyConference", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConference", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyConferenceLexi");
+            return $injector.get("OvhApiTelephonyConferenceLexi");
         },
         Participants: function () {
-            return $injector.get("TelephonyConferenceParticipants");
+            return $injector.get("OvhApiTelephonyConferenceParticipants");
         },
         WebAccess: function () {
-            return $injector.get("TelephonyConferenceWebAccess");
+            return $injector.get("OvhApiTelephonyConferenceWebAccess");
         }
     };
 });

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("StatusLexi", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiStatusLexi", function ($cacheFactory, $resource) {
     "use strict";
 
     return $resource("/status");

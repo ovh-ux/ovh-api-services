@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("VrackPublicCloud", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackPublicCloud", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VrackPublicCloud");
+    var cache = $cacheFactory("OvhApiVrackPublicCloud");
 
     return {
         Lexi: function () {
-            return $injector.get("VrackPublicCloudLexi");
+            return $injector.get("OvhApiVrackPublicCloudLexi");
         },
         resetCache: cache.removeAll,
         cache: cache

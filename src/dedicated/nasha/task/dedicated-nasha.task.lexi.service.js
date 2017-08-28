@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedNashaTaskLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaTaskLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaTaskLexiQuery");
+    var cache = $cacheFactory("OvhApiDedicatedNashaTaskLexiQuery");
 
     var resource = $resource("/dedicated/nasha/:serviceName/task/:taskId", {
         serviceName: "@serviceName",

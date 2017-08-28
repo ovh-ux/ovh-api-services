@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("UserOrderLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserOrderLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("UserOrderLexi");
-    var queryCache = $cacheFactory("UserOrderLexiQuery");
+    var otherCache = $cacheFactory("OvhApiUserOrderLexi");
+    var queryCache = $cacheFactory("OvhApiUserOrderLexiQuery");
 
     var interceptor = {
         response: function (response) {
@@ -20,10 +20,10 @@ angular.module("ovh-api-services").service("UserOrderLexi", function ($resource,
             method: "GET",
 
             /**
-                 * This endpoint returns a bared, quoted string like "unPaid".
-                 * $resource does not handle that gracefully.
-                 * So lets make a clean object out of that response
-                 */
+             * This endpoint returns a bared, quoted string like "unPaid".
+             * $resource does not handle that gracefully.
+             * So lets make a clean object out of that response
+             */
             transformResponse: function (response, headers, httpCode) {
                 if (httpCode === 200) {
                     return { status: angular.fromJson(response) };

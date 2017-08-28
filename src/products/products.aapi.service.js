@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("ProductsAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiProductsAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("ProductsAapi");
+    var cache = $cacheFactory("OvhApiProductsAapi");
 
     var productsResource = $resource("/products", {
     }, {

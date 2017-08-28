@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberAapi", function ($resource, TelephonyLineAbbreviatedNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineAbbreviatedNumberAapi", function ($resource, OvhApiTelephonyLineAbbreviatedNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/line/:serviceName/abbreviatedNumber", {
@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("TelephonyLineAbbreviatedNumberAapi",
             url: "/telephony/:billingAccount/line/:serviceName/abbreviatedNumber",
             serviceType: "aapi",
             isArray: true,
-            cache: TelephonyLineAbbreviatedNumber.cache
+            cache: OvhApiTelephonyLineAbbreviatedNumber.cache
         }
     });
 });

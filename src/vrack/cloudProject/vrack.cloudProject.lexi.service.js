@@ -1,9 +1,9 @@
 "use strict";
 
-angular.module("ovh-api-services").service("VrackCloudProjectLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVrackCloudProjectLexi", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("VrackCloudProjectLexi");
-    var queryCache = $cacheFactory("VrackCloudProjectLexiQuery");
+    var cache = $cacheFactory("OvhApiVrackCloudProjectLexi");
+    var queryCache = $cacheFactory("OvhApiVrackCloudProjectLexiQuery");
 
     var interceptor = {
         response: function (response) {

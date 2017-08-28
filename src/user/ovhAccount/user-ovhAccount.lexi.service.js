@@ -1,9 +1,9 @@
 angular.module("ovh-api-services")
-    .service("UserOvhAccountLexi", function ($resource, $cacheFactory, UserLexi) {
+    .service("UserOvhAccountLexi", function ($resource, $cacheFactory, OvhApiUserLexi) {
         "use strict";
 
-        var cache = $cacheFactory("UserOvhAccountLexi");
-        var queryCache = $cacheFactory("UserOvhAccountLexiQuery");
+        var cache = $cacheFactory("OvhApiUserOvhAccountLexi");
+        var queryCache = $cacheFactory("OvhApiUserOvhAccountLexiQuery");
 
         var resource = $resource("/me/ovhAccount/:ovhAccountId", {
             ovhAccountId: "@ovhAccountId"
@@ -13,7 +13,7 @@ angular.module("ovh-api-services")
         });
 
         resource.getBalance = function () {
-            return UserLexi.get().$promise
+            return OvhApiUserLexi.get().$promise
                 .then(function (userInfo) {
                     return resource.get({ ovhAccountId: userInfo.ovhSubsidiary }).$promise;
                 })

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("CloudProjectCreditLexi", function ($resource, CloudProjectCredit) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectCreditLexi", function ($resource, OvhApiCloudProjectCredit) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            CloudProjectCredit.resetCache();
+            OvhApiCloudProjectCredit.resetCache();
             return response.data;
         }
     };
@@ -12,18 +12,18 @@ angular.module("ovh-api-services").service("CloudProjectCreditLexi", function ($
         serviceName: "@serviceName",
         creditId: "@creditId"
     }, {
-        get: { method: "GET", cache: CloudProjectCredit.cache.lexi.get },
-        query: { method: "GET", cache: CloudProjectCredit.cache.lexi.query, isArray: true },
+        get: { method: "GET", cache: OvhApiCloudProjectCredit.cache.lexi.get },
+        query: { method: "GET", cache: OvhApiCloudProjectCredit.cache.lexi.query, isArray: true },
         save: { method: "POST", interceptor: interceptor }
     });
 
     credit.resetCache = function () {
-        CloudProjectCredit.cache.lexi.get.removeAll();
+        OvhApiCloudProjectCredit.cache.lexi.get.removeAll();
     };
 
     credit.resetQueryCache = function () {
-        CloudProjectCredit.cache.lexi.query.removeAll();
-        CloudProjectCredit.cache.aapi.query.removeAll();
+        OvhApiCloudProjectCredit.cache.lexi.query.removeAll();
+        OvhApiCloudProjectCredit.cache.aapi.query.removeAll();
     };
 
     return credit;

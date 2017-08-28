@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("UserTask", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserTask", function ($injector) {
     "use strict";
     return {
         ContactChange: function () {
-            return $injector.get("UserTaskContactChange");
+            return $injector.get("OvhApiUserTaskContactChange");
         }
     };
 });

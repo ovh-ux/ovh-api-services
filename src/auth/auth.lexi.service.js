@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("AuthLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiAuthLexi", function ($resource) {
     "use strict";
 
     return $resource(

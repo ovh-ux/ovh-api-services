@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("TelephonyNumber", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumber", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyNumber");
+    var cache = $cacheFactory("OvhApiTelephonyNumber");
 
     return {
         Aapi: function () {
-            return $injector.get("TelephonyNumberAapi");
+            return $injector.get("OvhApiTelephonyNumberAapi");
         },
         Lexi: function () {
-            return $injector.get("TelephonyNumberLexi");
+            return $injector.get("OvhApiTelephonyNumberLexi");
         },
         Erika: function () {
-            return $injector.get("TelephonyNumberErika");
+            return $injector.get("OvhApiTelephonyNumberErika");
         },
         resetCache: cache.removeAll,
         cache: cache

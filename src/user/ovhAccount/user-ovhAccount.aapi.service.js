@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("UserOvhAccountAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserOvhAccountAapi", function ($resource) {
     "use strict";
 
     return $resource("/me/ovhAccount/all", {}, {

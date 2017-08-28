@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("SmsJobs", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsJobs", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsJobsLexi");
+            return $injector.get("OvhApiSmsJobsLexi");
         }
     };
 });

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslModemAapi", function ($resource, Poller, XdslModem) {
+angular.module("ovh-api-services").service("OvhApiXdslModemAapi", function ($resource, Poller, OvhApiXdslModem) {
     "use strict";
 
     var modem = $resource("/xdsl/:xdslId/modem", {
@@ -6,11 +6,11 @@ angular.module("ovh-api-services").service("XdslModemAapi", function ($resource,
     }, {
         get: {
             method: "GET",
-            cache: XdslModem.cache
+            cache: OvhApiXdslModem.cache
         },
         query: {
             method: "GET",
-            cache: XdslModem.cache,
+            cache: OvhApiXdslModem.cache,
             isArray: true
         }
     });

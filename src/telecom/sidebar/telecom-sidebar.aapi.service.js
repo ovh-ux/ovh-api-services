@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelecomSidebarAapi", function ($resource, TelecomSidebar) {
+angular.module("ovh-api-services").service("OvhApiTelecomSidebarAapi", function ($resource, OvhApiTelecomSidebar) {
     "use strict";
 
     var telecomSidebar = $resource("/telecom/sidebar", {}, {
@@ -6,13 +6,13 @@ angular.module("ovh-api-services").service("TelecomSidebarAapi", function ($reso
             method: "GET",
             url: "/telecom/sidebar",
             serviceType: "aapi",
-            cache: TelecomSidebar.cache
+            cache: OvhApiTelecomSidebar.cache
         },
         count: {
             method: "GET",
             url: "/telecom/sidebar/count",
             serviceType: "aapi",
-            cache: TelecomSidebar.cache
+            cache: OvhApiTelecomSidebar.cache
         }
     });
 

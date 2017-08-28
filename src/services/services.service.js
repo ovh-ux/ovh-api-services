@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("Services", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiServices", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("ServicesAapi");
+            return $injector.get("OvhApiServicesAapi");
         }
     };
 });

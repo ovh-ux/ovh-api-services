@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("CloudPCALexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudPCALexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudPCALexiQuery");
-    var cache = $cacheFactory("CloudPCALexi");
+    var queryCache = $cacheFactory("OvhApiCloudPCALexiQuery");
+    var cache = $cacheFactory("OvhApiCloudPCALexi");
 
     var interceptor = {
         response: function (response) {

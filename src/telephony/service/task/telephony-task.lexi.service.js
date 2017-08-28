@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyServiceTaskLexi", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceTaskLexi", function ($resource, Poller) {
     "use strict";
 
     var loadRemoteRoute = "/telephony/:billingAccount/service/:serviceName/task/:taskId";

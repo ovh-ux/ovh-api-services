@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("SmsAapi", function ($resource, Sms) {
+angular.module("ovh-api-services").service("OvhApiSmsAapi", function ($resource, OvhApiSms) {
     "use strict";
 
     var sms = $resource("/sms", {}, {
@@ -6,12 +6,12 @@ angular.module("ovh-api-services").service("SmsAapi", function ($resource, Sms) 
             method: "GET",
             url: "/sms/details",
             serviceType: "aapi",
-            cache: Sms.cache,
+            cache: OvhApiSms.cache,
             isArray: true
         }
     });
 
-    sms.resetCache = Sms.resetCache;
+    sms.resetCache = OvhApiSms.resetCache;
 
     return sms;
 });

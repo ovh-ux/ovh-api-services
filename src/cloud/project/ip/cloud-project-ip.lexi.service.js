@@ -1,16 +1,8 @@
-angular.module("ovh-api-services").service("CloudProjectIpLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectIpLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectIpLexiQuery");
-    var cache = $cacheFactory("CloudProjectIpLexi");
-
-    // var interceptor = {
-    //     response: function (response) {
-    //         cache.remove(response.config.url);
-    //         queryCache.removeAll();
-    //         return response.data;
-    //     }
-    // };
+    var queryCache = $cacheFactory("OvhApiCloudProjectIpLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectIpLexi");
 
     var ips = $resource("/cloud/project/:serviceName/ip", {
         serviceName: "@serviceName"

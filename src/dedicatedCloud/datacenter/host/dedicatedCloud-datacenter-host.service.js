@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("DedicatedCloudDatacenterHost", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterHost", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCloudDatacenterHostLexi");
+            return $injector.get("OvhApiDedicatedCloudDatacenterHostLexi");
         }
     };
 

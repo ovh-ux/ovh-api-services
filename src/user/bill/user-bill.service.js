@@ -1,14 +1,14 @@
-angular.module("ovh-api-services").service("UserBill", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserBill", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("UserBillAapi");
+            return $injector.get("OvhApiUserBillAapi");
         },
         Lexi: function () {
-            return $injector.get("UserBillLexi");
+            return $injector.get("OvhApiUserBillLexi");
         },
         Details: function () {
-            return $injector.get("UserBillDetails");
+            return $injector.get("OvhApiUserBillDetails");
         }
     };
 });

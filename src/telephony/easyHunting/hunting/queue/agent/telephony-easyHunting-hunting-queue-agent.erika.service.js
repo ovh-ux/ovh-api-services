@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueAgentErika", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueAgentErika", function (apiv7) {
     "use strict";
 
     var endpoint = apiv7("/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/agent/:agentId", {

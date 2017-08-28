@@ -1,9 +1,9 @@
 angular
     .module("ovh-api-services")
-    .service("MetricsServiceTokenLexi", function ($resource, $cacheFactory) {
+    .service("OvhApiMetricsServiceTokenLexi", function ($resource, $cacheFactory) {
 
-        var otherCache = $cacheFactory("MetricsServiceTokenLexi");
-        var queryCache = $cacheFactory("MetricsServiceTokenLexiQuery");
+        var otherCache = $cacheFactory("OvhApiMetricsServiceTokenLexi");
+        var queryCache = $cacheFactory("OvhApiMetricsServiceTokenLexiQuery");
 
         var interceptor = {
             response: function (response) {

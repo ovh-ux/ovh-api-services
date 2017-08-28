@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("CloudProjectFlavor", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectFlavor", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectFlavorLexi");
+            return $injector.get("OvhApiCloudProjectFlavorLexi");
         }
     };
 

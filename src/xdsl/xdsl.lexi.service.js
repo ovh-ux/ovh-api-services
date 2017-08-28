@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("XdslLexi", function ($resource, Xdsl, TelecomSidebar) {
+angular.module("ovh-api-services").service("OvhApiXdslLexi", function ($resource, OvhApiXdsl, OvhApiTelecomSidebar) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelecomSidebar.resetCache();
-            Xdsl.resetCache();
+            OvhApiTelecomSidebar.resetCache();
+            OvhApiXdsl.resetCache();
             return response.resource;
         }
     };
@@ -16,7 +16,7 @@ angular.module("ovh-api-services").service("XdslLexi", function ($resource, Xdsl
             query: {
                 method: "GET",
                 isArray: true,
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             put: {
                 method: "PUT",
@@ -27,11 +27,11 @@ angular.module("ovh-api-services").service("XdslLexi", function ($resource, Xdsl
                 method: "GET",
                 url: "/xdsl/:xdslId/orderFollowup",
                 isArray: true,
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             incidents: {
                 method: "GET",
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             requestTotalDeconsolidation: {
                 method: "POST",
@@ -41,13 +41,13 @@ angular.module("ovh-api-services").service("XdslLexi", function ($resource, Xdsl
             statistics: {
                 method: "GET",
                 url: "/xdsl/:xdslId/statistics",
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             lines: {
                 method: "GET",
                 url: "/xdsl/:xdslId/lines",
                 isArray: true,
-                cache: Xdsl.cache
+                cache: OvhApiXdsl.cache
             },
             eligibilityCities: {
                 method: "GET",

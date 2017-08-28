@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("XdslModemLanDhcpDHCPStaticAddresses", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpDHCPStaticAddresses", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLanDhcpDHCPStaticAddressesLexi");
+            return $injector.get("OvhApiXdslModemLanDhcpDHCPStaticAddressesLexi");
         }
     };
 });

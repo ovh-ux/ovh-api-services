@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("UserTelephonyDefaultIpRestrictionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiUserTelephonyDefaultIpRestrictionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("UserTelephonyDefaultIpRestrictionLexi");
-    var queryCache = $cacheFactory("UserTelephonyDefaultIpRestrictionLexiQuery");
+    var cache = $cacheFactory("OvhApiUserTelephonyDefaultIpRestrictionLexi");
+    var queryCache = $cacheFactory("OvhApiUserTelephonyDefaultIpRestrictionLexiQuery");
 
     var interceptor = {
         response: function (response) {

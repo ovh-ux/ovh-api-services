@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("Vps", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVps", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("VpsLexi");
+            return $injector.get("OvhApiVpsLexi");
         },
         Aapi: function () {
-            return $injector.get("VpsAapi");
+            return $injector.get("OvhApiVpsAapi");
         }
     };
 

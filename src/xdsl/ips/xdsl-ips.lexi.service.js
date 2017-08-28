@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("XdslIpsLexi", function ($resource, XdslIps) {
+angular.module("ovh-api-services").service("OvhApiXdslIpsLexi", function ($resource, OvhApiXdslIps) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslIps.resetCache();
+            OvhApiXdslIps.resetCache();
             return response.resource;
         }
     };
@@ -28,7 +28,7 @@ angular.module("ovh-api-services").service("XdslIpsLexi", function ($resource, X
         price: {
             method: "GET",
             url: "/price/xdsl/options/ipv4/:ipRange",
-            cache: XdslIps.cache
+            cache: OvhApiXdslIps.cache
         },
         unOrder: {
             method: "DELETE",

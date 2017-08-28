@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("DBaasTsProject", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProject", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsProjectLexi");
+            return $injector.get("OvhApiDBaasTsProjectLexi");
         },
         Key: function () {
-            return $injector.get("DBaasTsProjectKey");
+            return $injector.get("OvhApiDBaasTsProjectKey");
         },
         Quota: function () {
-            return $injector.get("DBaasTsProjectQuota");
+            return $injector.get("OvhApiDBaasTsProjectQuota");
         },
         Billing: function () {
-            return $injector.get("DBaasTsProjectBilling");
+            return $injector.get("OvhApiDBaasTsProjectBilling");
         }
     };
 });

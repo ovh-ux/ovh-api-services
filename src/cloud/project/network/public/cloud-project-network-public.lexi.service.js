@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("CloudProjectNetworkPublicLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPublicLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectNetworkPublicLexiQuery");
+    var queryCache = $cacheFactory("OvhApiCloudProjectNetworkPublicLexiQuery");
 
     var publicNetworksResources = $resource("/cloud/project/:serviceName/network/public/:networkId", {
         serviceName: "@serviceName",

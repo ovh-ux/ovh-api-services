@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("VpsAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVpsAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VpsAapi");
+    var cache = $cacheFactory("OvhApiVpsAapi");
 
     var vpsResource = $resource("/vps/:serviceName", {
         serviceName: "@serviceName"

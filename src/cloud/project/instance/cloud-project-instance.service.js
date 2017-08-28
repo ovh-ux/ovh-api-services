@@ -1,14 +1,14 @@
-angular.module("ovh-api-services").service("CloudProjectInstance", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectInstance", function ($injector, $cacheFactory) {
 
     "use strict";
-    var cache = $cacheFactory("CloudProjectInstance");
+    var cache = $cacheFactory("OvhApiCloudProjectInstance");
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectInstanceLexi");
+            return $injector.get("OvhApiCloudProjectInstanceLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudProjectInstanceAapi");
+            return $injector.get("OvhApiCloudProjectInstanceAapi");
         },
         resetCache: cache.removeAll,
         cache: cache

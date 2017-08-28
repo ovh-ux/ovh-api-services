@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("XdslNotificationsLexi", function ($resource, XdslNotifications) {
+angular.module("ovh-api-services").service("OvhApiXdslNotificationsLexi", function ($resource, OvhApiXdslNotifications) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslNotifications.resetCache();
+            OvhApiXdslNotifications.resetCache();
             return response.resource;
         }
     };
@@ -15,7 +15,7 @@ angular.module("ovh-api-services").service("XdslNotificationsLexi", function ($r
         query: {
             method: "GET",
             isArray: true,
-            cache: XdslNotifications.cache
+            cache: OvhApiXdslNotifications.cache
         },
         add: {
             method: "POST",

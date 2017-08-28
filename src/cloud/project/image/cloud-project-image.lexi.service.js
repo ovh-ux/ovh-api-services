@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("CloudProjectImageLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectImageLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectImageLexi");
+    var cache = $cacheFactory("OvhApiCloudProjectImageLexi");
 
 
     // @todo: go to service

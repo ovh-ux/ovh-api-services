@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("CloudProjectNetwork", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetwork", function ($injector) {
     "use strict";
 
     return {
         Private: function () {
-            return $injector.get("CloudProjectNetworkPrivate");
+            return $injector.get("OvhApiCloudProjectNetworkPrivate");
         },
         Public: function () {
-            return $injector.get("CloudProjectNetworkPublic");
+            return $injector.get("OvhApiCloudProjectNetworkPublic");
         }
     };
 });

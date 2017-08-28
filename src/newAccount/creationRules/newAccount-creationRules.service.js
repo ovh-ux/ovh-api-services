@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("NewAccountCreationRules", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiNewAccountCreationRules", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("NewAccountCreationRulesLexi");
+    var cache = $cacheFactory("OvhApiNewAccountCreationRulesLexi");
 
     return {
         Lexi: function () {
-            return $injector.get("NewAccountCreationRulesLexi");
+            return $injector.get("OvhApiNewAccountCreationRulesLexi");
         },
         cache: cache,
         resetCache: cache.removeAll

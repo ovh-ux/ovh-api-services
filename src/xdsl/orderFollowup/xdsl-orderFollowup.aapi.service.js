@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslOrderFollowupAapi", function ($resource, XdslOrderFollowup) {
+angular.module("ovh-api-services").service("OvhApiXdslOrderFollowupAapi", function ($resource, OvhApiXdslOrderFollowup) {
     "use strict";
 
     return $resource("/xdsl/orderFollowup", {
@@ -7,7 +7,7 @@ angular.module("ovh-api-services").service("XdslOrderFollowupAapi", function ($r
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslOrderFollowup.cache
+            cache: OvhApiXdslOrderFollowup.cache
         }
     });
 });

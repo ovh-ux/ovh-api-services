@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProject", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProject", function ($injector, $cacheFactory) {
 
     "use strict";
 
@@ -6,51 +6,51 @@ angular.module("ovh-api-services").service("CloudProject", function ($injector, 
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectLexi");
+            return $injector.get("OvhApiCloudProjectLexi");
         },
         resetCache: cache.removeAll,
         cache: cache,
         Acl: function () {
-            return $injector.get("CloudProjectAcl");
+            return $injector.get("OvhApiCloudProjectAcl");
         },
         Flavor: function () {
-            return $injector.get("CloudProjectFlavor");
+            return $injector.get("OvhApiCloudProjectFlavor");
         },
         Image: function () {
-            return $injector.get("CloudProjectImage");
+            return $injector.get("OvhApiCloudProjectImage");
         },
         Instance: function () {
-            return $injector.get("CloudProjectInstance");
+            return $injector.get("OvhApiCloudProjectInstance");
         },
         Ip: function () {
-            return $injector.get("CloudProjectIp");
+            return $injector.get("OvhApiCloudProjectIp");
         },
         Region: function () {
-            return $injector.get("CloudProjectRegion");
+            return $injector.get("OvhApiCloudProjectRegion");
         },
         Snapshot: function () {
-            return $injector.get("CloudProjectSnapshot");
+            return $injector.get("OvhApiCloudProjectSnapshot");
         },
         SshKey: function () {
-            return $injector.get("CloudProjectSshKey");
+            return $injector.get("OvhApiCloudProjectSshKey");
         },
         Credit: function () {
-            return $injector.get("CloudProjectCredit");
+            return $injector.get("OvhApiCloudProjectCredit");
         },
         User: function () {
-            return $injector.get("CloudProjectUser");
+            return $injector.get("OvhApiCloudProjectUser");
         },
         ServiceInfos: function () {
-            return $injector.get("CloudProjectServiceInfos");
+            return $injector.get("OvhApiCloudProjectServiceInfos");
         },
         Alerting: function () {
-            return $injector.get("CloudProjectAlerting");
+            return $injector.get("OvhApiCloudProjectAlerting");
         },
         Bill: function () {
-            return $injector.get("CloudProjectBill");
+            return $injector.get("OvhApiCloudProjectBill");
         },
         Migration: function () {
-            return $injector.get("CloudProjectMigration");
+            return $injector.get("OvhApiCloudProjectMigration");
         }
     };
 

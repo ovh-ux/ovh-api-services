@@ -1,15 +1,14 @@
-/* global angular*/
-angular.module("ovh-api-services").service("XdslDiagnostic", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslDiagnostic", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslDiagnostic");
+    var cache = $cacheFactory("OvhApiXdslDiagnostic");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslDiagnosticLexi");
+            return $injector.get("OvhApiXdslDiagnosticLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslDiagnosticAapi");
+            return $injector.get("OvhApiXdslDiagnosticAapi");
         },
         resetCache: cache.removeAll,
         cache: cache

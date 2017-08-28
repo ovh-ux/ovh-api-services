@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DBaasTsRegionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsRegionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DBaasTsRegionLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDBaasTsRegionLexiQuery");
 
     var regionResource = $resource("/dbaas/timeseries/region", {
     }, {

@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("XdslDeconsolidation", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiXdslDeconsolidation", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("XdslDeconsolidationLexi");
+            return $injector.get("OvhApiXdslDeconsolidationLexi");
         },
         Aapi: function () {
             return angular.noop;

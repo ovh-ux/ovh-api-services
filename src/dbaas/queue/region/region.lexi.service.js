@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DbaasQueueRegionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueRegionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DbaasQueueRegionLexi");
-    var queryCache = $cacheFactory("DbaasQueueRegionLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasQueueRegionLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasQueueRegionLexiQuery");
 
     var regionResource = $resource("/dbaas/queue/region", {
         regionId: "@regionId"

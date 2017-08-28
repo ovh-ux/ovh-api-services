@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslDomainActivationAapi", function ($resource, PackXdslDomainActivation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivationAapi", function ($resource, OvhApiPackXdslDomainActivation) {
     "use strict";
 
     return $resource(
@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("PackXdslDomainActivationAapi", funct
             checkDisponibility: {
                 method: "POST",
                 serviceType: "aapi",
-                cache: PackXdslDomainActivation.cache
+                cache: OvhApiPackXdslDomainActivation.cache
             }
         });
 });

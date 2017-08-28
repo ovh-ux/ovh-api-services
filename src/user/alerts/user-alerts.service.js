@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("UserAlerts", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserAlerts", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("UserAlertsAapi");
+            return $injector.get("OvhApiUserAlertsAapi");
         }
     };
 });

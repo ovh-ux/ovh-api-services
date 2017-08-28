@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyTimeConditionConditionLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionConditionLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/timeCondition/:serviceName/condition/:id", {

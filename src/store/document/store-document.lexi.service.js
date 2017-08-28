@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("StoreDocumentLexi", function ($resource, $cacheFactory, $http, $q) {
+angular.module("ovh-api-services").service("OvhApiStoreDocumentLexi", function ($resource, $cacheFactory, $http, $q) {
     "use strict";
 
-    var cache = $cacheFactory("StoreDocumentLexi");
-    var queryCache = $cacheFactory("StoreDocumentLexiQuery");
+    var cache = $cacheFactory("OvhApiStoreDocumentLexi");
+    var queryCache = $cacheFactory("OvhApiStoreDocumentLexiQuery");
 
     var docResource = $resource("/store/document/:documentId", { documentId: "@documentId" }, {
         query: { method: "GET", cache: queryCache },

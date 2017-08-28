@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyFaxErika", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFaxErika", function (apiv7) {
     "use strict";
 
     var telephonyFaxEndpoint = apiv7("/telephony/:billingAccount/fax/:serviceName", {

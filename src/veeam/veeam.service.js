@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("Veeam", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVeeam", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("VeeamLexi");
+            return $injector.get("OvhApiVeeamLexi");
         }
     };
 });

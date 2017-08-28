@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DedicatedNashaPartitionAccessAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionAccessAapi", function ($resource, $cacheFactory) {
 
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaPartitionAccessAapi");
+    var cache = $cacheFactory("OvhApiDedicatedNashaPartitionAccessAapi");
 
     var instancesResource = $resource("/dedicated/nasha/:serviceName/partition/:partitionName", {
         serviceName: "@serviceName",

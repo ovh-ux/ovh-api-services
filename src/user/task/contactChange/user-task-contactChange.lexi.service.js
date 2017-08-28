@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("UserTaskContactChangeLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserTaskContactChangeLexi", function ($resource) {
     "use strict";
 
     return $resource("/me/task/contactChange/:id", {

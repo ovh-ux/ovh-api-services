@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("DBaasTsLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsLexi", function ($resource) {
     "use strict";
 
     return $resource("/dbaasts", {}, {

@@ -1,29 +1,29 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabx", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabx", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyOvhPabx");
+    var cache = $cacheFactory("OvhApiTelephonyOvhPabx");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxLexi");
         },
         Dialplan: function () {
-            return $injector.get("TelephonyOvhPabxDialplan");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplan");
         },
         Sound: function () {
-            return $injector.get("TelephonyOvhPabxSound");
+            return $injector.get("OvhApiTelephonyOvhPabxSound");
         },
         Menu: function () {
-            return $injector.get("TelephonyOvhPabxMenu");
+            return $injector.get("OvhApiTelephonyOvhPabxMenu");
         },
         Hunting: function () {
-            return $injector.get("TelephonyOvhPabxHunting");
+            return $injector.get("OvhApiTelephonyOvhPabxHunting");
         },
         Records: function () {
-            return $injector.get("TelephonyOvhPabxRecords");
+            return $injector.get("OvhApiTelephonyOvhPabxRecords");
         },
         Tts: function () {
-            return $injector.get("TelephonyOvhPabxTts");
+            return $injector.get("OvhApiTelephonyOvhPabxTts");
         },
         resetCache: cache.removeAll,
         cache: cache

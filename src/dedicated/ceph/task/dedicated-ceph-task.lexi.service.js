@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedCephTaskLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephTaskLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedCephTaskLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedCephTaskLexi");
 
     var resource = $resource("/dedicated/ceph/:serviceName/task/:taskId", {
         serviceName: "@serviceName",

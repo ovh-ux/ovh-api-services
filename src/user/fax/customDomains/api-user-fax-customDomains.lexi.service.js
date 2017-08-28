@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("UserFaxCustomDomainsLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiUserFaxCustomDomainsLexi", function ($resource) {
     "use strict";
 
     return $resource("/me/fax/customDomains/:id", {

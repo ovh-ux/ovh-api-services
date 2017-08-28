@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("UserContact", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiUserContact", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("UserContactLexi");
+            return $injector.get("OvhApiUserContactLexi");
         },
         Erika: function () {
-            return $injector.get("UserContactErika");
+            return $injector.get("OvhApiUserContactErika");
         }
     };
 

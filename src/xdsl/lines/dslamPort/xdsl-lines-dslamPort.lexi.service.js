@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("XdslLinesDslamPortLexi", function ($resource, XdslLinesDslamPort) {
+angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPortLexi", function ($resource, OvhApiXdslLinesDslamPort) {
     "use strict";
 
     var resourceUrl = "/:basePath/xdsl/:xdslId/lines/:number/dslamPort";
     var interceptor = {
         response: function (response) {
-            XdslLinesDslamPort.resetCache();
+            OvhApiXdslLinesDslamPort.resetCache();
             return response.resource;
         }
     };

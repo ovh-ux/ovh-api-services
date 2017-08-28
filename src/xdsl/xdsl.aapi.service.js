@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslAapi", function ($resource, Xdsl) {
+angular.module("ovh-api-services").service("OvhApiXdslAapi", function ($resource, OvhApiXdsl) {
     "use strict";
 
     var xdslAapi = $resource("/xdsl/:serviceName/statistics/:type/period/:period", {
@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("XdslAapi", function ($resource, Xdsl
         statistics: {
             method: "GET",
             serviceType: "aapi",
-            cache: Xdsl.cache
+            cache: OvhApiXdsl.cache
         }
     }
     );

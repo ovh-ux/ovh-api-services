@@ -1,20 +1,20 @@
-angular.module("ovh-api-services").service("Cloud", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloud", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("CloudLexi");
+            return $injector.get("OvhApiCloudLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudAapi");
+            return $injector.get("OvhApiCloudAapi");
         },
         Price: function () {
-            return $injector.get("CloudPrice");
+            return $injector.get("OvhApiCloudPrice");
         },
         Project: function () {
-            return $injector.get("CloudProject");
+            return $injector.get("OvhApiCloudProject");
         },
         PCA: function () {
-            return $injector.get("CloudPCA");
+            return $injector.get("OvhApiCloudPCA");
         }
     };
 });
