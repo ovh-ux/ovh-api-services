@@ -7,7 +7,6 @@
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
 > Contains all $resource for API.
-> Submodule added in each new manager v6.
 
 ## Table of contents
 
@@ -19,13 +18,13 @@
 
 ### Download module with bower
 
-```bash
+```sh
 $ bower install ovh-api-services --save
 ```
 
 ### Download module with NPM
 
-```bash
+```sh
 $ npm install ovh-api-services --save
 ```
 
@@ -35,7 +34,6 @@ $ npm install ovh-api-services --save
 This will also download the dependencies.
 
 ## Usage
---------
 
 All services must return a $resource.
 For each $resource, you can call whether:
@@ -43,19 +41,19 @@ For each $resource, you can call whether:
 - `Erika`: for APIv7 (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
 - `Aapi`: for 2API
 
-For example, for the service Me, use `Me.Lexi().get()`, to get user informations.
+For example, for the service Me, use `OvhApiMe.Lexi().get()`, to get user informations.
 
-If you want the sshKeys of the user, use `Me.Lexi().SshKey().get()`.
+If you want the sshKeys of the user, use `OvhApiMe.Lexi().SshKey().get()`.
 
 The files structure is then:
-```bash
-api
-  me
-    sshKey
-      me-sshKey.service.js
-      me-sshKey.lexi.js
-    me.service.js
-    me.lexi.js
+```sh
+.
+└── me
+    ├── sshKey
+    │   ├── me-sshKey.service.js
+    │   └── me-sshKey.lexi.js
+    ├── me.service.js
+    └── me.lexi.js
 ```
 
 The directories structure must follow the structure of the API.
@@ -69,7 +67,7 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-api-services/blob
 
 ## Run the tests
 
-```
+```sh
 $ npm test
 ```
 
