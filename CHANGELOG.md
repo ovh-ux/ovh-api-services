@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.0] - 2017-08-29
+- Every service has been prefixed by OvhApi.
+- User service is now named as OvhApiMe (/me endpoint).
+
 ## [1.1.4] - 2017-07-26
 ### Added
 - User fax customDomains api bindings.
