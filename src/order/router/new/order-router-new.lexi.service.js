@@ -1,13 +1,13 @@
-angular.module("ovh-api-services").service("OrderRouterNewLexi", function ($resource, $cacheFactory, Router) {
+angular.module("ovh-api-services").service("OvhApiOrderRouterNewLexi", function ($resource, $cacheFactory, OvhApiRouter) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderRouterNewLexiQuery");
-    var cache = $cacheFactory("OrderRouterNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderRouterNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderRouterNewLexi");
 
     var interceptor = {
         response: function (response) {
-            Router.Lexi().resetQueryCache();
+            OvhApiRouter.Lexi().resetQueryCache();
             return response;
         }
     };

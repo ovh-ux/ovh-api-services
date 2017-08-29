@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyTaskLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTaskLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/task/:taskId", {

@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("PackXdslHubic", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslHubic", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslHubic");
+    var cache = $cacheFactory("OvhApiPackXdslHubic");
 
     return {
         Aapi: function () {
-            return $injector.get("PackXdslHubicAapi");
+            return $injector.get("OvhApiPackXdslHubicAapi");
         },
         Lexi: angular.noop,
         resetCache: cache.removeAll,

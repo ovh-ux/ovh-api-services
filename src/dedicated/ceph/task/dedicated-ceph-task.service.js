@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("DedicatedCephTask", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephTask", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephTaskLexi");
+            return $injector.get("OvhApiDedicatedCephTaskLexi");
         }
     };
 });

@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedNashaPartitionAccessLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionAccessLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedNashaPartitionAccessLexi");
+    var cache = $cacheFactory("OvhApiDedicatedNashaPartitionAccessLexi");
 
     var interceptor = {
         response: function (response) {

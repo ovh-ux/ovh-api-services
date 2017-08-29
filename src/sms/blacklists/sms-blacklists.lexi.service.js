@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("SmsBlacklistsLexi", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsBlacklistsLexi", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsBlacklistsLexi");
-    var queryCache = $cacheFactory("SmsBlacklistsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsBlacklistsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsBlacklistsLexiQuery");
 
     var interceptor = {
         response: function (response) {

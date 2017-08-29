@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("IpReverseLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiIpReverseLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("IpReverseLexi");
-    var queryCache = $cacheFactory("IpReverseLexiQuery");
+    var cache = $cacheFactory("OvhApiIpReverseLexi");
+    var queryCache = $cacheFactory("OvhApiIpReverseLexiQuery");
 
     var interceptor = {
         response: function (response) {

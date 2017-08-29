@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("OrderVrack", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderVrack", function ($injector) {
     "use strict";
 
     return {
         Lexi: angular.noop,
         New: function () {
-            return $injector.get("OrderVrackNew");
+            return $injector.get("OvhApiOrderVrackNew");
         }
     };
 

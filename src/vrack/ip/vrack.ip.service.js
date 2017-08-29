@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("VrackIp", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackIp", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackIpLexi");
+            return $injector.get("OvhApiVrackIpLexi");
         }
     };
 });

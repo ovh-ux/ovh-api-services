@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslMoveLexi", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiPackXdslMoveLexi", function ($resource, Poller) {
     "use strict";
 
     var move = $resource("/pack/xdsl/:packName/addressMove/eligibility", {

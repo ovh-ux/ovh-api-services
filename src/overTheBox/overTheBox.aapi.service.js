@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("OverTheBoxAapi", function ($resource, Poller, OverTheBox) {
+angular.module("ovh-api-services").service("OvhApiOverTheBoxAapi", function ($resource, Poller, OvhApiOverTheBox) {
     "use strict";
 
     var loadRemoteRoute = "/overTheBox/:serviceName/remoteAccesses";
     var interceptor = {
         response: function (response) {
-            OverTheBox.resetCache();
+            OvhApiOverTheBox.resetCache();
             return response.resource;
         }
     };
@@ -17,7 +17,7 @@ angular.module("ovh-api-services").service("OverTheBoxAapi", function ($resource
             url: loadRemoteRoute,
             serviceType: "aapi",
             isArray: true,
-            cache: OverTheBox.cache
+            cache: OvhApiOverTheBox.cache
         },
         createAndAuthorize: {
             method: "POST",

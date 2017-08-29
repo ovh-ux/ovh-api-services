@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingQueueLiveCallsLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsLexi", function ($resource) {
     "use strict";
 
     var res = $resource("/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id", {

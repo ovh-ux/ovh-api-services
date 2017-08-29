@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("VeeamLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVeeamLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VeeamLexi");
-    var queryCache = $cacheFactory("VeeamLexiQuery");
+    var cache = $cacheFactory("OvhApiVeeamLexi");
+    var queryCache = $cacheFactory("OvhApiVeeamLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.removeAll();

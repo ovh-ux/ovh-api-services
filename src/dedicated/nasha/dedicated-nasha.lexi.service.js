@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("DedicatedNashaLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedNashaLexi");
-    var schemaCache = $cacheFactory("DedicatedNashaLexiSchema");
-    var queryCache = $cacheFactory("DedicatedNashaLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedNashaLexi");
+    var schemaCache = $cacheFactory("OvhApiDedicatedNashaLexiSchema");
+    var queryCache = $cacheFactory("OvhApiDedicatedNashaLexiQuery");
 
     var resource = $resource("/dedicated/nasha/:serviceName", {
         serviceName: "@serviceName"

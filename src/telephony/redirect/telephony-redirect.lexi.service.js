@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyRedirectLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRedirectLexi", function ($resource) {
 
     return $resource("/telephony/:billingAccount/:featureType/:serviceName", {
         billingAccount: "@billingAccount",

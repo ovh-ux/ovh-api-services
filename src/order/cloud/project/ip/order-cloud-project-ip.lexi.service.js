@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OrderCloudProjectIpLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiOrderCloudProjectIpLexi", function ($resource) {
     "use strict";
 
     return $resource("/order/cloud/project/:serviceName/ip", {

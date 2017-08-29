@@ -1,36 +1,36 @@
-angular.module("ovh-api-services").service("XdslModem", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModem", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModem");
+    var cache = $cacheFactory("OvhApiXdslModem");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLexi");
+            return $injector.get("OvhApiXdslModemLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemAapi");
+            return $injector.get("OvhApiXdslModemAapi");
         },
         resetCache: function () {
             cache.removeAll();
 
         },
         ConnectedDevices: function () {
-            return $injector.get("XdslModemDevices");
+            return $injector.get("OvhApiXdslModemDevices");
         },
         Lan: function () {
-            return $injector.get("XdslModemLan");
+            return $injector.get("OvhApiXdslModemLan");
         },
         Port: function () {
-            return $injector.get("XdslModemPort");
+            return $injector.get("OvhApiXdslModemPort");
         },
         Reboot: function () {
-            return $injector.get("XdslModemReboot");
+            return $injector.get("OvhApiXdslModemReboot");
         },
         Reset: function () {
-            return $injector.get("XdslModemReset");
+            return $injector.get("OvhApiXdslModemReset");
         },
         Wifi: function () {
-            return $injector.get("XdslModemWifi");
+            return $injector.get("OvhApiXdslModemWifi");
         },
         cache: cache
     };

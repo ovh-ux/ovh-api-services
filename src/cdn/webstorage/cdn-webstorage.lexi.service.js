@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CdnWebstorageLexi", function ($resource, $q, CdnWebstorage) {
+angular.module("ovh-api-services").service("OvhApiCdnWebstorageLexi", function ($resource, $q, OvhApiCdnWebstorage) {
     "use strict";
 
     return $resource("/cdn/webstorage/:serviceName", {
@@ -6,12 +6,12 @@ angular.module("ovh-api-services").service("CdnWebstorageLexi", function ($resou
     }, {
         get: {
             method: "GET",
-            cache: CdnWebstorage.cache
+            cache: OvhApiCdnWebstorage.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: CdnWebstorage.cache
+            cache: OvhApiCdnWebstorage.cache
         }
     });
 });

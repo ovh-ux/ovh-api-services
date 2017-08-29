@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DbaasQueueLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DbaasQueueLexi");
-    var queryCache = $cacheFactory("DbaasQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasQueueLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasQueueLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);

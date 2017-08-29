@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("CloudProjectLexi", function ($resource, $q, CloudProject) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectLexi", function ($resource, $q, OvhApiCloudProject) {
 
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            CloudProject.resetCache();
+            OvhApiCloudProject.resetCache();
             return response.data;
         }
     };
@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("CloudProjectLexi", function ($resour
     }, {
         get: {
             method: "GET",
-            cache: CloudProject.cache
+            cache: OvhApiCloudProject.cache
         },
         unleash: {
             url: "/cloud/project/:serviceName/unleash",
@@ -58,15 +58,15 @@ angular.module("ovh-api-services").service("CloudProjectLexi", function ($resour
     // These methods were been kept to maintain compatibility with the previous method to reset cache.
 
     cloudProject.resetAllCache = function () {
-        CloudProject.resetCache();
+        OvhApiCloudProject.resetCache();
     };
 
     cloudProject.resetCache = function () {
-        CloudProject.resetCache();
+        OvhApiCloudProject.resetCache();
     };
 
     cloudProject.resetQueryCache = function () {
-        CloudProject.resetCache();
+        OvhApiCloudProject.resetCache();
     };
 
     return cloudProject;

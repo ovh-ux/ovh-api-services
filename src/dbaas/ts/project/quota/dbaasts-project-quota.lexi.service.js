@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DBaasTsProjectQuotaLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsProjectQuotaLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DBaasTsProjectQuotaLexiQuery");
-    var cache = $cacheFactory("DBaasTsProjectQuotaLexi");
+    var queryCache = $cacheFactory("OvhApiDBaasTsProjectQuotaLexiQuery");
+    var cache = $cacheFactory("OvhApiDBaasTsProjectQuotaLexi");
 
     var quotaResource = $resource("/dbaas/timeseries/:serviceName/quota", {
         serviceName: "@serviceName"

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectCreditAapi", function ($resource, CloudProjectCredit) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectCreditAapi", function ($resource, OvhApiCloudProjectCredit) {
     "use strict";
 
     var credit = $resource("/cloud/project/:serviceName/credit", {
@@ -7,7 +7,7 @@ angular.module("ovh-api-services").service("CloudProjectCreditAapi", function ($
         query: {
             method: "GET",
             serviceType: "aapi",
-            cache: CloudProjectCredit.cache.aapi.query,
+            cache: OvhApiCloudProjectCredit.cache.aapi.query,
             isArray: true
         }
     });

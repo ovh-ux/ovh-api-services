@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyMiniPabxLexi", function ($resource, TelephonyMiniPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", function ($resource, OvhApiTelephonyMiniPabx) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/miniPabx/:serviceName", {
@@ -8,23 +8,23 @@ angular.module("ovh-api-services").service("TelephonyMiniPabxLexi", function ($r
         query: {
             method: "GET",
             isArray: true,
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         get: {
             method: "GET",
             isArray: false,
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         getHunting: {
             method: "GET",
             url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting",
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         queryAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/agent",
             isArray: true,
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         },
         getAgent: {
             method: "GET",
@@ -32,7 +32,7 @@ angular.module("ovh-api-services").service("TelephonyMiniPabxLexi", function ($r
             params: {
                 agentNumber: "@"
             },
-            cache: TelephonyMiniPabx.cache
+            cache: OvhApiTelephonyMiniPabx.cache
         }
     }
     );

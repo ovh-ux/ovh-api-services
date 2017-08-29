@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("CloudProjectMigrationLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectMigrationLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectMigrationLexiQuery");
-    var cache = $cacheFactory("CloudProjectMigrationLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectMigrationLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectMigrationLexi");
 
     var interceptor = {
         response: function (response) {

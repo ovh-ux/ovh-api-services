@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("XdslModemLanDhcpAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemLanDhcpAapi");
+    var cache = $cacheFactory("OvhApiXdslModemLanDhcpAapi");
 
     var xdslModemLanDhcpAapi = $resource("/xdsl/:xdslId/modem/lan/dhcp", {
         xdslId: "@xdslId"

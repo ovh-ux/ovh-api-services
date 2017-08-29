@@ -1,9 +1,9 @@
 "use strict";
 
-angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", function ($resource, PackXdslHostedEmail) {
+angular.module("ovh-api-services").service("OvhApiPackXdslHostedEmailLexi", function ($resource, OvhApiPackXdslHostedEmail) {
     var interceptor = {
         response: function (response) {
-            PackXdslHostedEmail.resetCache();
+            OvhApiPackXdslHostedEmail.resetCache();
             return response.resource;
         }
     };
@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", function (
         query: {
             method: "GET",
             isArray: true,
-            cache: PackXdslHostedEmail.cache
+            cache: OvhApiPackXdslHostedEmail.cache
         },
         save: {
             method: "POST",
@@ -24,7 +24,7 @@ angular.module("ovh-api-services").service("PackXdslHostedEmailLexi", function (
             method: "GET",
             url: "/pack/xdsl/:packId/hostedEmail/options/domains",
             isArray: true,
-            cache: PackXdslHostedEmail.cache
+            cache: OvhApiPackXdslHostedEmail.cache
         }
     }
     );

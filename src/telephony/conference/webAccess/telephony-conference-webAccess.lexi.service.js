@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyConferenceWebAccessLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceWebAccessLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/conference/:serviceName/webAccess/:id", {

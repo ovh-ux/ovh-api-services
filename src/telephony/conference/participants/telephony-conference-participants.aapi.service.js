@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyConferenceParticipantsAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyConferenceParticipantsAapi", function ($resource) {
 
     return $resource("/telephony/:billingAccount/conference/:serviceName/participants", {
         billingAccount: "@billingAccount",

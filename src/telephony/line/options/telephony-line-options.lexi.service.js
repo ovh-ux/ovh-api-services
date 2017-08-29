@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", function ($resource, TelephonyLineOptions) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineOptionsLexi", function ($resource, OvhApiTelephonyLineOptions) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelephonyLineOptions.resetCache();
+            OvhApiTelephonyLineOptions.resetCache();
             return response.resource;
         }
     };
@@ -15,7 +15,7 @@ angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", function 
         get: {
             method: "GET",
             isArray: false,
-            cache: TelephonyLineOptions.cache
+            cache: OvhApiTelephonyLineOptions.cache
         },
         update: {
             method: "PUT",
@@ -26,13 +26,13 @@ angular.module("ovh-api-services").service("TelephonyLineOptionsLexi", function 
             url: "/telephony/:billingAccount/line/:serviceName/options/availableCodecs",
             method: "GET",
             isArray: true,
-            cache: TelephonyLineOptions.cache
+            cache: OvhApiTelephonyLineOptions.cache
         },
         defaultCodecs: {
             url: "/telephony/:billingAccount/line/:serviceName/options/defaultCodecs",
             method: "GET",
             isArray: false,
-            cache: TelephonyLineOptions.cache,
+            cache: OvhApiTelephonyLineOptions.cache,
             transformResponse: function (data) {
                 // because $resource returns an array of char when response is a simple string
                 return {

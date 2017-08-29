@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("TelephonyTimeCondition", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeCondition", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyTimeCondition");
+    var cache = $cacheFactory("OvhApiTelephonyTimeCondition");
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyTimeConditionLexi");
+            return $injector.get("OvhApiTelephonyTimeConditionLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyTimeConditionAapi");
+            return $injector.get("OvhApiTelephonyTimeConditionAapi");
         },
         Condition: function () {
-            return $injector.get("TelephonyTimeConditionCondition");
+            return $injector.get("OvhApiTelephonyTimeConditionCondition");
         },
         resetCache: cache.removeAll,
         cache: cache

@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("LicenseOfficeUsageStatisticsLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsageStatisticsLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("LicenseOfficeUsageStatisticsLexiQuery");
+    var queryCache = $cacheFactory("OvhApiLicenseOfficeUsageStatisticsLexiQuery");
 
     return $resource("/license/office/:serviceName/usageStatistics", {
         serviceName: "@serviceName",

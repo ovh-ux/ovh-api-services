@@ -1,53 +1,53 @@
-angular.module("ovh-api-services").service("Sms", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiSms", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("Sms");
+    var cache = $cacheFactory("OvhApiSms");
 
     return {
         Aapi: function () {
-            return $injector.get("SmsAapi");
+            return $injector.get("OvhApiSmsAapi");
         },
         Lexi: function () {
-            return $injector.get("SmsLexi");
+            return $injector.get("OvhApiSmsLexi");
         },
         Erika: function () {
-            return $injector.get("SmsErika");
+            return $injector.get("OvhApiSmsErika");
         },
         Jobs: function () {
-            return $injector.get("SmsJobs");
+            return $injector.get("OvhApiSmsJobs");
         },
         Senders: function () {
-            return $injector.get("SmsSenders");
+            return $injector.get("OvhApiSmsSenders");
         },
         Blacklists: function () {
-            return $injector.get("SmsBlacklists");
+            return $injector.get("OvhApiSmsBlacklists");
         },
         Receivers: function () {
-            return $injector.get("SmsReceivers");
+            return $injector.get("OvhApiSmsReceivers");
         },
         Incoming: function () {
-            return $injector.get("SmsIncoming");
+            return $injector.get("OvhApiSmsIncoming");
         },
         Outgoing: function () {
-            return $injector.get("SmsOutgoing");
+            return $injector.get("OvhApiSmsOutgoing");
         },
         Users: function () {
-            return $injector.get("SmsUsers");
+            return $injector.get("OvhApiSmsUsers");
         },
         Hlr: function () {
-            return $injector.get("SmsHlr");
+            return $injector.get("OvhApiSmsHlr");
         },
         Templates: function () {
-            return $injector.get("SmsTemplates");
+            return $injector.get("OvhApiSmsTemplates");
         },
         Task: function () {
-            return $injector.get("SmsTask");
+            return $injector.get("OvhApiSmsTask");
         },
         VirtualNumbers: function () {
-            return $injector.get("SmsVirtualNumbers");
+            return $injector.get("OvhApiSmsVirtualNumbers");
         },
         Phonebooks: function () {
-            return $injector.get("SmsPhonebooks");
+            return $injector.get("OvhApiSmsPhonebooks");
         },
         resetCache: cache.removeAll,
         cache: cache

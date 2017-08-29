@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("PackXdslDomainActivationLexi", function ($resource, PackXdslDomainActivation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivationLexi", function ($resource, OvhApiPackXdslDomainActivation) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslDomainActivation.resetCache();
+            OvhApiPackXdslDomainActivation.resetCache();
             return response.resource;
         }
     };
@@ -20,14 +20,13 @@ angular.module("ovh-api-services").service("PackXdslDomainActivationLexi", funct
             getServices: {
                 method: "GET",
                 isArray: true,
-                cache: PackXdslDomainActivation.cache
+                cache: OvhApiPackXdslDomainActivation.cache
             },
             getTlds: {
                 method: "GET",
                 url: "/pack/xdsl/:packId/domain/options/tlds",
                 isArray: true,
-                cache: PackXdslDomainActivation.cache
+                cache: OvhApiPackXdslDomainActivation.cache
             }
         });
 });
-

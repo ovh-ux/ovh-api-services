@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("License", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiLicense", function ($injector) {
     "use strict";
     return {
         Office: function () {
-            return $injector.get("LicenseOffice");
+            return $injector.get("OvhApiLicenseOffice");
         }
     };
 });

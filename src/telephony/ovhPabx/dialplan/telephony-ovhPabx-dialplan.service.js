@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplan", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplan", function ($injector) {
     "use strict";
 
     return {
         Extension: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtension");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtension");
         },
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanLexi");
         }
     };
 });

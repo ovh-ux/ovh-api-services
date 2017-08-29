@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("SmsLexi", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiSmsLexi", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("SmsLexi");
-    var queryCache = $cacheFactory("SmsLexiQuery");
+    var cache = $cacheFactory("OvhApiSmsLexi");
+    var queryCache = $cacheFactory("OvhApiSmsLexiQuery");
 
     var interceptor = {
         response: function (response) {

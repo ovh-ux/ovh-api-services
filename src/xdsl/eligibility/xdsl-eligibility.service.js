@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("XdslEligibility", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslEligibility", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslEligibility");
+    var cache = $cacheFactory("OvhApiXdslEligibility");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslEligibilityLexi");
+            return $injector.get("OvhApiXdslEligibilityLexi");
         },
         resetCache: cache.removeAll,
         cache: cache

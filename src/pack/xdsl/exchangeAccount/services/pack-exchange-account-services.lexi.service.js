@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslExchangeAccountServicesLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountServicesLexi", function ($resource) {
     "use strict";
 
     return $resource("/pack/xdsl/:packName/exchangeAccount/services/:domain", {

@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("CloudProjectSshKeyLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("CloudProjectSshKeyLexiQuery");
-    var cache = $cacheFactory("CloudProjectSshKeyLexi");
+    var queryCache = $cacheFactory("OvhApiCloudProjectSshKeyLexiQuery");
+    var cache = $cacheFactory("OvhApiCloudProjectSshKeyLexi");
 
     var interceptor = {
         response: function (response) {

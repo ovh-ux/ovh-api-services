@@ -1,13 +1,13 @@
-angular.module("ovh-api-services").service("CloudProjectUser", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUser", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectUserLexi");
+            return $injector.get("OvhApiCloudProjectUserLexi");
         },
         Aapi: function () {
-            return $injector.get("CloudProjectUserAapi");
+            return $injector.get("OvhApiCloudProjectUserAapi");
         }
     };
 

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("CloudProjectNetworkPrivateSubnet", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPrivateSubnet", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudProjectNetworkPrivateSubnetLexi");
+            return $injector.get("OvhApiCloudProjectNetworkPrivateSubnetLexi");
         }
     };
 });

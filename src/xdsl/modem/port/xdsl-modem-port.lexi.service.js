@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("XdslModemPortLexi", function ($resource, XdslModemPort) {
+angular.module("ovh-api-services").service("OvhApiXdslModemPortLexi", function ($resource, OvhApiXdslModemPort) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemPort.resetCache();
+            OvhApiXdslModemPort.resetCache();
             return response.resource;
         }
     };
@@ -14,12 +14,12 @@ angular.module("ovh-api-services").service("XdslModemPortLexi", function ($resou
     }, {
         get: {
             method: "GET",
-            cache: XdslModemPort.cache
+            cache: OvhApiXdslModemPort.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: XdslModemPort.cache
+            cache: OvhApiXdslModemPort.cache
         },
         update: {
             method: "PUT",

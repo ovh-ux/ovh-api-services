@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("PackXdslExchangeLiteLexi", function ($resource, $http, PackXdslExchangeLite) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeLiteLexi", function ($resource, $http, OvhApiPackXdslExchangeLite) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslExchangeLite.resetCache();
+            OvhApiPackXdslExchangeLite.resetCache();
             return response.resource;
         }
     };
@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeLiteLexi", function 
         query: {
             method: "GET",
             isArray: true,
-            cache: PackXdslExchangeLite.cache
+            cache: OvhApiPackXdslExchangeLite.cache
         },
         save: {
             method: "POST",

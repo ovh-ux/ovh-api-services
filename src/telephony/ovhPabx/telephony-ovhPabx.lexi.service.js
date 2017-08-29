@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", function ($resource, TelephonyOvhPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxLexi", function ($resource, OvhApiTelephonyOvhPabx) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelephonyOvhPabx.resetCache();
+            OvhApiTelephonyOvhPabx.resetCache();
             return response.resource;
         }
     };
@@ -11,18 +11,18 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", function ($re
     var telephonyOvhPabx = $resource("/telephony/:billingAccount/ovhPabx", {
         billingAccount: "@billingAccount"
     }, {
-        query: { method: "GET", isArray: true, cache: TelephonyOvhPabx.cache },
+        query: { method: "GET", isArray: true, cache: OvhApiTelephonyOvhPabx.cache },
         get: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getHunting: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -30,14 +30,14 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", function ($re
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/agent",
             isArray: true,
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/agent/:agentId",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -45,14 +45,14 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", function ($re
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue",
             isArray: true,
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getQueue: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
@@ -74,14 +74,14 @@ angular.module("ovh-api-services").service("TelephonyOvhPabxLexi", function ($re
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/agent",
             isArray: true,
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated
         getTier: {
             method: "GET",
             url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/agent/:agentId",
-            cache: TelephonyOvhPabx.cache
+            cache: OvhApiTelephonyOvhPabx.cache
         },
 
         // @deprecated

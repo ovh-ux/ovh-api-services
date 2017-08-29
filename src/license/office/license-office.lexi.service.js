@@ -1,9 +1,9 @@
 "use strict";
 
-angular.module("ovh-api-services").service("LicenseOfficeLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiLicenseOfficeLexi", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("LicenseOfficeLexi");
-    var queryCache = $cacheFactory("LicenseOfficeLexiQuery");
+    var cache = $cacheFactory("OvhApiLicenseOfficeLexi");
+    var queryCache = $cacheFactory("OvhApiLicenseOfficeLexiQuery");
 
     var interceptor = {
         response: function (response) {

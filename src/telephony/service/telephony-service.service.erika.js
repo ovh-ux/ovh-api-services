@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyServiceErika", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceErika", function (apiv7) {
     "use strict";
 
     var endpoint = apiv7("/telephony/:billingAccount/service/:serviceName", {

@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("PackXdslLexi", function ($resource, TelecomSidebar, PackXdsl) {
+angular.module("ovh-api-services").service("OvhApiPackXdslLexi", function ($resource, OvhApiTelecomSidebar, OvhApiPackXdsl) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            TelecomSidebar.resetCache();
-            PackXdsl.resetCache();
+            OvhApiTelecomSidebar.resetCache();
+            OvhApiPackXdsl.resetCache();
             return response.resource;
         }
     };
@@ -19,13 +19,13 @@ angular.module("ovh-api-services").service("PackXdslLexi", function ($resource, 
         getServiceInfos: {
             method: "GET",
             url: "/pack/xdsl/:packId/serviceInfos",
-            cache: PackXdsl.cache
+            cache: OvhApiPackXdsl.cache
         },
         getServices: {
             method: "GET",
             isArray: true,
             url: "/pack/xdsl/:packId/services",
-            cache: PackXdsl.cache,
+            cache: OvhApiPackXdsl.cache,
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
                     var services = angular.fromJson(data);

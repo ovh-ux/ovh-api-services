@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OrderCloudProjectCreditLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCreditLexi", function ($resource) {
     "use strict";
 
     return $resource("/order/cloud/project/:serviceName/credit", {

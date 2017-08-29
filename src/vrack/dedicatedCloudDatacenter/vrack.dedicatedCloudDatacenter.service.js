@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("VrackDedicatedCloudDatacenter", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloudDatacenter", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackDedicatedCloudDatacenterLexi");
+            return $injector.get("OvhApiVrackDedicatedCloudDatacenterLexi");
         }
     };
 });

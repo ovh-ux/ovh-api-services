@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("FreeFax", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiFreeFax", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("FreeFax");
+    var cache = $cacheFactory("OvhApiFreeFax");
 
     return {
         Lexi: function () {
-            return $injector.get("FreeFaxLexi");
+            return $injector.get("OvhApiFreeFaxLexi");
         },
         Aapi: function () {
-            return $injector.get("FreeFaxAapi");
+            return $injector.get("OvhApiFreeFaxAapi");
         },
         Erika: function () {
-            return $injector.get("FreeFaxErika");
+            return $injector.get("OvhApiFreeFaxErika");
         },
         resetCache: cache.removeAll,
         cache: cache

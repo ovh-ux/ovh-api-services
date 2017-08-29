@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedNashaPartitionCustomSnapshotLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionCustomSnapshotLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("DedicatedNashaPartitionCustomSnapshotLexiQuery");
+    var queryCache = $cacheFactory("OvhApiDedicatedNashaPartitionCustomSnapshotLexiQuery");
 
     var interceptor = {
         response: function (response) {

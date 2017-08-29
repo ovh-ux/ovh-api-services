@@ -1,12 +1,12 @@
 "use strict";
 
-angular.module("ovh-api-services").service("VrackLexi", function ($resource, VrackPublicCloud, CloudProject, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackLexi", function ($resource, OvhApiVrackPublicCloud, OvhApiCloudProject, OvhApiVrack) {
 
     var interceptor = {
         response: function (response) {
-            VrackPublicCloud.resetCache();
-            CloudProject.resetCache();
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrackPublicCloud.resetCache();
+            OvhApiCloudProject.resetCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -17,13 +17,13 @@ angular.module("ovh-api-services").service("VrackLexi", function ($resource, Vra
         project: {
             method: "GET",
             url: "/vrack/:serviceName/cloudProject/:projectId ",
-            cache: VrackPublicCloud.cache
+            cache: OvhApiVrackPublicCloud.cache
         },
         projects: {
             method: "GET",
             url: "/vrack/:serviceName/cloudProject",
             isArray: true,
-            cache: VrackPublicCloud.cache
+            cache: OvhApiVrackPublicCloud.cache
         },
         addProject: {
             method: "POST",

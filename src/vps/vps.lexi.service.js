@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("VpsLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiVpsLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("VpsLexi");
-    var queryCache = $cacheFactory("VpsLexiQuery");
+    var cache = $cacheFactory("OvhApiVpsLexi");
+    var queryCache = $cacheFactory("OvhApiVpsLexiQuery");
 
     var interceptor = {
         response: function (response) {

@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("SiteBuilders", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSiteBuilders", function ($injector) {
     "use strict";
     return {
         Aapi: function () {
-            return $injector.get("SiteBuildersAapi");
+            return $injector.get("OvhApiSiteBuildersAapi");
         }
     };
 });

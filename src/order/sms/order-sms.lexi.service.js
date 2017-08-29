@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OrderSmsLexi", function ($resource, OrderSms) {
+angular.module("ovh-api-services").service("OvhApiOrderSmsLexi", function ($resource, OvhApiOrderSms) {
     "use strict";
 
     return $resource("/order/sms/:serviceName", {
@@ -7,12 +7,12 @@ angular.module("ovh-api-services").service("OrderSmsLexi", function ($resource, 
         get: {
             method: "GET",
             isArray: true,
-            cache: OrderSms.cache
+            cache: OvhApiOrderSms.cache
         },
         getCredits: {
             method: "GET",
             url: "/order/sms/:serviceName/credits",
-            cache: OrderSms.cache
+            cache: OvhApiOrderSms.cache
         },
         orderCredits: {
             method: "POST",
@@ -21,7 +21,7 @@ angular.module("ovh-api-services").service("OrderSmsLexi", function ($resource, 
         getNewSmsAccount: {
             method: "GET",
             url: "/order/sms/new",
-            cache: OrderSms.cache
+            cache: OvhApiOrderSms.cache
         },
         orderNewSmsAccount: {
             method: "POST",

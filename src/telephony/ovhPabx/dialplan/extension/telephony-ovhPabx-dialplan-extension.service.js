@@ -1,18 +1,18 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtension", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtension", function ($injector) {
     "use strict";
 
     return {
         Rule: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionRule");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionRule");
         },
         ConditionScreenList: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionScreenList");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenList");
         },
         ConditionTime: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionConditionTime");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionTime");
         },
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxDialplanExtensionLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionLexi");
         }
     };
 });

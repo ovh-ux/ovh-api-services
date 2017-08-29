@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectStorageLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectStorageLexi", function ($resource) {
     "use strict";
 
     var baseUrl = "/:basePath/cloud/project/:projectId/storage/:containerId";

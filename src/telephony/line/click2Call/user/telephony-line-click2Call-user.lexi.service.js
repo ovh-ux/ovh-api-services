@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("TelephonyLineClick2CallUserLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyLineClick2CallUserLexi");
+    var cache = $cacheFactory("OvhApiTelephonyLineClick2CallUserLexi");
 
     var interceptor = {
         response: function (response) {

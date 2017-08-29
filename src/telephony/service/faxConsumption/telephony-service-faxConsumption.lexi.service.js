@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("TelephonyServiceFaxConsumptionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceFaxConsumptionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceFaxConsumptionLexi");
-    var queryCache = $cacheFactory("TelephonyServiceFaxConsumptionLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyServiceFaxConsumptionLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyServiceFaxConsumptionLexiQuery");
 
     var faxConsumption = $resource("/telephony/:billingAccount/service/:serviceName/faxConsumption/:consumptionId", {
         billingAccount: "@billingAccount",

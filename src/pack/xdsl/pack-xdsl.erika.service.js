@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslErika", function (apiv7) {
+angular.module("ovh-api-services").service("OvhApiPackXdslErika", function (apiv7) {
     "use strict";
 
     var packXdslEndpoint = apiv7("/pack/xdsl/:packName", {

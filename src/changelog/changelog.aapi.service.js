@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("ChangelogAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiChangelogAapi", function ($resource) {
     "use strict";
 
     return $resource(

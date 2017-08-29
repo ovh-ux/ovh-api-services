@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("StorePartnerLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiStorePartnerLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("StorePartnerLexi");
-    var queryCache = $cacheFactory("StorePartnerLexiQuery");
+    var cache = $cacheFactory("OvhApiStorePartnerLexi");
+    var queryCache = $cacheFactory("OvhApiStorePartnerLexiQuery");
 
     var partner = $resource("/store/partner/:partnerId", { partnerId: "@partnerId" }, {
         query: { method: "GET", cache: queryCache, isArray: true },

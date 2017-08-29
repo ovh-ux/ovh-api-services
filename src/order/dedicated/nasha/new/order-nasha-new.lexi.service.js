@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("OrderDedicatedNashaNewLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderDedicatedNashaNewLexi", function ($resource, $cacheFactory) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderDedicatedNashaNewLexiQuery");
-    var cache = $cacheFactory("OrderDedicatedNashaNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderDedicatedNashaNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderDedicatedNashaNewLexi");
     var interceptor = {
         response: function (response) {
             queryCache.removeAll();

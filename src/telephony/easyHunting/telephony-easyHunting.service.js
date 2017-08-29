@@ -1,24 +1,24 @@
-angular.module("ovh-api-services").service("TelephonyEasyHunting", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHunting", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingLexi");
         },
         Sound: function () {
-            return $injector.get("TelephonyEasyHuntingSound");
+            return $injector.get("OvhApiTelephonyEasyHuntingSound");
         },
         Hunting: function () {
-            return $injector.get("TelephonyEasyHuntingHunting");
+            return $injector.get("OvhApiTelephonyEasyHuntingHunting");
         },
         ScreenListConditions: function () {
-            return $injector.get("TelephonyEasyHuntingScreenListConditions");
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditions");
         },
         TimeConditions: function () {
-            return $injector.get("TelephonyEasyHuntingTimeConditions");
+            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditions");
         },
         Records: function () {
-            return $injector.get("TelephonyEasyHuntingRecords");
+            return $injector.get("OvhApiTelephonyEasyHuntingRecords");
         }
     };
 });

@@ -1,14 +1,14 @@
-angular.module("ovh-api-services").service("PackXdslDomainActivation", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivation", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdslDomainActivation");
+    var cache = $cacheFactory("OvhApiPackXdslDomainActivation");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslDomainActivationLexi");
+            return $injector.get("OvhApiPackXdslDomainActivationLexi");
         },
         Aapi: function () {
-            return $injector.get("PackXdslDomainActivationAapi");
+            return $injector.get("OvhApiPackXdslDomainActivationAapi");
         },
         resetCache: cache.removeAll,
         cache: cache

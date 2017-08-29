@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", function ($resource, $http, PackXdslExchangeIndividual) {
+angular.module("ovh-api-services").service("OvhApiPackXdslExchangeIndividualLexi", function ($resource, $http, OvhApiPackXdslExchangeIndividual) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslExchangeIndividual.resetCache();
+            OvhApiPackXdslExchangeIndividual.resetCache();
             return response.resource;
         }
     };
@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", fun
         query: {
             method: "GET",
             isArray: true,
-            cache: PackXdslExchangeIndividual.cache
+            cache: OvhApiPackXdslExchangeIndividual.cache
         },
         save: {
             method: "POST",
@@ -24,7 +24,7 @@ angular.module("ovh-api-services").service("PackXdslExchangeIndividualLexi", fun
             method: "GET",
             url: "/pack/xdsl/:packId/exchangeIndividual/options/domains",
             isArray: true,
-            cache: PackXdslExchangeIndividual.cache
+            cache: OvhApiPackXdslExchangeIndividual.cache
         }
     }
     );

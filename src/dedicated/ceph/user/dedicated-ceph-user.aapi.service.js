@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("DedicatedCephUserAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUserAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("DedicatedCephUserAapi");
+    var cache = $cacheFactory("OvhApiDedicatedCephUserAapi");
 
     var resource = $resource("/dedicated/ceph/:serviceName/user", {
         serviceName: "@serviceName"

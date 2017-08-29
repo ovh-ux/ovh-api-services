@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OrderTelephonyLexi", function ($resource, OrderTelephony) {
+angular.module("ovh-api-services").service("OvhApiOrderTelephonyLexi", function ($resource, OvhApiOrderTelephony) {
     "use strict";
 
     return $resource("/order/telephony/:billingAccount", {
@@ -7,13 +7,13 @@ angular.module("ovh-api-services").service("OrderTelephonyLexi", function ($reso
         get: {
             method: "GET",
             isArray: true,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         billingAccounts: {
             method: "GET",
             url: "/order/telephony",
             isArray: true,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         getNewBillingAccount: {
             method: "GET",
@@ -29,19 +29,19 @@ angular.module("ovh-api-services").service("OrderTelephonyLexi", function ($reso
             method: "GET",
             url: "/order/telephony/:billingAccount/numberGeographic",
             isArray: false,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         getNumberNogeographical: {
             method: "GET",
             url: "/order/telephony/:billingAccount/numberNogeographic",
             isArray: false,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         getNumberSpecial: {
             method: "GET",
             url: "/order/telephony/:billingAccount/numberSpecial",
             isArray: false,
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         },
         orderNumberGeographical: {
             method: "POST",

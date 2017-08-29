@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DBaasTsRegion", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDBaasTsRegion", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DBaasTsRegionLexi");
+            return $injector.get("OvhApiDBaasTsRegionLexi");
         }
     };
 });

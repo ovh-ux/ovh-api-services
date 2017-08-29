@@ -1,13 +1,13 @@
 "use strict";
 
-angular.module("ovh-api-services").service("VrackDedicatedCloudDatacenterLexi", function ($resource, $cacheFactory, Vrack) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloudDatacenterLexi", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("VrackDedicatedCloudDatacenterLexi");
+    var cache = $cacheFactory("OvhApiVrackDedicatedCloudDatacenterLexi");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
-            Vrack.Aapi().resetAllCache();
+            OvhApiVrack.Aapi().resetAllCache();
             return response;
         }
     };
@@ -31,7 +31,7 @@ angular.module("ovh-api-services").service("VrackDedicatedCloudDatacenterLexi", 
 
     vrackDedicatedCloud.resetCache = function () {
         cache.removeAll();
-        Vrack.Aapi().resetAllCache();
+        OvhApiVrack.Aapi().resetAllCache();
     };
 
     return vrackDedicatedCloud;

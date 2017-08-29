@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("NewAccountLegalFormLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiNewAccountLegalFormLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("NewAccountLegalFormLexi");
-    var queryCache = $cacheFactory("NewAccountLegalFormLexiQuery");
+    var cache = $cacheFactory("OvhApiNewAccountLegalFormLexi");
+    var queryCache = $cacheFactory("OvhApiNewAccountLegalFormLexiQuery");
 
     var newAccount = $resource("/newAccount/legalform", {
         country: "@country"

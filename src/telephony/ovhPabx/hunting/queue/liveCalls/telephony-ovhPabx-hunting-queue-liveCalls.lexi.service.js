@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxHuntingQueueLiveCallsLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueLiveCallsLexi", function ($resource) {
     "use strict";
 
     var res = $resource("/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveCalls/:id", {

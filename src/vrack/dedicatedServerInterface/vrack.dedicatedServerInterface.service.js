@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DedicatedServerInterface", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedServerInterface", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("DedicatedServerInterfaceLexi");
+            return $injector.get("OvhApiDedicatedServerInterfaceLexi");
         }
     };
 });

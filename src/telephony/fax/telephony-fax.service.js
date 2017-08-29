@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("TelephonyFax", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyFax", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("TelephonyFaxLexi");
+            return $injector.get("OvhApiTelephonyFaxLexi");
         },
         Aapi: function () {
-            return $injector.get("TelephonyFaxAapi");
+            return $injector.get("OvhApiTelephonyFaxAapi");
         },
         Erika: function () {
-            return $injector.get("TelephonyFaxErika");
+            return $injector.get("OvhApiTelephonyFaxErika");
         },
         Campaigns: function () {
-            return $injector.get("TelephonyFaxCampaigns");
+            return $injector.get("OvhApiTelephonyFaxCampaigns");
         }
     };
 });

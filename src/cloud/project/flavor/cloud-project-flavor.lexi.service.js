@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("CloudProjectFlavorLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("CloudProjectFlavorLexi");
+    var cache = $cacheFactory("OvhApiCloudProjectFlavorLexi");
 
     return $resource("/cloud/project/:serviceName/flavor/:flavorId", {
         serviceName: "@serviceName",

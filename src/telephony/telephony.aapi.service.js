@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyAapi", function ($resource) {
     "use strict";
 
     return $resource("/telephony", {}, {

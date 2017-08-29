@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("CloudProjectInstanceLexi", function ($resource, CloudProjectInstance) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectInstanceLexi", function ($resource, OvhApiCloudProjectInstance) {
 
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            CloudProjectInstance.resetCache();
+            OvhApiCloudProjectInstance.resetCache();
             return response.data;
         }
     };
@@ -13,8 +13,8 @@ angular.module("ovh-api-services").service("CloudProjectInstanceLexi", function 
         serviceName: "@serviceName",
         instanceId: "@instanceId"
     }, {
-        get: { method: "GET", cache: CloudProjectInstance.cache },
-        query: { method: "GET", cache: CloudProjectInstance.cache, isArray: true },
+        get: { method: "GET", cache: OvhApiCloudProjectInstance.cache },
+        query: { method: "GET", cache: OvhApiCloudProjectInstance.cache, isArray: true },
         save: { method: "POST", interceptor: interceptor },
         remove: { method: "DELETE", interceptor: interceptor },
         "delete": { method: "DELETE", interceptor: interceptor },
@@ -75,7 +75,7 @@ angular.module("ovh-api-services").service("CloudProjectInstanceLexi", function 
         },
         monitoring: {
             url: "/cloud/project/:serviceName/instance/:instanceId/monitoring",
-            cache: CloudProjectInstance.cache,
+            cache: OvhApiCloudProjectInstance.cache,
             method: "GET"
         }
     });
@@ -84,15 +84,15 @@ angular.module("ovh-api-services").service("CloudProjectInstanceLexi", function 
     // These methods were been kept to maintain compatibility with the previous method to reset cache.
 
     instancesResource.resetAllCache = function () {
-        CloudProjectInstance.resetCache();
+        OvhApiCloudProjectInstance.resetCache();
     };
 
     instancesResource.resetCache = function () {
-        CloudProjectInstance.resetCache();
+        OvhApiCloudProjectInstance.resetCache();
     };
 
     instancesResource.resetQueryCache = function () {
-        CloudProjectInstance.resetCache();
+        OvhApiCloudProjectInstance.resetCache();
     };
 
     return instancesResource;

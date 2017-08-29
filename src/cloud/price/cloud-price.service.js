@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("CloudPrice", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudPrice", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudPriceLexi");
+            return $injector.get("OvhApiCloudPriceLexi");
         }
     };
 

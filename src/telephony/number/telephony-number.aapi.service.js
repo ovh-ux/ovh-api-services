@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyNumberAapi", function ($resource, TelephonyNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumberAapi", function ($resource, OvhApiTelephonyNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/number", {
@@ -7,29 +7,27 @@ angular.module("ovh-api-services").service("TelephonyNumberAapi", function ($res
         query: {
             method: "GET",
             isArray: true,
-            cache: TelephonyNumber.cache,
+            cache: OvhApiTelephonyNumber.cache,
             serviceType: "aapi"
         },
         all: {
             method: "GET",
             url: "/telephony/numbers/all",
             isArray: true,
-            cache: TelephonyNumber.cache,
+            cache: OvhApiTelephonyNumber.cache,
             serviceType: "aapi"
         },
         prices: {
             method: "GET",
             url: "/telephony/:billingAccount/number/:country/prices",
             isArray: true,
-            cache: TelephonyNumber.cache,
+            cache: OvhApiTelephonyNumber.cache,
             serviceType: "aapi"
         },
         orderableByRange: {
             method: "GET",
             url: "/telephony/:country/:billingAccount/number/:type/range/:range",
             isArray: false,
-
-            // cache      : TelephonyNumber.cache,
             serviceType: "aapi"
         }
     });

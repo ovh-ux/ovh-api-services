@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslNotificationsAapi", function ($resource, XdslNotifications) {
+angular.module("ovh-api-services").service("OvhApiXdslNotificationsAapi", function ($resource, OvhApiXdslNotifications) {
     "use strict";
 
     var xdslNotificationsAapi = $resource("/xdsl/:xdslId/monitoringNotifications", {
@@ -8,7 +8,7 @@ angular.module("ovh-api-services").service("XdslNotificationsAapi", function ($r
             method: "GET",
             serviceType: "aapi",
             isArray: true,
-            cache: XdslNotifications.cache
+            cache: OvhApiXdslNotifications.cache
         }
     });
 

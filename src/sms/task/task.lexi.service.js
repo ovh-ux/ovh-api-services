@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TaskLexi", function ($resource, Poller) {
+angular.module("ovh-api-services").service("OvhApiTaskLexi", function ($resource, Poller) {
     "use strict";
 
     var loadRemoteRoute = "/sms/:serviceName/task/:taskId";

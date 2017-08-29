@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("DedicatedNashaPartitionOptions", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionOptions", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionOptionsLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionOptionsLexi");
         }
     };
 });

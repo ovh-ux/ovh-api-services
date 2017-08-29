@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslResiliationAapi", function ($resource, PackXdslResiliation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslResiliationAapi", function ($resource, OvhApiPackXdslResiliation) {
     "use strict";
 
     return $resource("/pack/xdsl/canCancelResiliation/all", {
@@ -8,21 +8,21 @@ angular.module("ovh-api-services").service("PackXdslResiliationAapi", function (
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         },
         terms: {
             url: "/pack/xdsl/:packId/resiliationTerms",
             method: "GET",
             isArray: false,
             serviceType: "aapi",
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         },
         subServicesTerms: {
             url: "/pack/:packId/resiliate/subServicesInfos",
             method: "GET",
             isArray: false,
             serviceType: "aapi",
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         }
 
     });

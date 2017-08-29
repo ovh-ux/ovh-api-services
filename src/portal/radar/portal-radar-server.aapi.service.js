@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PortalRadarServerAapi", function ($resource, PortalRadarServer) {
+angular.module("ovh-api-services").service("OvhApiPortalRadarServerAapi", function ($resource, OvhApiPortalRadarServer) {
     "use strict";
 
     return $resource("/dedicated/server/radar/aggregate", {}, {
@@ -6,7 +6,7 @@ angular.module("ovh-api-services").service("PortalRadarServerAapi", function ($r
             method: "GET",
             serviceType: "aapi",
             isArray: true,
-            cache: PortalRadarServer.cache
+            cache: OvhApiPortalRadarServer.cache
         }
     });
 });

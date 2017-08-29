@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyServiceRepaymentConsumptionLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceRepaymentConsumptionLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyServiceRepaymentConsumptionLexi");
-    var queryCache = $cacheFactory("TelephonyServiceRepaymentConsumptionLexiQuery");
-    var batchCache = $cacheFactory("TelephonyServiceRepaymentConsumptionLexiBatch");
+    var cache = $cacheFactory("OvhApiTelephonyServiceRepaymentConsumptionLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyServiceRepaymentConsumptionLexiQuery");
+    var batchCache = $cacheFactory("OvhApiTelephonyServiceRepaymentConsumptionLexiBatch");
 
     var res = $resource("/telephony/:billingAccount/service/:serviceName/repaymentConsumption/:consumptionId", {
         billingAccount: "@billingAccount",

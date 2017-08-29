@@ -1,9 +1,9 @@
 "use strict";
 
-angular.module("ovh-api-services").service("SupportLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiSupportLexi", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("SupportLexi");
-    var queryCache = $cacheFactory("SupportLexiQuery");
+    var cache = $cacheFactory("OvhApiSupportLexi");
+    var queryCache = $cacheFactory("OvhApiSupportLexiQuery");
 
     var support = $resource("/support/tickets/:id", {
         id: "@id"

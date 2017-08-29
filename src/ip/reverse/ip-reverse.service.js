@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("IpReverse", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIpReverse", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("IpReverseLexi");
+            return $injector.get("OvhApiIpReverseLexi");
         }
     };
 });

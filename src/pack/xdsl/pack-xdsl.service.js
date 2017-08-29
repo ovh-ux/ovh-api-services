@@ -1,68 +1,68 @@
-angular.module("ovh-api-services").service("PackXdsl", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiPackXdsl", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("PackXdsl");
+    var cache = $cacheFactory("OvhApiPackXdsl");
 
     return {
         Lexi: function () {
-            return $injector.get("PackXdslLexi");
+            return $injector.get("OvhApiPackXdslLexi");
         },
         Aapi: function () {
-            return $injector.get("PackXdslAapi");
+            return $injector.get("OvhApiPackXdslAapi");
         },
         Erika: function () {
-            return $injector.get("PackXdslErika");
+            return $injector.get("OvhApiPackXdslErika");
         },
         Task: function () {
-            return $injector.get("PackXdslTask");
+            return $injector.get("OvhApiPackXdslTask");
         },
         Access: function () {
-            return $injector.get("PackXdslAccess");
+            return $injector.get("OvhApiPackXdslAccess");
         },
         DomainActivation: function () {
-            return $injector.get("PackXdslDomainActivation");
+            return $injector.get("OvhApiPackXdslDomainActivation");
         },
         ExchangeAccount: function () {
-            return $injector.get("PackXdslExchangeAccount");
+            return $injector.get("OvhApiPackXdslExchangeAccount");
         },
         ExchangeIndividual: function () {
-            return $injector.get("PackXdslExchangeIndividual");
+            return $injector.get("OvhApiPackXdslExchangeIndividual");
         },
         ExchangeLite: function () {
-            return $injector.get("PackXdslExchangeLite");
+            return $injector.get("OvhApiPackXdslExchangeLite");
         },
         HostedEmail: function () {
-            return $injector.get("PackXdslHostedEmail");
+            return $injector.get("OvhApiPackXdslHostedEmail");
         },
         Hubic: function () {
-            return $injector.get("PackXdslHubic");
+            return $injector.get("OvhApiPackXdslHubic");
         },
         Move: function () {
-            return $injector.get("PackXdslMove");
+            return $injector.get("OvhApiPackXdslMove");
         },
         PromotionCode: function () {
-            return $injector.get("PackXdslPromotionCode");
+            return $injector.get("OvhApiPackXdslPromotionCode");
         },
         Resiliation: function () {
-            return $injector.get("PackXdslResiliation");
+            return $injector.get("OvhApiPackXdslResiliation");
         },
         ServiceInfo: function () {
-            return $injector.get("PackXdslServiceInfo");
+            return $injector.get("OvhApiPackXdslServiceInfo");
         },
         SiteBuilderStart: function () {
-            return $injector.get("PackXdslSiteBuilderStart");
+            return $injector.get("OvhApiPackXdslSiteBuilderStart");
         },
         Tasks: function () {
-            return $injector.get("PackXdslTask");
+            return $injector.get("OvhApiPackXdslTask");
         },
         VoipBillingAccount: function () {
-            return $injector.get("PackXdslVoipBillingAccount");
+            return $injector.get("OvhApiPackXdslVoipBillingAccount");
         },
         VoipEcofax: function () {
-            return $injector.get("VoipEcofax");
+            return $injector.get("OvhApiVoipEcofax");
         },
         VoipLine: function () {
-            return $injector.get("PackXdslVoipLine");
+            return $injector.get("OvhApiPackXdslVoipLine");
         },
         resetCache: cache.removeAll,
         cache: cache

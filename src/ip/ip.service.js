@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("Ip", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIp", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("IpLexi");
+            return $injector.get("OvhApiIpLexi");
         },
         Reverse: function () {
-            return $injector.get("IpReverse");
+            return $injector.get("OvhApiIpReverse");
         }
     };
 });

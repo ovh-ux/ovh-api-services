@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("PackXdslVoipLineAapi", function ($resource, PackXdslVoipLine) {
+angular.module("ovh-api-services").service("OvhApiPackXdslVoipLineAapi", function ($resource, OvhApiPackXdslVoipLine) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslVoipLine.resetCache();
+            OvhApiPackXdslVoipLine.resetCache();
             return response.resource;
         }
     };
@@ -15,7 +15,7 @@ angular.module("ovh-api-services").service("PackXdslVoipLineAapi", function ($re
             url: "/pack/xdsl/:packId/voipLine/services",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdslVoipLine.cache
+            cache: OvhApiPackXdslVoipLine.cache
         },
         activate: {
             url: "/pack/xdsl/:packId/voipLines/activate",

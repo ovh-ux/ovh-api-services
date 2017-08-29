@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("ValidateAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiValidateAapi", function ($resource) {
     "use strict";
 
     return $resource("/validate", {}, {

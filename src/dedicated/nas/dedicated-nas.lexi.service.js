@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("DedicatedNasLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNasLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var otherCache = $cacheFactory("DedicatedNasLexi");
-    var queryCache = $cacheFactory("DedicatedNasLexiQuery");
+    var otherCache = $cacheFactory("OvhApiDedicatedNasLexi");
+    var queryCache = $cacheFactory("OvhApiDedicatedNasLexiQuery");
 
     var dedicatedNasResource = $resource("/dedicated/nas/:serviceName", {
         serviceName: "@serviceName"

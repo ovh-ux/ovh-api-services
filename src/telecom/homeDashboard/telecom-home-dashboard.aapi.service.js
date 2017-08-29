@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelecomHomeDashboardAapi", function ($resource, TelecomHomeDashboard) {
+angular.module("ovh-api-services").service("OvhApiTelecomHomeDashboardAapi", function ($resource, OvhApiTelecomHomeDashboard) {
     "use strict";
 
     return $resource("/telecom/homeDashboard", {}, {
@@ -6,21 +6,21 @@ angular.module("ovh-api-services").service("TelecomHomeDashboardAapi", function 
             method: "GET",
             serviceType: "aapi",
             isArray: false,
-            cache: TelecomHomeDashboard.cache
+            cache: OvhApiTelecomHomeDashboard.cache
         },
         incidents: {
             url: "/telecom/homeDashboard/incidents",
             serviceType: "aapi",
             method: "GET",
             isArray: false,
-            cache: TelecomHomeDashboard.cache
+            cache: OvhApiTelecomHomeDashboard.cache
         },
         services: {
             url: "/telecom/homeDashboard/services",
             serviceType: "aapi",
             method: "GET",
             isArray: false,
-            cache: TelecomHomeDashboard.cache
+            cache: OvhApiTelecomHomeDashboard.cache
         }
     });
 });

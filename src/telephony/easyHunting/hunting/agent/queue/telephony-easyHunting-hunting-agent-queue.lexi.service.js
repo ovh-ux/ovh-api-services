@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("TelephonyEasyHuntingHuntingAgentQueueLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("TelephonyEasyHuntingHuntingAgentQueueLexi");
-    var queryCache = $cacheFactory("TelephonyEasyHuntingHuntingAgentQueueLexiQuery");
+    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexi");
+    var queryCache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexiQuery");
 
     var interceptor = {
         response: function (response) {

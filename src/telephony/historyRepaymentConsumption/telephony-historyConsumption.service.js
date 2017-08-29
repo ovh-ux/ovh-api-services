@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyHistoryRepaymentConsumption", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyHistoryRepaymentConsumption", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyHistoryRepaymentConsumptionLexi");
+            return $injector.get("OvhApiTelephonyHistoryRepaymentConsumptionLexi");
         }
     };
 });

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId", {

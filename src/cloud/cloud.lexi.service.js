@@ -1,12 +1,12 @@
 "use strict";
 
-angular.module("ovh-api-services").service("CloudLexi", function ($resource, CloudProjectLexi, Vrack) {
+angular.module("ovh-api-services").service("OvhApiCloudLexi", function ($resource, OvhApiCloudProjectLexi, OvhApiVrack) {
 
     var interceptor = {
         response: function (response) {
-            CloudProjectLexi.resetAllCache();
-            Vrack.Lexi().resetCache();
-            Vrack.Aapi().resetCache();
+            OvhApiCloudProjectLexi.resetAllCache();
+            OvhApiVrack.Lexi().resetCache();
+            OvhApiVrack.Aapi().resetCache();
             return response.data;
         }
     };

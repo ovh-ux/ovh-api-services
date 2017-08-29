@@ -1,15 +1,15 @@
-angular.module("ovh-api-services").service("Store", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStore", function ($injector) {
     "use strict";
 
     return {
         Contact: function () {
-            return $injector.get("StoreContact");
+            return $injector.get("OvhApiStoreContact");
         },
         Document: function () {
-            return $injector.get("StoreDocument");
+            return $injector.get("OvhApiStoreDocument");
         },
         Partner: function () {
-            return $injector.get("StorePartner");
+            return $injector.get("OvhApiStorePartner");
         }
     };
 });

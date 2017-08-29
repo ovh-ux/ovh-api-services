@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("OrderLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var schemaCache = $cacheFactory("OrderLexiSchema");
+    var schemaCache = $cacheFactory("OvhApiOrderLexiSchema");
 
     var orderRessource = $resource("/order", {
     }, {

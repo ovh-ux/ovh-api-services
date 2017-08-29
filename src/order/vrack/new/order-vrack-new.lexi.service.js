@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("OrderVrackNewLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiOrderVrackNewLexi", function ($resource, $cacheFactory) {
     "use strict";
 
     // Cache to invalidate
-    var queryCache = $cacheFactory("OrderVrackNewLexiQuery");
-    var cache = $cacheFactory("OrderVrackNewLexi");
+    var queryCache = $cacheFactory("OvhApiOrderVrackNewLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderVrackNewLexi");
 
     var orderVrack = $resource("/order/vrack/new", {
         quantity: "@quantity"

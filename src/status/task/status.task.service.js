@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("StatusTask", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiStatusTask", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("StatusTaskLexi");
+            return $injector.get("OvhApiStatusTaskLexi");
         }
     };
 

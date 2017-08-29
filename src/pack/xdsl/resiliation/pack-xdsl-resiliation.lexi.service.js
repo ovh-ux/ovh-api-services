@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("PackXdslResiliationLexi", function ($resource, PackXdslResiliation) {
+angular.module("ovh-api-services").service("OvhApiPackXdslResiliationLexi", function ($resource, OvhApiPackXdslResiliation) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            PackXdslResiliation.resetCache();
+            OvhApiPackXdslResiliation.resetCache();
             return response.resource;
         }
     };
@@ -15,7 +15,7 @@ angular.module("ovh-api-services").service("PackXdslResiliationLexi", function (
             url: "/pack/xdsl/:packName/canCancelResiliation",
             method: "GET",
             isArray: false,
-            cache: PackXdslResiliation.cache,
+            cache: OvhApiPackXdslResiliation.cache,
             transformResponse: function (data) {
                 return {
                     value: data === "true"
@@ -38,7 +38,7 @@ angular.module("ovh-api-services").service("PackXdslResiliationLexi", function (
             url: "/pack/xdsl/:packName/resiliationTerms",
             method: "GET",
             isArray: false,
-            cache: PackXdslResiliation.cache
+            cache: OvhApiPackXdslResiliation.cache
         }
     });
 });

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OrderTelephonyAapi", function ($resource, OrderTelephony) {
+angular.module("ovh-api-services").service("OvhApiOrderTelephonyAapi", function ($resource, OvhApiOrderTelephony) {
     "use strict";
 
     return $resource("/order/telephony", {
@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("OrderTelephonyAapi", function ($reso
             url: "/order/telephony/all",
             isArray: true,
             serviceType: "aapi",
-            cache: OrderTelephony.cache
+            cache: OvhApiOrderTelephony.cache
         }
     });
 

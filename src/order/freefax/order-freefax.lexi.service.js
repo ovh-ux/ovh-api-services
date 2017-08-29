@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OrderFreefaxLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiOrderFreefaxLexi", function ($resource) {
     "use strict";
 
     return $resource("/order/freefax/:serviceName", {

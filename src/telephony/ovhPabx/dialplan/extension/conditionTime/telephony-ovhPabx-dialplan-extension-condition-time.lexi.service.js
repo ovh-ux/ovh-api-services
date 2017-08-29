@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxDialplanExtensionConditionTimeLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionConditionTimeLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/conditionTime/:conditionId", {

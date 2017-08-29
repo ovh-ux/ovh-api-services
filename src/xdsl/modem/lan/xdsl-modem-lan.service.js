@@ -1,17 +1,17 @@
-angular.module("ovh-api-services").service("XdslModemLan", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLan", function ($injector, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("XdslModemLan");
+    var cache = $cacheFactory("OvhApiXdslModemLan");
 
     return {
         Lexi: function () {
-            return $injector.get("XdslModemLanLexi");
+            return $injector.get("OvhApiXdslModemLanLexi");
         },
         Aapi: function () {
-            return $injector.get("XdslModemLanAapi");
+            return $injector.get("OvhApiXdslModemLanAapi");
         },
         Dhcp: function () {
-            return $injector.get("XdslModemLanDhcp");
+            return $injector.get("OvhApiXdslModemLanDhcp");
         },
         resetCache: cache.removeAll,
         cache: cache

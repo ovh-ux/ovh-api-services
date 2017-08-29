@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ovh-api-services").service("TelephonyVxmlLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVxmlLexi", function ($resource) {
 
     return $resource("/telephony/:billingAccount/vxml/:serviceName", {
         billingAccount: "@billingAccount",

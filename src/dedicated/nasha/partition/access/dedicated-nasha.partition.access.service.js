@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("DedicatedNashaPartitionAccess", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionAccess", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedNashaPartitionAccessLexi");
+            return $injector.get("OvhApiDedicatedNashaPartitionAccessLexi");
         },
         Aapi: function () {
-            return $injector.get("DedicatedNashaPartitionAccessAapi");
+            return $injector.get("OvhApiDedicatedNashaPartitionAccessAapi");
         }
     };
 });

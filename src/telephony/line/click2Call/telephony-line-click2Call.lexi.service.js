@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyLineClick2CallLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/line/:serviceName/click2Call", {

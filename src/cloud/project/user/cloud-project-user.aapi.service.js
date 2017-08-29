@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectUserAapi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectUserAapi", function ($resource) {
     "use strict";
 
     var servicesDefinition = {

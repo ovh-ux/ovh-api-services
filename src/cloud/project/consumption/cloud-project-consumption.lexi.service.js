@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CloudProjectConsumptionLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectConsumptionLexi", function ($resource) {
     "use strict";
 
     var cloudProjectConsumptionResource = $resource("/cloud/project/:serviceName/consumption", {

@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslModemLanAapi", function ($resource, XdslModemLan) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanAapi", function ($resource, OvhApiXdslModemLan) {
     "use strict";
 
     var xdslModemLanAapi = $resource("/xdsl/:xdslId/modem/lan/details", {
@@ -8,7 +8,7 @@ angular.module("ovh-api-services").service("XdslModemLanAapi", function ($resour
             method: "GET",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslModemLan.cache
+            cache: OvhApiXdslModemLan.cache
         }
     });
 

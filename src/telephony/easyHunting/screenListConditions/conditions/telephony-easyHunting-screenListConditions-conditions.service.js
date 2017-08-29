@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyEasyHuntingScreenListConditionsConditions", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenListConditionsConditions", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyEasyHuntingScreenListConditionsConditionsLexi");
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsConditionsLexi");
         }
     };
 });

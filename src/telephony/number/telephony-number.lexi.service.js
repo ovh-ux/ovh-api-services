@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("TelephonyNumberLexi", function ($resource, TelephonyNumber) {
+angular.module("ovh-api-services").service("OvhApiTelephonyNumberLexi", function ($resource, OvhApiTelephonyNumber) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/number/:serviceName", {
@@ -11,25 +11,25 @@ angular.module("ovh-api-services").service("TelephonyNumberLexi", function ($res
             headers: {
                 "X-Ovh-Batch": ","
             },
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         getZones: {
             method: "GET",
             url: "/telephony/number/zones",
             isArray: true,
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         getRanges: {
             method: "GET",
             url: "/telephony/number/ranges",
             isArray: true,
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         getSpecificNumbers: {
             method: "GET",
             url: "/telephony/number/specificNumbers",
             isArray: true,
-            cache: TelephonyNumber.cache
+            cache: OvhApiTelephonyNumber.cache
         },
         edit: {
             method: "PUT"

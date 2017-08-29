@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("DbaasQueueRegion", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasQueueRegion", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DbaasQueueRegionLexi");
+            return $injector.get("OvhApiDbaasQueueRegionLexi");
         }
     };
 });

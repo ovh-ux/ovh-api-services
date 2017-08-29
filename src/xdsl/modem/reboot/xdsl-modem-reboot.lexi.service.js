@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslModemRebootLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiXdslModemRebootLexi", function ($resource) {
     "use strict";
 
     return $resource("/xdsl/:xdslId/modem/reboot", {

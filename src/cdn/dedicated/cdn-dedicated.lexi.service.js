@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("CdnDedicatedLexi", function ($resource, $q, CdnDedicated) {
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedLexi", function ($resource, $q, OvhApiCdnDedicated) {
     "use strict";
 
     return $resource("/cdn/dedicated/:serviceName", {
@@ -6,12 +6,12 @@ angular.module("ovh-api-services").service("CdnDedicatedLexi", function ($resour
     }, {
         get: {
             method: "GET",
-            cache: CdnDedicated.cache
+            cache: OvhApiCdnDedicated.cache
         },
         query: {
             method: "GET",
             isArray: true,
-            cache: CdnDedicated.cache
+            cache: OvhApiCdnDedicated.cache
         }
     });
 });

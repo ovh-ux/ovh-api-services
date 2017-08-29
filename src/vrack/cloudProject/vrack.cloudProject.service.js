@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("VrackCloudProject", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackCloudProject", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackCloudProjectLexi");
+            return $injector.get("OvhApiVrackCloudProjectLexi");
         }
     };
 });

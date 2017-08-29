@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyServiceTask", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyServiceTask", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyServiceTaskLexi");
+            return $injector.get("OvhApiTelephonyServiceTaskLexi");
         }
     };
 });

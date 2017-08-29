@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("OrderOverTheBoxNew", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiOrderOverTheBoxNew", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OrderOverTheBoxNewLexi");
+            return $injector.get("OvhApiOrderOverTheBoxNewLexi");
         }
     };
 

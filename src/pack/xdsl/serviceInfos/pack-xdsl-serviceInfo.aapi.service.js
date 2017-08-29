@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("PackXdslServiceInfoAapi", function ($resource, PackXdslServiceInfo) {
+angular.module("ovh-api-services").service("OvhApiPackXdslServiceInfoAapi", function ($resource, OvhApiPackXdslServiceInfo) {
     "use strict";
 
     return $resource("/pack/xdsl/:packName/serviceInfos/all", {
@@ -8,7 +8,7 @@ angular.module("ovh-api-services").service("PackXdslServiceInfoAapi", function (
             method: "GET",
             serviceType: "aapi",
             isArray: true,
-            cache: PackXdslServiceInfo.cache
+            cache: OvhApiPackXdslServiceInfo.cache
         }
     });
 });

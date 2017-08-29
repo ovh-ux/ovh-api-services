@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("XdslModemLanLexi", function ($resource, XdslModemLan) {
+angular.module("ovh-api-services").service("OvhApiXdslModemLanLexi", function ($resource, OvhApiXdslModemLan) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemLan.resetCache();
+            OvhApiXdslModemLan.resetCache();
             return response.resource;
         }
     };
@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("XdslModemLanLexi", function ($resour
     }, {
         get: {
             method: "GET",
-            cache: XdslModemLan.cache
+            cache: OvhApiXdslModemLan.cache
         },
         update: {
             method: "PUT",

@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("TelephonyOvhPabxSound", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxSound", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyOvhPabxSoundLexi");
+            return $injector.get("OvhApiTelephonyOvhPabxSoundLexi");
         }
     };
 });

@@ -1,10 +1,10 @@
-angular.module("ovh-api-services").service("CloudPCA", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiCloudPCA", function ($injector) {
 
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("CloudPCALexi");
+            return $injector.get("OvhApiCloudPCALexi");
         }
     };
 

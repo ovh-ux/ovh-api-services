@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("XdslTasksCurrentAapi", function ($resource, Poller, XdslTasksCurrent) {
+angular.module("ovh-api-services").service("OvhApiXdslTasksCurrentAapi", function ($resource, Poller, OvhApiXdslTasksCurrent) {
     "use strict";
 
     var url = "/xdsl/:xdslId/tasks/current";
@@ -8,7 +8,7 @@ angular.module("ovh-api-services").service("XdslTasksCurrentAapi", function ($re
     }, {
         query: {
             method: "GET",
-            cache: XdslTasksCurrent.cache,
+            cache: OvhApiXdslTasksCurrent.cache,
             isArray: true
         }
     });

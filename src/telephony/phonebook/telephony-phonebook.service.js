@@ -1,12 +1,12 @@
-angular.module("ovh-api-services").service("TelephonyPhonebook", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyPhonebook", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("TelephonyPhonebookLexi");
+            return $injector.get("OvhApiTelephonyPhonebookLexi");
         },
         PhonebookContact: function () {
-            return $injector.get("TelephonyPhonebookPhonebookContact");
+            return $injector.get("OvhApiTelephonyPhonebookPhonebookContact");
         }
     };
 });

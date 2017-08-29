@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("VrackDedicatedConnect", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiVrackDedicatedConnect", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("VrackDedicatedConnectLexi");
+            return $injector.get("OvhApiVrackDedicatedConnectLexi");
         }
     };
 });

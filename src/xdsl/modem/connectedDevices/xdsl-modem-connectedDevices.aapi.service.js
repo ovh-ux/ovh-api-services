@@ -1,9 +1,9 @@
-angular.module("ovh-api-services").service("XdslModemDevicesAapi", function ($resource, XdslModemDevices) {
+angular.module("ovh-api-services").service("OvhApiXdslModemDevicesAapi", function ($resource, OvhApiXdslModemDevices) {
     "use strict";
 
     var interceptor = {
         response: function (response) {
-            XdslModemDevices.resetCache();
+            OvhApiXdslModemDevices.resetCache();
             return response.resource;
         }
     };
@@ -16,7 +16,7 @@ angular.module("ovh-api-services").service("XdslModemDevicesAapi", function ($re
             url: "/xdsl/:xdslId/modem/connectedDevices",
             isArray: true,
             serviceType: "aapi",
-            cache: XdslModemDevices.cache
+            cache: OvhApiXdslModemDevices.cache
         },
         refresh: {
             method: "POST",

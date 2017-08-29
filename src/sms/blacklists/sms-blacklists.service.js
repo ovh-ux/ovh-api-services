@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("SmsBlacklists", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiSmsBlacklists", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("SmsBlacklistsLexi");
+            return $injector.get("OvhApiSmsBlacklistsLexi");
         }
     };
 });

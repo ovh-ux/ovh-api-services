@@ -1,15 +1,15 @@
-angular.module("ovh-api-services").service("DedicatedCephUser", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCephUser", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("DedicatedCephUserLexi");
+            return $injector.get("OvhApiDedicatedCephUserLexi");
         },
         Pool: function () {
-            return $injector.get("DedicatedCephUserPool");
+            return $injector.get("OvhApiDedicatedCephUserPool");
         },
         Aapi: function () {
-            return $injector.get("DedicatedCephUserAapi");
+            return $injector.get("OvhApiDedicatedCephUserAapi");
         }
     };
 });
