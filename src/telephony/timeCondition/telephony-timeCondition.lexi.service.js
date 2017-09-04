@@ -1,10 +1,10 @@
 "use strict";
 
-angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", function ($resource, OvhApiTelephonyTimeCondition) {
 
     var interceptor = {
         response: function (response) {
-            TelephonyTimeCondition.resetCache();
+            OvhApiTelephonyTimeCondition.resetCache();
             return response.resource;
         }
     };
@@ -16,7 +16,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", f
         getOptions: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/options",
             method: "GET",
-            cache: TelephonyTimeCondition.cache,
+            cache: OvhApiTelephonyTimeCondition.cache,
             isArray: false
         },
         setOptions: {
@@ -27,7 +27,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", f
         },
 
         /**
-                 *  @deprecated : use TelephonyTimeConditionCondition instead
+                 *  @deprecated : use OvhApiTelephonyTimeConditionCondition instead
                  */
         addCondition: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition/:id",
@@ -37,7 +37,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", f
         },
 
         /**
-                 *  @deprecated : use TelephonyTimeConditionCondition instead
+                 *  @deprecated : use OvhApiTelephonyTimeConditionCondition instead
                  */
         updateCondition: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition/:id",
@@ -47,7 +47,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", f
         },
 
         /**
-                 *  @deprecated : use TelephonyTimeConditionCondition instead
+                 *  @deprecated : use OvhApiTelephonyTimeConditionCondition instead
                  */
         deleteCondition: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition/:id",

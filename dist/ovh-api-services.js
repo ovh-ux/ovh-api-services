@@ -14969,7 +14969,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionConditio
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", ["$resource", "TelephonyTimeCondition", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", ["$resource", "OvhApiTelephonyTimeCondition", function ($resource, OvhApiTelephonyTimeCondition) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/timeCondition", {
@@ -14980,7 +14980,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", [
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition",
             method: "GET",
             serviceType: "aapi",
-            cache: TelephonyTimeCondition.cache,
+            cache: OvhApiTelephonyTimeCondition.cache,
             isArray: true
         }
     });
@@ -14988,11 +14988,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", [
 
 "use strict";
 
-angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", ["$resource", "TelephonyTimeCondition", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", ["$resource", "OvhApiTelephonyTimeCondition", function ($resource, OvhApiTelephonyTimeCondition) {
 
     var interceptor = {
         response: function (response) {
-            TelephonyTimeCondition.resetCache();
+            OvhApiTelephonyTimeCondition.resetCache();
             return response.resource;
         }
     };
@@ -15004,7 +15004,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", [
         getOptions: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/options",
             method: "GET",
-            cache: TelephonyTimeCondition.cache,
+            cache: OvhApiTelephonyTimeCondition.cache,
             isArray: false
         },
         setOptions: {
@@ -15015,7 +15015,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", [
         },
 
         /**
-                 *  @deprecated : use TelephonyTimeConditionCondition instead
+                 *  @deprecated : use OvhApiTelephonyTimeConditionCondition instead
                  */
         addCondition: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition/:id",
@@ -15025,7 +15025,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", [
         },
 
         /**
-                 *  @deprecated : use TelephonyTimeConditionCondition instead
+                 *  @deprecated : use OvhApiTelephonyTimeConditionCondition instead
                  */
         updateCondition: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition/:id",
@@ -15035,7 +15035,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionLexi", [
         },
 
         /**
-                 *  @deprecated : use TelephonyTimeConditionCondition instead
+                 *  @deprecated : use OvhApiTelephonyTimeConditionCondition instead
                  */
         deleteCondition: {
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition/:id",

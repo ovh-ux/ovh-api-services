@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", function ($resource, TelephonyTimeCondition) {
+angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", function ($resource, OvhApiTelephonyTimeCondition) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/timeCondition", {
@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionAapi", f
             url: "/telephony/:billingAccount/timeCondition/:serviceName/condition",
             method: "GET",
             serviceType: "aapi",
-            cache: TelephonyTimeCondition.cache,
+            cache: OvhApiTelephonyTimeCondition.cache,
             isArray: true
         }
     });
