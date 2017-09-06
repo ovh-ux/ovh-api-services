@@ -3,11 +3,11 @@ angular
     .service("OvhApiMetrics", function ($injector) {
 
         return {
-            Service: function () {
-                return $injector.get("OvhApiMetricsService");
+            Token: function () {
+                return $injector.get("OvhApiMetricsToken");
             },
             Lexi: function () {
-                return $injector.get("OvhApiMetrics");
+                return $injector.get("OvhApiMetricsLexi");
             }
         };
     });
