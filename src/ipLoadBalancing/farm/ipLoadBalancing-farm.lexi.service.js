@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module("ovh-api-services").service("IpLoadBalancingFarmLexi", function ($resource, $cacheFactory) {
-        var queryCache = $cacheFactory("IpLoadBalancingFarmLexiQuery");
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarmLexi", function ($resource, $cacheFactory) {
+        var queryCache = $cacheFactory("OvhApiIpLoadBalancingFarmLexiQuery");
 
         var iplbFarm = $resource("/ipLoadbalancing/:serviceName/definedFarms", {
             serviceName: "@serviceName"
@@ -17,10 +17,10 @@ angular.module("ovh-api-services").service("IpLoadBalancingFarmLexi", function (
     });
 
 _.forEach(["tcp", "udp", "http"], function (type) {
-    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi",
+    angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "Lexi",
         ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-            var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
-            var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "LexiQuery");
+            var cache = $cacheFactory("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
+            var queryCache = $cacheFactory("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "LexiQuery");
 
             var interceptor = {
                 response: function (response) {

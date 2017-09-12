@@ -1,10 +1,10 @@
 "use strict";
 
 _.forEach(["tcp", "udp", "http"], function (type) {
-    angular.module("ovh-api-services").service("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi",
+    angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi",
         ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-            var cache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
-            var queryCache = $cacheFactory("IpLoadBalancingFarm" + _.capitalize(type) + "ServerLexiQuery");
+            var cache = $cacheFactory("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "ServerLexi");
+            var queryCache = $cacheFactory("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "ServerLexiQuery");
 
             var interceptor = {
                 response: function (response) {

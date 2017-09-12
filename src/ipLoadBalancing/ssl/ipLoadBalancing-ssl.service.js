@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("IpLoadBalancingSsl", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingSsl", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("IpLoadBalancingSslLexi");
+            return $injector.get("OvhApiIpLoadBalancingSslLexi");
         }
     };
 });

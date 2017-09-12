@@ -1,14 +1,14 @@
-angular.module("ovh-api-services").service("IpLoadBalancingFarm", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarm", function ($injector) {
     "use strict";
 
     var services = _.reduce(["tcp", "udp", "http"], function (farm, type) {
         farm[_.capitalize(type)] = function () {
             return {
                 Lexi: function () {
-                    return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
+                    return $injector.get("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "Lexi");
                 },
                 Server: function () {
-                    return $injector.get("IpLoadBalancingFarm" + _.capitalize(type) + "Server");
+                    return $injector.get("OvhApiIpLoadBalancingFarm" + _.capitalize(type) + "Server");
                 }
             };
         };
@@ -16,7 +16,7 @@ angular.module("ovh-api-services").service("IpLoadBalancingFarm", function ($inj
     }, {});
 
     services.Lexi = function () {
-        return $injector.get("IpLoadBalancingFarmLexi");
+        return $injector.get("OvhApiIpLoadBalancingFarmLexi");
     };
 
     return services;

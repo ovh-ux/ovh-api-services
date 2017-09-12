@@ -1,20 +1,20 @@
-angular.module("ovh-api-services").service("IpLoadBalancing", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", function ($injector) {
     "use strict";
     return {
         Lexi: function () {
-            return $injector.get("IpLoadBalancingLexi");
+            return $injector.get("OvhApiIpLoadBalancingLexi");
         },
         Farm: function () {
-            return $injector.get("IpLoadBalancingFarm");
+            return $injector.get("OvhApiIpLoadBalancingFarm");
         },
         Frontend: function () {
-            return $injector.get("IpLoadBalancingFrontend");
+            return $injector.get("OvhApiIpLoadBalancingFrontend");
         },
         Ssl: function () {
-            return $injector.get("IpLoadBalancingSsl");
+            return $injector.get("OvhApiIpLoadBalancingSsl");
         },
         Task: function () {
-            return $injector.get("IpLoadBalancingTask");
+            return $injector.get("OvhApiIpLoadBalancingTask");
         }
     };
 });

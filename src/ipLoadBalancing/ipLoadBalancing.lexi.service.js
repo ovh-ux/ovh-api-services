@@ -1,9 +1,9 @@
 "use strict";
 
-angular.module("ovh-api-services").service("IpLoadBalancingLexi",
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingLexi",
     function ($resource, $cacheFactory) {
-        var cache = $cacheFactory("IpLoadBalancingLexi");
-        var queryCache = $cacheFactory("IpLoadBalancingLexiQuery");
+        var cache = $cacheFactory("OvhApiIpLoadBalancingLexi");
+        var queryCache = $cacheFactory("OvhApiIpLoadBalancingLexiQuery");
 
         var interceptor = {
             response: function (response) {
