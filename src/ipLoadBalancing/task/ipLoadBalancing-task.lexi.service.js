@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ovh-api-services").service("IpLoadBalancingTaskLexi",
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingTaskLexi",
     function ($resource, $cacheFactory) {
         var ipLoadBalancingTask = $resource("/ipLoadbalancing/:serviceName/task/:taskId", {
             serviceName: "@serviceName",

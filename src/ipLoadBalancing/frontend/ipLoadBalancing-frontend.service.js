@@ -1,11 +1,11 @@
-angular.module("ovh-api-services").service("IpLoadBalancingFrontend", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFrontend", function ($injector) {
     "use strict";
 
     var services = _.reduce(["tcp", "udp", "http"], function (frontend, type) {
         frontend[_.capitalize(type)] = function () {
             return {
                 Lexi: function () {
-                    return $injector.get("IpLoadBalancingFrontend" + _.capitalize(type) + "Lexi");
+                    return $injector.get("OvhApiIpLoadBalancingFrontend" + _.capitalize(type) + "Lexi");
                 }
             };
         };
@@ -13,7 +13,7 @@ angular.module("ovh-api-services").service("IpLoadBalancingFrontend", function (
     }, {});
 
     services.Lexi = function () {
-        return $injector.get("IpLoadBalancingFrontendLexi");
+        return $injector.get("OvhApiIpLoadBalancingFrontendLexi");
     };
 
     return services;
