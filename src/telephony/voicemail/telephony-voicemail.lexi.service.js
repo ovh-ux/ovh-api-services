@@ -40,6 +40,10 @@ angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", funct
             method: "POST",
             url: "/telephony/:billingAccount/voicemail/:serviceName/settings/changePassword",
             interceptor: interceptor
+        },
+        getNumbersSettings: {
+            method: "GET",
+            url: "/telephony/:billingAccount/voicemail/:serviceName/settings/voicemailNumbers"
         }
     });
 
