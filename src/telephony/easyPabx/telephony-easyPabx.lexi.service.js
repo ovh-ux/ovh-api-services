@@ -7,32 +7,31 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", functi
     }, {
         query: {
             method: "GET",
-            isArray: true,
-            cache: OvhApiTelephonyEasyPabx.cache
+            isArray: true
         },
         get: {
             method: "GET",
-            isArray: false,
-            cache: OvhApiTelephonyEasyPabx.cache
+            isArray: false
         },
         getHunting: {
             method: "GET",
-            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting",
-            cache: OvhApiTelephonyEasyPabx.cache
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting"
+        },
+        updateHunting: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting"
         },
         queryAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent",
-            isArray: true,
-            cache: OvhApiTelephonyEasyPabx.cache
+            isArray: true
         },
         getAgent: {
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent/:agentNumber",
             params: {
                 agentNumber: "@"
-            },
-            cache: OvhApiTelephonyEasyPabx.cache
+            }
         }
     }
     );
