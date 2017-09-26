@@ -11361,7 +11361,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeCondit
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", ["$resource", "OvhApiTelephonyEasyPabx", function ($resource, OvhApiTelephonyEasyPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyPabx/:serviceName", {
@@ -12750,7 +12750,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLines", ["$injector",
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", ["$resource", "OvhApiTelephonyMiniPabx", function ($resource, OvhApiTelephonyMiniPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/miniPabx/:serviceName", {
