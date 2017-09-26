@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", function ($resource, OvhApiTelephonyEasyPabx) {
+angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", function ($resource) {
     "use strict";
 
     return $resource("/telephony/:billingAccount/easyPabx/:serviceName", {
