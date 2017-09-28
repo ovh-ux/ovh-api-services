@@ -11361,6 +11361,10 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeCondit
     };
 }]);
 
+/**
+ *  This is vocated to be removed.
+ *  Done in best effort without separating routes.
+ */
 angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", ["$resource", function ($resource) {
     "use strict";
 
@@ -11393,11 +11397,46 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", ["$res
             method: "GET",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent/:agentNumber",
             params: {
-                agentNumber: "@"
+                agentNumber: "@agentNumber"
             }
+        },
+        createAgent: {
+            method: "POST",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent",
+            isArray: false
+        },
+        saveAgent: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent/:agentNumber",
+            isArray: false,
+            params: {
+                agentNumber: "@agentNumber"
+            }
+        },
+        deleteAgent: {
+            method: "DELETE",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/agent/:agentNumber",
+            isArray: false,
+            params: {
+                agentNumber: "@agentNumber"
+            }
+        },
+        getTones: {
+            method: "GET",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/tones",
+            isArray: false
+        },
+        saveTones: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/tones",
+            isArray: false
+        },
+        uploadTones: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/tones/toneUpload",
+            isArray: false
         }
-    }
-    );
+    });
 }]);
 
 angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
@@ -12750,6 +12789,10 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLines", ["$injector",
     };
 }]);
 
+/**
+ *  This is vocated to be removed.
+ *  Done in best effort without separating routes.
+ */
 angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", ["$resource", function ($resource) {
     "use strict";
 
@@ -12782,11 +12825,46 @@ angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", ["$res
             method: "GET",
             url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/agent/:agentNumber",
             params: {
-                agentNumber: "@"
+                agentNumber: "@agentNumber"
             }
+        },
+        createAgent: {
+            method: "POST",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/agent",
+            isArray: false
+        },
+        saveAgent: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/agent/:agentNumber",
+            isArray: false,
+            params: {
+                agentNumber: "@agentNumber"
+            }
+        },
+        deleteAgent: {
+            method: "DELETE",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/agent/:agentNumber",
+            isArray: false,
+            params: {
+                agentNumber: "@agentNumber"
+            }
+        },
+        getTones: {
+            method: "GET",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones",
+            isArray: false
+        },
+        saveTones: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones",
+            isArray: false
+        },
+        uploadTones: {
+            method: "PUT",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones/toneUpload",
+            isArray: false
         }
-    }
-    );
+    });
 }]);
 
 angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabx", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
@@ -15181,6 +15259,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLexi", ["$resource", 
         getLineOfferPhones: {
             method: "GET",
             url: "/telephony/line/offer/phones",
+            isArray: true
+        },
+        searchService: {
+            method: "GET",
+            url: "/telephony/searchServices",
             isArray: true
         }
     });

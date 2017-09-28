@@ -130,6 +130,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLexi", function ($res
             method: "GET",
             url: "/telephony/line/offer/phones",
             isArray: true
+        },
+        searchService: {
+            method: "GET",
+            url: "/telephony/searchServices",
+            isArray: true
         }
     });
 
