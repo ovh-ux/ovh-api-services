@@ -60,17 +60,17 @@ angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", functi
         },
         getTones: {
             method: "GET",
-            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/tones",
             isArray: false
         },
         saveTones: {
             method: "PUT",
-            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/tones",
             isArray: false
         },
         uploadTones: {
-            method: "PUT",
-            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones/toneUpload",
+            method: "POST",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/tones/toneUpload",
             isArray: false
         }
     });

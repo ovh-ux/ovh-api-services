@@ -82,6 +82,9 @@ angular.module("ovh-api-services").service("OvhApiTelephony", function ($injecto
         Trunks: function () {
             return $injector.get("OvhApiTelephonyTrunks");
         },
+        Trunk: function () {
+            return $injector.get("OvhApiTelephonyTrunk");
+        },
         OvhPabx: function () {
             return $injector.get("OvhApiTelephonyOvhPabx");
         },

@@ -69,7 +69,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", functi
             isArray: false
         },
         uploadTones: {
-            method: "PUT",
+            method: "POST",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/tones/toneUpload",
             isArray: false
         }
