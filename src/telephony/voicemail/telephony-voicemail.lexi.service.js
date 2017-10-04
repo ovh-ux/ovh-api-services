@@ -21,6 +21,14 @@ angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", funct
             method: "GET",
             cache: cache
         },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache,
+            headers: {
+                "X-Ovh-Batch": ","
+            }
+        },
         query: {
             method: "GET",
             cache: queryCache,

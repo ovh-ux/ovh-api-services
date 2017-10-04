@@ -11432,7 +11432,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyPabxLexi", ["$res
             isArray: false
         },
         uploadTones: {
-            method: "PUT",
+            method: "POST",
             url: "/telephony/:billingAccount/easyPabx/:serviceName/hunting/tones/toneUpload",
             isArray: false
         }
@@ -12851,17 +12851,17 @@ angular.module("ovh-api-services").service("OvhApiTelephonyMiniPabxLexi", ["$res
         },
         getTones: {
             method: "GET",
-            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/tones",
             isArray: false
         },
         saveTones: {
             method: "PUT",
-            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/tones",
             isArray: false
         },
         uploadTones: {
-            method: "PUT",
-            url: "/telephony/:billingAccount/miniPabx/:serviceName/hunting/tones/toneUpload",
+            method: "POST",
+            url: "/telephony/:billingAccount/miniPabx/:serviceName/tones/toneUpload",
             isArray: false
         }
     });
@@ -15363,6 +15363,9 @@ angular.module("ovh-api-services").service("OvhApiTelephony", ["$injector", func
         Trunks: function () {
             return $injector.get("OvhApiTelephonyTrunks");
         },
+        Trunk: function () {
+            return $injector.get("OvhApiTelephonyTrunk");
+        },
         OvhPabx: function () {
             return $injector.get("OvhApiTelephonyOvhPabx");
         },
@@ -15502,6 +15505,70 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeCondition", ["$in
         },
         resetCache: cache.removeAll,
         cache: cache
+    };
+}]);
+
+"use strict";
+
+angular.module("ovh-api-services").service("OvhApiTelephonyTrunkExternalDisplayedNumberLexi", ["$resource", function ($resource) {
+
+    return $resource("/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber/:number", {
+        billingAccount: "@billingAccount",
+        serviceName: "@serviceName",
+        number: "@number"
+    }, {
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            headers: {
+                "X-Ovh-Batch": ","
+            }
+        },
+        save: {
+            method: "POST",
+            url: "/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber", // because post param number is the same as query param number...
+            isArray: false
+        },
+        validate: {
+            method: "POST",
+            url: "/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber/:number/validate",
+            isArray: false
+        }
+    });
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiTelephonyTrunkExternalDisplayedNumber", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiTelephonyTrunkExternalDisplayedNumberLexi");
+        }
+    };
+}]);
+
+"use strict";
+
+angular.module("ovh-api-services").service("OvhApiTelephonyTrunkLexi", ["$resource", function ($resource) {
+
+    return $resource("/telephony/:billingAccount/trunk/:serviceName", {
+        billingAccount: "@billingAccount",
+        serviceName: "@serviceName"
+    });
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiTelephonyTrunk", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiTelephonyTrunkLexi");
+        },
+        ExternalDisplayedNumber: function () {
+            return $injector.get("OvhApiTelephonyTrunkExternalDisplayedNumber");
+        }
     };
 }]);
 
@@ -15754,6 +15821,14 @@ angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", ["$re
         get: {
             method: "GET",
             cache: cache
+        },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache,
+            headers: {
+                "X-Ovh-Batch": ","
+            }
         },
         query: {
             method: "GET",
