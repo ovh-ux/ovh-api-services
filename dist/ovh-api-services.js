@@ -15526,7 +15526,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTrunkExternalDisplaye
         },
         save: {
             method: "POST",
-            url: "/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber",    // because post param number is the same as query param number...
+            url: "/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber", // because post param number is the same as query param number...
             isArray: false
         },
         validate: {
