@@ -4581,6 +4581,9 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", ["$injector"
         },
         Quota: function () {
             return $injector.get("OvhApiIpLoadBalancingQuota");
+        },
+        Zone: function () {
+            return $injector.get("OvhApiIpLoadBalancingZone");
         }
     };
 }]);
@@ -4669,6 +4672,49 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingTask", ["$injec
     return {
         Lexi: function () {
             return $injector.get("OvhApiIpLoadBalancingTaskLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZoneLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiIpLoadBalancingZoneLexi");
+    var queryCache = $cacheFactory("OvhApiIpLoadBalancingZoneLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var ipLoadBalancingZone = $resource("/ipLoadbalancing/:serviceName/zone/:name", {
+        serviceName: "@serviceName",
+        name: "@name"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
+
+    ipLoadBalancingZone.resetCache = function () {
+        cache.removeAll();
+    };
+
+    ipLoadBalancingZone.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return ipLoadBalancingZone;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZone", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiIpLoadBalancingZoneLexi");
         }
     };
 }]);

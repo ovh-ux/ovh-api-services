@@ -18,6 +18,9 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", function ($i
         },
         Quota: function () {
             return $injector.get("OvhApiIpLoadBalancingQuota");
+        },
+        Zone: function () {
+            return $injector.get("OvhApiIpLoadBalancingZone");
         }
     };
 });
