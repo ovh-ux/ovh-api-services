@@ -1,10 +1,33 @@
-angular.module("ovh-api-services").service("OvhApiIpLoadBalancingQuotaLexi", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingQuotaLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var ipLoadBalancingTask = $resource("/ipLoadbalancing/:serviceName/quota/:zoneName", {
+    var cache = $cacheFactory("OvhApiIpLoadBalancingQuotaLexi");
+    var queryCache = $cacheFactory("OvhApiIpLoadBalancingQuotaLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var ipLoadBalancingQuota = $resource("/ipLoadbalancing/:serviceName/quota/:zoneName", {
         serviceName: "@serviceName",
         zoneName: "@zoneName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        put: { method: "PUT", interceptor: interceptor }
     });
 
-    return ipLoadBalancingTask;
+    ipLoadBalancingQuota.resetCache = function () {
+        cache.removeAll();
+    };
+
+    ipLoadBalancingQuota.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return ipLoadBalancingQuota;
 });
