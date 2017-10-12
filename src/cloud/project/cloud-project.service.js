@@ -8,6 +8,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         Lexi: function () {
             return $injector.get("OvhApiCloudProjectLexi");
         },
+        Erika: function () {
+            return $injector.get("OvhApiCloudProjectErika");
+        },
         resetCache: cache.removeAll,
         cache: cache,
         Acl: function () {
