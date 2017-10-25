@@ -9,8 +9,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIplbLexi", functio
         id: "@id"
     }, {
         get: { method: "GET", cache: cache },
-        post : { method: "POST" },
-        validate : { method: "POST", url: "/cloud/project/:serviceName/ipLoadbalancing/:id/validate"},
+        post: { method: "POST" },
+        validate: { method: "POST", url: "/cloud/project/:serviceName/ipLoadbalancing/:id/validate" },
         query: {
             method: "GET",
             cache: queryCache,
