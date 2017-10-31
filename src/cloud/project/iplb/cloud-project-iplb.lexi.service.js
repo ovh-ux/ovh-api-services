@@ -4,7 +4,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIplbLexi", functio
     var queryCache = $cacheFactory("OvhApiCloudProjectIplbLexiQuery");
     var cache = $cacheFactory("OvhApiCloudProjectIplbLexi");
 
-    var regions = $resource("/cloud/project/:serviceName/ipLoadbalancing/:id", {
+    var loadbalancers = $resource("/cloud/project/:serviceName/ipLoadbalancing/:id", {
         serviceName: "@serviceName",
         id: "@id"
     }, {
@@ -15,27 +15,17 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIplbLexi", functio
             method: "GET",
             cache: queryCache,
             isArray: true,
-            transformResponse: function (regionsResp, headers, status) {
-                var regionsRsp = regionsResp;
-
-                if (status === 200) {
-                    regionsRsp = angular.fromJson(regionsRsp); // IE11
-                    return regionsRsp.sort();
-                }
-                return regionsRsp;
-
-            }
         }
     });
 
-    regions.resetCache = function () {
+    loadbalancers.resetCache = function () {
         cache.removeAll();
     };
 
-    regions.resetQueryCache = function () {
+    loadbalancers.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
-    return regions;
+    return loadbalancers;
 
 });
