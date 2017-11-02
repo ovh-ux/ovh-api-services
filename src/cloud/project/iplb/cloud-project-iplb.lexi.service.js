@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIplbLexi", functio
         query: {
             method: "GET",
             cache: queryCache,
-            isArray: true,
+            isArray: true
         }
     });
 
