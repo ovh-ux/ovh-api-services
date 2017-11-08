@@ -5858,12 +5858,19 @@ angular.module("ovh-api-services").service("OvhApiMeSshKey", ["$injector", funct
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", ["$injector", "$resource", function ($injector, $resource) {
+angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var req = $resource("/api/me/sshKey");
+    var cache = $cacheFactory("OvhApiMeSshKeyLexi");
 
-    return req;
+    var userSshResource = $resource("/me/sshKey", {}, {
+        get: { method: "GET", cache: cache }
+    });
+
+    userSshResource.resetCache = function () {
+        cache.removeAll();
+    };
+    return userSshResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeTaskContactChangeLexi", ["$resource", function ($resource) {

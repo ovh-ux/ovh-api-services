@@ -1,7 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", function ($injector, $resource) {
+angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var req = $resource("/api/me/sshKey");
+    var cache = $cacheFactory("OvhApiMeSshKeyLexi");
 
-    return req;
+    var userSshResource = $resource("/me/sshKey", {}, {
+        get: { method: "GET", cache: cache }
+    });
+
+    userSshResource.resetCache = function () {
+        cache.removeAll();
+    };
+    return userSshResource;
 });
