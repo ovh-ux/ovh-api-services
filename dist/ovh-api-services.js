@@ -5862,15 +5862,38 @@ angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", ["$resource", "
     "use strict";
 
     var cache = $cacheFactory("OvhApiMeSshKeyLexi");
+    var queryCache = $cacheFactory("OvhApiMeSshKeyLexiQuery");
 
-    var userSshResource = $resource("/me/sshKey", {}, {
-        get: { method: "GET", cache: cache }
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var resource = $resource("/me/sshKey/:keyName", { keyName: "@keyName" }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache },
+        create: { method: "POSt", interceptor: interceptor },
+        edit: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor }
     });
 
-    userSshResource.resetCache = function () {
+    resource.resetCache = function () {
         cache.removeAll();
     };
-    return userSshResource;
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    resource.resetAllCache = function () {
+        resource.resetCache();
+        resource.resetQueryCache();
+    };
+
+    return resource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeTaskContactChangeLexi", ["$resource", function ($resource) {
