@@ -1,6 +1,5 @@
-"use strict";
-
-angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", function ($resource, $cacheFactory, $http) {
+    "use strict";
 
     var cache = $cacheFactory("OvhApiTelephonyVoicemailLexi");
     var queryCache = $cacheFactory("OvhApiTelephonyVoicemailLexiQuery");
@@ -52,6 +51,22 @@ angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailLexi", funct
         getNumbersSettings: {
             method: "GET",
             url: "/telephony/:billingAccount/voicemail/:serviceName/settings/voicemailNumbers"
+        },
+        routing: {
+            method: "GET",
+            url: "/telephony/:billingAccount/voicemail/:serviceName/settings/routing",
+            transformResponse: $http.defaults.transformResponse.concat(function (data, headers, status) {
+                if (status === 200) {
+                    return {
+                        data: data
+                    };
+                }
+                return null;
+            })
+        },
+        changeRouting: {
+            method: "POST",
+            url: "/telephony/:billingAccount/voicemail/:serviceName/settings/changeRouting"
         }
     });
 
