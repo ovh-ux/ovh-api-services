@@ -15,7 +15,7 @@ angular.module("ovh-api-services").service("OvhApiMeSshKeyLexi", function ($reso
     var resource = $resource("/me/sshKey/:keyName", { keyName: "@keyName" }, {
         query: { method: "GET", cache: queryCache, isArray: true },
         get: { method: "GET", cache: cache },
-        create: { method: "POSt", interceptor: interceptor },
+        create: { method: "POST", interceptor: interceptor },
         edit: { method: "PUT", interceptor: interceptor },
         "delete": { method: "DELETE", interceptor: interceptor }
     });
