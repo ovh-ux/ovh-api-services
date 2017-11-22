@@ -4700,6 +4700,10 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingLexi", ["$resou
             method: "GET",
             url: "/ipLoadbalancing/:serviceName/serviceInfos",
             cache: cache
+        },
+        freeCertificate: {
+            method: "POST",
+            url: "/ipLoadbalancing/:serviceName/freeCertificate"
         }
     });
 
@@ -6246,6 +6250,211 @@ angular.module("ovh-api-services").service("OvhApiNewAccount", ["$injector", fun
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiOrderCartItemConfigurationLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    "use strict";
+
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OvhApiOrderCartItemConfigurationLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderCartItemConfigurationLexi");
+
+    var interceptor = {
+        response: function (response) {
+            orderCartItemConfiguration.resetQueryCache();
+            return response.data;
+        }
+    };
+
+    var orderCartItemConfiguration = $resource("/order/cart/:cartId/item/:itemId/configuration/:configurationId", {
+        cartId: "@cartId",
+        itemId: "@itemId",
+        configurationId: "@configurationId"
+    }, {
+        query: { method: "GET", cache: queryCache },
+        get: { method: "GET", cache: cache },
+        post: { method: "POST", interceptor: interceptor }
+    });
+
+    orderCartItemConfiguration.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderCartItemConfiguration.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderCartItemConfiguration;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartItemConfiguration", ["$injector", function ($injector) {
+
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiOrderCartItemConfigurationLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartItemLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    "use strict";
+
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OvhApiOrderCartItemLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderCartItemLexi");
+
+    var interceptor = {
+        response: function (response) {
+            orderCartItem.resetQueryCache();
+            return response.data;
+        }
+    };
+
+    var orderCartItem = $resource("/order/cart/:cartId/item/:itemId", {
+        cartId: "@cartId",
+        itemId: "@itemId"
+    }, {
+        query: { method: "GET", cache: queryCache },
+        get: { method: "GET", cache: cache },
+        put: { method: "PUT", interceptor: interceptor }
+    });
+
+    orderCartItem.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderCartItem.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderCartItem;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartItem", ["$injector", function ($injector) {
+
+    "use strict";
+    return {
+        Configuration: function () {
+            return $injector.get("OvhApiOrderCartItemConfiguration");
+        },
+        Lexi: function () {
+            return $injector.get("OvhApiOrderCartItemLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    "use strict";
+
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OvhApiOrderCartLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderCartLexi");
+
+    var interceptor = {
+        response: function (response) {
+            orderCart.resetQueryCache();
+            return response.data;
+        }
+    };
+
+    var orderCart = $resource("/order/cart/:cartId", {
+        cartId: "@cartId"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache, isArray: false },
+        post: {
+            method: "POST",
+            interceptor: interceptor,
+            url: "/order/cart"
+        },
+        put: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor },
+        assign: {
+            method: "POST",
+            url: "/order/cart/:cartId/assign"
+        },
+        checkout: {
+            method: "POST",
+            url: "/order/cart/:cartId/checkout"
+        }
+    });
+
+    orderCart.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderCart.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderCart;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCart", ["$injector", function ($injector) {
+
+    "use strict";
+    return {
+        Item: function () {
+            return $injector.get("OvhApiOrderCartItem");
+        },
+        Product: function () {
+            return $injector.get("OvhApiOrderCartProduct");
+        },
+        ServiceOption: function () {
+            return $injector.get("OvhApiOrderCartServiceOption");
+        },
+        Lexi: function () {
+            return $injector.get("OvhApiOrderCartLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    "use strict";
+
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionLexiQuery");
+    var cache = $cacheFactory("OvhApiOrderCartServiceOptionLexi");
+
+    var interceptor = {
+        response: function (response) {
+            orderCartServiceOption.resetQueryCache();
+            return response.data;
+        }
+    };
+
+    var orderCartServiceOption = $resource("/order/cartServiceOption/:productName/:serviceName", {
+        productName: "@productName",
+        serviceName: "@serviceName"
+    }, {
+        get: { method: "GET", cache: cache, isArray: true },
+        post: { method: "POST", interceptor: interceptor }
+    });
+
+    orderCartServiceOption.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderCartServiceOption.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderCartServiceOption;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$injector", function ($injector) {
+
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCreditLexi", ["$resource", function ($resource) {
     "use strict";
 
@@ -6515,6 +6724,9 @@ angular.module("ovh-api-services").service("OvhApiOrder", ["$injector", function
         },
         Sms: function () {
             return $injector.get("OvhApiOrderSms");
+        },
+        Cart: function () {
+            return $injector.get("OvhApiOrderCart");
         },
         Lexi: function () {
             return $injector.get("OvhApiOrderLexi");
