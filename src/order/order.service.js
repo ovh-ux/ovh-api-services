@@ -22,6 +22,9 @@ angular.module("ovh-api-services").service("OvhApiOrder", function ($injector) {
         Sms: function () {
             return $injector.get("OvhApiOrderSms");
         },
+        Cart: function () {
+            return $injector.get("OvhApiOrderCart");
+        },
         Lexi: function () {
             return $injector.get("OvhApiOrderLexi");
         }

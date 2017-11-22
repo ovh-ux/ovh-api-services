@@ -62,6 +62,10 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingLexi", function
             method: "GET",
             url: "/ipLoadbalancing/:serviceName/serviceInfos",
             cache: cache
+        },
+        freeCertificate: {
+            method: "POST",
+            url: "/ipLoadbalancing/:serviceName/freeCertificate"
         }
     });
 
