@@ -30,6 +30,9 @@ angular.module("ovh-api-services").service("OvhApiVrack", function ($injector) {
         },
         Nasha: function () {
             return $injector.get("OvhApiVrackNasha");
+        },
+        IpLoadBalancing: function () {
+            return $injector.get("OvhApiVrackIpLoadBalancing");
         }
     };
 });
