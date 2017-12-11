@@ -12,6 +12,13 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectUserLexi", functio
         }
     };
 
+    var servicesDefinition = {
+        rclone: {
+            method: "GET",
+            url: "/cloud/project/:serviceName/user/:userId/rclone"
+        }
+    };
+
     var users = $resource("/cloud/project/:serviceName/user/:userId", {
         serviceName: "@serviceName",
         userId: "@userId"
@@ -22,8 +29,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectUserLexi", functio
         password: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/regeneratePassword" },
         token: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/token" },
         openrc: { method: "GET", url: "/cloud/project/:serviceName/user/:userId/openrc" },
-        ec2Credential: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/ec2Credential" }
-    });
+        ec2Credential: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/ec2Credential" },
+        rclone: { method: "GET", url: "/cloud/project/:serviceName/user/:userId/rclone" }
+    }, servicesDefinition);
+    users.services = servicesDefinition;
 
     users.resetCache = function () {
         cache.removeAll();
