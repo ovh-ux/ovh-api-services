@@ -1918,6 +1918,13 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectUserLexi", ["$reso
         }
     };
 
+    var servicesDefinition = {
+        rclone: {
+            method: "GET",
+            url: "/cloud/project/:serviceName/user/:userId/rclone"
+        }
+    };
+
     var users = $resource("/cloud/project/:serviceName/user/:userId", {
         serviceName: "@serviceName",
         userId: "@userId"
@@ -1928,8 +1935,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectUserLexi", ["$reso
         password: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/regeneratePassword" },
         token: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/token" },
         openrc: { method: "GET", url: "/cloud/project/:serviceName/user/:userId/openrc" },
-        ec2Credential: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/ec2Credential" }
-    });
+        ec2Credential: { method: "POST", url: "/cloud/project/:serviceName/user/:userId/ec2Credential" },
+        rclone: { method: "GET", url: "/cloud/project/:serviceName/user/:userId/rclone" }
+    }, servicesDefinition);
+    users.services = servicesDefinition;
 
     users.resetCache = function () {
         cache.removeAll();
@@ -17024,6 +17033,56 @@ angular.module("ovh-api-services").service("OvhApiVrackIp", ["$injector", functi
 
 "use strict";
 
+angular.module("ovh-api-services").service("OvhApiVrackIpLoadBalancingLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    var cache = $cacheFactory("OvhApiVrackIpLoadBalancingLexi");
+    var queryCache = $cacheFactory("OvhApiVrackIpLoadBalancingLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var vrackIpLoadBalancing = $resource("/vrack/:serviceName/ipLoadbalancing/:ipLoadbalancing", {
+        serviceName: "@serviceName",
+        ipLoadbalancing: "@ipLoadbalancing"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        edit: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor },
+        create: {
+            method: "POST",
+            url: "/vrack/:serviceName/ipLoadbalancing",
+            interceptor: interceptor
+        }
+    });
+
+    vrackIpLoadBalancing.resetCache = function () {
+        cache.removeAll();
+    };
+
+    vrackIpLoadBalancing.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return vrackIpLoadBalancing;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVrackIpLoadBalancing", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiVrackIpLoadBalancingLexi");
+        }
+    };
+}]);
+
+"use strict";
+
 angular.module("ovh-api-services").service("OvhApiVrackLegacyVrackLexi", ["$resource", "$cacheFactory", "OvhApiVrack", function ($resource, $cacheFactory, OvhApiVrack) {
 
     var cache = $cacheFactory("OvhApiVrackLegacyVrackLexi");
@@ -17309,6 +17368,9 @@ angular.module("ovh-api-services").service("OvhApiVrack", ["$injector", function
         },
         Nasha: function () {
             return $injector.get("OvhApiVrackNasha");
+        },
+        IpLoadBalancing: function () {
+            return $injector.get("OvhApiVrackIpLoadBalancing");
         }
     };
 }]);
