@@ -317,6 +317,7 @@ angular.module("ovh-api-services").service("OvhApiCloudPCA", ["$injector", funct
 angular.module("ovh-api-services").service("OvhApiCloudPriceLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
+    // This file is deprecated
     var cache = $cacheFactory("OvhApiCloudPriceLexi");
 
     return $resource("/cloud/price", {
@@ -332,6 +333,8 @@ angular.module("ovh-api-services").service("OvhApiCloudPriceLexi", ["$resource",
 angular.module("ovh-api-services").service("OvhApiCloudPrice", ["$injector", function ($injector) {
 
     "use strict";
+
+    // This file is deprecated
 
     return {
         Lexi: function () {
