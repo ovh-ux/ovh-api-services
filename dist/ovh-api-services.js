@@ -4716,6 +4716,10 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingLexi", ["$resou
         freeCertificate: {
             method: "POST",
             url: "/ipLoadbalancing/:serviceName/freeCertificate"
+        },
+        status: {
+            method: "GET",
+            url: "/ipLoadbalancing/:serviceName/status"
         }
     });
 
