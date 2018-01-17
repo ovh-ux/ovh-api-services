@@ -1,0 +1,18 @@
+angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsLexi");
+        },
+        Stream: function () {
+            return $injector.get("OvhApiDbaasLogsStream");
+        },
+        Offer: function () {
+            return $injector.get("OvhApiDbaasLogsOffer");
+        },
+        Option: function () {
+            return $injector.get("OvhApiDbaasLogsOption");
+        }
+    };
+});
