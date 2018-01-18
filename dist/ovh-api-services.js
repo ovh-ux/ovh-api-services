@@ -12501,14 +12501,12 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2Call", ["$i
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLexi", ["$resource", "$cacheFactory", "OvhApiTelephonyLineClick2CallUser", function ($resource, $cacheFactory, OvhApiTelephonyLineClick2CallUser) {
     "use strict";
-
-    var cache = $cacheFactory("OvhApiTelephonyLineClick2CallUserLexi");
 
     var interceptor = {
         response: function (response) {
-            cache.remove(response.config.url);
+            OvhApiTelephonyLineClick2CallUser.cache.remove(response.config.url);
             return response.data;
         }
     };
@@ -12521,7 +12519,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLex
         query: {
             method: "GET",
             isArray: true,
-            cache: cache
+            cache: OvhApiTelephonyLineClick2CallUser.cache
         },
         post: {
             method: "POST",
@@ -12529,7 +12527,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLex
         },
         get: {
             method: "GET",
-            cache: cache,
+            cache: OvhApiTelephonyLineClick2CallUser.cache,
             isArray: false
         },
         "delete": {
@@ -12559,13 +12557,17 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLex
     });
 }]);
 
-angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUser", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUser", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
     "use strict";
+
+    var cache = $cacheFactory("OvhApiTelephonyLineClick2CallUser");
     return {
         Lexi: function () {
             return $injector.get("OvhApiTelephonyLineClick2CallUserLexi");
         },
-        Aapi: angular.noop
+        Aapi: angular.noop,
+        resetCache: cache.removeAll,
+        cache: cache
     };
 }]);
 
