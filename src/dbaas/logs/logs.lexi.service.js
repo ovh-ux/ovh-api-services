@@ -11,8 +11,15 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", function ($res
         }
     };
 
-    var logsResource = $resource("/dbaas/logs", {}, {
-        get: { method: "GET", cache: cache }
+    var logsResource = $resource("/dbaas/logs/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        streams: {
+            method: "GET",
+            isArray: true,
+            url: "/dbaas/logs/:serviceName/output/graylog/stream",
+            cache: cache
+        }
     });
 
     logsResource.resetAllCache = function () {

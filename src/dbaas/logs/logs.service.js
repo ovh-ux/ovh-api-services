@@ -5,6 +5,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Lexi: function () {
             return $injector.get("OvhApiDbaasLogsLexi");
         },
+        Accounting: function () {
+            return $injector.get("OvhApiDbaasLogsAccounting");
+        },
         Stream: function () {
             return $injector.get("OvhApiDbaasLogsStream");
         },

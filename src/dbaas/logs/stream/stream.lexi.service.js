@@ -11,8 +11,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", function
         }
     };
 
-    var streamResource = $resource("/dbaas/logs/{serviceName}/output/graylog/stream", {
-        serviceName: "@serviceName"
+    var streamResource = $resource("/dbaas/logs/:serviceName/output/graylog/stream/:streamId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId"
     }, {
         get: { method: "GET", cache: cache }
     });

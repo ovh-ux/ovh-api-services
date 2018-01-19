@@ -11,7 +11,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOptionLexi", function
         }
     };
 
-    var optionResource = $resource("/dbaas/logs/{serviceName}/option", {
+    var optionResource = $resource("/dbaas/logs/:serviceName/option", {
         serviceName: "@serviceName"
     }, {
         get: { method: "GET", cache: cache }
