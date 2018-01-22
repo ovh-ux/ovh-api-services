@@ -1457,6 +1457,29 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPublic", ["
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiCloudProjectOpenstackClientLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    var resource = $resource("/cloud/project/:serviceName/openstackClient", {
+        serviceName: "@serviceName"
+    }, {
+        post: { method: "POST" }
+    });
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectOpenstackClient", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiCloudProjectOpenstackClientLexi");
+        }
+    };
+
+}]);
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectQuotaLexi", ["$resource", function ($resource) {
     "use strict";
 
