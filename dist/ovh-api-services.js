@@ -2122,7 +2122,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAccountingAapi", ["$r
 
     var cache = $cacheFactory('OvhApiDbaasLogsAccountingAapi');
 
-    var accounting = $resource("/dbaas/logs/:serviceName/accounting", {}, {
+    var accounting = $resource("/dbaas/logs/:serviceName/accounting", {
+        serviceName: "@serviceName"
+    }, {
         me : {
             method: "GET",
             url: "/dbaas/logs/:serviceName/accounting",
@@ -2224,7 +2226,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferLexi", ["$resour
         }
     };
 
-    var offerResource = $resource("/dbaas/logs/:serviceName/offer ", {
+    var offerResource = $resource("/dbaas/logs/:serviceName/offer", {
         serviceName: "@serviceName"
     }, {
         get: { method: "GET", cache: cache }
@@ -2307,7 +2309,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resou
 
     var cache = $cacheFactory('OvhApiDbaasLogsStreamAapi');
 
-    var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {}, {
+    var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId"
+    }, {
         get: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/stream/:streamId",
@@ -2342,6 +2347,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", ["$resou
         streamId: "@streamId"
     }, {
         get: { method: "GET", cache: cache },
+        create: { method: "POST", interceptor: interceptor },
+        update: { method: "PUT", interceptor: interceptor },
+        delete: { method: "DELETE", interceptor: interceptor },
         notifications: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",

@@ -4,7 +4,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", function
 
     var cache = $cacheFactory('OvhApiDbaasLogsStreamAapi');
 
-    var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {}, {
+    var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId"
+    }, {
         get: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/stream/:streamId",

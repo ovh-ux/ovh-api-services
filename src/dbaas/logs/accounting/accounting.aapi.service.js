@@ -3,7 +3,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAccountingAapi", func
 
     var cache = $cacheFactory('OvhApiDbaasLogsAccountingAapi');
 
-    var accounting = $resource("/dbaas/logs/:serviceName/accounting", {}, {
+    var accounting = $resource("/dbaas/logs/:serviceName/accounting", {
+        serviceName: "@serviceName"
+    }, {
         me : {
             method: "GET",
             url: "/dbaas/logs/:serviceName/accounting",
