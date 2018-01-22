@@ -15,7 +15,13 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", function
         serviceName: "@serviceName",
         streamId: "@streamId"
     }, {
-        get: { method: "GET", cache: cache }
+        get: { method: "GET", cache: cache },
+        notifications: {
+            method: "GET",
+            url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
+            cache: cache,
+            isArray: true
+        }
     });
 
     streamResource.resetAllCache = function () {

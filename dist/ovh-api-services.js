@@ -2170,7 +2170,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", ["$resource", 
             isArray: true,
             url: "/dbaas/logs/:serviceName/output/graylog/stream",
             cache: cache
-        },
+        }
     });
 
     logsResource.resetAllCache = function () {
@@ -2224,7 +2224,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferLexi", ["$resour
         }
     };
 
-    var offerResource = $resource("/dbaas/logs/{serviceName}/offer ", {
+    var offerResource = $resource("/dbaas/logs/:serviceName/offer ", {
         serviceName: "@serviceName"
     }, {
         get: { method: "GET", cache: cache }
@@ -2269,7 +2269,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOptionLexi", ["$resou
         }
     };
 
-    var optionResource = $resource("/dbaas/logs/{serviceName}/option", {
+    var optionResource = $resource("/dbaas/logs/:serviceName/option", {
         serviceName: "@serviceName"
     }, {
         get: { method: "GET", cache: cache }
@@ -2308,7 +2308,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resou
     var cache = $cacheFactory('OvhApiDbaasLogsStreamAapi');
 
     var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {}, {
-        get : {
+        get: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/stream/:streamId",
             serviceType : "aapi",
@@ -2341,7 +2341,13 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", ["$resou
         serviceName: "@serviceName",
         streamId: "@streamId"
     }, {
-        get: { method: "GET", cache: cache }
+        get: { method: "GET", cache: cache },
+        notifications: {
+            method: "GET",
+            url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
+            cache: cache,
+            isArray: true
+        }
     });
 
     streamResource.resetAllCache = function () {
