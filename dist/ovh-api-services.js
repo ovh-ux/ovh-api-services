@@ -4903,7 +4903,7 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZoneLexi", ["$r
 
     var interceptor = {
         response: function (response) {
-            cache.remove(response.config.url);
+            cache.removeAll();
             queryCache.removeAll();
             return response.resource;
         }
