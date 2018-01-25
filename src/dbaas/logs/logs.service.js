@@ -13,6 +13,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Offer: function () {
             return $injector.get("OvhApiDbaasLogsOffer");
+        },
+        Order: function () {
+            return $injector.get("OvhApiDbaasLogsOrder");
         }
     };
 });
