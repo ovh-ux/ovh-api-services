@@ -13003,6 +13003,17 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneRMA", ["$inj
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneErika", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var telephonyLinePhoneEndpoint = apiv7("/telephony/:billingAccount/line/:serviceName/phone", {
+        billingAccount: "@billingAccount",
+        serviceName: "@serviceName"
+    });
+
+    return telephonyLinePhoneEndpoint;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -13063,6 +13074,9 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhone", ["$inject
     return {
         Lexi: function () {
             return $injector.get("OvhApiTelephonyLinePhoneLexi");
+        },
+        Erika: function () {
+            return $injector.get("OvhApiTelephonyLinePhoneErika");
         },
         Aapi: angular.noop,
         FunctionKey: function () {
