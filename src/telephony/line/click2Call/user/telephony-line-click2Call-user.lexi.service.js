@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLexi", function ($resource, $cacheFactory, OvhApiTelephonyLineClick2CallUser) {
+angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLexi", ["$resource", "$cacheFactory", "OvhApiTelephonyLineClick2CallUser", function ($resource, $cacheFactory, OvhApiTelephonyLineClick2CallUser) {
     "use strict";
 
     var interceptor = {
@@ -52,4 +52,4 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUserLex
             interceptor: interceptor
         }
     });
-});
+}]);
