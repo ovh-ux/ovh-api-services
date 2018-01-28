@@ -15,6 +15,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAccountingAapi", func
         }
     });
 
+    accounting.resetAllCache = function () {
+        accounting.resetCache();
+    };
+
     accounting.resetCache = function(){
         cache.removeAll();
     };

@@ -17,8 +17,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", function
     }, {
         get: { method: "GET", cache: cache },
         create: { method: "POST", interceptor: interceptor },
-        update: { method: "PUT", interceptor: interceptor },
-        delete: { method: "DELETE", interceptor: interceptor },
+        update: { method: "PUT", interceptor: interceptor, url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId" },
+        delete: { method: "DELETE", interceptor: interceptor, url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId" },
         notifications: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
