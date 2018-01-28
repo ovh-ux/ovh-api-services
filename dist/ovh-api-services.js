@@ -2207,8 +2207,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         Offer: function () {
             return $injector.get("OvhApiDbaasLogsOffer");
         },
-        Option: function () {
-            return $injector.get("OvhApiDbaasLogsOption");
+        Order: function () {
+            return $injector.get("OvhApiDbaasLogsOrder");
         }
     };
 }]);
@@ -2258,11 +2258,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOffer", ["$injector",
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiDbaasLogsOptionLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiDbaasLogsOptionLexi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsOptionLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasLogsOrderLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsOrderLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
@@ -2271,34 +2271,35 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOptionLexi", ["$resou
         }
     };
 
-    var optionResource = $resource("/dbaas/logs/:serviceName/option", {
+    var orderResource = $resource("/order/upgrade/logs/:serviceName", {
         serviceName: "@serviceName"
     }, {
-        get: { method: "GET", cache: cache }
-    });
+        get: { method: "GET", cache: cache, isArray: true }
+    } 
+);
 
-    optionResource.resetAllCache = function () {
-        optionResource.resetCache();
-        optionResource.resetQueryCache();
+    orderResource.resetAllCache = function () {
+        orderResource.resetCache();
+        orderResource.resetQueryCache();
     };
 
-    optionResource.resetCache = function () {
+    orderResource.resetCache = function () {
         cache.removeAll();
     };
 
-    optionResource.resetQueryCache = function () {
+    orderResource.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
-    return optionResource;
+    return orderResource;
 }]);
 
-angular.module("ovh-api-services").service("OvhApiDbaasLogsOption", ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsOrder", ["$injector", function ($injector) {
     "use strict";
 
     return {
         Lexi: function () {
-            return $injector.get("OvhApiDbaasLogsOptionLexi");
+            return $injector.get("OvhApiDbaasLogsOrderLexi");
         }
     };
 }]);
