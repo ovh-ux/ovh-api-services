@@ -24,6 +24,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", function
             url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
             cache: cache,
             isArray: true
+        },
+        archives: {
+            method: "GET",
+            url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive",
+            cache: cache,
+            isArray: true
         }
     });
 
