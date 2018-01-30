@@ -18,7 +18,16 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZoneLexi", func
     }, {
         query: { method: "GET", isArray: true, cache: queryCache },
         get: { method: "GET", cache: cache },
-        "delete": { method: "DELETE", interceptor: interceptor }
+        cancelDelete: {
+            method: "POST",
+            url: "/ipLoadbalancing/:serviceName/zone/:name/cancelTermination",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "POST",
+            url: "/ipLoadbalancing/:serviceName/zone/:name/terminate",
+            interceptor: interceptor
+        }
     });
 
     ipLoadBalancingZone.resetCache = function () {
