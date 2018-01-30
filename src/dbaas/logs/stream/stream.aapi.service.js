@@ -17,6 +17,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", function
         }
     });
 
+    stream.resetAllCache = function () {
+        stream.resetCache();
+    };
+
     stream.resetCache = function(){
         cache.removeAll();
     };
