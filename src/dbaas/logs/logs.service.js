@@ -5,6 +5,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Lexi: function () {
             return $injector.get("OvhApiDbaasLogsLexi");
         },
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsAapi");
+        },
         Accounting: function () {
             return $injector.get("OvhApiDbaasLogsAccounting");
         },
@@ -19,6 +22,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Order: function () {
             return $injector.get("OvhApiDbaasLogsOrder");
+        },
+        Detail: function () {
+            return $injector.get("OvhApiDbaasLogsDetail");
         }
     };
 });
