@@ -2,7 +2,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperationLexi", funct
     "use strict";
 
     var operationResource = $resource("/dbaas/logs/:serviceName/operation/:operationId", {
-        serviceName : "@serviceName",
+        serviceName: "@serviceName",
         operationId: "@operationId"
     }, {
         get: { method: "GET", url: "/dbaas/logs/:serviceName/operation/:operationId" }

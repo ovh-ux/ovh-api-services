@@ -3,20 +3,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOrderLexi", function 
 
     var cache = $cacheFactory("OvhApiDbaasLogsOrderLexi");
     var queryCache = $cacheFactory("OvhApiDbaasLogsOrderLexiQuery");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
-
     var orderResource = $resource("/order/upgrade/logs/:serviceName", {
         serviceName: "@serviceName"
     }, {
         get: { method: "GET", cache: cache, isArray: true }
-    } 
-);
+    });
 
     orderResource.resetAllCache = function () {
         orderResource.resetCache();

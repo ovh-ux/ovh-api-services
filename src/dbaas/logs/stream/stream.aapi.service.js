@@ -1,8 +1,7 @@
-
 angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory('OvhApiDbaasLogsStreamAapi');
+    var cache = $cacheFactory("OvhApiDbaasLogsStreamAapi");
 
     var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {
         serviceName: "@serviceName",
@@ -11,7 +10,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", function
         get: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/stream/:streamId",
-            serviceType : "aapi",
+            serviceType: "aapi",
             cache: cache,
             isArray: false
         }
@@ -21,7 +20,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", function
         stream.resetCache();
     };
 
-    stream.resetCache = function(){
+    stream.resetCache = function () {
         cache.removeAll();
     };
 
