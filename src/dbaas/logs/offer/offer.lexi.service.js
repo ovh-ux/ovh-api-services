@@ -3,14 +3,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferLexi", function 
 
     var cache = $cacheFactory("OvhApiDbaasLogsOfferLexi");
     var queryCache = $cacheFactory("OvhApiDbaasLogsOfferLexiQuery");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
-
     var offerResource = $resource("/dbaas/logs/:serviceName/offer", {
         serviceName: "@serviceName"
     }, {

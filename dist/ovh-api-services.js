@@ -2143,15 +2143,15 @@ angular.module("ovh-api-services").service("OvhApiDbaas", ["$injector", function
 angular.module("ovh-api-services").service("OvhApiDbaasLogsAccountingAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory('OvhApiDbaasLogsAccountingAapi');
+    var cache = $cacheFactory("OvhApiDbaasLogsAccountingAapi");
 
     var accounting = $resource("/dbaas/logs/:serviceName/accounting", {
         serviceName: "@serviceName"
     }, {
-        me : {
+        me: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/accounting",
-            serviceType : "aapi",
+            serviceType: "aapi",
             cache: cache,
             isArray: false
         }
@@ -2161,19 +2161,19 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAccountingAapi", ["$r
         accounting.resetCache();
     };
 
-    accounting.resetCache = function(){
+    accounting.resetCache = function () {
         cache.removeAll();
     };
 
     return accounting;
 }]);
 
-angular.module('ovh-api-services').service('OvhApiDbaasLogsAccounting', ["$injector", function ($injector) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAccounting", ["$injector", function ($injector) {
     "use strict";
 
     return {
-        Aapi : function () {
-            return $injector.get('OvhApiDbaasLogsAccountingAapi');
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsAccountingAapi");
         }
     };
 }]);
@@ -2232,19 +2232,19 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAlert", ["$injector",
 angular.module("ovh-api-services").service("OvhApiDbaasLogsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory('OvhApiDbaasLogsAapi');
+    var cache = $cacheFactory("OvhApiDbaasLogsAapi");
 
     var home = $resource("/dbaas/logs/:serviceName/home", {}, {
-        home : {
+        home: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/home",
-            serviceType : "aapi",
+            serviceType: "aapi",
             cache: cache,
             isArray: false
         }
     });
 
-    home.resetCache = function(){
+    home.resetCache = function () {
         cache.removeAll();
     };
 
@@ -2256,13 +2256,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", ["$resource", 
 
     var cache = $cacheFactory("OvhApiDbaasLogsLexi");
     var queryCache = $cacheFactory("OvhApiDbaasLogsLexiQuery");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
 
     var logsResource = $resource("/dbaas/logs/:serviceName", {
         serviceName: "@serviceName"
@@ -2330,14 +2323,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferLexi", ["$resour
 
     var cache = $cacheFactory("OvhApiDbaasLogsOfferLexi");
     var queryCache = $cacheFactory("OvhApiDbaasLogsOfferLexiQuery");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
-
     var offerResource = $resource("/dbaas/logs/:serviceName/offer", {
         serviceName: "@serviceName"
     }, {
@@ -2374,7 +2359,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperationLexi", ["$re
     "use strict";
 
     var operationResource = $resource("/dbaas/logs/:serviceName/operation/:operationId", {
-        serviceName : "@serviceName",
+        serviceName: "@serviceName",
         operationId: "@operationId"
     }, {
         get: { method: "GET", url: "/dbaas/logs/:serviceName/operation/:operationId" }
@@ -2397,20 +2382,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOrderLexi", ["$resour
 
     var cache = $cacheFactory("OvhApiDbaasLogsOrderLexi");
     var queryCache = $cacheFactory("OvhApiDbaasLogsOrderLexiQuery");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
-
     var orderResource = $resource("/order/upgrade/logs/:serviceName", {
         serviceName: "@serviceName"
     }, {
         get: { method: "GET", cache: cache, isArray: true }
-    } 
-);
+    });
 
     orderResource.resetAllCache = function () {
         orderResource.resetCache();
@@ -2438,11 +2414,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOrder", ["$injector",
     };
 }]);
 
-
 angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory('OvhApiDbaasLogsStreamAapi');
+    var cache = $cacheFactory("OvhApiDbaasLogsStreamAapi");
 
     var stream = $resource("/dbaas/logs/:serviceName/stream/:streamId", {
         serviceName: "@serviceName",
@@ -2451,7 +2426,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resou
         get: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/stream/:streamId",
-            serviceType : "aapi",
+            serviceType: "aapi",
             cache: cache,
             isArray: false
         }
@@ -2461,7 +2436,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resou
         stream.resetCache();
     };
 
-    stream.resetCache = function(){
+    stream.resetCache = function () {
         cache.removeAll();
     };
 
@@ -2488,7 +2463,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", ["$resou
         get: { method: "GET", cache: cache },
         create: { method: "POST", interceptor: interceptor },
         update: { method: "PUT", interceptor: interceptor, url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId" },
-        delete: { method: "DELETE", interceptor: interceptor, url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId" },
+        "delete": { method: "DELETE", interceptor: interceptor, url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId" },
         notifications: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
