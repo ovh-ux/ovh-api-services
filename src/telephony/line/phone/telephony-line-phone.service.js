@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhone", function 
         Lexi: function () {
             return $injector.get("OvhApiTelephonyLinePhoneLexi");
         },
+        Erika: function () {
+            return $injector.get("OvhApiTelephonyLinePhoneErika");
+        },
         Aapi: angular.noop,
         FunctionKey: function () {
             return $injector.get("OvhApiTelephonyLineFunctionPhone");
