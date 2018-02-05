@@ -17,7 +17,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", function 
         get: { method: "GET", cache: cache, isArray: true },
         post: {
             method: "POST",
-            cache: cache,
             isArray: true,
             params: {
                 alertNotifyEnabled: "@alertNotifyEnabled",
@@ -37,9 +36,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", function 
                 interceptor: interceptor
             }
         },
+
         "delete": {
             method: "DELETE",
-            cache: cache,
             url: "/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId",
             interceptor: interceptor
         }
