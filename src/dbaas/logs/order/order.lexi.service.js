@@ -6,7 +6,15 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOrderLexi", function 
     var orderResource = $resource("/order/upgrade/logs/:serviceName", {
         serviceName: "@serviceName"
     }, {
-        get: { method: "GET", cache: cache, isArray: true }
+        get: { method: "GET", cache: cache, isArray: true },
+        saveOrder: {
+            method: "POST",
+            cache: cache,
+            url: "/order/upgrade/logs/:serviceName/:planCode",
+            params: {
+                quantity: "@quantity"
+            }
+        }
     });
 
     orderResource.resetAllCache = function () {

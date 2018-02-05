@@ -28,6 +28,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Alert: function () {
             return $injector.get("OvhApiDbaasLogsAlert");
+        },
+        Index: function () {
+            return $injector.get("OvhApiDbaasLogsIndex");
         }
     };
 });
