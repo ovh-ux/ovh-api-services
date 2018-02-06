@@ -20,14 +20,14 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Operation: function () {
             return $injector.get("OvhApiDbaasLogsOperation");
         },
-        Order: function () {
-            return $injector.get("OvhApiDbaasLogsOrder");
-        },
         Detail: function () {
             return $injector.get("OvhApiDbaasLogsDetail");
         },
         Alert: function () {
             return $injector.get("OvhApiDbaasLogsAlert");
+        },
+        Index: function () {
+            return $injector.get("OvhApiDbaasLogsIndex");
         }
     };
 });
