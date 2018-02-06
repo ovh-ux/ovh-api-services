@@ -23,8 +23,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", function 
                 description: "@description",
                 optionId: "@optionId",
                 suffix: "@suffix",
-                interceptor: interceptor
-            }
+            },
+            interceptor: interceptor            
         },
 
         put: {
@@ -32,9 +32,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", function 
             method: "PUT",
             params: {
                 alertNotifyEnabled: "@alertNotifyEnabled",
-                description: "@description",
-                interceptor: interceptor
-            }
+                description: "@description"
+            },
+            interceptor: interceptor
         },
 
         "delete": {
