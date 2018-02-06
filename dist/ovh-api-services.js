@@ -2566,6 +2566,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasOrderLexi", ["$resource",
 
     var cache = $cacheFactory("OvhApiDbaasOrderLexi");
     var queryCache = $cacheFactory("OvhApiDbaasOrderLexiQuery");
+
     var orderResource = $resource("/order/upgrade/logs/:serviceName", {
         serviceName: "@serviceName"
     }, {
@@ -2574,10 +2575,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasOrderLexi", ["$resource",
         saveOrder: {
             method: "POST",
             cache: cache,
-            url: "/order/upgrade/logs/:serviceName/:planCode",
-            params: {
-                quantity: "@quantity"
-            }
+            url: "/order/upgrade/logs/:serviceName/:planCode"
         }
     });
 
