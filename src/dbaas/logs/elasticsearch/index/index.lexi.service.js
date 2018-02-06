@@ -22,9 +22,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", function 
                 alertNotifyEnabled: "@alertNotifyEnabled",
                 description: "@description",
                 optionId: "@optionId",
-                suffix: "@suffix",
+                suffix: "@suffix"
             },
-            interceptor: interceptor            
+            interceptor: interceptor
         },
 
         put: {
