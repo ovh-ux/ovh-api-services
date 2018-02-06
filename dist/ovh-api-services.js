@@ -2136,7 +2136,10 @@ angular.module("ovh-api-services").service("OvhApiDbaas", ["$injector", function
         },
         Logs: function () {
             return $injector.get("OvhApiDbaasLogs");
-        }
+        },
+        Order: function () {
+            return $injector.get("OvhApiDbaasOrder");
+        },
     };
 }]);
 
@@ -2248,7 +2251,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", ["$resour
     }, {
         get: {
             method: "GET",
-            url: "/dbaas/logs/:serviceName/index/:indexId",
             serviceType: "aapi",
             cache: cache,
             isArray: false
@@ -2284,37 +2286,15 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", ["$resour
         }
     };
 
-    var index = $resource("/dbaas/logs/:serviceName/output/elasticsearch/index", {
-        serviceName: "@serviceName"
+    var index = $resource("/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId", {
+        serviceName: "@serviceName",
+        indexId: "@indexId"
     }, {
-        get: { method: "GET", cache: cache, isArray: true },
-        post: {
-            method: "POST",
-            isArray: true,
-            params: {
-                alertNotifyEnabled: "@alertNotifyEnabled",
-                description: "@description",
-                optionId: "@optionId",
-                suffix: "@suffix",
-            },
-            interceptor: interceptor            
-        },
-
-        put: {
-            url: "/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId",
-            method: "PUT",
-            params: {
-                alertNotifyEnabled: "@alertNotifyEnabled",
-                description: "@description"
-            },
-            interceptor: interceptor
-        },
-
-        "delete": {
-            method: "DELETE",
-            url: "/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId",
-            interceptor: interceptor
-        }
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache },
+        post: { method: "POST", interceptor: interceptor },
+        put: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor }
     });
 
     index.resetAllCache = function () {
@@ -2423,9 +2403,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         Operation: function () {
             return $injector.get("OvhApiDbaasLogsOperation");
         },
-        Order: function () {
-            return $injector.get("OvhApiDbaasLogsOrder");
-        },
         Detail: function () {
             return $injector.get("OvhApiDbaasLogsDetail");
         },
@@ -2493,51 +2470,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperation", ["$inject
     return {
         Lexi: function () {
             return $injector.get("OvhApiDbaasLogsOperationLexi");
-        }
-    };
-}]);
-
-angular.module("ovh-api-services").service("OvhApiDbaasLogsOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
-    "use strict";
-
-    var cache = $cacheFactory("OvhApiDbaasLogsOrderLexi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsOrderLexiQuery");
-    var orderResource = $resource("/order/upgrade/logs/:serviceName", {
-        serviceName: "@serviceName"
-    }, {
-        get: { method: "GET", cache: cache, isArray: true },
-        saveOrder: {
-            method: "POST",
-            cache: cache,
-            url: "/order/upgrade/logs/:serviceName/:planCode",
-            params: {
-                quantity: "@quantity"
-            }
-        }
-    });
-
-    orderResource.resetAllCache = function () {
-        orderResource.resetCache();
-        orderResource.resetQueryCache();
-    };
-
-    orderResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    orderResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return orderResource;
-}]);
-
-angular.module("ovh-api-services").service("OvhApiDbaasLogsOrder", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        Lexi: function () {
-            return $injector.get("OvhApiDbaasLogsOrderLexi");
         }
     };
 }]);
@@ -2632,6 +2564,52 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStream", ["$injector"
 
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsStreamAapi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasOrderLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasOrderLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasOrderLexiQuery");
+    var orderResource = $resource("/order/upgrade/logs/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache },
+        saveOrder: {
+            method: "POST",
+            cache: cache,
+            url: "/order/upgrade/logs/:serviceName/:planCode",
+            params: {
+                quantity: "@quantity"
+            }
+        }
+    });
+
+    orderResource.resetAllCache = function () {
+        orderResource.resetCache();
+        orderResource.resetQueryCache();
+    };
+
+    orderResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasOrder", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasOrderLexi");
         }
     };
 }]);

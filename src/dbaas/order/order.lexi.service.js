@@ -1,12 +1,13 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsOrderLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasOrderLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiDbaasLogsOrderLexi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsOrderLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasOrderLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasOrderLexiQuery");
     var orderResource = $resource("/order/upgrade/logs/:serviceName", {
         serviceName: "@serviceName"
     }, {
-        get: { method: "GET", cache: cache, isArray: true },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache },
         saveOrder: {
             method: "POST",
             cache: cache,

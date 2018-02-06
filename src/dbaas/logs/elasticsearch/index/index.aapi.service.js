@@ -17,7 +17,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", function 
     }, {
         get: {
             method: "GET",
-            url: "/dbaas/logs/:serviceName/index/:indexId",
             serviceType: "aapi",
             cache: cache,
             isArray: false

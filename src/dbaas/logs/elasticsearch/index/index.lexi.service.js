@@ -11,37 +11,15 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexLexi", function 
         }
     };
 
-    var index = $resource("/dbaas/logs/:serviceName/output/elasticsearch/index", {
-        serviceName: "@serviceName"
+    var index = $resource("/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId", {
+        serviceName: "@serviceName",
+        indexId: "@indexId"
     }, {
-        get: { method: "GET", cache: cache, isArray: true },
-        post: {
-            method: "POST",
-            isArray: true,
-            params: {
-                alertNotifyEnabled: "@alertNotifyEnabled",
-                description: "@description",
-                optionId: "@optionId",
-                suffix: "@suffix",
-            },
-            interceptor: interceptor            
-        },
-
-        put: {
-            url: "/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId",
-            method: "PUT",
-            params: {
-                alertNotifyEnabled: "@alertNotifyEnabled",
-                description: "@description"
-            },
-            interceptor: interceptor
-        },
-
-        "delete": {
-            method: "DELETE",
-            url: "/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId",
-            interceptor: interceptor
-        }
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache },
+        post: { method: "POST", interceptor: interceptor },
+        put: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor }
     });
 
     index.resetAllCache = function () {

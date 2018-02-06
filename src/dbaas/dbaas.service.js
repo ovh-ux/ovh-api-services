@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiDbaas", function ($injector) {
         },
         Logs: function () {
             return $injector.get("OvhApiDbaasLogs");
+        },
+        Order: function () {
+            return $injector.get("OvhApiDbaasOrder");
         }
     };
 });
