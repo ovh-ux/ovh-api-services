@@ -2237,13 +2237,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", ["$resour
 
     var cache = $cacheFactory("OvhApiDbaasLogsIndexAapi");
     var queryCache = $cacheFactory("OvhApiDbaasLogsIndexAapiQuery");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
 
     var index = $resource("/dbaas/logs/:serviceName/index/:indexId", {
         serviceName: "@serviceName",
