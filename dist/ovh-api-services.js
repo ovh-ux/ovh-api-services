@@ -2232,6 +2232,64 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAlert", ["$injector",
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsAliasAapi");
+    var alias = $resource("/dbaas/logs/:serviceName/alias/:aliasId", {}, {
+        get: {
+            method: "GET",
+            serviceType: "aapi",
+            cache: cache
+        }
+    });
+
+    alias.resetAllCache = function () {
+        alias.resetCache();
+    };
+
+    alias.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return alias;
+}]);
+
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasLexi", ["$resource", function ($resource) {
+    "use strict";
+
+    // No cache here, because items can be shared at any moment by other users
+
+    var aliasResource = $resource("/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId", {
+        serviceName: "@serviceName"
+    }, {
+        create: { method: "POST" },
+        update: { method: "PUT" },
+        remove: { method: "DELETE" },
+        linkStream: { method: "POST", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/stream" },
+        unlinkStream: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/stream/:streamId" },
+        linkIndex: { method: "POST", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index" },
+        unlinkIndex: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index/:indexId" },
+        query: { method: "GET", isArray: true }
+    });
+
+    return aliasResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAlias", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsAliasAapi");
+        },
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsAliasLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2404,6 +2462,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         },
         Index: function () {
             return $injector.get("OvhApiDbaasLogsIndex");
+        },
+        Alias: function () {
+            return $injector.get("OvhApiDbaasLogsAlias");
         }
     };
 }]);
