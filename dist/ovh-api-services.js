@@ -212,6 +212,11 @@ angular.module("ovh-api-services").service("OvhApiCloudLexi", ["$resource", "Ovh
         createProjectInfo: {
             url: "/cloud/createProjectInfo",
             method: "GET"
+        },
+        order: {
+            url: "/cloud/order",
+            method: "GET",
+            isArray: true
         }
     });
 }]);
