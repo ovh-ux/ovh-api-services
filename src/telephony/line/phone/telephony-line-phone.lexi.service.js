@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", funct
         }
     };
 
-    return $resource("/telephony/:billingAccount/line/:serviceName/phone", {
+    var resource = $resource("/telephony/:billingAccount/line/:serviceName/phone", {
         billingAccount: "@billingAccount",
         serviceName: "@serviceName"
     }, {
@@ -51,4 +51,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", funct
             }
         }
     });
+
+
+    resource.resetAllCache = function () {
+        cache.removeAll();
+    };
+
+    return resource;
 });
