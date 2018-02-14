@@ -5610,6 +5610,9 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", ["$injector"
         Quota: function () {
             return $injector.get("OvhApiIpLoadBalancingQuota");
         },
+        Vrack: function () {
+            return $injector.get("OvhApiIpLoadBalancingVrack");
+        },
         Zone: function () {
             return $injector.get("OvhApiIpLoadBalancingZone");
         }
@@ -5751,9 +5754,14 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingVrackLexi", ["$
         put: { method: "PUT", interceptor: interceptor },
         "delete": { method: "DELETE", interceptor: interceptor },
         getCreationRules: {
+            cache: cache,
             method: "GET",
-            url: "/ipLoadbalancing/:serviceName/vrack/networkCreationRules",
-            interceptor: interceptor
+            url: "/ipLoadbalancing/:serviceName/vrack/networkCreationRules"
+        },
+        getStatus: {
+            cache: cache,
+            method: "GET",
+            url: "/ipLoadbalancing/:serviceName/vrack/status"
         }
     });
 
