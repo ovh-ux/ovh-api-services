@@ -22,9 +22,14 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingVrackLexi", fun
         put: { method: "PUT", interceptor: interceptor },
         "delete": { method: "DELETE", interceptor: interceptor },
         getCreationRules: {
+            cache: cache,
             method: "GET",
-            url: "/ipLoadbalancing/:serviceName/vrack/networkCreationRules",
-            interceptor: interceptor
+            url: "/ipLoadbalancing/:serviceName/vrack/networkCreationRules"
+        },
+        getStatus: {
+            cache: cache,
+            method: "GET",
+            url: "/ipLoadbalancing/:serviceName/vrack/status"
         }
     });
 
