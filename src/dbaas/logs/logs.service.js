@@ -31,6 +31,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Alias: function () {
             return $injector.get("OvhApiDbaasLogsAlias");
+        },
+        Archive: function () {
+            return $injector.get("OvhApiDbaasLogsArchive");
         }
     };
 });
