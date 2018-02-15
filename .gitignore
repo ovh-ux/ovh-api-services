@@ -4,3 +4,4 @@ node_modules
 npm-debug.log
 bower_components
 .work
+.DS_Store
