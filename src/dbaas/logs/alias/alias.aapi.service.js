@@ -1,22 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasAapi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasAapi", function ($resource) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiDbaasLogsAliasAapi");
+    // No cache here, because items can be shared at any moment by other users
+
     var alias = $resource("/dbaas/logs/:serviceName/alias/:aliasId", {}, {
         get: {
             method: "GET",
-            serviceType: "aapi",
-            cache: cache
+            serviceType: "aapi"
         }
     });
-
-    alias.resetAllCache = function () {
-        alias.resetCache();
-    };
-
-    alias.resetCache = function () {
-        cache.removeAll();
-    };
 
     return alias;
 });
