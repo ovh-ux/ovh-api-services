@@ -2621,7 +2621,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resourc
             return response;
         }
     };
-    
+
     var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member", {
         serviceName: "@serviceName",
         roleId: "@roleId"
