@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", function (
             return response;
         }
     };
-    
+
     var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member", {
         serviceName: "@serviceName",
         roleId: "@roleId"
