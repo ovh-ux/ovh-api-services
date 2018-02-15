@@ -2,13 +2,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", function (
     "use strict";
 
     var cache = $cacheFactory("OvhApiDbaasLogsRoleAapi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleAapiQuery");
 
     var role = $resource("/dbaas/logs/:serviceName/role/:roleId", {
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
-        query: {
+        get: {
             method: "GET",
             serviceType: "aapi",
             cache: cache,
@@ -18,15 +17,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", function (
 
     role.resetAllCache = function () {
         role.resetCache();
-        role.resetQueryCache();
     };
 
     role.resetCache = function () {
         cache.removeAll();
-    };
-
-    role.resetQueryCache = function () {
-        queryCache.removeAll();
     };
 
     return role;

@@ -2453,7 +2453,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", ["$resource", 
             url: "/dbaas/logs/:serviceName/output/graylog/stream",
             cache: cache
         },
-        query: { method: "GET", isArray: true, queryCache: cache },
+        query: { method: "GET", isArray: true, queryCache: queryCache },
         logDetail: { method: "GET", cache: cache }
     });
 
@@ -2579,13 +2579,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resourc
     "use strict";
 
     var cache = $cacheFactory("OvhApiDbaasLogsRoleAapi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleAapiQuery");
 
     var role = $resource("/dbaas/logs/:serviceName/role/:roleId", {
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
-        query: {
+        get: {
             method: "GET",
             serviceType: "aapi",
             cache: cache,
@@ -2595,15 +2594,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resourc
 
     role.resetAllCache = function () {
         role.resetCache();
-        role.resetQueryCache();
     };
 
     role.resetCache = function () {
         cache.removeAll();
-    };
-
-    role.resetQueryCache = function () {
-        queryCache.removeAll();
     };
 
     return role;
@@ -2626,11 +2620,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resourc
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
-        query: { method: "GET", cache: cache, isArray: true },
+        query: { method: "GET", cache: queryCache, isArray: true },
         getDetail: { method: "GET", cache: cache },
         create: { method: "POST", interceptor: interceptor },
         update: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
+        remove: { method: "DELETE", interceptor: interceptor }
     });
 
     roleResource.resetAllCache = function () {

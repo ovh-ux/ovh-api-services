@@ -15,11 +15,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", function (
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
-        query: { method: "GET", cache: cache, isArray: true },
+        query: { method: "GET", cache: queryCache, isArray: true },
         getDetail: { method: "GET", cache: cache },
         create: { method: "POST", interceptor: interceptor },
         update: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
+        remove: { method: "DELETE", interceptor: interceptor }
     });
 
     roleResource.resetAllCache = function () {
