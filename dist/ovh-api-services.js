@@ -2567,6 +2567,56 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperation", ["$inject
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsRoleLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
+        serviceName: "@serviceName",
+        roleId: "@roleId",
+        username: "@username"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        create: { method: "POST", interceptor: interceptor },
+        update: { method: "PUT", interceptor: interceptor },
+        remove: { method: "DELETE", interceptor: interceptor }
+    });
+
+    roleResource.resetAllCache = function () {
+        roleResource.resetCache();
+        roleResource.resetQueryCache();
+    };
+
+    roleResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    roleResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return roleResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMember", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsRoleMemberLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2579,8 +2629,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resourc
         get: {
             method: "GET",
             serviceType: "aapi",
-            cache: cache,
-            isArray: false
+            cache: cache
         }
     });
 
@@ -2608,7 +2657,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resourc
         }
     };
 
-    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member", {
+    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId", {
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
@@ -2644,6 +2693,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", ["$injector", 
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsRoleAapi");
+        },
+        Member: function() {
+            return $injector.get("OvhApiDbaasLogsRoleMemberLexi");
         }
     };
 }]);

@@ -11,12 +11,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", function (
         }
     };
 
-    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId", {
+    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
         serviceName: "@serviceName",
-        roleId: "@roleId"
+        roleId: "@roleId",
+        username: "@username"
     }, {
         query: { method: "GET", cache: queryCache, isArray: true },
-        getDetail: { method: "GET", cache: cache },
         create: { method: "POST", interceptor: interceptor },
         update: { method: "PUT", interceptor: interceptor },
         remove: { method: "DELETE", interceptor: interceptor }
