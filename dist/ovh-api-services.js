@@ -2567,11 +2567,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperation", ["$inject
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMemberLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiDbaasLogsRoleLexi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasLogsRoleMemberLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleMemberLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
@@ -2580,7 +2580,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resourc
         }
     };
 
-    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
+    var memberResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
         serviceName: "@serviceName",
         roleId: "@roleId",
         username: "@username"
@@ -2591,20 +2591,20 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resourc
         remove: { method: "DELETE", interceptor: interceptor }
     });
 
-    roleResource.resetAllCache = function () {
-        roleResource.resetCache();
-        roleResource.resetQueryCache();
+    memberResource.resetAllCache = function () {
+        memberResource.resetCache();
+        memberResource.resetQueryCache();
     };
 
-    roleResource.resetCache = function () {
+    memberResource.resetCache = function () {
         cache.removeAll();
     };
 
-    roleResource.resetQueryCache = function () {
+    memberResource.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
-    return roleResource;
+    return memberResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMember", ["$injector", function ($injector) {
@@ -2695,7 +2695,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", ["$injector", 
             return $injector.get("OvhApiDbaasLogsRoleAapi");
         },
         Member: function() {
-            return $injector.get("OvhApiDbaasLogsRoleMemberLexi");
+            return $injector.get("OvhApiDbaasLogsRoleMember");
         }
     };
 }]);
