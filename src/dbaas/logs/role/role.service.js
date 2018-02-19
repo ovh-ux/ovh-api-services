@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", function ($inj
             return $injector.get("OvhApiDbaasLogsRoleAapi");
         },
         Member: function() {
-            return $injector.get("OvhApiDbaasLogsRoleMemberLexi");
+            return $injector.get("OvhApiDbaasLogsRoleMember");
         }
     };
 });

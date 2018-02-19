@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMemberLexi", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiDbaasLogsRoleLexi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleLexiQuery");
+    var cache = $cacheFactory("OvhApiDbaasLogsRoleMemberLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleMemberLexiQuery");
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
@@ -11,7 +11,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", function (
         }
     };
 
-    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
+    var memberResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
         serviceName: "@serviceName",
         roleId: "@roleId",
         username: "@username"
@@ -22,18 +22,18 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", function (
         remove: { method: "DELETE", interceptor: interceptor }
     });
 
-    roleResource.resetAllCache = function () {
-        roleResource.resetCache();
-        roleResource.resetQueryCache();
+    memberResource.resetAllCache = function () {
+        memberResource.resetCache();
+        memberResource.resetQueryCache();
     };
 
-    roleResource.resetCache = function () {
+    memberResource.resetCache = function () {
         cache.removeAll();
     };
 
-    roleResource.resetQueryCache = function () {
+    memberResource.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
-    return roleResource;
+    return memberResource;
 });
