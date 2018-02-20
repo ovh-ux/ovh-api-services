@@ -7104,6 +7104,10 @@ angular.module("ovh-api-services").service("OvhApiOrderCartLexi", ["$resource", 
         checkout: {
             method: "POST",
             url: "/order/cart/:cartId/checkout"
+        },
+        summary: {
+            method: "GET",
+            url: "/order/cart/:cartId/summary"
         }
     });
 
