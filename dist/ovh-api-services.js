@@ -915,7 +915,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectImageV6", ["$resou
         }],
         windows: [{
             name: "windows_server_2012",
-            regex: /^Win/i
+            regex: /^Win[a-zA-Z\s\-]+2012/i
+        }, {
+            name: "windows_server_2016",
+            regex: /^Win[a-zA-Z\s\-]+2016/i
         }]
     };
     function getDistribution (name, type) {
