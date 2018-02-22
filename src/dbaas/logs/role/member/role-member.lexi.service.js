@@ -17,7 +17,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMemberLexi", func
         username: "@username"
     }, {
         query: { method: "GET", cache: queryCache, isArray: true },
-        create: { method: "POST", interceptor: interceptor },
+        create: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/role/:roleId/member" },
         update: { method: "PUT", interceptor: interceptor },
         remove: { method: "DELETE", interceptor: interceptor }
     });
