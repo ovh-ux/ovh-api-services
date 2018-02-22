@@ -7105,6 +7105,10 @@ angular.module("ovh-api-services").service("OvhApiOrderCartLexi", ["$resource", 
             method: "POST",
             url: "/order/cart/:cartId/checkout"
         },
+        getCheckout: {
+            method: "GET",
+            url: "/order/cart/:cartId/checkout"
+        },
         summary: {
             method: "GET",
             url: "/order/cart/:cartId/summary"
@@ -7161,7 +7165,11 @@ angular.module("ovh-api-services").service("OvhApiOrderCartProductLexi", ["$reso
         productName: "@productName"
     }, {
         get: { method: "GET", cache: cache, isArray: true },
-        post: { method: "POST", interceptor: interceptor }
+        post: { method: "POST", interceptor: interceptor },
+        postOption: {
+            url: "/order/cart/:cartId/:productName/options",
+            method: "POST",
+            interceptor: interceptor }
     });
 
     orderCartProduct.resetCache = function () {
