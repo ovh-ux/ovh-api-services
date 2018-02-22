@@ -35,6 +35,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Archive: function () {
             return $injector.get("OvhApiDbaasLogsArchive");
         },
+        Role: function () {
+            return $injector.get("OvhApiDbaasLogsRole");
+        },
         Input: function () {
             return $injector.get("OvhApiDbaasLogsInput");
         }

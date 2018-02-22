@@ -2232,25 +2232,17 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAlert", ["$injector",
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasAapi", ["$resource", function ($resource) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiDbaasLogsAliasAapi");
+    // No cache here, because items can be shared at any moment by other users
+
     var alias = $resource("/dbaas/logs/:serviceName/alias/:aliasId", {}, {
         get: {
             method: "GET",
-            serviceType: "aapi",
-            cache: cache
+            serviceType: "aapi"
         }
     });
-
-    alias.resetAllCache = function () {
-        alias.resetCache();
-    };
-
-    alias.resetCache = function () {
-        cache.removeAll();
-    };
 
     return alias;
 }]);
@@ -2286,6 +2278,45 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAlias", ["$injector",
         },
         Lexi: function () {
             return $injector.get("OvhApiDbaasLogsAliasLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsArchiveLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDbaasLogsArchiveLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var archiveResource = $resource("/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive/:archiveId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId",
+        archiveId: "@archiveId",
+        expirationInSeconds: "@expirationInSeconds"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET" },
+        url: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive/:archiveId/url" }
+    });
+
+    archiveResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return archiveResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsArchive", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsArchiveLexi");
         }
     };
 }]);
@@ -2413,7 +2444,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", ["$resource", 
             isArray: true,
             url: "/dbaas/logs/:serviceName/output/graylog/stream",
             cache: cache
-        }
+        },
+        query: { method: "GET", isArray: true, queryCache: queryCache },
+        logDetail: { method: "GET", cache: cache }
     });
 
     logsResource.resetAllCache = function () {
@@ -2465,6 +2498,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         },
         Alias: function () {
             return $injector.get("OvhApiDbaasLogsAlias");
+        },
+        Archive: function () {
+            return $injector.get("OvhApiDbaasLogsArchive");
+        },
+        Role: function () {
+            return $injector.get("OvhApiDbaasLogsRole");
         }
     };
 }]);
@@ -2528,6 +2567,87 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperation", ["$inject
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsRoleAapi");
+
+    var role = $resource("/dbaas/logs/:serviceName/role/:roleId", {
+        serviceName: "@serviceName",
+        roleId: "@roleId"
+    }, {
+        get: {
+            method: "GET",
+            serviceType: "aapi",
+            cache: cache,
+            isArray: false
+        }
+    });
+
+    role.resetAllCache = function () {
+        role.resetCache();
+    };
+
+    role.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return role;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsRoleLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member", {
+        serviceName: "@serviceName",
+        roleId: "@roleId"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        getDetail: { method: "GET", cache: cache },
+        create: { method: "POST", interceptor: interceptor },
+        update: { method: "PUT", interceptor: interceptor },
+        remove: { method: "DELETE", interceptor: interceptor }
+    });
+
+    roleResource.resetAllCache = function () {
+        roleResource.resetCache();
+        roleResource.resetQueryCache();
+    };
+
+    roleResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    roleResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return roleResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsRoleLexi");
+        },
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsRoleAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2581,12 +2701,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamLexi", ["$resou
         notifications: {
             method: "GET",
             url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
-            cache: cache,
-            isArray: true
-        },
-        archives: {
-            method: "GET",
-            url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive",
             cache: cache,
             isArray: true
         }
