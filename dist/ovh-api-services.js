@@ -5762,6 +5762,11 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingVrackLexi", ["$
             cache: cache,
             method: "GET",
             url: "/ipLoadbalancing/:serviceName/vrack/status"
+        },
+        updateFarmId: {
+            interceptor: interceptor,
+            method: "POST",
+            url: "/ipLoadbalancing/:serviceName/vrack/network/:vrackNetworkId/updateFarmId "
         }
     });
 
