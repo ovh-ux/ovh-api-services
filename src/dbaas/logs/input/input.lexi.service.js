@@ -23,7 +23,16 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsInputLexi", function 
         start: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/start" },
         restart: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/restart" },
         end: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/end" },
-        logurl: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" }
+        logurl: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" },
+        test: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/configtest" },
+        updateLogstash: { method: "PUT", url: "/dbaas/logs/:serviceName/input/:inputId/configuration/logstash" },
+        updateFlowgger: { method: "PUT", url: "/dbaas/logs/:serviceName/input/:inputId/configuration/flowgger" },
+        linkStream: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/input" },
+        unlinkStream: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/input/:inputId" },
+        trustNetwork: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork" },
+        rejectNetwork: { method: "DELETE", url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork/:allowedNetworkId" },
+        logs: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" },
+        testResult: { method: "GET", url: "/dbaas/logs/:serviceName/input/:inputId/configtest/result" }
     });
 
     inputResource.resetAllCache = function () {
