@@ -1,7 +1,7 @@
 {
   "name": "ovh-api-services",
   "description": "Contains all angular $resource for OVH API.",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "main": "./dist/ovh-api-services.min.js",
   "repository": {
     "type": "git",
