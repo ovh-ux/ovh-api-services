@@ -10,8 +10,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", function (
         get: {
             method: "GET",
             serviceType: "aapi",
-            cache: cache,
-            isArray: false
+            cache: cache
         }
     });
 

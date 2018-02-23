@@ -11,6 +11,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Accounting: function () {
             return $injector.get("OvhApiDbaasLogsAccounting");
         },
+        Details: function () {
+            return $injector.get("OvhApiDbaasLogsDetails");
+        },
         Stream: function () {
             return $injector.get("OvhApiDbaasLogsStream");
         },
@@ -19,9 +22,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Operation: function () {
             return $injector.get("OvhApiDbaasLogsOperation");
-        },
-        Detail: function () {
-            return $injector.get("OvhApiDbaasLogsDetail");
         },
         Alert: function () {
             return $injector.get("OvhApiDbaasLogsAlert");
@@ -37,6 +37,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Role: function () {
             return $injector.get("OvhApiDbaasLogsRole");
+        },
+        Input: function () {
+            return $injector.get("OvhApiDbaasLogsInput");
         }
     };
 });

@@ -2326,6 +2326,43 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsArchive", ["$injector
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsDetailsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsDetailsAapi");
+
+    var home = $resource("/dbaas/logs/:serviceName/home", {
+        serviceName: "@serviceName"
+    }, {
+        me: {
+            method: "GET",
+            serviceType: "aapi",
+            cache: cache,
+            isArray: false
+        }
+    });
+
+    home.resetAllCache = function () {
+        home.resetCache();
+    };
+
+    home.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return home;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsDetails", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsDetailsAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2413,6 +2450,98 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndex", ["$injector",
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsInputAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsInputAapi");
+
+    var input = $resource("/dbaas/logs/:serviceName/input/:inputId", {
+        serviceName: "@serviceName",
+        inputId: "@inputId"
+    }, {
+        get: {
+            method: "GET",
+            serviceType: "aapi",
+            cache: cache,
+            isArray: false
+        }
+    });
+
+    input.resetAllCache = function () {
+        input.resetCache();
+    };
+
+    input.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return input;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsInputLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsInputLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsInputLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var inputResource = $resource("/dbaas/logs/:serviceName/input/:inputId", {
+        serviceName: "@serviceName",
+        inputId: "@inputId",
+        allowedNetworkId: "@allowedNetworkId"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        create: { method: "POST", interceptor: interceptor },
+        update: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor },
+        start: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/start" },
+        restart: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/restart" },
+        end: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/end" },
+        logurl: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" },
+        test: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/configtest" },
+        testResult: { method: "GET", url: "/dbaas/logs/:serviceName/input/:inputId/configtest/result" },
+        updateLogstash: { method: "PUT", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/configuration/logstash" },
+        updateFlowgger: { method: "PUT", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/configuration/flowgger" },
+        trustNetwork: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork" },
+        rejectNetwork: { method: "DELETE", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork/:allowedNetworkId" }
+    });
+
+    inputResource.resetAllCache = function () {
+        inputResource.resetCache();
+        inputResource.resetQueryCache();
+    };
+
+    inputResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    inputResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return inputResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsInput", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsInputLexi");
+        },
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsInputAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2483,6 +2612,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         Accounting: function () {
             return $injector.get("OvhApiDbaasLogsAccounting");
         },
+        Details: function () {
+            return $injector.get("OvhApiDbaasLogsDetails");
+        },
         Stream: function () {
             return $injector.get("OvhApiDbaasLogsStream");
         },
@@ -2491,9 +2623,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         },
         Operation: function () {
             return $injector.get("OvhApiDbaasLogsOperation");
-        },
-        Detail: function () {
-            return $injector.get("OvhApiDbaasLogsDetail");
         },
         Alert: function () {
             return $injector.get("OvhApiDbaasLogsAlert");
@@ -2509,6 +2638,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         },
         Role: function () {
             return $injector.get("OvhApiDbaasLogsRole");
+        },
+        Input: function () {
+            return $injector.get("OvhApiDbaasLogsInput");
         }
     };
 }]);
@@ -2572,6 +2704,56 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperation", ["$inject
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMemberLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsRoleMemberLexi");
+    var queryCache = $cacheFactory("OvhApiDbaasLogsRoleMemberLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
+    var memberResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
+        serviceName: "@serviceName",
+        roleId: "@roleId",
+        username: "@username"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        create: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/role/:roleId/member" },
+        update: { method: "PUT", interceptor: interceptor },
+        remove: { method: "DELETE", interceptor: interceptor }
+    });
+
+    memberResource.resetAllCache = function () {
+        memberResource.resetCache();
+        memberResource.resetQueryCache();
+    };
+
+    memberResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    memberResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return memberResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMember", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiDbaasLogsRoleMemberLexi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2584,8 +2766,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resourc
         get: {
             method: "GET",
             serviceType: "aapi",
-            cache: cache,
-            isArray: false
+            cache: cache
         }
     });
 
@@ -2613,7 +2794,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleLexi", ["$resourc
         }
     };
 
-    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId/member", {
+    var roleResource = $resource("/dbaas/logs/:serviceName/role/:roleId", {
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
@@ -2649,6 +2830,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", ["$injector", 
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsRoleAapi");
+        },
+        Member: function () {
+            return $injector.get("OvhApiDbaasLogsRoleMember");
         }
     };
 }]);
