@@ -8,7 +8,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", function ($inj
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsRoleAapi");
         },
-        Member: function() {
+        Member: function () {
             return $injector.get("OvhApiDbaasLogsRoleMember");
         }
     };

@@ -159,6 +159,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineLexi", function (
             method: "POST",
             url: "/telephony/:billingAccount/line/:serviceName/removeSimultaneousLines",
             isArray: false
+        },
+        simultaneousChannelsDetails: {
+            method: "GET",
+            url: "/telephony/:billingAccount/line/:serviceName/simultaneousChannelsDetails",
+            isArray: false
         }
     });
 
