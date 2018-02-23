@@ -2321,6 +2321,43 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsArchive", ["$injector
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsDetailsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDbaasLogsDetailsAapi");
+
+    var home = $resource("/dbaas/logs/:serviceName/home", {
+        serviceName: "@serviceName"
+    }, {
+        me: {
+            method: "GET",
+            serviceType: "aapi",
+            cache: cache,
+            isArray: false
+        }
+    });
+
+    home.resetAllCache = function () {
+        home.resetCache();
+    };
+
+    home.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return home;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDbaasLogsDetails", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsDetailsAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -2451,7 +2488,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsInputLexi", ["$resour
 
     var inputResource = $resource("/dbaas/logs/:serviceName/input/:inputId", {
         serviceName: "@serviceName",
-        inputId: "@inputId"
+        inputId: "@inputId",
+        allowedNetworkId: "@allowedNetworkId"
     }, {
         query: { method: "GET", isArray: true, cache: queryCache },
         get: { method: "GET", cache: cache },
@@ -2463,14 +2501,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsInputLexi", ["$resour
         end: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/end" },
         logurl: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" },
         test: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/configtest" },
-        updateLogstash: { method: "PUT", url: "/dbaas/logs/:serviceName/input/:inputId/configuration/logstash" },
-        updateFlowgger: { method: "PUT", url: "/dbaas/logs/:serviceName/input/:inputId/configuration/flowgger" },
-        linkStream: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/input" },
-        unlinkStream: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/input/:inputId" },
-        trustNetwork: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork" },
-        rejectNetwork: { method: "DELETE", url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork/:allowedNetworkId" },
-        logs: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" },
-        testResult: { method: "GET", url: "/dbaas/logs/:serviceName/input/:inputId/configtest/result" }
+        testResult: { method: "GET", url: "/dbaas/logs/:serviceName/input/:inputId/configtest/result" },
+        updateLogstash: { method: "PUT", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/configuration/logstash" },
+        updateFlowgger: { method: "PUT", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/configuration/flowgger" },
+        trustNetwork: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork" },
+        rejectNetwork: { method: "DELETE", interceptor: interceptor, url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork/:allowedNetworkId" }
     });
 
     inputResource.resetAllCache = function () {
@@ -2572,6 +2607,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         Accounting: function () {
             return $injector.get("OvhApiDbaasLogsAccounting");
         },
+        Details: function () {
+            return $injector.get("OvhApiDbaasLogsDetails");
+        },
         Stream: function () {
             return $injector.get("OvhApiDbaasLogsStream");
         },
@@ -2580,9 +2618,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", func
         },
         Operation: function () {
             return $injector.get("OvhApiDbaasLogsOperation");
-        },
-        Detail: function () {
-            return $injector.get("OvhApiDbaasLogsDetail");
         },
         Alert: function () {
             return $injector.get("OvhApiDbaasLogsAlert");
