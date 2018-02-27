@@ -5610,6 +5610,9 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", ["$injector"
         Quota: function () {
             return $injector.get("OvhApiIpLoadBalancingQuota");
         },
+        Vrack: function () {
+            return $injector.get("OvhApiIpLoadBalancingVrack");
+        },
         Zone: function () {
             return $injector.get("OvhApiIpLoadBalancingZone");
         }
@@ -5723,6 +5726,66 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingTask", ["$injec
     return {
         Lexi: function () {
             return $injector.get("OvhApiIpLoadBalancingTaskLexi");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingVrackLexi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiIpLoadBalancingVrackLexi");
+    var queryCache = $cacheFactory("OvhApiIpLoadBalancingVrackLexiQuery");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var ipLoadBalancingVrack = $resource("/ipLoadbalancing/:serviceName/vrack/network/:vrackNetworkId", {
+        serviceName: "@serviceName",
+        vrackNetworkId: "@vrackNetworkId"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        post: { method: "POST", interceptor: interceptor },
+        put: { method: "PUT", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor },
+        getCreationRules: {
+            cache: cache,
+            method: "GET",
+            url: "/ipLoadbalancing/:serviceName/vrack/networkCreationRules"
+        },
+        getStatus: {
+            cache: cache,
+            method: "GET",
+            url: "/ipLoadbalancing/:serviceName/vrack/status"
+        },
+        updateFarmId: {
+            interceptor: interceptor,
+            method: "POST",
+            url: "/ipLoadbalancing/:serviceName/vrack/network/:vrackNetworkId/updateFarmId "
+        }
+    });
+
+    ipLoadBalancingVrack.resetCache = function () {
+        cache.removeAll();
+    };
+
+    ipLoadBalancingVrack.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return ipLoadBalancingVrack;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiIpLoadBalancingVrack", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Lexi: function () {
+            return $injector.get("OvhApiIpLoadBalancingVrackLexi");
         }
     };
 }]);

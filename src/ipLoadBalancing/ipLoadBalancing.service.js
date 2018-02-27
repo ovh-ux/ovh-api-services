@@ -19,6 +19,9 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", function ($i
         Quota: function () {
             return $injector.get("OvhApiIpLoadBalancingQuota");
         },
+        Vrack: function () {
+            return $injector.get("OvhApiIpLoadBalancingVrack");
+        },
         Zone: function () {
             return $injector.get("OvhApiIpLoadBalancingZone");
         }
