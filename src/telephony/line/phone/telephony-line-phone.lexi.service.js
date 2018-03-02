@@ -52,7 +52,6 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", funct
         }
     });
 
-
     resource.resetAllCache = function () {
         cache.removeAll();
     };
