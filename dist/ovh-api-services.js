@@ -14001,7 +14001,6 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", ["$re
         }
     });
 
-
     resource.resetAllCache = function () {
         cache.removeAll();
     };
