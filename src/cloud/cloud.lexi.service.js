@@ -28,6 +28,11 @@ angular.module("ovh-api-services").service("OvhApiCloudLexi", function ($resourc
         createProjectInfo: {
             url: "/cloud/createProjectInfo",
             method: "GET"
+        },
+        order: {
+            url: "/cloud/order",
+            method: "GET",
+            isArray: true
         }
     });
 });

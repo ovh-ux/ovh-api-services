@@ -18,7 +18,11 @@ angular.module("ovh-api-services").service("OvhApiOrderCartProductLexi", functio
         productName: "@productName"
     }, {
         get: { method: "GET", cache: cache, isArray: true },
-        post: { method: "POST", interceptor: interceptor }
+        post: { method: "POST", interceptor: interceptor },
+        postOption: {
+            url: "/order/cart/:cartId/:productName/options",
+            method: "POST",
+            interceptor: interceptor }
     });
 
     orderCartProduct.resetCache = function () {
