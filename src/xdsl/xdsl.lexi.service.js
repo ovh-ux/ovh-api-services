@@ -65,6 +65,11 @@ angular.module("ovh-api-services").service("OvhApiXdslLexi", function ($resource
                 method: "POST",
                 url: "/xdsl/:xdslId/requestPPPLoginMail",
                 interceptor: interceptor
+            },
+            updateInvalidOrMissingRio: {
+                method: "POST",
+                url: "/xdsl/:xdslId/updateInvalidOrMissingRio",
+                interceptor: interceptor
             }
         }
     );
