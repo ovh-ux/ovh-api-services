@@ -32,6 +32,14 @@ angular.module("ovh-api-services").service("OvhApiOrderCartLexi", function ($res
         checkout: {
             method: "POST",
             url: "/order/cart/:cartId/checkout"
+        },
+        getCheckout: {
+            method: "GET",
+            url: "/order/cart/:cartId/checkout"
+        },
+        summary: {
+            method: "GET",
+            url: "/order/cart/:cartId/summary"
         }
     });
 
