@@ -14209,6 +14209,10 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineLexi", ["$cacheFa
             method: "POST",
             url: "/telephony/:billingAccount/line/:serviceName/associateDevice"
         },
+        dissociateDevice: {
+            method: "POST",
+            url: "/telephony/:billingAccount/line/:serviceName/dissociateDevice"
+        },
         maximumAvailableSimultaneousLines: {
             method: "GET",
             url: "/telephony/:billingAccount/line/:serviceName/maximumAvailableSimultaneousLines",
