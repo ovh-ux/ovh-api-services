@@ -13959,7 +13959,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", ["$re
         }
     };
 
-    return $resource("/telephony/:billingAccount/line/:serviceName/phone", {
+    var resource = $resource("/telephony/:billingAccount/line/:serviceName/phone", {
         billingAccount: "@billingAccount",
         serviceName: "@serviceName"
     }, {
@@ -14000,6 +14000,12 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneLexi", ["$re
             }
         }
     });
+
+    resource.resetAllCache = function () {
+        cache.removeAll();
+    };
+
+    return resource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiTelephonyLinePhone", ["$injector", function ($injector) {
