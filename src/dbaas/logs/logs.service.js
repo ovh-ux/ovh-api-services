@@ -11,6 +11,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Accounting: function () {
             return $injector.get("OvhApiDbaasLogsAccounting");
         },
+        Cluster: function () {
+            return $injector.get("OvhApiDbaasLogsCluster");
+        },
+        Contacts: function () {
+            return $injector.get("OvhApiDbaasLogsContacts");
+        },
         Details: function () {
             return $injector.get("OvhApiDbaasLogsDetails");
         },
