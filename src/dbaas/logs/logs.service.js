@@ -41,7 +41,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Input: function () {
             return $injector.get("OvhApiDbaasLogsInput");
         },
-        Tokens: function () {
+        Token: function () {
             return $injector.get("OvhApiDbaasLogsTokens");
         }
     };
