@@ -6,7 +6,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferLexi", function 
     var offerResource = $resource("/dbaas/logs/:serviceName/offer", {
         serviceName: "@serviceName"
     }, {
-        get: { method: "GET", cache: cache }
+        get: { method: "GET", cache: cache },
+        offerDetail: {
+            url: "/dbaas/logs/offer/:offerCode",
+            method: "GET",
+            cache: cache
+        }
     });
 
     offerResource.resetAllCache = function () {
