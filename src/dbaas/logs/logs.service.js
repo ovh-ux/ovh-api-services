@@ -52,6 +52,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Dashboard: function () {
             return $injector.get("OvhApiDbaasLogsDashboard");
+        },
+        User: function () {
+            return $injector.get("OvhApiDbaasLogsUser");
         }
     };
 });
