@@ -2,7 +2,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", function ($res
     "use strict";
 
     var cache = $cacheFactory("OvhApiDbaasLogsLexi");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsLexiQuery");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response;
+        }
+    };
 
     var logsResource = $resource("/dbaas/logs/:serviceName", {
         serviceName: "@serviceName"
@@ -13,21 +18,16 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", function ($res
             url: "/dbaas/logs/:serviceName/output/graylog/stream",
             cache: cache
         },
-        query: { method: "GET", isArray: true, queryCache: queryCache },
-        logDetail: { method: "GET", cache: cache }
+        logDetail: { method: "GET", cache: cache },
+        update: { method: "PUT", interceptor: interceptor }
     });
 
     logsResource.resetAllCache = function () {
         logsResource.resetCache();
-        logsResource.resetQueryCache();
     };
 
     logsResource.resetCache = function () {
         cache.removeAll();
-    };
-
-    logsResource.resetQueryCache = function () {
-        queryCache.removeAll();
     };
 
     return logsResource;

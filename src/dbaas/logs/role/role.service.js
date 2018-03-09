@@ -10,6 +10,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", function ($inj
         },
         Member: function () {
             return $injector.get("OvhApiDbaasLogsRoleMember");
+        },
+        Permission: function () {
+            return $injector.get("OvhApiDbaasLogsRolePermission");
         }
     };
 });

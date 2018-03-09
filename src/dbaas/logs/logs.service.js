@@ -11,6 +11,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         Accounting: function () {
             return $injector.get("OvhApiDbaasLogsAccounting");
         },
+        Cluster: function () {
+            return $injector.get("OvhApiDbaasLogsCluster");
+        },
+        Contacts: function () {
+            return $injector.get("OvhApiDbaasLogsContacts");
+        },
         Details: function () {
             return $injector.get("OvhApiDbaasLogsDetails");
         },
@@ -40,6 +46,15 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogs", function ($injecto
         },
         Input: function () {
             return $injector.get("OvhApiDbaasLogsInput");
+        },
+        Token: function () {
+            return $injector.get("OvhApiDbaasLogsTokens");
+        },
+        Dashboard: function () {
+            return $injector.get("OvhApiDbaasLogsDashboard");
+        },
+        User: function () {
+            return $injector.get("OvhApiDbaasLogsUser");
         }
     };
 });
