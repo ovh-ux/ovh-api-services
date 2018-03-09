@@ -17,7 +17,7 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRolePermissionLexi", 
         permissionId: "@permissionId"
     }, {
         query: { method: "GET", cache: queryCache, isArray: true },
-        getPermissionDetail:  { method: "GET", cache: cache },
+        getPermissionDetail: { method: "GET", cache: cache },
         addAlias: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/role/:roleId/permission/alias" },
         addIndex: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/role/:roleId/permission/index" },
         addDashboard: { method: "POST", interceptor: interceptor, url: "/dbaas/logs/:serviceName/role/:roleId/permission/dashboard" },

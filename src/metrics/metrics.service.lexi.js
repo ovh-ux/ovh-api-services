@@ -26,6 +26,11 @@ angular
             getConsumption: {
                 url: "/metrics/:serviceName/consumption",
                 method: "GET"
+            },
+            setQuota: {
+                url: "/metrics/:serviceName/quota",
+                method: "PUT",
+                interceptor: interceptor
             }
         });
 
