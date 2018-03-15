@@ -19,7 +19,12 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsLexi", function ($res
             cache: cache
         },
         logDetail: { method: "GET", cache: cache },
-        update: { method: "PUT", interceptor: interceptor }
+        update: { method: "PUT", interceptor: interceptor },
+        serviceInfos: {
+            method: "GET",
+            url: "/dbaas/logs/:serviceName/serviceInfos",
+            cache: cache
+        }
     });
 
     logsResource.resetAllCache = function () {
