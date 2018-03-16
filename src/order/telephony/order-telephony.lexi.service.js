@@ -100,22 +100,22 @@ angular.module("ovh-api-services").service("OvhApiOrderTelephonyLexi", function 
         },
         getSimultaneousLines: {
             method: "GET",
-            url: "/order/telephony/lines/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/lines/:serviceName/updateSimultaneousChannels",
             isArray: false
         },
         orderSimultaneousLines: {
             method: "POST",
-            url: "/order/telephony/lines/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/lines/:serviceName/updateSimultaneousChannels",
             isArray: false
         },
         getSimultaneousTrunkLines: {
             method: "GET",
-            url: "/order/telephony/trunks/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/trunks/:serviceName/updateSimultaneousChannels",
             isArray: false
         },
         orderSimultaneousTrunkLines: {
             method: "POST",
-            url: "/order/telephony/trunks/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/trunks/:serviceName/updateSimultaneousChannels",
             isArray: false
         }
     });

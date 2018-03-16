@@ -8450,22 +8450,22 @@ angular.module("ovh-api-services").service("OvhApiOrderTelephonyLexi", ["$resour
         },
         getSimultaneousLines: {
             method: "GET",
-            url: "/order/telephony/lines/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/lines/:serviceName/updateSimultaneousChannels",
             isArray: false
         },
         orderSimultaneousLines: {
             method: "POST",
-            url: "/order/telephony/lines/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/lines/:serviceName/updateSimultaneousChannels",
             isArray: false
         },
         getSimultaneousTrunkLines: {
             method: "GET",
-            url: "/order/telephony/trunks/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/trunks/:serviceName/updateSimultaneousChannels",
             isArray: false
         },
         orderSimultaneousTrunkLines: {
             method: "POST",
-            url: "/order/telephony/trunks/:serviceName/addSimultaneousLines",
+            url: "/order/telephony/trunks/:serviceName/updateSimultaneousChannels",
             isArray: false
         }
     });
@@ -17525,6 +17525,12 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTrunkLexi", ["$resour
     return $resource("/telephony/:billingAccount/trunk/:serviceName", {
         billingAccount: "@billingAccount",
         serviceName: "@serviceName"
+    }, {
+        getChannelsPacksRepartition: {
+            method: "GET",
+            url: "/telephony/:billingAccount/trunk/:serviceName/channelsPacksRepartition",
+            isArray: false
+        }
     });
 
 }]);
