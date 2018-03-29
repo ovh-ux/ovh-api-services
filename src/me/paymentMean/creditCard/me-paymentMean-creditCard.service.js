@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanCreditCard", func
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiMePaymentMeanCreditCardLexi");
+        v6: function () {
+            return $injector.get("OvhApiMePaymentMeanCreditCardV6");
         }
     };
 

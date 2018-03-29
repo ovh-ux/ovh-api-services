@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslExchangeLite", functio
     var cache = $cacheFactory("OvhApiPackXdslExchangeLite");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslExchangeLiteLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslExchangeLiteV6");
         },
         resetCache: cache.removeAll,
         cache: cache

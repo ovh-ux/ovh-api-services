@@ -2,12 +2,11 @@ angular.module("ovh-api-services").service("OvhApiMeOrder", function ($injector)
     "use strict";
 
     return {
-        Tera: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiMeOrderLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeOrderV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiMeOrderErika");
+        v7: function () {
+            return $injector.get("OvhApiMeOrderV7");
         },
         PayRegisteredPaymentMean: function () {
             return $injector.get("OvhApiMeOrderPayRegisteredPaymentMean");

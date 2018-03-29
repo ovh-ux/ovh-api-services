@@ -2,7 +2,7 @@ angular.module("ovh-api-services").service("OvhApiOrderVrack", function ($inject
     "use strict";
 
     return {
-        Lexi: angular.noop,
+        v6: angular.noop,
         New: function () {
             return $injector.get("OvhApiOrderVrackNew");
         }

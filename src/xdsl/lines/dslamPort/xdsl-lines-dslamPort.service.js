@@ -7,8 +7,8 @@ angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPort", function 
         Aapi: function () {
             return $injector.get("OvhApiXdslLinesDslamPortAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiXdslLinesDslamPortLexi");
+        v6: function () {
+            return $injector.get("OvhApiXdslLinesDslamPortV6");
         },
         resetCache: cache.removeAll,
         cache: cache

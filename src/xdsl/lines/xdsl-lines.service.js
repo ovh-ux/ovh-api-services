@@ -4,11 +4,11 @@ angular.module("ovh-api-services").service("OvhApiXdslLines", function ($injecto
     var cache = $cacheFactory("OvhApiXdslLines");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiXdslLinesLexi");
+        v6: function () {
+            return $injector.get("OvhApiXdslLinesV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiXdslLinesErika");
+        v7: function () {
+            return $injector.get("OvhApiXdslLinesV7");
         },
         resetCache: cache.removeAll,
         cache: cache

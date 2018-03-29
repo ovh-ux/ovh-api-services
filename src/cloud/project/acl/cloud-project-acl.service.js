@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectAcl", function ($i
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectAclLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectAclV6");
         }
     };
 

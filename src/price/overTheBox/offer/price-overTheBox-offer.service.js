@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiPriceOverTheBoxOffer", functio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiPriceOverTheBoxOfferLexi");
+        v6: function () {
+            return $injector.get("OvhApiPriceOverTheBoxOfferV6");
         }
     };
 

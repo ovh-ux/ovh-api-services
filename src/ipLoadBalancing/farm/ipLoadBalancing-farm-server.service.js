@@ -7,8 +7,8 @@ _.forEach(["tcp", "udp", "http"], function (type) {
         .service("OvhApiIpLoadBalancingFarm" + serverType + "Server",
                  ["$injector", function ($injector) {
                      return {
-                         Lexi: function () {
-                             return $injector.get("OvhApiIpLoadBalancingFarm" + serverType + "ServerLexi");
+                         v6: function () {
+                             return $injector.get("OvhApiIpLoadBalancingFarm" + serverType + "ServerV6");
                          }
                      };
                  }]);

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiStoreDocument", function ($inj
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiStoreDocumentLexi");
+        v6: function () {
+            return $injector.get("OvhApiStoreDocumentV6");
         }
     };
 });

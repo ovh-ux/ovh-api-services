@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingTimeCondit
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditionsLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyEasyHuntingTimeConditionsV6");
         },
         Conditions: function () {
             return $injector.get("OvhApiTelephonyEasyHuntingTimeConditionsConditions");

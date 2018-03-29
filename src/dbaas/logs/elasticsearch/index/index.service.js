@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndex", function ($in
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDbaasLogsIndexLexi");
+        v6: function () {
+            return $injector.get("OvhApiDbaasLogsIndexV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsIndexAapi");

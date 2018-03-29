@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHunting", func
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxHuntingLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyOvhPabxHuntingV6");
         },
         Queue: function () {
             return $injector.get("OvhApiTelephonyOvhPabxHuntingQueue");

@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiVrack", function ($injector) {
         Aapi: function () {
             return $injector.get("OvhApiVrackAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiVrackLexi");
+        v6: function () {
+            return $injector.get("OvhApiVrackV6");
         },
         CloudProject: function () {
             return $injector.get("OvhApiVrackCloudProject");

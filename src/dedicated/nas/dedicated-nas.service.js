@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedNas", function ($inje
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedNasLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedNasV6");
         }
     };
 });

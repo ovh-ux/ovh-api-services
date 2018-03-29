@@ -3,9 +3,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectCredit", function 
     "use strict";
 
     var cache = {
-        lexi: {
-            query: $cacheFactory("OvhApiCloudProjectCreditLexiQuery"),
-            get: $cacheFactory("OvhApiCloudProjectCreditLexi")
+        v6: {
+            query: $cacheFactory("OvhApiCloudProjectCreditV6Query"),
+            get: $cacheFactory("OvhApiCloudProjectCreditV6")
         },
         aapi: {
             query: $cacheFactory("OvhApiCloudProjectCreditAapiQuery")
@@ -13,15 +13,15 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectCredit", function 
     };
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectCreditLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectCreditV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiCloudProjectCreditAapi");
         },
         resetCache: function () {
-            cache.lexi.query.removeAll();
-            cache.lexi.get.removeAll();
+            cache.v6.query.removeAll();
+            cache.v6.get.removeAll();
             cache.aapi.query.removeAll();
         },
         cache: cache

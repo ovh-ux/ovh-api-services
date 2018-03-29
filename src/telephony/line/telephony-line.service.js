@@ -1,14 +1,14 @@
 angular.module("ovh-api-services").service("OvhApiTelephonyLine", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyLineLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyLineV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiTelephonyLineAapi");
         },
-        Erika: function () {
-            return $injector.get("OvhApiTelephonyLineErika");
+        v7: function () {
+            return $injector.get("OvhApiTelephonyLineV7");
         },
         AbbreviatedNumber: function () {
             return $injector.get("OvhApiTelephonyLineAbbreviatedNumber");

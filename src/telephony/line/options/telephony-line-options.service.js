@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineOptions", functio
     var cache = $cacheFactory("OvhApiTelephonyLineOptions");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyLineOptionsLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyLineOptionsV6");
         },
         resetCache: cache.removeAll,
         cache: cache

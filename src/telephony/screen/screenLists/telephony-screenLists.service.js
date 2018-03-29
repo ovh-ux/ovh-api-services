@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyScreenLists", functio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyScreenListsLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyScreenListsV6");
         }
     };
 });

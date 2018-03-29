@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslSiteBuilderStart", fun
     var cache = $cacheFactory("OvhApiPackXdslSiteBuilderStart");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslSiteBuilderStartLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslSiteBuilderStartV6");
         },
         resetCache: cache.removeAll,
         cache: cache

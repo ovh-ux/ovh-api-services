@@ -37,13 +37,13 @@ This will also download the dependencies.
 
 All services must return a $resource.
 For each $resource, you can call whether:
-- `Lexi`: for APIv6
-- `Erika`: for APIv7 (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
+- `v6`: for APIv6
+- `v7`: for APIv7 (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
 - `Aapi`: for 2API
 
-For example, for the service Me, use `OvhApiMe.Lexi().get()`, to get user informations.
+For example, for the service Me, use `OvhApiMe.v6().get()`, to get user informations.
 
-If you want the sshKeys of the user, use `OvhApiMe.Lexi().SshKey().get()`.
+If you want the sshKeys of the user, use `OvhApiMe.v6().SshKey().get()`.
 
 The files structure is then:
 ```sh
@@ -51,9 +51,9 @@ The files structure is then:
 └── me
     ├── sshKey
     │   ├── me-sshKey.service.js
-    │   └── me-sshKey.lexi.service.js
+    │   └── me-sshKey.v6.service.js
     ├── me.service.js
-    └── me.lexi.service.js
+    └── me.v6.service.js
 ```
 
 The directories structure must follow the structure of the API.

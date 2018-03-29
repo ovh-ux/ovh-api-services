@@ -2,9 +2,8 @@ angular.module("ovh-api-services").service("OvhApiOrderCloudProjectIp", function
     "use strict";
 
     return {
-        Tera: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiOrderCloudProjectIpLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderCloudProjectIpV6");
         }
     };
 

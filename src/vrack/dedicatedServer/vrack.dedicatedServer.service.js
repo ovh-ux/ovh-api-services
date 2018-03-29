@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiVrackDedicatedServer", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiVrackDedicatedServerLexi");
+        v6: function () {
+            return $injector.get("OvhApiVrackDedicatedServerV6");
         }
     };
 });

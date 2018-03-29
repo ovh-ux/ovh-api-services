@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeConditionConditio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyTimeConditionConditionLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyTimeConditionConditionV6");
         }
     };
 });

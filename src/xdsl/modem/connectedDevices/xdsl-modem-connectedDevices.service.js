@@ -4,7 +4,7 @@ angular.module("ovh-api-services").service("OvhApiXdslModemDevices", function ($
     var cache = $cacheFactory("OvhApiXdslModemDevices");
 
     return {
-        Lexi: angular.noop,
+        v6: angular.noop,
         Aapi: function () {
             return $injector.get("OvhApiXdslModemDevicesAapi");
         },

@@ -7,11 +7,11 @@ angular.module("ovh-api-services").service("OvhApiPackXdslVoipLine", function ($
         Aapi: function () {
             return $injector.get("OvhApiPackXdslVoipLineAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslVoipLineLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslVoipLineV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiPackXdslVoipLineErika");
+        v7: function () {
+            return $injector.get("OvhApiPackXdslVoipLineV7");
         },
         resetCache: cache.removeAll,
         cache: cache

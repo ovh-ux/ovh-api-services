@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCredit", func
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiOrderCloudProjectCreditLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderCloudProjectCreditV6");
         }
     };
 

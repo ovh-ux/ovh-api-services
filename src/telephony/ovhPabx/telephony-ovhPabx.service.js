@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabx", function ($
     var cache = $cacheFactory("OvhApiTelephonyOvhPabx");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyOvhPabxV6");
         },
         Dialplan: function () {
             return $injector.get("OvhApiTelephonyOvhPabxDialplan");

@@ -9,8 +9,8 @@ angular.module("ovh-api-services")
 
 
             return {
-                Lexi: function () {
-                    return $injector.get("OvhApiDeskaasLexi");
+                v6: function () {
+                    return $injector.get("OvhApiDeskaasV6");
                 },
                 resetCache: cache.removeAll,
                 cache: cache,

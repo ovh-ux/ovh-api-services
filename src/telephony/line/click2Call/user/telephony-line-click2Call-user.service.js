@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineClick2CallUser", 
 
     var cache = $cacheFactory("OvhApiTelephonyLineClick2CallUser");
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyLineClick2CallUserLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyLineClick2CallUserV6");
         },
         Aapi: angular.noop,
         resetCache: cache.removeAll,

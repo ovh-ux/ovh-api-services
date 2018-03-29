@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingAge
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyEasyHuntingHuntingAgentQueueLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyEasyHuntingHuntingAgentQueueV6");
         }
     };
 });

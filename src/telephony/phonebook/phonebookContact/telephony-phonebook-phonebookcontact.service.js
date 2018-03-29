@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyPhonebookPhonebookCon
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyPhonebookPhonebookContactLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyPhonebookPhonebookContactV6");
         }
     };
 });

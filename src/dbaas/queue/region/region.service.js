@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasQueueRegion", function ($
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDbaasQueueRegionLexi");
+        v6: function () {
+            return $injector.get("OvhApiDbaasQueueRegionV6");
         }
     };
 });

@@ -4,14 +4,14 @@ angular.module("ovh-api-services").service("OvhApiPackXdsl", function ($injector
     var cache = $cacheFactory("OvhApiPackXdsl");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiPackXdslAapi");
         },
-        Erika: function () {
-            return $injector.get("OvhApiPackXdslErika");
+        v7: function () {
+            return $injector.get("OvhApiPackXdslV7");
         },
         Task: function () {
             return $injector.get("OvhApiPackXdslTask");

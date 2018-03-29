@@ -1,11 +1,11 @@
 angular.module("ovh-api-services").service("OvhApiDomain", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDomainLexi");
+        v6: function () {
+            return $injector.get("OvhApiDomainV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiDomainErika");
+        v7: function () {
+            return $injector.get("OvhApiDomainV7");
         }
     };
 });

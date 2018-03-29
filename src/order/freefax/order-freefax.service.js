@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiOrderFreefax", function ($inje
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiOrderFreefaxLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderFreefaxV6");
         }
     };
 });

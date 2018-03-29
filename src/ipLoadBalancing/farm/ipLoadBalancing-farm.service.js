@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarm", function
         var farmType = _.capitalize(type);
         farm[farmType] = function () {
             return {
-                Lexi: function () {
-                    return $injector.get("OvhApiIpLoadBalancingFarm" + farmType + "Lexi");
+                v6: function () {
+                    return $injector.get("OvhApiIpLoadBalancingFarm" + farmType + "V6");
                 },
                 Server: function () {
                     return $injector.get("OvhApiIpLoadBalancingFarm" + farmType + "Server");
@@ -16,8 +16,8 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarm", function
         return farm;
     }, {});
 
-    services.Lexi = function () {
-        return $injector.get("OvhApiIpLoadBalancingFarmLexi");
+    services.v6 = function () {
+        return $injector.get("OvhApiIpLoadBalancingFarmV6");
     };
 
     return services;

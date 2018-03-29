@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiVrackPublicCloud", function ($
     var cache = $cacheFactory("OvhApiVrackPublicCloud");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiVrackPublicCloudLexi");
+        v6: function () {
+            return $injector.get("OvhApiVrackPublicCloudV6");
         },
         resetCache: cache.removeAll,
         cache: cache

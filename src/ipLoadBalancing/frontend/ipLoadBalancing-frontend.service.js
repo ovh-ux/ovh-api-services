@@ -4,16 +4,16 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFrontend", func
     var services = _.reduce(["tcp", "udp", "http"], function (frontend, type) {
         frontend[_.capitalize(type)] = function () {
             return {
-                Lexi: function () {
-                    return $injector.get("OvhApiIpLoadBalancingFrontend" + _.capitalize(type) + "Lexi");
+                v6: function () {
+                    return $injector.get("OvhApiIpLoadBalancingFrontend" + _.capitalize(type) + "V6");
                 }
             };
         };
         return frontend;
     }, {});
 
-    services.Lexi = function () {
-        return $injector.get("OvhApiIpLoadBalancingFrontendLexi");
+    services.v6 = function () {
+        return $injector.get("OvhApiIpLoadBalancingFrontendV6");
     };
 
     return services;

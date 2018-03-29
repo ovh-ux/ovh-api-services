@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiMeTelephonyDefaultIpRestrictio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiMeTelephonyDefaultIpRestrictionLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeTelephonyDefaultIpRestrictionV6");
         }
     };
 });

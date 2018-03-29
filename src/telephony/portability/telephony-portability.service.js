@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyPortability", functio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyPortabilityLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyPortabilityV6");
         }
     };
 });

@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiOrderVrackNew", function ($inj
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiOrderVrackNewLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderVrackNewV6");
         }
     };
 

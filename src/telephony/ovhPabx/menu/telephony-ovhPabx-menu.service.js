@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxMenu", functio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxMenuLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyOvhPabxMenuV6");
         },
         Entry: function () {
             return $injector.get("OvhApiTelephonyOvhPabxMenuEntry");

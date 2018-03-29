@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.0.0] - 2018-04-03
+- Rename Lexi to v6.
+- Rename Erika to v7.
+
 ## [2.0.0] - 2017-08-29
 - Every service has been prefixed by OvhApi.
 - User service is now named as OvhApiMe (/me endpoint).

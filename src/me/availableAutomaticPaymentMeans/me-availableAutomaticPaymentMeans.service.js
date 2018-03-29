@@ -2,9 +2,8 @@ angular.module("ovh-api-services").service("OvhApiMeAvailableAutomaticPaymentMea
     "use strict";
 
     return {
-        Tera: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiMeAvailableAutomaticPaymentMeansLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeAvailableAutomaticPaymentMeansV6");
         }
     };
 

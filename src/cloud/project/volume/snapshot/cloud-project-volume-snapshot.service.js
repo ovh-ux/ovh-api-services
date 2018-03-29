@@ -2,9 +2,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectVolumeSnapshot", f
     "use strict";
 
     return {
-        Tera: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectVolumeSnapshotLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectVolumeSnapshotV6");
         }
     };
 

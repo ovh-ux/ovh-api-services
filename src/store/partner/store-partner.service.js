@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiStorePartner", function ($inje
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiStorePartnerLexi");
+        v6: function () {
+            return $injector.get("OvhApiStorePartnerV6");
         }
     };
 });

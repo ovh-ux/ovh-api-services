@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenList
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsV6");
         },
         Conditions: function () {
             return $injector.get("OvhApiTelephonyEasyHuntingScreenListConditionsConditions");

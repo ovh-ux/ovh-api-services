@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiIpReverse", function ($injecto
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiIpReverseLexi");
+        v6: function () {
+            return $injector.get("OvhApiIpReverseV6");
         }
     };
 });

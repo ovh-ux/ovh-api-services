@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtens
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionTimeLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionTimeV6");
         }
     };
 });

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTrunk", function ($in
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyTrunkLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyTrunkV6");
         },
         ExternalDisplayedNumber: function () {
             return $injector.get("OvhApiTelephonyTrunkExternalDisplayedNumber");

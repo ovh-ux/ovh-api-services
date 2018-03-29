@@ -2,7 +2,7 @@ angular.module("ovh-api-services").service("OvhApiOrderOverTheBox", function ($i
     "use strict";
 
     return {
-        Lexi: angular.noop,
+        v6: angular.noop,
         New: function () {
             return $injector.get("OvhApiOrderOverTheBoxNew");
         }

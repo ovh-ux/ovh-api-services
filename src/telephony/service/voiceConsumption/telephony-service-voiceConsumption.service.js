@@ -2,11 +2,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumpti
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionErika");
+        v7: function () {
+            return $injector.get("OvhApiTelephonyServiceVoiceConsumptionV7");
         },
         Aapi: function () {
             return $injector.get("OvhApiTelephonyServiceVoiceConsumptionAapi");

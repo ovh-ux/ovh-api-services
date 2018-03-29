@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectMigration", functi
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectMigrationLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectMigrationV6");
         }
     };
 

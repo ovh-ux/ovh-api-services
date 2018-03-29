@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiMeFidelityAccount", function (
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiMeFidelityAccountLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeFidelityAccountV6");
         }
     };
 
