@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslMove", function ($inje
 
     return {
         Aapi: angular.noop,
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslMoveLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslMoveV6");
         },
         resetCache: cache.removeAll,
         cache: cache

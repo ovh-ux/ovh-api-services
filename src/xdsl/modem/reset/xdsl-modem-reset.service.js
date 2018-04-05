@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiXdslModemReset", function ($in
     var cache = $cacheFactory("OvhApiXdslModemReset");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiXdslModemResetLexi");
+        v6: function () {
+            return $injector.get("OvhApiXdslModemResetV6");
         },
         resetCache: cache.removeAll,
         cache: cache

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudFiler", function
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedCloudFilerLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudFilerV6");
         }
     };
 

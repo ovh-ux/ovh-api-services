@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyTimeCondition", funct
     var cache = $cacheFactory("OvhApiTelephonyTimeCondition");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyTimeConditionLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyTimeConditionV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiTelephonyTimeConditionAapi");

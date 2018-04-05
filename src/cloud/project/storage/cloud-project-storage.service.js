@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectStorage", function
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectStorageLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectStorageV6");
         }
     };
 

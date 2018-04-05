@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
     var cache = $cacheFactory("CloudProject");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectV6");
         },
         resetCache: cache.removeAll,
         cache: cache,

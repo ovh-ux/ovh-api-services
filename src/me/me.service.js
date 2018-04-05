@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiMeLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeV6");
         },
         Agreements: function () {
             return $injector.get("OvhApiMeAgreements");

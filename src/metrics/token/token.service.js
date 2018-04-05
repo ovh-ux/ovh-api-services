@@ -3,8 +3,8 @@ angular
     .service("OvhApiMetricsToken", function ($injector) {
 
         return {
-            Lexi: function () {
-                return $injector.get("OvhApiMetricsTokenLexi");
+            v6: function () {
+                return $injector.get("OvhApiMetricsTokenV6");
             }
         };
     });

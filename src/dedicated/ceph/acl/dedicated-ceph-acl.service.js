@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCephAcl", function ($
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedCephAclLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCephAclV6");
         }
     };
 });

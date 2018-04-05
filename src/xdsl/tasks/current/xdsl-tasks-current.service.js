@@ -2,7 +2,7 @@ angular.module("ovh-api-services").service("OvhApiXdslTasksCurrent", function ($
     "use strict";
 
     return {
-        Lexi: angular.noop,
+        v6: angular.noop,
         Aapi: function () {
             return $injector.get("OvhApiXdslTasksCurrentAapi");
         }

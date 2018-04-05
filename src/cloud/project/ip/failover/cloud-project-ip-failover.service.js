@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIpFailover", funct
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectIpFailoverLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectIpFailoverV6");
         }
     };
 

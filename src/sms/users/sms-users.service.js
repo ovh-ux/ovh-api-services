@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiSmsUsers", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiSmsUsersLexi");
+        v6: function () {
+            return $injector.get("OvhApiSmsUsersV6");
         },
         Incoming: function () {
             return $injector.get("OvhApiSmsUsersIncoming");

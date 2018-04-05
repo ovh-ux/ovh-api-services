@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiTelephonyFaxCampaigns", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyFaxCampaignsLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyFaxCampaignsV6");
         }
     };
 });

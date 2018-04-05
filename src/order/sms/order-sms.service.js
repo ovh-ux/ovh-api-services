@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiOrderSms", function ($injector
     var cache = $cacheFactory("OvhApiOrderSms");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiOrderSmsLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderSmsV6");
         },
         cache: cache
     };

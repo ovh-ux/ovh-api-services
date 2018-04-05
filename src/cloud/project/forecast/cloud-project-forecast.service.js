@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectForecast", functio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectForecastLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectForecastV6");
         }
     };
 

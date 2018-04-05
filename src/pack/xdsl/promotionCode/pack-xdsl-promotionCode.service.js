@@ -14,7 +14,7 @@ angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCode", functi
     return {
         /**
          * @ngdoc function
-         * @name Lexi
+         * @name v6
          * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCode
          * @description
          * Resource requesting Aapi
@@ -24,14 +24,14 @@ angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCode", functi
 
         /**
          * @ngdoc function
-         * @name Lexi
+         * @name v6
          * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCode
          * @description
          * Resource requesting apiV6
          * @return {object} Resource
          */
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslPromotionCodeLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslPromotionCodeV6");
         },
         resetCache: cache.removeAll,
         cache: cache

@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedNasha", function ($in
         Aapi: function () {
             return $injector.get("OvhApiDedicatedNashaAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedNashaLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedNashaV6");
         },
         Partition: function () {
             return $injector.get("OvhApiDedicatedNashaPartition");

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiStoreContact", function ($inje
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiStoreContactLexi");
+        v6: function () {
+            return $injector.get("OvhApiStoreContactV6");
         }
     };
 });

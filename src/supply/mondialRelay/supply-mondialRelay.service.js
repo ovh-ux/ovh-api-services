@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiSupplyMondialRelay", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiSupplyMondialRelayLexi");
+        v6: function () {
+            return $injector.get("OvhApiSupplyMondialRelayV6");
         },
         Aapi: function () {
             return angular.noop();

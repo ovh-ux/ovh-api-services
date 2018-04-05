@@ -4,6 +4,6 @@ angular.module("ovh-api-services").service("OvhApiOrderLicense", function ($inje
         Office: function () {
             return $injector.get("OvhApiOrderLicenseOffice");
         },
-        Lexi: angular.noop
+        v6: angular.noop
     };
 });

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountService
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslExchangeAccountServicesLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslExchangeAccountServicesV6");
         }
     };
 });

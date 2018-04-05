@@ -7,8 +7,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslAccess", function ($in
         Aapi: function () {
             return $injector.get("OvhApiPackXdslAccessAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslAccessLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslAccessV6");
         },
         resetCache: cache.removeAll,
         cache: cache

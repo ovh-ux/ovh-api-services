@@ -7,8 +7,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslResiliation", function
         Aapi: function () {
             return $injector.get("OvhApiPackXdslResiliationAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslResiliationLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslResiliationV6");
         },
         resetCache: cache.removeAll,
         cache: cache

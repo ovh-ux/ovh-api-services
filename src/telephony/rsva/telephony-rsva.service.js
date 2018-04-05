@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsva", function ($inj
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyRsvaLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyRsvaV6");
         }
     };
 });

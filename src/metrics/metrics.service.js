@@ -6,8 +6,8 @@ angular
             Token: function () {
                 return $injector.get("OvhApiMetricsToken");
             },
-            Lexi: function () {
-                return $injector.get("OvhApiMetricsLexi");
+            v6: function () {
+                return $injector.get("OvhApiMetricsV6");
             }
         };
     });

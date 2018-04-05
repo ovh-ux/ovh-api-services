@@ -11,8 +11,8 @@ angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtens
         ConditionTime: function () {
             return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionConditionTime");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionV6");
         }
     };
 });

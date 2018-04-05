@@ -7,11 +7,11 @@ angular.module("ovh-api-services").service("OvhApiTelephonyNumber", function ($i
         Aapi: function () {
             return $injector.get("OvhApiTelephonyNumberAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiTelephonyNumberLexi");
+        v6: function () {
+            return $injector.get("OvhApiTelephonyNumberV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiTelephonyNumberErika");
+        v7: function () {
+            return $injector.get("OvhApiTelephonyNumberV7");
         },
         resetCache: cache.removeAll,
         cache: cache

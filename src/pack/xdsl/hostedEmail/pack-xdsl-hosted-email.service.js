@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiPackXdslHostedEmail", function
     var cache = $cacheFactory("OvhApiPackXdslHostedEmail");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiPackXdslHostedEmailLexi");
+        v6: function () {
+            return $injector.get("OvhApiPackXdslHostedEmailV6");
         },
         resetCache: cache.removeAll,
         cache: cache

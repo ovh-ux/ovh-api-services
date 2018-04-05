@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPublic", fu
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectNetworkPublicLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectNetworkPublicV6");
         }
     };
 });

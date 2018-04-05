@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSshKey", function 
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectSshKeyLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectSshKeyV6");
         }
     };
 

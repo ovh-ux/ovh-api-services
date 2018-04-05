@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartition", func
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedNashaPartitionLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedNashaPartitionV6");
         },
         CustomSnapshot: function () {
             return $injector.get("OvhApiDedicatedNashaPartitionCustomSnapshot");

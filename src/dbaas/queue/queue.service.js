@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasQueue", function ($inject
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDbaasQueueLexi");
+        v6: function () {
+            return $injector.get("OvhApiDbaasQueueV6");
         },
         Key: function () {
             return $injector.get("OvhApiDbaasQueueKey");

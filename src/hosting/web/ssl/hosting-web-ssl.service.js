@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiHostingWebSsl", function ($inj
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiHostingWebSslLexi");
+        v6: function () {
+            return $injector.get("OvhApiHostingWebSslV6");
         }
     };
 });

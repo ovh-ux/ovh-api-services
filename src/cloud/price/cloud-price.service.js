@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiCloudPrice", function ($inject
     // This file is deprecated
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudPriceLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudPriceV6");
         }
     };
 

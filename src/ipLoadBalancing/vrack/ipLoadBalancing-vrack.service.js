@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiIpLoadBalancingVrack", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiIpLoadBalancingVrackLexi");
+        v6: function () {
+            return $injector.get("OvhApiIpLoadBalancingVrackV6");
         }
     };
 });

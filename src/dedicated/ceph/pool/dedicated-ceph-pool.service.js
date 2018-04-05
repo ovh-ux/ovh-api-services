@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCephPool", function (
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedCephPoolLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCephPoolV6");
         }
     };
 });

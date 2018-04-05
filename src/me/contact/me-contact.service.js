@@ -2,11 +2,11 @@ angular.module("ovh-api-services").service("OvhApiMeContact", function ($injecto
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiMeContactLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeContactV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiMeContactErika");
+        v7: function () {
+            return $injector.get("OvhApiMeContactV7");
         }
     };
 

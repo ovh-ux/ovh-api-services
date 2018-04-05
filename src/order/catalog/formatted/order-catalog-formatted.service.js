@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiOrderCatalogFormatted", functi
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiOrderCatalogFormattedLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderCatalogFormattedV6");
         }
     };
 

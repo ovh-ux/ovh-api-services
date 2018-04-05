@@ -5,8 +5,8 @@ angular.module("ovh-api-services").service("OvhApiOrderCartItem", function ($inj
         Configuration: function () {
             return $injector.get("OvhApiOrderCartItemConfiguration");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiOrderCartItemLexi");
+        v6: function () {
+            return $injector.get("OvhApiOrderCartItemV6");
         }
     };
 });

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedServer", function ($i
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiDedicatedServerLexi");
+        v6: function () {
+            return $injector.get("OvhApiDedicatedServerV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiDedicatedServerAapi");

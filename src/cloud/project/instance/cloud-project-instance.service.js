@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectInstance", functio
     var cache = $cacheFactory("OvhApiCloudProjectInstance");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectInstanceLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectInstanceV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiCloudProjectInstanceAapi");

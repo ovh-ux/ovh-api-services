@@ -3,8 +3,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectAlerting", functio
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiCloudProjectAlertingLexi");
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectAlertingV6");
         }
     };
 

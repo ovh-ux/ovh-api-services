@@ -7,11 +7,11 @@ angular.module("ovh-api-services").service("OvhApiSms", function ($injector, $ca
         Aapi: function () {
             return $injector.get("OvhApiSmsAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiSmsLexi");
+        v6: function () {
+            return $injector.get("OvhApiSmsV6");
         },
-        Erika: function () {
-            return $injector.get("OvhApiSmsErika");
+        v7: function () {
+            return $injector.get("OvhApiSmsV7");
         },
         Jobs: function () {
             return $injector.get("OvhApiSmsJobs");

@@ -2,8 +2,8 @@ angular.module("ovh-api-services").service("OvhApiMeBillDetails", function ($inj
     "use strict";
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiMeBillDetailsLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeBillDetailsV6");
         }
     };
 

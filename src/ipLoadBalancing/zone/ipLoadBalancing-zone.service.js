@@ -1,8 +1,8 @@
 angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZone", function ($injector) {
     "use strict";
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiIpLoadBalancingZoneLexi");
+        v6: function () {
+            return $injector.get("OvhApiIpLoadBalancingZoneV6");
         }
     };
 });

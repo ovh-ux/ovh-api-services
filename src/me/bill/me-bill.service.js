@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiMeBill", function ($injector) 
         Aapi: function () {
             return $injector.get("OvhApiMeBillAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiMeBillLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeBillV6");
         },
         Details: function () {
             return $injector.get("OvhApiMeBillDetails");

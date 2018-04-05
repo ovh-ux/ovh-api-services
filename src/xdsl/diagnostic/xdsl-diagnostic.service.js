@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiXdslDiagnostic", function ($in
     var cache = $cacheFactory("OvhApiXdslDiagnostic");
 
     return {
-        Lexi: function () {
-            return $injector.get("OvhApiXdslDiagnosticLexi");
+        v6: function () {
+            return $injector.get("OvhApiXdslDiagnosticV6");
         },
         Aapi: function () {
             return $injector.get("OvhApiXdslDiagnosticAapi");

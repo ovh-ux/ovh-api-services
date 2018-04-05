@@ -4,8 +4,8 @@ angular.module("ovh-api-services").service("OvhApiMeOvhAccount", function ($inje
         Aapi: function () {
             return $injector.get("OvhApiMeOvhAccountAapi");
         },
-        Lexi: function () {
-            return $injector.get("OvhApiMeOvhAccountLexi");
+        v6: function () {
+            return $injector.get("OvhApiMeOvhAccountV6");
         }
     };
 });
