@@ -1,5 +1,12 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", function ($resource, $cacheFactory) {
     "use strict";
+
+    var cache = $cacheFactory("OvhApiTelephonyRsvaV6");
+
+    var interceptor = function (response) {
+        cache.removeAll();
+        return response.data;
+    };
 
     return $resource("/telephony/:billingAccount/rsva/:serviceName", {
         billingAccount: "@billingAccount",
@@ -8,6 +15,10 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", function ($r
         query: {
             method: "GET",
             isArray: true
+        },
+        edit: {
+            method: "PUT",
+            interceptor: interceptor
         },
         getAllowedRateCodes: {
             method: "GET",
@@ -24,11 +35,16 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", function ($r
         },
         scheduleRateCode: {
             method: "POST",
-            url: "/telephony/:billingAccount/rsva/:serviceName/scheduleRateCode"
+            url: "/telephony/:billingAccount/rsva/:serviceName/scheduleRateCode",
+            interceptor: interceptor
         },
         cancelScheduledRateCode: {
             method: "POST",
-            url: "/telephony/:billingAccount/rsva/:serviceName/cancelScheduledRateCode"
+            url: "/telephony/:billingAccount/rsva/:serviceName/cancelScheduledRateCode",
+            interceptor: interceptor
+        },
+        resetCache: function () {
+            cache.removeAll();
         }
     });
 });
