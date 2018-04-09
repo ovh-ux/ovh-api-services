@@ -16288,6 +16288,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", ["$resource"
     }, {
         query: {
             method: "GET",
+            cache: cache,
             isArray: true
         },
         edit: {
@@ -16297,15 +16298,18 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", ["$resource"
         getAllowedRateCodes: {
             method: "GET",
             url: "/telephony/:billingAccount/rsva/:serviceName/allowedRateCodes",
+            cache: cache,
             isArray: true
         },
         getCurrentRateCode: {
             method: "GET",
-            url: "/telephony/:billingAccount/rsva/:serviceName/currentRateCode"
+            url: "/telephony/:billingAccount/rsva/:serviceName/currentRateCode",
+            cache: cache
         },
         getScheduledRateCode: {
             method: "GET",
-            url: "/telephony/:billingAccount/rsva/:serviceName/scheduledRateCode"
+            url: "/telephony/:billingAccount/rsva/:serviceName/scheduledRateCode",
+            cache: cache
         },
         scheduleRateCode: {
             method: "POST",
