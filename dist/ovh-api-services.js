@@ -16282,7 +16282,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", ["$resource"
         return response.data;
     };
 
-    return $resource("/telephony/:billingAccount/rsva/:serviceName", {
+    var ressource = $resource("/telephony/:billingAccount/rsva/:serviceName", {
         billingAccount: "@billingAccount",
         serviceName: "@serviceName"
     }, {
@@ -16320,11 +16320,14 @@ angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", ["$resource"
             method: "POST",
             url: "/telephony/:billingAccount/rsva/:serviceName/cancelScheduledRateCode",
             interceptor: interceptor
-        },
-        resetCache: function () {
-            cache.removeAll();
         }
     });
+
+    ressource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return ressource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiTelephonySchedulerEvents", ["$injector", function ($injector) {
