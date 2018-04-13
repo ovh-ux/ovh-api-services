@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         Api: function () {
             return $injector.get("OvhApiMeApi");
         },
+        AccessRestriction: function () {
+            return $injector.get("OvhApiMeAccessRestriction");
+        },
         Agreements: function () {
             return $injector.get("OvhApiMeAgreements");
         },
