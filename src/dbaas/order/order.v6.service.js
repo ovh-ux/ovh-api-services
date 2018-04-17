@@ -13,6 +13,11 @@ angular.module("ovh-api-services").service("OvhApiDbaasOrderV6", function ($reso
             method: "POST",
             cache: cache,
             url: "/order/upgrade/logs/:serviceName/:planCode"
+        },
+        getCatalog: {
+            method: "GET",
+            cache: cache,
+            url: "/order/catalog/formatted/logs"
         }
     });
 
