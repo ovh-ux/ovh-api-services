@@ -6675,6 +6675,26 @@ angular.module("ovh-api-services").service("OvhApiMeContactV7", ["$resource", "$
     return userContactResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeDepositRequest", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeDepositRequestV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDepositRequestV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/depositRequest/:id", {
+        id: "@id"
+    });
+
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeDocument", ["$injector", function ($injector) {
     "use strict";
 
@@ -6888,6 +6908,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Fax: function () {
             return $injector.get("OvhApiMeFax");
+        },
+        DepositRequest: function () {
+            return $injector.get("OvhApiMeDepositRequest");
         }
     };
 }]);

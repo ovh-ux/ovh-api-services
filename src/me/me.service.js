@@ -42,6 +42,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         },
         Fax: function () {
             return $injector.get("OvhApiMeFax");
+        },
+        DepositRequest: function () {
+            return $injector.get("OvhApiMeDepositRequest");
         }
     };
 });
