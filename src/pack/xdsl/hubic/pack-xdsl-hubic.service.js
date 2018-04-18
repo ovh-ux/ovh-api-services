@@ -7,7 +7,12 @@ angular.module("ovh-api-services").service("OvhApiPackXdslHubic", function ($inj
         Aapi: function () {
             return $injector.get("OvhApiPackXdslHubicAapi");
         },
-        v6: angular.noop,
+        v6: function () {
+            return $injector.get("OvhApiPackXdslHubicV6");
+        },
+        v7: function () {
+            return $injector.get("OvhApiPackXdslHubicV7");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
