@@ -35,6 +35,6 @@
     "matchdep": "^0.3.0"
   },
   "dependencies": {
-    "grunt-injector": "^0.6.0"
+    "grunt-injector": "^1.1.0"
   }
 }
