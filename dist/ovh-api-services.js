@@ -6686,7 +6686,7 @@ angular.module("ovh-api-services").service("OvhApiMeCustomerBalance", ["$injecto
 
 }]);
 
-angular.module("ovh-api-services").service("OvhApiMeCustomerBalanceV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiMeCustomerBalanceV6", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/customerBalance", {}, {
@@ -6709,7 +6709,7 @@ angular.module("ovh-api-services").service("OvhApiMeDepositRequest", ["$injector
 
 }]);
 
-angular.module("ovh-api-services").service("OvhApiMeDepositRequestV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiMeDepositRequestV6", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/depositRequest/:id", {
