@@ -9166,6 +9166,16 @@ angular.module("ovh-api-services").service("OvhApiPackXdslHostedEmailV6", ["$res
     );
 }]);
 
+angular.module("ovh-api-services").service("OvhApiPackXdslHubicV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var endpoint = apiv7("/pack/xdsl/:packName/hubic/services", {
+        packName: "@packName"
+    });
+
+    return endpoint;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiPackXdslHubicAapi", ["$resource", "OvhApiPackXdslHubic", function ($resource, OvhApiPackXdslHubic) {
     "use strict";
 
@@ -9189,10 +9199,34 @@ angular.module("ovh-api-services").service("OvhApiPackXdslHubic", ["$injector", 
         Aapi: function () {
             return $injector.get("OvhApiPackXdslHubicAapi");
         },
-        v6: angular.noop,
+        v6: function () {
+            return $injector.get("OvhApiPackXdslHubicV6");
+        },
+        v7: function () {
+            return $injector.get("OvhApiPackXdslHubicV7");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiPackXdslHubicV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiPackXdslHubicV6");
+
+    return $resource("/pack/xdsl/:packName/hubic/services", {
+        packName: "@packName"
+    }, {
+        getDomainDetails: {
+            method: "GET",
+            url: "/pack/xdsl/:packName/hubic/services/:domain/details",
+            cache: cache,
+            params: {
+                domain: "@domain"
+            }
+        }
+    });
 }]);
 
 angular.module("ovh-api-services").service("OvhApiPackXdslMove", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
