@@ -5031,6 +5031,16 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudV6", ["$resource
             url: "/dedicatedCloud/:serviceName/serviceInfos",
             method: "GET",
             cache: cache
+        },
+        terminate: {
+            url: "/dedicatedCloud/:serviceName/terminate",
+            method: "POST",
+            interceptor: interceptor
+        },
+        confirmTermination: {
+            url: "/dedicatedCloud/:serviceName/confirmTermination",
+            method: "POST",
+            interceptor: interceptor
         }
     });
 
