@@ -13,7 +13,7 @@ angular.module("ovh-api-services").service("OvhApiMeApiApplicationV6", function 
         }
     };
 
-    var resource =  $resource("/me/api/application/:applicationId", {
+    var resource = $resource("/me/api/application/:applicationId", {
         applicationId: "@applicationId"
     }, {
         query: {
