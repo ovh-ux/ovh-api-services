@@ -4,13 +4,6 @@ angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebtOperationV6",
     var cache = $cacheFactory("OvhApiMeDebtAccountDebtOperationV6");
     var queryCache = $cacheFactory("OvhApiMeDebtAccountDebtOperationQueryV6");
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            return response;
-        }
-    };
-
     var operationResource = $resource("/me/debtAccount/debt/:debtId/operation/:operationId", {
         debtId: "@debtId",
         operationId: "@operationId"

@@ -30,7 +30,7 @@ angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebtV6", function
                 "X-Ovh-Batch": ","
             },
             cache: queryCache
-        },
+        }
     });
 
     debtResource.resetCache = function () {
