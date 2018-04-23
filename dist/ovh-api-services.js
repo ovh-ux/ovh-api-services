@@ -7738,6 +7738,96 @@ angular.module("ovh-api-services").service("OvhApiMeFidelityAccountV6", ["$resou
     return userFidelityResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeIdentityGroup", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeIdentityGroupV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentityGroupV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/identity/group/:group", {
+        group: "@group"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        create: {
+            method: "POST",
+            url: "/me/identity/group"
+        },
+        update: {
+            method: "PUT"
+        },
+        "delete": {
+            method: "DELETE"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentity", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Group: function () {
+            return $injector.get("OvhApiMeIdentityGroup");
+        },
+        User: function () {
+            return $injector.get("OvhApiMeIdentityUser");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentityUser", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeIdentityUserV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentityUserV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/identity/user/:user", {
+        user: "@user"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        create: {
+            method: "POST",
+            url: "/me/identity/user"
+        },
+        update: {
+            method: "PUT"
+        },
+        "delete": {
+            method: "DELETE"
+        },
+        disable: {
+            method: "POST",
+            url: "/me/identity/user/:user/disable"
+        },
+        enable: {
+            method: "POST",
+            url: "/me/identity/user/:user/enable"
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($injector) {
     "use strict";
     return {
@@ -7797,6 +7887,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         DebtAccount: function () {
             return $injector.get("OvhApiMeDebtAccount");
+        },
+        Identity: function () {
+            return $injector.get("OvhApiMeIdentity");
         }
     };
 }]);
