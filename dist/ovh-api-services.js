@@ -6858,6 +6858,156 @@ angular.module("ovh-api-services").service("OvhApiMeContactV7", ["$resource", "$
     return userContactResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebtV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeDebtAccountDebtV6");
+    var queryCache = $cacheFactory("OvhApiMeDebtAccountDebtQueryV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response;
+        }
+    };
+
+    var debtResource = $resource("/me/debtAccount/debt/:debtId", {
+        debtId: "@debtId"
+    }, {
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        pay: {
+            url: "/me/debtAccount/debt/{debtId}/pay",
+            method: "POST",
+            interceptor: interceptor
+        },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            headers: {
+                "X-Ovh-Batch": ","
+            },
+            cache: queryCache
+        },
+    });
+
+    debtResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    debtResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    debtResource.resetAllCache = function () {
+        cache.removeAll();
+        queryCache.removeAll();
+    };
+
+    return debtResource;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebt", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeDebtAccountDebtV6");
+        },
+        Operation: function () {
+            return $injector.get("OvhApiMeDebtAccountDebtOperation");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebtOperationV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeDebtAccountDebtOperationV6");
+    var queryCache = $cacheFactory("OvhApiMeDebtAccountDebtOperationQueryV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response;
+        }
+    };
+
+    var operationResource = $resource("/me/debtAccount/debt/:debtId/operation/:operationId", {
+        debtId: "@debtId",
+        operationId: "@operationId"
+    }, {
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            headers: {
+                "X-Ovh-Batch": ","
+            },
+            cache: queryCache
+        },
+        associatedObject: {
+            url: "/me/debtAccount/debt/:debtId/operation/:operationId/associatedObject",
+            method: "GET",
+            cache: cache
+        }
+    });
+
+    operationResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    operationResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    operationResource.resetAllCache = function () {
+        cache.removeAll();
+        queryCache.removeAll();
+    };
+
+    return operationResource;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebtOperation", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeDebtAccountDebtOperationV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDebtAccountV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/debtAccount", {}, {
+        pay: {
+            url: "/me/debtAccount/pay",
+            method: "POST"
+        }
+    });
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDebtAccount", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeDebtAccountV6");
+        },
+        Debt: function () {
+            return $injector.get("OvhApiMeDebtAccountDebt");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeDepositRequest", ["$injector", function ($injector) {
     "use strict";
 
@@ -7097,6 +7247,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         DepositRequest: function () {
             return $injector.get("OvhApiMeDepositRequest");
+        },
+        DebtAccount: function () {
+            return $injector.get("OvhApiMeDebtAccount");
         }
     };
 }]);
@@ -7179,7 +7332,8 @@ angular.module("ovh-api-services").service("OvhApiMeOrderV6", ["$resource", "$ca
         },
         getDetails: { method: "GET", url: "/me/order/:orderId/details", cache: queryCache, isArray: true },
         getDetail: { method: "GET", url: "/me/order/:orderId/details/:detailId", params: { orderId: "@orderId", detailId: "@detailId" }, cache: queryCache },
-        payRegisteredPaymentMean: { method: "POST", url: "/me/order/:orderId/payWithRegisteredPaymentMean", interceptor: interceptor }
+        payRegisteredPaymentMean: { method: "POST", url: "/me/order/:orderId/payWithRegisteredPaymentMean", interceptor: interceptor },
+        associatedObject: { method: "GET", url: "/me/order/:orderId/associatedObject" }
     });
 
     userOrderResource.resetAllCache = function () {
