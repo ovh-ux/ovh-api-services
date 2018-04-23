@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         v6: function () {
             return $injector.get("OvhApiMeV6");
         },
+        Api: function () {
+            return $injector.get("OvhApiMeApi");
+        },
         Agreements: function () {
             return $injector.get("OvhApiMeAgreements");
         },
