@@ -6772,6 +6772,49 @@ angular.module("ovh-api-services").service("OvhApiMeBillV6", ["$resource", "$cac
     return userBillResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMail", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeBillingInvoicesByPostalMailV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMailV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/billing/invoicesByPostalMail", {}, {
+        get: {
+            method: "GET",
+            isArray: false,
+            transformResponse: function (data) {
+                // because $resource returns a promise due to boolean type of data
+                return {
+                    data: angular.fromJson(data)
+                };
+            }
+        },
+        post: {
+            method: "POST",
+            params: {
+                enable: "@enable"
+            }
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBilling", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        InvoicesByPostalMail: function () {
+            return $injector.get("OvhApiMeBillingInvoicesByPostalMail");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeContact", ["$injector", function ($injector) {
     "use strict";
 
@@ -7207,6 +7250,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Bill: function () {
             return $injector.get("OvhApiMeBill");
+        },
+        Billing: function () {
+            return $injector.get("OvhApiMeBilling");
         },
         Order: function () {
             return $injector.get("OvhApiMeOrder");
