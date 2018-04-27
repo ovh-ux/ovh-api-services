@@ -16,6 +16,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         Bill: function () {
             return $injector.get("OvhApiMeBill");
         },
+        Billing: function () {
+            return $injector.get("OvhApiMeBilling");
+        },
         Order: function () {
             return $injector.get("OvhApiMeOrder");
         },
