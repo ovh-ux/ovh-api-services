@@ -6293,11 +6293,40 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZoneV6", ["$res
     return ipLoadBalancingZone;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiLicenseAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiLicenseAapi");
+
+    var licenses = $resource("/sws/license", {}, {
+        get: {
+            method: "GET",
+            url: "/sws/license?filterType",
+            serviceType: "aapi",
+            cache: cache,
+            isArray: false,
+            params: {
+                count: "@count",
+                offset: "@offset"
+            }
+        }
+    });
+
+    licenses.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return licenses;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiLicense", ["$injector", function ($injector) {
     "use strict";
     return {
         Office: function () {
             return $injector.get("OvhApiLicenseOffice");
+        },
+        Aapi: function () {
+            return $injector.get("OvhApiLicenseAapi");
         }
     };
 }]);

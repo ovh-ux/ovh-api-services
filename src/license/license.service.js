@@ -3,6 +3,9 @@ angular.module("ovh-api-services").service("OvhApiLicense", function ($injector)
     return {
         Office: function () {
             return $injector.get("OvhApiLicenseOffice");
+        },
+        Aapi: function () {
+            return $injector.get("OvhApiLicenseAapi");
         }
     };
 });
