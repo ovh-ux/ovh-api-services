@@ -49,6 +49,9 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicated", ["$injector", "
         v6: function () {
             return $injector.get("OvhApiCdnDedicatedV6");
         },
+        Ssl: function () {
+            return $injector.get("OvhApiCdnDedicatedSsl");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
@@ -69,6 +72,24 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedV6", ["$resource",
             isArray: true,
             cache: OvhApiCdnDedicated.cache
         }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedSsl", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCdnDedicatedSslV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedSslV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/cdn/dedicated/:serviceName/ssl", {
+        serviceName: "@serviceName"
     });
 }]);
 
