@@ -8114,6 +8114,35 @@ angular.module("ovh-api-services").service("OvhApiNewAccount", ["$injector", fun
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiNotificationAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/notification", {}, {
+        query: {
+            method: "GET",
+            isArray: true,
+            url: "/notification",
+            serviceType: "aapi"
+        },
+        post: {
+            method: "POST",
+            isArray: true,
+            url: "/notification",
+            serviceType: "aapi"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiNotification", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhNotificationAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiOrderCartItemConfiguration", ["$injector", function ($injector) {
 
     "use strict";
