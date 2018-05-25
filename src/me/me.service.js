@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         Api: function () {
             return $injector.get("OvhApiMeApi");
         },
+        AccessRestriction: function () {
+            return $injector.get("OvhApiMeAccessRestriction");
+        },
         Agreements: function () {
             return $injector.get("OvhApiMeAgreements");
         },
@@ -54,6 +57,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         },
         DebtAccount: function () {
             return $injector.get("OvhApiMeDebtAccount");
+        },
+        Identity: function () {
+            return $injector.get("OvhApiMeIdentity");
         }
     };
 });
