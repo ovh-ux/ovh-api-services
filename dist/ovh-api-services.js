@@ -591,6 +591,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Migration: function () {
             return $injector.get("OvhApiCloudProjectMigration");
+        },
+        Stack: function () {
+            return $injector.get("OvhApiCloudProjectStack");
         }
     };
 
@@ -1764,6 +1767,61 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyV6", ["$reso
 
     return sshkeys;
 
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectStack", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectStackV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectStackV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiCloudProjectStackV6Query");
+    var cache = $cacheFactory("OvhApiCloudProjectStackV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var stack = $resource("/cloud/project/:serviceName/stack/:stackId", {
+        serviceName: "@serviceName",
+        stackId: "@stackId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        availability: {
+            url: "/cloud/project/:serviceName/stack/:stackId/availability",
+            method: "GET",
+            interceptor: interceptor
+        },
+        client: {
+            url: "/cloud/project/:serviceName/stack/:stackId/client",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    stack.resetCache = function () {
+        cache.removeAll();
+    };
+
+    stack.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return stack;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectStorage", ["$injector", function ($injector) {
@@ -7890,6 +7948,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Identity: function () {
             return $injector.get("OvhApiMeIdentity");
+        },
+        Notification: function () {
+            return $injector.get("OvhApiMeNotification");
         }
     };
 }]);
@@ -7918,6 +7979,41 @@ angular.module("ovh-api-services").service("OvhApiMeV6", ["$resource", "$cacheFa
 
     return me;
 
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotificationEmailHistory", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeNotificationEmailHistoryV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotificationEmailHistoryV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/notification/email/history/:id", {
+        id: "@id"
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotificationEmail", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        History: function () {
+            return $injector.get("OvhApiMeNotificationEmailHistory");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotification", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Email: function () {
+            return $injector.get("OvhApiMeNotificationEmail");
+        }
+    };
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeOrder", ["$injector", function ($injector) {
