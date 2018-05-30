@@ -60,6 +60,9 @@ angular.module("ovh-api-services").service("OvhApiMe", function ($injector) {
         },
         Identity: function () {
             return $injector.get("OvhApiMeIdentity");
+        },
+        Notification: function () {
+            return $injector.get("OvhApiMeNotification");
         }
     };
 });
