@@ -13,6 +13,15 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", function ($in
         },
         Datacenter: function () {
             return $injector.get("OvhApiDedicatedCloudDatacenter");
+        },
+        Location: function () {
+            return $injector.get("OvhApiDedicatedCloudLocation");
+        },
+        Option: function () {
+            return $injector.get("OvhApiDedicatedCloudOption");
+        },
+        VRack: function () {
+            return $injector.get("OvhApiDedicatedCloudVRack");
         }
     };
 
