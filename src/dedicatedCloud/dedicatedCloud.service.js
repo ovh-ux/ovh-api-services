@@ -22,6 +22,12 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", function ($in
         },
         VRack: function () {
             return $injector.get("OvhApiDedicatedCloudVRack");
+        },
+        AllowedNetwork: function () {
+            return $injector.get("OvhApiDedicatedCloudAllowedNetwork");
+        },
+        Task: function () {
+            return $injector.get("OvhApiDedicatedCloudTask");
         }
     };
 
