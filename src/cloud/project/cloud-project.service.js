@@ -51,6 +51,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         },
         Migration: function () {
             return $injector.get("OvhApiCloudProjectMigration");
+        },
+        Stack: function () {
+            return $injector.get("OvhApiCloudProjectStack");
         }
     };
 

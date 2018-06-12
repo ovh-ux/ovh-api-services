@@ -701,6 +701,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Migration: function () {
             return $injector.get("OvhApiCloudProjectMigration");
+        },
+        Stack: function () {
+            return $injector.get("OvhApiCloudProjectStack");
         }
     };
 
@@ -1874,6 +1877,61 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyV6", ["$reso
 
     return sshkeys;
 
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectStack", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectStackV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectStackV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiCloudProjectStackV6Query");
+    var cache = $cacheFactory("OvhApiCloudProjectStackV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var stack = $resource("/cloud/project/:serviceName/stack/:stackId", {
+        serviceName: "@serviceName",
+        stackId: "@stackId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        availability: {
+            url: "/cloud/project/:serviceName/stack/:stackId/availability",
+            method: "GET",
+            interceptor: interceptor
+        },
+        client: {
+            url: "/cloud/project/:serviceName/stack/:stackId/client",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    stack.resetCache = function () {
+        cache.removeAll();
+    };
+
+    stack.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return stack;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectStorage", ["$injector", function ($injector) {
@@ -6633,6 +6691,453 @@ angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsersV6", ["$reso
     return licenseOfficeUsers;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionBackupCode", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeAccessRestrictionBackupCodeV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionBackupCodeV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeAccessRestrictionBackupCodeV6");
+    var queryCache = $cacheFactory("OvhApiMeAccessRestrictionBackupCodeV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var resource = $resource("/me/accessRestriction/backupCode", {}, {
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        create: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        },
+        disable: {
+            method: "POST",
+            url: "/me/accessRestriction/backupCode/disable",
+            interceptor: interceptor
+        },
+        enable: {
+            method: "POST",
+            url: "/me/accessRestriction/backupCode/enable",
+            interceptor: interceptor
+        },
+        validate: {
+            method: "POST",
+            url: "/me/accessRestriction/backupCode/validate",
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    resource.resetAllCache = function () {
+        this.resetCache();
+        this.resetQueryCache();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionIp", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeAccessRestrictionIpV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionIpV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeAccessRestrictionIpV6");
+    var queryCache = $cacheFactory("OvhApiMeAccessRestrictionIpV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var resource = $resource("/me/accessRestriction/ip/:ip", {
+        ip: "@ip"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        create: {
+            method: "POST",
+            url: "/me/accessRestriction/ip",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    resource.resetAllCache = function () {
+        this.resetCache();
+        this.resetQueryCache();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestriction", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        BackupCode: function () {
+            return $injector.get("OvhApiMeAccessRestrictionBackupCode");
+        },
+        Ip: function () {
+            return $injector.get("OvhApiMeAccessRestrictionIp");
+        },
+        v6: function () {
+            return $injector.get("OvhApiMeAccessRestrictionV6");
+        },
+        Sms: function () {
+            return $injector.get("OvhApiMeAccessRestrictionSms");
+        },
+        Totp: function () {
+            return $injector.get("OvhApiMeAccessRestrictionTotp");
+        },
+        U2f: function () {
+            return $injector.get("OvhApiMeAccessRestrictionU2f");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/accessRestriction", {}, {
+        developerMode: {
+            url: "/me/accessRestriction/developerMode",
+            method: "GET"
+        },
+        updateDeveloperMode: {
+            url: "/me/accessRestriction/developerMode",
+            method: "PUT"
+        },
+        ipDefaultRule: {
+            url: "/me/accessRestriction/ipDefaultRule",
+            method: "GET"
+        },
+        updateipDefaultRule: {
+            url: "/me/accessRestriction/ipDefaultRule",
+            method: "PUT"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionSms", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeAccessRestrictionSmsV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionSmsV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeAccessRestrictionSmsV6");
+    var queryCache = $cacheFactory("OvhApiMeAccessRestrictionSmsV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var resource = $resource("/me/accessRestriction/sms/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        create: {
+            method: "POST",
+            url: "/me/accessRestriction/sms",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        },
+        disable: {
+            method: "POST",
+            url: "/me/accessRestriction/sms/:id/disable",
+            interceptor: interceptor
+        },
+        enable: {
+            method: "POST",
+            url: "/me/accessRestriction/sms/:id/enable",
+            interceptor: interceptor
+        },
+        sendCode: {
+            method: "POST",
+            url: "/me/accessRestriction/sms/:id/sendCode",
+            interceptor: interceptor
+        },
+        validate: {
+            method: "POST",
+            url: "/me/accessRestriction/sms/:id/validate",
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    resource.resetAllCache = function () {
+        this.resetCache();
+        this.resetQueryCache();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionTotp", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeAccessRestrictionTotpV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionTotpV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeAccessRestrictionTotpV6");
+    var queryCache = $cacheFactory("OvhApiMeAccessRestrictionTotpV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var resource = $resource("/me/accessRestriction/totp/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        create: {
+            method: "POST",
+            url: "/me/accessRestriction/totp",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        },
+        disable: {
+            method: "POST",
+            url: "/me/accessRestriction/totp/:id/disable",
+            interceptor: interceptor
+        },
+        enable: {
+            method: "POST",
+            url: "/me/accessRestriction/totp/:id/enable",
+            interceptor: interceptor
+        },
+        validate: {
+            method: "POST",
+            url: "/me/accessRestriction/totp/:id/validate",
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    resource.resetAllCache = function () {
+        this.resetCache();
+        this.resetQueryCache();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionU2f", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeAccessRestrictionU2fV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionU2fV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiMeAccessRestrictionU2fV6");
+    var queryCache = $cacheFactory("OvhApiMeAccessRestrictionU2fV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var resource = $resource("/me/accessRestriction/u2f/:id", {
+        id: "@id"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        create: {
+            method: "POST",
+            url: "/me/accessRestriction/u2f",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/accessRestriction/u2f/:id/challenge",
+            interceptor: interceptor
+        },
+        disable: {
+            method: "POST",
+            url: "/me/accessRestriction/u2f/:id/disable",
+            interceptor: interceptor
+        },
+        enable: {
+            method: "POST",
+            url: "/me/accessRestriction/u2f/:id/enable",
+            interceptor: interceptor
+        },
+        validate: {
+            method: "POST",
+            url: "/me/accessRestriction/u2f/:id/validate",
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    resource.resetAllCache = function () {
+        this.resetCache();
+        this.resetQueryCache();
+    };
+
+    return resource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeAgreements", ["$injector", function ($injector) {
     "use strict";
 
@@ -7401,6 +7906,96 @@ angular.module("ovh-api-services").service("OvhApiMeFidelityAccountV6", ["$resou
     return userFidelityResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeIdentityGroup", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeIdentityGroupV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentityGroupV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/identity/group/:group", {
+        group: "@group"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        create: {
+            method: "POST",
+            url: "/me/identity/group"
+        },
+        update: {
+            method: "PUT"
+        },
+        "delete": {
+            method: "DELETE"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentity", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Group: function () {
+            return $injector.get("OvhApiMeIdentityGroup");
+        },
+        User: function () {
+            return $injector.get("OvhApiMeIdentityUser");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentityUser", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeIdentityUserV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeIdentityUserV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/identity/user/:user", {
+        user: "@user"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET"
+        },
+        create: {
+            method: "POST",
+            url: "/me/identity/user"
+        },
+        update: {
+            method: "PUT"
+        },
+        "delete": {
+            method: "DELETE"
+        },
+        disable: {
+            method: "POST",
+            url: "/me/identity/user/:user/disable"
+        },
+        enable: {
+            method: "POST",
+            url: "/me/identity/user/:user/enable"
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($injector) {
     "use strict";
     return {
@@ -7409,6 +8004,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Api: function () {
             return $injector.get("OvhApiMeApi");
+        },
+        AccessRestriction: function () {
+            return $injector.get("OvhApiMeAccessRestriction");
         },
         Agreements: function () {
             return $injector.get("OvhApiMeAgreements");
@@ -7457,6 +8055,12 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         DebtAccount: function () {
             return $injector.get("OvhApiMeDebtAccount");
+        },
+        Identity: function () {
+            return $injector.get("OvhApiMeIdentity");
+        },
+        Notification: function () {
+            return $injector.get("OvhApiMeNotification");
         }
     };
 }]);
@@ -7485,6 +8089,41 @@ angular.module("ovh-api-services").service("OvhApiMeV6", ["$resource", "$cacheFa
 
     return me;
 
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotificationEmailHistory", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeNotificationEmailHistoryV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotificationEmailHistoryV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/notification/email/history/:id", {
+        id: "@id"
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotificationEmail", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        History: function () {
+            return $injector.get("OvhApiMeNotificationEmailHistory");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeNotification", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Email: function () {
+            return $injector.get("OvhApiMeNotificationEmail");
+        }
+    };
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeOrder", ["$injector", function ($injector) {
