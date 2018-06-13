@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudUser", function 
         },
         Task: function () {
             return $injector.get("OvhApiDedicatedCloudUserTask");
-        },
+        }
     };
 
 });
