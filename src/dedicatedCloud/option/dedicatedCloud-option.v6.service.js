@@ -1,13 +1,11 @@
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudOptionV6", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("OvhApiDedicatedCloudOptionV6Query");
     var cache = $cacheFactory("OvhApiDedicatedCloudOptionV6");
 
     var interceptor = {
         response: function (response) {
             cache.remove(response.config.url);
-            queryCache.removeAll();
             return response.data;
         }
     };
@@ -43,10 +41,6 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudOptionV6", funct
 
     optionResource.resetCache = function () {
         cache.removeAll();
-    };
-
-    optionResource.resetQueryCache = function () {
-        queryCache.removeAll();
     };
 
     return optionResource;

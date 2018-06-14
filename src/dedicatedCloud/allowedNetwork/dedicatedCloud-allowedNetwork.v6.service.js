@@ -17,7 +17,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudAllowedNetworkV6
         networkAccessId: "@networkAccessId"
     }, {
         get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: cache, isArray: true },
+        query: { method: "GET", cache: queryCache, isArray: true },
         put: { method: "PUT", interceptor: interceptor },
         save: { method: "POST", interceptor: interceptor },
         "delete": { method: "DELETE", interceptor: interceptor }

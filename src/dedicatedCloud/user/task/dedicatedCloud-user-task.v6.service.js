@@ -22,7 +22,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserTaskV6", fun
         get: { method: "GET", cache: cache },
         query: {
             method: "GET",
-            cache: cache,
+            cache: queryCache,
             isArray: true,
             params: {
                 name: "@name",

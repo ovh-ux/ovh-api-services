@@ -19,7 +19,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudTaskV6", functio
         taskId: "@taskId"
     }, {
         get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: cache, isArray: true },
+        query: { method: "GET", cache: queryCache, isArray: true },
         changeMaintenanceExecutionDate: {
             url: baseURL + "/changeMaintenanceExecutionDate",
             method: "POST",
