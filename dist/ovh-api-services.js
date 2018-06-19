@@ -7717,6 +7717,25 @@ angular.module("ovh-api-services").service("OvhApiMeDebtAccount", ["$injector", 
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeDeposit", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v7: function () {
+            return $injector.get("OvhApiMeDepositV7");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDepositV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var endpoint = apiv7("/me/deposit/:depositId", {
+        depositId: "@depositId"
+    });
+
+    return endpoint;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeDepositRequest", ["$injector", function ($injector) {
     "use strict";
 
@@ -8061,6 +8080,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Notification: function () {
             return $injector.get("OvhApiMeNotification");
+        },
+        Deposit: function () {
+            return $injector.get("OvhApiMeDeposit");
         }
     };
 }]);
