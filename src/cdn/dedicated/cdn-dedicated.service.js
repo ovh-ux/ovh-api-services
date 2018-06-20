@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicated", function ($inje
         v6: function () {
             return $injector.get("OvhApiCdnDedicatedV6");
         },
+        Domains: function () {
+            return $injector.get("OvhApiCdnDedicatedDomains");
+        },
         Ssl: function () {
             return $injector.get("OvhApiCdnDedicatedSsl");
         },

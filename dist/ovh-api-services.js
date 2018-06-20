@@ -49,6 +49,9 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicated", ["$injector", "
         v6: function () {
             return $injector.get("OvhApiCdnDedicatedV6");
         },
+        Domains: function () {
+            return $injector.get("OvhApiCdnDedicatedDomains");
+        },
         Ssl: function () {
             return $injector.get("OvhApiCdnDedicatedSsl");
         },
@@ -71,6 +74,113 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedV6", ["$resource",
             method: "GET",
             isArray: true,
             cache: OvhApiCdnDedicated.cache
+        },
+        quota: {
+            method: "GET",
+            url: "/cdn/dedicated/:serviceName/quota",
+            isArray: true
+        },
+        swsGetStatistics: {
+            method: "GET",
+            url: "/sws/dedicated/cdn/:serviceName/statistics",
+            serviceType: "aapi",
+            isArray: false
+        },
+        swsGetAllBackends: {
+            method: "GET",
+            url: "/sws/dedicated/cdn/:serviceName/backends",
+            serviceType: "aapi",
+            isArray: false
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsBackends", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCdnDedicatedDomainsBackendsV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsBackendsV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/cdn/dedicated/:serviceName/domains/:domain/backends/:ip", {
+        serviceName: "@serviceName",
+        domain: "@domain",
+        ip: "@ip"
+    }, {
+        add: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/backends",
+            params: {
+                ip: "@ip"
+            }
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsCacheRules", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCdnDedicatedDomainsCacheRulesV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/cdn/dedicated/:serviceName/domains/:domain/cacheRules/:cacheRuleId", {
+        serviceName: "@serviceName",
+        domain: "@domain",
+        cacheRuleId: "@cacheRuleId"
+    }, {
+        flush: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/cacheRules/:cacheRuleId/flush"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomains", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCdnDedicatedDomainsV6");
+        },
+        Backends: function () {
+            return $injector.get("OvhApiCdnDedicatedDomainsBackends");
+        },
+        CacheRules: function () {
+            return $injector.get("OvhApiCdnDedicatedDomainsCacheRules");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/cdn/dedicated/:serviceName/domains/:domain", {
+        serviceName: "@serviceName",
+        domain: "@domain"
+    }, {
+        flush: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/flush"
+        },
+        statistics: {
+            method: "GET",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/statistics"
+        },
+        update: {
+            method: "PUT"
         }
     });
 }]);
@@ -7675,6 +7785,25 @@ angular.module("ovh-api-services").service("OvhApiMeDebtAccount", ["$injector", 
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeDeposit", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v7: function () {
+            return $injector.get("OvhApiMeDepositV7");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDepositV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var endpoint = apiv7("/me/deposit/:depositId", {
+        depositId: "@depositId"
+    });
+
+    return endpoint;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeDepositRequest", ["$injector", function ($injector) {
     "use strict";
 
@@ -8022,6 +8151,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Notification: function () {
             return $injector.get("OvhApiMeNotification");
+        },
+        Deposit: function () {
+            return $injector.get("OvhApiMeDeposit");
         }
     };
 }]);
@@ -9201,6 +9333,53 @@ angular.module("ovh-api-services").service("OvhApiOrderCatalogFormattedV6", ["$r
     };
 
     return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCdnDedicatedBackend", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderCdnDedicatedBackendV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCdnDedicatedBackendV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/order/cdn/dedicated/:serviceName/backend/:duration", {
+        serviceName: "@serviceName",
+        duration: "@duration"
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCdnDedicated", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Backend: function () {
+            return $injector.get("OvhApiOrderCdnDedicatedBackend");
+        },
+        v6: function () {
+            return $injector.get("OvhApiOrderCdnDedicatedV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCdnDedicatedV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/order/cdn/dedicated/:serviceName", {
+        serviceName: "@serviceName"
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCdn", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Dedicated: function () {
+            return $injector.get("OvhApiOrderCdnDedicated");
+        }
+    };
 }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderCloudProjectCredit", ["$injector", function ($injector) {
