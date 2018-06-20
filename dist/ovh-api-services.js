@@ -8458,7 +8458,7 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanDeferredPaymentAc
 
 }]);
 
-angular.module("ovh-api-services").service("OvhApiMePaymentMeanDeferredPaymentAccountV6", ["$resource", "$q", function ($resource, $q) {
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanDeferredPaymentAccountV6", ["$resource", function ($resource) {
     "use strict";
 
     return $resource("/me/paymentMean/deferredPaymentAccount/:id", {
