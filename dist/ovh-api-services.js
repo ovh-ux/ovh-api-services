@@ -7384,6 +7384,54 @@ angular.module("ovh-api-services").service("OvhApiMeAvailableAutomaticPaymentMea
     });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeBillDebt", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeBillDebtV6");
+        },
+        Operation: function () {
+            return $injector.get("OvhApiMeBillDebtOperation");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillDebtV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/bill/:billId/debt", {
+        billId: "@billId"
+    }, {
+        pay: {
+            url: "/me/bill/:billId/debt/pay",
+            method: "POST"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillDebtOperation", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeBillDebtOperationV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillDebtOperationV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/bill/:billId/debt/operation/:operationId", {
+        billId: "@billId",
+        operationId: "@operationId"
+    }, {
+        associatedObject: {
+            url: "/me/bill/:billId/debt/operation/:operationId/associatedObject",
+            method: "GET"
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeBillDetails", ["$injector", function ($injector) {
     "use strict";
 
@@ -7426,8 +7474,14 @@ angular.module("ovh-api-services").service("OvhApiMeBill", ["$injector", functio
         v6: function () {
             return $injector.get("OvhApiMeBillV6");
         },
+        v7: function () {
+            return $injector.get("OvhApiMeBillV7");
+        },
         Details: function () {
             return $injector.get("OvhApiMeBillDetails");
+        },
+        Debt: function () {
+            return $injector.get("OvhApiMeBillDebt");
         }
     };
 }]);
@@ -7450,6 +7504,20 @@ angular.module("ovh-api-services").service("OvhApiMeBillV6", ["$resource", "$cac
     };
 
     return userBillResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    return apiv7("/me/bill/:billId", {
+        billId: "@billId"
+    }, {
+        debt: {
+            url: "/me/bill/:billId/debt",
+            method: "GET"
+        }
+    });
+
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMail", ["$injector", function ($injector) {
@@ -7722,6 +7790,25 @@ angular.module("ovh-api-services").service("OvhApiMeDebtAccount", ["$injector", 
             return $injector.get("OvhApiMeDebtAccountDebt");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDeposit", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v7: function () {
+            return $injector.get("OvhApiMeDepositV7");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeDepositV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var endpoint = apiv7("/me/deposit/:depositId", {
+        depositId: "@depositId"
+    });
+
+    return endpoint;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeDepositRequest", ["$injector", function ($injector) {
@@ -8039,6 +8126,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         PaymentMean: function () {
             return $injector.get("OvhApiMePaymentMean");
         },
+        PaymentMethod: function () {
+            return $injector.get("OvhApiMePaymentMethod");
+        },
         AvailableAutomaticPaymentMeans: function () {
             return $injector.get("OvhApiMeAvailableAutomaticPaymentMeans");
         },
@@ -8068,6 +8158,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Notification: function () {
             return $injector.get("OvhApiMeNotification");
+        },
+        Deposit: function () {
+            return $injector.get("OvhApiMeDeposit");
         }
     };
 }]);
@@ -8361,12 +8454,43 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanCreditCardV6", ["
     return resource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanDeferredPaymentAccount", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMePaymentMeanDeferredPaymentAccountV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMeanDeferredPaymentAccountV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/paymentMean/deferredPaymentAccount/:id", {
+        id: "@id"
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMePaymentMean", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiMePaymentMeanV6");
+        },
+        BankAccount: function () {
+            return $injector.get("OvhApiMePaymentMeanBankAccount");
+        },
+        CreditCard: function () {
+            return $injector.get("OvhApiMePaymentMeanCreditCard");
+        },
+        DeferredPaymentAccount: function () {
+            return $injector.get("OvhApiMePaymentMeanDeferredPaymentAccount");
+        },
+        Paypal: function () {
+            return $injector.get("OvhApiMePaymentMeanPaypal");
         }
     };
 
@@ -8439,6 +8563,26 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypalV6", ["$res
     };
 
     return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMethod", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMePaymentMethodV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMePaymentMethodV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/paymentMethod/:id", {
+        id: "@id"
+    });
+
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeSshKey", ["$injector", function ($injector) {
