@@ -5,6 +5,13 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsV6", functi
         serviceName: "@serviceName",
         domain: "@domain"
     }, {
+        add: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains",
+            params: {
+                domain: "@domain"
+            }
+        },
         flush: {
             method: "POST",
             url: "/cdn/dedicated/:serviceName/domains/:domain/flush"
