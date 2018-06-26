@@ -2,17 +2,40 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationStockV6"
     "use strict";
 
     var queryCache = $cacheFactory("OvhApiDedicatedCloudLocationStockV6Query");
+    var baseUrl = "/dedicatedCloud/location/:pccZone/stock";
 
-    var locationResource = $resource("/dedicatedCloud/location/:pccZone/stock/:type", {
-        pccZone: "@pccZone",
-        type: "@type"
+    var stockResource = $resource(baseUrl, {
+        pccZone: "@pccZone"
     }, {
-        query: { method: "GET", cache: queryCache, isArray: true }
+        queryPcc: {
+            url: baseUrl + "/pcc",
+            method: "GET",
+            cache: queryCache,
+            isArray: true
+        },
+        queryHost: {
+            url: baseUrl + "/host",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                minYear: "@minYear"
+            }
+        },
+        queryZpool: {
+            url: baseUrl + "/zpool",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                profileFilter: "@profileFilter"
+            }
+        }
     });
 
-    locationResource.resetQueryCache = function () {
+    stockResource.resetQueryCache = function () {
         queryCache.removeAll();
     };
 
-    return locationResource;
+    return stockResource;
 });
