@@ -16,7 +16,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterBackup
         serviceName: "@serviceName",
         datacenterId: "@datacenterId"
     }, {
-        get: { cache: cache },
+        get: { method: "GET", cache: cache },
         disable: {
             url: baseUrl + "/disable",
             method: "POST",
