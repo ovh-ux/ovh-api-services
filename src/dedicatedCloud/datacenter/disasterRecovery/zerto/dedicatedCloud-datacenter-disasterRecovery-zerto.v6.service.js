@@ -20,7 +20,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterDisast
         get: {
             url: baseUrl + "/state",
             method: "POST",
-            cache: cache
+            cache: cache,
+            hasBody: false
         },
         disable: {
             url: baseUrl + "/disable",
