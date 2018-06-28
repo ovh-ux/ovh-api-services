@@ -4,7 +4,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterBackup
 
     return {
         v6: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterBackup");
+            return $injector.get("OvhApiDedicatedCloudDatacenterBackupV6");
         }
     };
 
