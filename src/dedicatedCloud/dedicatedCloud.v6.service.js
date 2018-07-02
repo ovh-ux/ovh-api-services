@@ -32,6 +32,11 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudV6", function ($
             url: "/dedicatedCloud/:serviceName/confirmTermination",
             method: "POST",
             interceptor: interceptor
+        },
+        hcx: {
+            url: "/dedicatedCloud/:serviceName/hcx",
+            method: "GET",
+            cache: cache
         }
     });
 
