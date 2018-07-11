@@ -10365,6 +10365,76 @@ angular.module("ovh-api-services").service("OvhApiPackXdslDomainActivationV6", [
         });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiPackXdslEmailPro", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiPackXdslEmailProV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiPackXdslEmailProV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiPackXdslEmailProV6");
+    var queryCache = $cacheFactory("OvhApiPackXdslEmailProV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var emailPro = $resource("/pack/xdsl/:packName/emailPro/services", {
+        packName: "@packName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        save: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        getDomains: {
+            method: "GET",
+            url: "/pack/xdsl/:packName/emailPro/options/domains",
+            isArray: true,
+            cache: cache
+        },
+        isEmailAvailable: {
+            method: "GET",
+            url: "/pack/xdsl/:packName/emailPro/options/isEmailAvailable",
+            transformResponse: function (data, headersGetter, status) {
+                if (status !== 200) {
+                    return data;
+                }
+                return { available: _.trim(data).toUpperCase() === "TRUE" };
+            }
+        }
+    });
+
+    emailPro.resetCache = function () {
+        cache.removeAll();
+    };
+
+    emailPro.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    emailPro.resetAllCache = function () {
+        emailPro.resetCache();
+        emailPro.resetQueryCache();
+    };
+
+    return emailPro;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiPackXdslExchangeAccountAapi", ["$resource", "OvhApiPackXdslExchangeAccount", function ($resource, OvhApiPackXdslExchangeAccount) {
     "use strict";
 
@@ -10748,6 +10818,9 @@ angular.module("ovh-api-services").service("OvhApiPackXdsl", ["$injector", "$cac
         },
         DomainActivation: function () {
             return $injector.get("OvhApiPackXdslDomainActivation");
+        },
+        EmailPro: function () {
+            return $injector.get("OvhApiPackXdslEmailPro");
         },
         ExchangeAccount: function () {
             return $injector.get("OvhApiPackXdslExchangeAccount");
@@ -20523,6 +20596,82 @@ angular.module("ovh-api-services").service("OvhApiXdslEligibilityV6", ["$resourc
     });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslEmailPro", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslEmailProV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslEmailProV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslEmailProV6");
+    var queryCache = $cacheFactory("OvhApiXdslEmailProV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var emailPro = $resource("/xdsl/email/pro/:email", {
+        email: "@email"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            interceptor: interceptor
+        },
+        save: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        },
+        changePassword: {
+            method: "POST",
+            interceptor: interceptor,
+            url: "/xdsl/email/pro/:email/changePassword"
+        }
+    }
+    );
+
+    emailPro.resetCache = function () {
+        cache.removeAll();
+    };
+
+    emailPro.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    emailPro.resetAllCache = function () {
+        emailPro.resetCache();
+        emailPro.resetQueryCache();
+    };
+
+    return emailPro;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslEmail", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Pro: function () {
+            return $injector.get("OvhApiXdslEmailPro");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslIpsAapi", ["$resource", "OvhApiXdslIps", function ($resource, OvhApiXdslIps) {
     "use strict";
 
@@ -21483,6 +21632,9 @@ angular.module("ovh-api-services").service("OvhApiXdsl", ["$injector", "$cacheFa
         },
         v7: function () {
             return $injector.get("OvhApiXdslV7");
+        },
+        Email: function () {
+            return $injector.get("OvhApiXdslEmail");
         },
         Lines: function () {
             return $injector.get("OvhApiXdslLines");
