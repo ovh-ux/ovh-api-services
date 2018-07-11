@@ -22,6 +22,9 @@ angular.module("ovh-api-services").service("OvhApiPackXdsl", function ($injector
         DomainActivation: function () {
             return $injector.get("OvhApiPackXdslDomainActivation");
         },
+        EmailPro: function () {
+            return $injector.get("OvhApiPackXdslEmailPro");
+        },
         ExchangeAccount: function () {
             return $injector.get("OvhApiPackXdslExchangeAccount");
         },
