@@ -5,14 +5,20 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", function ($in
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudV6");
         },
-        User: function () {
-            return $injector.get("OvhApiDedicatedCloudUser");
+        AllowedNetwork: function () {
+            return $injector.get("OvhApiDedicatedCloudAllowedNetwork");
+        },
+        Datacenter: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenter");
+        },
+        Federation: function () {
+            return $injector.get("OvhApiDedicatedCloudFederation");
         },
         Filer: function () {
             return $injector.get("OvhApiDedicatedCloudFiler");
         },
-        Datacenter: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenter");
+        Ip: function () {
+            return $injector.get("OvhApiDedicatedCloudIp");
         },
         Location: function () {
             return $injector.get("OvhApiDedicatedCloudLocation");
@@ -20,14 +26,20 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", function ($in
         Option: function () {
             return $injector.get("OvhApiDedicatedCloudOption");
         },
-        VRack: function () {
-            return $injector.get("OvhApiDedicatedCloudVRack");
-        },
-        AllowedNetwork: function () {
-            return $injector.get("OvhApiDedicatedCloudAllowedNetwork");
-        },
         Task: function () {
             return $injector.get("OvhApiDedicatedCloudTask");
+        },
+        User: function () {
+            return $injector.get("OvhApiDedicatedCloudUser");
+        },
+        Vlan: function () {
+            return $injector.get("OvhApiDedicatedCloudVlan");
+        },
+        VMEncryption: function () {
+            return $injector.get("OvhApiDedicatedCloudVMEncryption");
+        },
+        VRack: function () {
+            return $injector.get("OvhApiDedicatedCloudVRack");
         }
     };
 
