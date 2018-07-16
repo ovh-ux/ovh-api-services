@@ -19,6 +19,12 @@ angular.module("ovh-api-services").service("OvhApiTelephonyNumberV6", function (
             isArray: true,
             cache: OvhApiTelephonyNumber.cache
         },
+        getDetailedZones: {
+            method: "GET",
+            url: "/telephony/number/detailedZones",
+            isArray: true,
+            cache: OvhApiTelephonyNumber.cache
+        },
         getRanges: {
             method: "GET",
             url: "/telephony/number/ranges",
