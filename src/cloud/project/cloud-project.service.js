@@ -54,6 +54,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         },
         Stack: function () {
             return $injector.get("OvhApiCloudProjectStack");
+        },
+        Volume: function () {
+            return $injector.get("OvhApiCloudProjectVolume");
         }
     };
 

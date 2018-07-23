@@ -13,7 +13,17 @@ angular.module("ovh-api-services").service("OvhApiMeV6", function ($resource, $c
     var me = $resource("/me", {}, {
         get: { method: "GET", cache: cache },
         update: { method: "PUT", interceptor: interceptor },
-        schema: { method: "GET", url: "/me.json" }
+        schema: { method: "GET", url: "/me.json" },
+        consumption: {
+            method: "GET",
+            url: "/me/consumption/usage/current",
+            isArray: true
+        },
+        consumptionHistory: {
+            method: "GET",
+            url: "/me/consumption/usage/history",
+            isArray: true
+        }
     });
 
     me.resetCache = function () {
