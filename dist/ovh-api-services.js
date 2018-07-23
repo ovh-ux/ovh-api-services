@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("OvhApiAuth", ["$injector", function 
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiAuthV6", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiAuthV6", ["$resource", "$http", function ($resource, $http) {
     "use strict";
 
     return $resource(
@@ -19,6 +19,21 @@ angular.module("ovh-api-services").service("OvhApiAuthV6", ["$resource", functio
                 url: "/auth/logout",
                 method: "POST",
                 isArray: false
+            },
+            time: {
+                url: "/auth/time",
+                method: "GET",
+                isArray: false,
+                transformResponse: $http.defaults.transformResponse.concat(function (raw, headers, status) {
+                    var result = {};
+                    if (status === 403) {
+                        result.value = false;
+                        result.message = raw.message;
+                    } else {
+                        result.value = raw;
+                    }
+                    return result;
+                })
             }
         }
     );
@@ -711,6 +726,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Stack: function () {
             return $injector.get("OvhApiCloudProjectStack");
+        },
+        Volume: function () {
+            return $injector.get("OvhApiCloudProjectVolume");
         }
     };
 
@@ -8180,7 +8198,17 @@ angular.module("ovh-api-services").service("OvhApiMeV6", ["$resource", "$cacheFa
     var me = $resource("/me", {}, {
         get: { method: "GET", cache: cache },
         update: { method: "PUT", interceptor: interceptor },
-        schema: { method: "GET", url: "/me.json" }
+        schema: { method: "GET", url: "/me.json" },
+        consumption: {
+            method: "GET",
+            url: "/me/consumption/usage/current",
+            isArray: true
+        },
+        consumptionHistory: {
+            method: "GET",
+            url: "/me/consumption/usage/history",
+            isArray: true
+        }
     });
 
     me.resetCache = function () {
@@ -11553,8 +11581,20 @@ angular.module("ovh-api-services").service("OvhApiServices", ["$injector", funct
     return {
         Aapi: function () {
             return $injector.get("OvhApiServicesAapi");
+        },
+        v6: function () {
+            return $injector.get("OvhApiServicesV6");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiServicesV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/services/:serviceId", {
+        serviceId: "@serviceId"
+    });
+
 }]);
 
 angular.module("ovh-api-services").service("OvhApiSiteBuildersAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
