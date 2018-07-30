@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryption", f
     return {
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudVMEncryptionV6");
+        },
+        kms: function () {
+            return $injector.get("OvhApiDedicatedCloudVMEncryptionKms");
         }
     };
 

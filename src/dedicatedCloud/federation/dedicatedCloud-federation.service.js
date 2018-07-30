@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudFederation", fun
     return {
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudFederationV6");
+        },
+        ActiveDirectory: function () {
+            return $injector.get("OvhApiDedicatedCloudFederationActiveDirectory");
         }
     };
 
