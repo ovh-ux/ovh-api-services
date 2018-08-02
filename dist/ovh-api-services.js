@@ -5076,6 +5076,112 @@ angular.module("ovh-api-services").service("OvhApiDedicatedServerV6", ["$resourc
     return dedicatedServerResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudAllowedNetwork", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudAllowedNetworkV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudAllowedNetworkV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudAllowedNetworkV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudAllowedNetworkV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var networkAllowedResource = $resource("/dedicatedCloud/:serviceName/allowedNetwork/:networkAccessId", {
+        serviceName: "@serviceName",
+        networkAccessId: "@networkAccessId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        put: { method: "PUT", interceptor: interceptor },
+        save: { method: "POST", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
+
+    networkAllowedResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    networkAllowedResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return networkAllowedResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterBackup", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterBackupV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterBackupV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterBackupV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response.data;
+        }
+    };
+
+    var baseUrl = "/dedicatedCloud/:serviceName/datacenter/:datacenterId/backup";
+
+    var backupResource = $resource(baseUrl, {
+        serviceName: "@serviceName",
+        datacenterId: "@datacenterId"
+    }, {
+        get: { method: "GET", cache: cache },
+        disable: {
+            url: baseUrl + "/disable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        enable: {
+            url: baseUrl + "/enable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        changeProperties: {
+            url: baseUrl + "/changeProperties",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    backupResource.resetAllCache = function () {
+        backupResource.resetCache();
+    };
+
+    backupResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return backupResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", ["$injector", function ($injector) {
 
     "use strict";
@@ -5089,6 +5195,12 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", ["$
         },
         Host: function () {
             return $injector.get("OvhApiDedicatedCloudDatacenterHost");
+        },
+        DisasterRecovery: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterDisasterRecovery");
+        },
+        Backup: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterBackup");
         }
     };
 
@@ -5133,6 +5245,83 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterV6", [
     };
 
     return datacenterResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterDisasterRecovery", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        Zerto: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterDisasterRecoveryZerto");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterDisasterRecoveryZerto", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterDisasterRecoveryZertoV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterDisasterRecoveryZertoV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterDisasterRecoveryZertoV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response.data;
+        }
+    };
+
+    var baseUrl = "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto";
+
+    var zertoResource = $resource(baseUrl, {
+        serviceName: "@serviceName",
+        datacenterId: "@datacenterId"
+    }, {
+        // Method is a POST but acts like a GET
+        get: {
+            url: baseUrl + "/state",
+            method: "POST",
+            cache: cache,
+            hasBody: false
+        },
+        disable: {
+            url: baseUrl + "/disable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        enable: {
+            url: baseUrl + "/enable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        generateZsspPassword: {
+            url: baseUrl + "/generateZsspPassword",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    zertoResource.resetAllCache = function () {
+        zertoResource.resetCache();
+    };
+
+    zertoResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return zertoResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterFiler", ["$injector", function ($injector) {
@@ -5216,14 +5405,41 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", ["$injector",
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudV6");
         },
-        User: function () {
-            return $injector.get("OvhApiDedicatedCloudUser");
+        AllowedNetwork: function () {
+            return $injector.get("OvhApiDedicatedCloudAllowedNetwork");
+        },
+        Datacenter: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenter");
+        },
+        Federation: function () {
+            return $injector.get("OvhApiDedicatedCloudFederation");
         },
         Filer: function () {
             return $injector.get("OvhApiDedicatedCloudFiler");
         },
-        Datacenter: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenter");
+        Ip: function () {
+            return $injector.get("OvhApiDedicatedCloudIp");
+        },
+        Location: function () {
+            return $injector.get("OvhApiDedicatedCloudLocation");
+        },
+        Option: function () {
+            return $injector.get("OvhApiDedicatedCloudOption");
+        },
+        Task: function () {
+            return $injector.get("OvhApiDedicatedCloudTask");
+        },
+        User: function () {
+            return $injector.get("OvhApiDedicatedCloudUser");
+        },
+        Vlan: function () {
+            return $injector.get("OvhApiDedicatedCloudVlan");
+        },
+        VMEncryption: function () {
+            return $injector.get("OvhApiDedicatedCloudVMEncryption");
+        },
+        VRack: function () {
+            return $injector.get("OvhApiDedicatedCloudVRack");
         }
     };
 
@@ -5263,6 +5479,11 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudV6", ["$resource
             url: "/dedicatedCloud/:serviceName/confirmTermination",
             method: "POST",
             interceptor: interceptor
+        },
+        hcx: {
+            url: "/dedicatedCloud/:serviceName/hcx",
+            method: "GET",
+            cache: cache
         }
     });
 
@@ -5280,6 +5501,74 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudV6", ["$resource
     };
 
     return dedicatedCloudResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFederationActiveDirectory", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudFederationActiveDirectoryV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFederationActiveDirectoryV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudFederationActiveDirectoryV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudFederationActiveDirectoryV6");
+
+    var activeDirectoryResource = $resource("/dedicatedCloud/:serviceName/federation/activeDirectory/:activeDirectoryId", {
+        serviceName: "@serviceName",
+        activeDirectoryId: "@activeDirectoryId"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache }
+    });
+
+    activeDirectoryResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    activeDirectoryResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return activeDirectoryResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFederation", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudFederationV6");
+        },
+        ActiveDirectory: function () {
+            return $injector.get("OvhApiDedicatedCloudFederationActiveDirectory");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudFederationV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudFederationV6Query");
+
+    var federationResource = $resource("/dedicatedCloud/:serviceName/federation", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", cache: queryCache }
+    });
+
+    federationResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return federationResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudFiler", ["$injector", function ($injector) {
@@ -5318,12 +5607,340 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudFilerV6", ["$res
     return filerResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudIp", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudIpV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudIpV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudIpV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudIpV6");
+
+    var ipResource = $resource("/dedicatedCloud/:serviceName/ip/:network", {
+        serviceName: "@serviceName",
+        network: "@network"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache }
+    });
+
+    ipResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    ipResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return ipResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocation", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationV6");
+        },
+        Stock: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationStock");
+        },
+        Hypervisor: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationHypervisor");
+        },
+        HostProfile: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationHostProfile");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudLocationV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudLocationV6");
+
+    var locationResource = $resource("/dedicatedCloud/location/:pccZone", {
+        pccZone: "@pccZone"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true }
+    });
+
+    locationResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    locationResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return locationResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationHostProfile", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationHostProfileV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationHostProfileV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudLocationHostProfileV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudLocationHostProfileV6");
+
+
+    var locationResource = $resource("/dedicatedCloud/location/:pccZone/hostProfile/:id", {
+        pccZone: "@pccZone",
+        id: "@id"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache }
+    });
+
+    locationResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return locationResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationHypervisor", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationHypervisorV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationHypervisorV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudLocationHypervisorV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudLocationHypervisorV6");
+
+
+    var locationResource = $resource("/dedicatedCloud/location/:pccZone/hypervisor/:id", {
+        pccZone: "@pccZone",
+        id: "@id"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache }
+    });
+
+    locationResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return locationResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationStock", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudLocationStockV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationStockV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudLocationStockV6Query");
+    var baseUrl = "/dedicatedCloud/location/:pccZone/stock";
+
+    var stockResource = $resource(baseUrl, {
+        pccZone: "@pccZone"
+    }, {
+        queryPcc: {
+            url: baseUrl + "/pcc",
+            method: "GET",
+            cache: queryCache,
+            isArray: true
+        },
+        queryHost: {
+            url: baseUrl + "/host",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                minYear: "@minYear"
+            }
+        },
+        queryZpool: {
+            url: baseUrl + "/zpool",
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                profileFilter: "@profileFilter"
+            }
+        }
+    });
+
+    stockResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return stockResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudOption", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudOptionV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudOptionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDedicatedCloudOptionV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            return response.data;
+        }
+    };
+
+    var baseURL = "/dedicatedCloud/:serviceName/:option";
+
+    var optionResource = $resource(baseURL, {
+        serviceName: "@serviceName",
+        option: "@option"
+    }, {
+        get: { method: "GET", cache: cache },
+        canBeDisabled: {
+            url: baseURL + "/canBeDisabled",
+            method: "GET",
+            cache: cache
+        },
+        canBeEnabled: {
+            url: baseURL + "/canBeEnabled",
+            method: "GET",
+            cache: cache
+        },
+        disable: {
+            url: baseURL + "/disable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        enable: {
+            url: baseURL + "/enable",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    optionResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return optionResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudTask", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudTaskV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudTaskV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudTaskV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudTaskV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var baseURL = "/dedicatedCloud/:serviceName/task/:taskId";
+
+    var taskResource = $resource(baseURL, {
+        serviceName: "@serviceName",
+        taskId: "@taskId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                name: "@name",
+                state: "@state"
+            }
+        },
+        changeMaintenanceExecutionDate: {
+            url: baseURL + "/changeMaintenanceExecutionDate",
+            method: "POST",
+            interceptor: interceptor
+        },
+        resetTaskState: {
+            url: baseURL + "/resetTaskState",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    taskResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    taskResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return taskResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudUser", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudUserV6");
+        },
+        ObjectRight: function () {
+            return $injector.get("OvhApiDedicatedCloudUserObjectRight");
+        },
+        Right: function () {
+            return $injector.get("OvhApiDedicatedCloudUserRight");
+        },
+        Task: function () {
+            return $injector.get("OvhApiDedicatedCloudUserTask");
         }
     };
 
@@ -5348,10 +5965,21 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserV6", ["$reso
         userId: "@userId"
     }, {
         get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: queryCache, isArray: true },
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                name: "@name"
+            }
+        },
         save: { method: "POST", interceptor: interceptor },
-        put: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
+        "delete": { method: "DELETE", interceptor: interceptor },
+        changeProperties: {
+            url: "/dedicatedCloud/:serviceName/user/:userId/changeProperties",
+            method: "POST",
+            interceptor: interceptor
+        }
     });
 
     userResource.resetCache = function () {
@@ -5363,6 +5991,303 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserV6", ["$reso
     };
 
     return userResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserObjectRight", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudUserObjectRightV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserObjectRightV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudUserObjectRightV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudUserObjectRightV6");
+
+    var objectRightResource = $resource("/dedicatedCloud/:serviceName/user/:userId/objectRight/:objectRightId", {
+        serviceName: "@serviceName",
+        userId: "@userId",
+        rightId: "@objectRightId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true }
+    });
+
+    objectRightResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    objectRightResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return objectRightResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserRight", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudUserRightV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserRightV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudUserRightV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudUserRightV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var userRightResource = $resource("/dedicatedCloud/:serviceName/user/:userId/right/:rightId", {
+        serviceName: "@serviceName",
+        userId: "@userId",
+        rightId: "@rightId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        put: { method: "PUT", interceptor: interceptor }
+    });
+
+    userRightResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    userRightResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return userRightResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserTask", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudUserTaskV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserTaskV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudUserTaskV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudUserTaskV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var baseURL = "/dedicatedCloud/:serviceName/user/:userId/task/:taskId";
+
+    var taskResource = $resource(baseURL, {
+        serviceName: "@serviceName",
+        userId: "@userId",
+        taskId: "@taskId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                name: "@name",
+                state: "@state"
+            }
+        },
+        changeMaintenanceExecutionDate: {
+            url: baseURL + "/changeMaintenanceExecutionDate",
+            method: "POST",
+            interceptor: interceptor
+        },
+        resetTaskState: {
+            url: baseURL + "/resetTaskState",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    taskResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    taskResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return taskResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVlan", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudVlanV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVlanV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudVlanV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudVlanV6");
+
+    var vlanResource = $resource("/dedicatedCloud/:serviceName/vlan/:vlanId", {
+        serviceName: "@serviceName",
+        vlandId: "@vlanId"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true }
+    });
+
+    vlanResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    vlanResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return vlanResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryption", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudVMEncryptionV6");
+        },
+        kms: function () {
+            return $injector.get("OvhApiDedicatedCloudVMEncryptionKms");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionV6Query");
+
+    var vmEncryptionResource = $resource("/dedicatedCloud/:serviceName/vmEncryption", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", cache: queryCache }
+    });
+
+    vmEncryptionResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return vmEncryptionResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionKms", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudVMEncryptionKmsV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionKmsV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionKmsV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionKmsV6");
+
+    var kmsResource = $resource("/dedicatedCloud/:serviceName/vmEncryption/kms/:kmsId", {
+        serviceName: "@serviceName",
+        kmsId: "@kmsId"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        get: { method: "GET", cache: cache }
+    });
+
+    kmsResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    kmsResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return kmsResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVRack", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudVRackV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudVRackV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiDedicatedCloudVRackV6Query");
+    var cache = $cacheFactory("OvhApiDedicatedCloudVRackV6");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var vrackResource = $resource("/dedicatedCloud/:serviceName/vrack/:vrack", {
+        serviceName: "@serviceName",
+        vrack: "@vrack"
+    }, {
+        get: { method: "GET", cache: cache },
+        query: { method: "GET", cache: queryCache, isArray: true },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
+
+    vrackResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    vrackResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return vrackResource;
 }]);
 
 "use strict";
