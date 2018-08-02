@@ -11,6 +11,12 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", fun
         },
         Host: function () {
             return $injector.get("OvhApiDedicatedCloudDatacenterHost");
+        },
+        DisasterRecovery: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterDisasterRecovery");
+        },
+        Backup: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterBackup");
         }
     };
 

@@ -17,10 +17,21 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserV6", functio
         userId: "@userId"
     }, {
         get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: queryCache, isArray: true },
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            params: {
+                name: "@name"
+            }
+        },
         save: { method: "POST", interceptor: interceptor },
-        put: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
+        "delete": { method: "DELETE", interceptor: interceptor },
+        changeProperties: {
+            url: "/dedicatedCloud/:serviceName/user/:userId/changeProperties",
+            method: "POST",
+            interceptor: interceptor
+        }
     });
 
     userResource.resetCache = function () {
