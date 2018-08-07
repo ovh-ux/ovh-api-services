@@ -8613,7 +8613,7 @@ angular.module("ovh-api-services").service("OvhApiMeDebtAccountDebtV6", ["$resou
             cache: cache
         },
         pay: {
-            url: "/me/debtAccount/debt/{debtId}/pay",
+            url: "/me/debtAccount/debt/:debtId/pay",
             method: "POST",
             interceptor: interceptor
         },
