@@ -37,6 +37,29 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudV6", function ($
             url: "/dedicatedCloud/:serviceName/hcx",
             method: "GET",
             cache: cache
+        },
+        getGlobalTasks: {
+            url: "/dedicatedCloud/:serviceName/globalTasks",
+            method: "GET",
+            isArray: true,
+            queryParams: {
+                datacenterId: "@datacenterId",
+                "endDate.from": "@endDate.from",
+                "endDate.to": "@endDate.to",
+                "executionDate.from": "@executionDate.from",
+                "executionDate.to": "@executionDate.to",
+                filerId: "@filerId",
+                hostId: "@hostId",
+                "lastModificationDate.from": "@lastModificationDate.from",
+                "lastModificationDate.to": "@lastModificationDate.to",
+                name: "@name",
+                networkAccessId: "@networkAccessId",
+                orderId: "@orderId",
+                parentTaskId: "@parentTaskId",
+                state: "@state",
+                userId: "@userId",
+                vlanId: "@vlanId"
+            }
         }
     });
 
