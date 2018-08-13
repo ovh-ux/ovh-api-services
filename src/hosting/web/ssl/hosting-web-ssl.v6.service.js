@@ -6,7 +6,8 @@ angular.module("ovh-api-services").service("OvhApiHostingWebSslV6", function ($r
     var interceptor = {
         response: function (response) {
             cache.removeAll();
-            return response;
+
+            return response.data;
         }
     };
 

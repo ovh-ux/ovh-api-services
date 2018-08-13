@@ -6955,7 +6955,8 @@ angular.module("ovh-api-services").service("OvhApiHostingWebSslV6", ["$resource"
     var interceptor = {
         response: function (response) {
             cache.removeAll();
-            return response;
+
+            return response.data;
         }
     };
 
@@ -10368,6 +10369,195 @@ angular
         return resource;
     }]);
 
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesAccount", ["$injector", function ($injector) {
+
+        return {
+            v6: function () {
+                return $injector.get("OvhApiMsServicesAccountV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesAccountV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        var cache = $cacheFactory("OvhApiMsServicesAccountV6");
+
+        var resource = $resource("/msServices/:serviceName/account/:userPrincipalName",
+                                 {
+                                     serviceName: "@serviceName",
+                                     userPrincipalName: "@userPrincipalName"
+                                 },
+                                 {
+                                     getExchange: { method: "GET", cache: cache, isArray: false, url: "/msServices/:serviceName/account/:userPrincipalName/exchange" }
+                                 });
+
+        resource.resetAllCache = function () {
+            resource.resetCache();
+        };
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesExchange", ["$injector", function ($injector) {
+
+        return {
+            v6: function () {
+                return $injector.get("OvhApiMsServicesExchangeV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesExchangeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        var cache = $cacheFactory("OvhApiMsServicesExchangeV6");
+
+        var interceptor = {
+            response: function (response) {
+                cache.removeAll();
+
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/msServices/:serviceName/exchange", {
+            serviceName: "@serviceName"
+        }, {
+            get: { method: "GET", cache: cache, isArray: false },
+            edit: { method: "PUT", cache: cache, isArray: false, interceptor: interceptor },
+            doesServiceUseAgora: {
+                url: "/msServices/:serviceName/exchange/billingMigrated ",
+                method: "GET",
+                cache: cache,
+                isArray: false,
+                transformResponse: function (response, headers, status) {
+                    return status === 200 ? { serviceUsesAgora: ("" + response).toUpperCase() === "TRUE" } : response;
+                }
+            }
+        });
+
+        resource.resetAllCache = function () {
+            resource.resetCache();
+        };
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServices", ["$injector", function ($injector) {
+
+        return {
+            Account: function () {
+                return $injector.get("OvhApiMsServicesAccount");
+            },
+            Exchange: function () {
+                return $injector.get("OvhApiMsServicesExchange");
+            },
+            Sharepoint: function () {
+                return $injector.get("OvhApiMsServicesSharepoint");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        "use strict";
+
+        var cache = $cacheFactory("OvhApiMsServicesV6");
+        var queryCache = $cacheFactory("OvhApiMsServicesV6Query");
+
+        var interceptor = {
+            response: function (response) {
+                cache.remove(response.config.url);
+                queryCache.removeAll();
+                return response.resource;
+            }
+        };
+
+        var resource = $resource("/msServices/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            getAll: { method: "GET", cache: cache, isArray: true, url: "/msServices" },
+            get: { method: "GET", cache: cache, isArray: false },
+            edit: { method: "PUT", cache: cache, isArray: false, interceptor: interceptor }
+        });
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        resource.resetAllCache = function () {
+            this.resetCache();
+            this.resetQueryCache();
+        };
+
+        return resource;
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesSharepoint", ["$injector", function ($injector) {
+
+        return {
+            v6: function () {
+                return $injector.get("OvhApiMsServicesSharepointV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiMsServicesSharepointV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        var cache = $cacheFactory("OvhApiMsServicesSharepointV6");
+
+        var interceptor = {
+            response: function (response) {
+                cache.removeAll();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/msServices/:serviceName/sharepoint", {
+            serviceName: "@serviceName"
+        }, {
+            get: { method: "GET", cache: cache, isArray: false },
+            edit: { method: "PUT", cache: cache, isArray: false, interceptor: interceptor },
+            doesServiceUseAgora: { url: "/msServices/:serviceName/sharepoint/billingMigrated ", method: "GET", cache: cache, isArray: false }
+        });
+
+        resource.resetAllCache = function () {
+            resource.resetCache();
+        };
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        return resource;
+    }]);
+
 angular.module("ovh-api-services").service("OvhApiMyIpAapi", ["$resource", function ($resource) {
     "use strict";
 
@@ -10692,8 +10882,14 @@ angular.module("ovh-api-services").service("OvhApiOrderCartProductV6", ["$resour
         productName: "@productName"
     }, {
         get: { method: "GET", cache: cache, isArray: true },
+        getOptions: {
+            url: "/order/cart/:cartId/:productName/options",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
         post: { method: "POST", interceptor: interceptor },
-        postOption: {
+        postOptions: {
             url: "/order/cart/:cartId/:productName/options",
             method: "POST",
             interceptor: interceptor }
@@ -10753,6 +10949,138 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$
 
     return orderCartServiceOption;
 }]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Microsoft: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionMicrosoft");
+        },
+        MicrosoftExchange: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionMicrosoftExchange");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionMicrosoft", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionMicrosoftV6");
+        }
+    };
+}]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderCartServiceOptionMicrosoftV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        "use strict";
+
+        var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionMicrosoftV6Query");
+        var cache = $cacheFactory("OvhApiOrderCartServiceOptionMicrosoftV6");
+
+        var interceptor = {
+            response: function (response) {
+                cache.remove(response.config.url);
+                queryCache.removeAll();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/order/cartServiceOption/microsoft/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            get: { method: "GET", isArray: true, cache: cache },
+            getAvailableServices: { method: "GET", isArray: true, cache: cache, url: "/order/cartServiceOption/microsoft" },
+            post: {
+                method: "POST",
+                cache: queryCache,
+                interceptor: interceptor,
+                params: {
+                    cartId: "@cartId",
+                    duration: "@duration",
+                    planCode: "@planCode",
+                    pricingMode: "@pricingMode",
+                    quantity: "@quantity"
+                }
+            }
+        });
+
+        resource.resetAllCache = function () {
+            resource.resetCache();
+            resource.resetQueryCache();
+        };
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionMicrosoftExchange", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionMicrosoftExchangeV6");
+        }
+    };
+}]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderCartServiceOptionMicrosoftExchangeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        "use strict";
+
+        var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionMicrosoftExchangeV6Query");
+        var cache = $cacheFactory("OvhApiOrderCartServiceOptionMicrosoftExchangeV6");
+
+        var interceptor = {
+            response: function (response) {
+                cache.remove(response.config.url);
+                queryCache.removeAll();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/order/cartServiceOption/microsoftExchange/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            getAvailableOffers: { method: "GET", isArray: true, cache: cache },
+            getServices: { method: "GET", isArray: true, cache: cache, url: "/order/cartServiceOption/microsoftExchange" },
+            orderOptions: {
+                method: "POST",
+                cache: queryCache,
+                interceptor: interceptor,
+                params: {
+                    cartId: "@cartId",
+                    duration: "@duration",
+                    planCode: "@planCode",
+                    pricingMode: "@pricingMode",
+                    quantity: "@quantity"
+                }
+            }
+        });
+
+        resource.resetAllCache = function () {
+            resource.resetCache();
+            resource.resetQueryCache();
+        };
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
+    }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderCatalogFormatted", ["$injector", function ($injector) {
     "use strict";
@@ -11137,29 +11465,35 @@ angular.module("ovh-api-services").service("OvhApiOrderLicense", ["$injector", f
 angular.module("ovh-api-services").service("OvhApiOrder", ["$injector", function ($injector) {
     "use strict";
     return {
-        Router: function () {
-            return $injector.get("OvhApiOrderRouter");
+        Cart: function () {
+            return $injector.get("OvhApiOrderCart");
         },
-        License: function () {
-            return $injector.get("OvhApiOrderLicense");
-        },
-        Vrack: function () {
-            return $injector.get("OvhApiOrderVrack");
+        CartServiceOption: function () {
+            return $injector.get("OvhApiOrderCartServiceOption");
         },
         DedicatedNasha: function () {
             return $injector.get("OvhApiOrderDedicatedNasha");
         },
-        Telephony: function () {
-            return $injector.get("OvhApiOrderTelephony");
-        },
         Freefax: function () {
             return $injector.get("OvhApiOrderFreefax");
+        },
+        License: function () {
+            return $injector.get("OvhApiOrderLicense");
+        },
+        Router: function () {
+            return $injector.get("OvhApiOrderRouter");
         },
         Sms: function () {
             return $injector.get("OvhApiOrderSms");
         },
-        Cart: function () {
-            return $injector.get("OvhApiOrderCart");
+        Telephony: function () {
+            return $injector.get("OvhApiOrderTelephony");
+        },
+        Vrack: function () {
+            return $injector.get("OvhApiOrderVrack");
+        },
+        Upgrade: function () {
+            return $injector.get("OvhApiOrderUpgrade");
         },
         v6: function () {
             return $injector.get("OvhApiOrderV6");
@@ -11495,6 +11829,70 @@ angular.module("ovh-api-services").service("OvhApiOrderTelephonyV6", ["$resource
     });
 
 }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradeMicrosoftExchange", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            v6: function () {
+                return $injector.get("OvhApiOrderUpgradeMicrosoftExchangeV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradeMicrosoftExchangeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        "use strict";
+
+        // Cache to invalidate
+        var queryCache = $cacheFactory("OvhApiOrderUpgradeMicrosoftExchangeV6Query");
+        var cache = $cacheFactory("OvhApiOrderUpgradeMicrosoftExchangeV6");
+
+        var interceptor = {
+            response: function (response) {
+                resource.resetQueryCache();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/order/upgrade/microsoftExchange/:serviceName/:planCode",
+                                 {
+                                     serviceName: "@serviceName",
+                                     planCode: "@planCode"
+                                 },
+                                 {
+                                     getAvailableServices: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/microsoftExchange" },
+                                     getAvailableOffers: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/microsoftExchange/:serviceName" },
+                                     getOrder: { method: "GET", cache: cache, isArray: false },
+                                     order: { method: "POST", cache: cache, isArray: false, interceptor: interceptor }
+                                 });
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgrade", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            MicrosoftExchange: function () {
+                return $injector.get("OvhApiOrderUpgradeMicrosoftExchange");
+            }
+        };
+    }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderVrackNew", ["$injector", function ($injector) {
 
