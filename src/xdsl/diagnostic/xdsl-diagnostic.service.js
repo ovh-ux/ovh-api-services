@@ -10,6 +10,9 @@ angular.module("ovh-api-services").service("OvhApiXdslDiagnostic", function ($in
         Aapi: function () {
             return $injector.get("OvhApiXdslDiagnosticAapi");
         },
+        Lines: function () {
+            return $injector.get("OvhApiXdslDiagnosticLines");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
