@@ -21520,6 +21520,8 @@ angular.module("ovh-api-services").service("OvhApiXdslDiagnosticLinesV6", ["$res
     });
 
     diagnostic.runDiagnostic = function (opts) {
+        // Replacement of each :myRouteParam by the corresponding json property
+        // (Example: :serviceName by opts.serviceName)
         var url = routes.run.replace(/\/:(\w*)\//g, function (match, replacement) {
             return "/" + opts[replacement] + "/";
         });
