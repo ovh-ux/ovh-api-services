@@ -1734,6 +1734,59 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", ["$reso
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBackup", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectRegionWorkflowBackupV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBackupV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiCloudProjectRegionWorkflowBackupV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var backup = $resource("/cloud/project/:serviceName/region/:regionName/workflow/backup/:backupName", {
+        serviceName: "@serviceName",
+        regionName: "@regionName"
+    }, {
+        query: { method: "GET", cache: queryCache, isArray: true },
+        save: { method: "POST", interceptor: interceptor },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
+
+    backup.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return backup;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflow", ["$injector", function ($injector) {
+
+    "use strict";
+
+    return {
+        Backup: function () {
+            return $injector.get("OvhApiCloudProjectRegionWorkflowBackup");
+        }
+    };
+
+}]);
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectServiceInfos", ["$injector", function ($injector) {
 
     "use strict";
