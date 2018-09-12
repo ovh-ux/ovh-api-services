@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBack
         }
     };
 
-    var backup = $resource("/cloud/project/:serviceName/region/:regionName/workflow/backup/:backupName", {
+    var backup = $resource("/cloud/project/:serviceName/region/:regionName/workflow/backup/:backupId", {
         serviceName: "@serviceName",
         regionName: "@regionName"
     }, {
