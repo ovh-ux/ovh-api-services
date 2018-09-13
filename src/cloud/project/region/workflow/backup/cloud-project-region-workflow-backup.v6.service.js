@@ -24,5 +24,4 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBack
     };
 
     return backup;
-
 });

@@ -1683,15 +1683,16 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectQuotaV6", ["$resou
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegion", ["$injector", function ($injector) {
-
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiCloudProjectRegionV6");
+        },
+        Workflow: function () {
+            return $injector.get("OvhApiCloudProjectRegionWorkflow");
         }
     };
-
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
@@ -1731,11 +1732,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", ["$reso
     };
 
     return regions;
-
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBackup", ["$injector", function ($injector) {
-
     "use strict";
 
     return {
@@ -1743,7 +1742,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBack
             return $injector.get("OvhApiCloudProjectRegionWorkflowBackupV6");
         }
     };
-
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBackupV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
@@ -1772,11 +1770,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBack
     };
 
     return backup;
-
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflow", ["$injector", function ($injector) {
-
     "use strict";
 
     return {
@@ -1784,7 +1780,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflow", [
             return $injector.get("OvhApiCloudProjectRegionWorkflowBackup");
         }
     };
-
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectServiceInfos", ["$injector", function ($injector) {
