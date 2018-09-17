@@ -1732,6 +1732,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", ["$reso
     };
 
     return regions;
+
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBackup", ["$injector", function ($injector) {
