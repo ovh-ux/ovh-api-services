@@ -992,6 +992,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", ["$reso
             method: "GET",
             cache: cache,
             isArray: true,
+            queryParams: {
+                region: "@region"
+            },
             transformResponse: function (flvs, headers, status) {
                 var flavors = flvs;
 
@@ -7510,6 +7513,149 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZoneV6", ["$res
     };
 
     return ipLoadBalancingZone;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKube", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiKubeV6");
+        },
+        PublicCloud: function () {
+            return $injector.get("OvhApiKubePublicCloud");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiKubeV6");
+    var queryCache = $cacheFactory("OvhApiKubeV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var kubeResource = $resource("/kube/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        getServiceInfos: {
+            url: "/kube/:serviceName/serviceInfos",
+            method: "GET",
+            cache: cache
+        },
+        putServiceInfos: {
+            url: "/kube/:serviceName/serviceInfos",
+            method: "PUT",
+            interceptor: interceptor
+        }
+    });
+
+    kubeResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    kubeResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return kubeResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloud", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Node: function () {
+            return $injector.get("OvhApiKubePublicCloudNode");
+        },
+        Project: function () {
+            return $injector.get("OvhApiKubePublicCloudProject");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudNode", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiKubePublicCloudNodeV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudNodeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiKubePublicCloudNodeV6");
+    var queryCache = $cacheFactory("OvhApiKubePublicCloudNodeV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var nodeResource = $resource("/kube/:serviceName/publiccloud/node/:nodeId", {
+        serviceName: "@serviceName",
+        nodeId: "@nodeId"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        save: {
+            method: "POST",
+            interceptor: interceptor,
+            params: {
+                flavorName: "@flavorName"
+            }
+        },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
+
+    nodeResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    nodeResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return nodeResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudProject", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiKubePublicCloudProjectV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudProjectV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiKubePublicCloudProjectV6Query");
+
+    var projectResource = $resource("/kube/:serviceName/publiccloud/project", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache }
+    });
+
+    projectResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return projectResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiLicenseAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
