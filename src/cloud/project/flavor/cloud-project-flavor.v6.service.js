@@ -25,6 +25,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", functio
             method: "GET",
             cache: cache,
             isArray: true,
+            queryParams: {
+                region: "@region"
+            },
             transformResponse: function (flvs, headers, status) {
                 var flavors = flvs;
 
