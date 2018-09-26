@@ -17,7 +17,7 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", function ($resource, 
     }, {
         query: { method: "GET", isArray: true, cache: queryCache },
         get: { method: "GET", cache: cache },
-        put: {
+        update: {
             method: "PUT",
             interceptor: interceptor,
             params: {
@@ -34,7 +34,7 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", function ($resource, 
             method: "GET",
             cache: cache
         },
-        putServiceInfos: {
+        updateServiceInfos: {
             url: "/kube/:serviceName/serviceInfos",
             method: "PUT",
             interceptor: interceptor
