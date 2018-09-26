@@ -7546,12 +7546,24 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cache
     }, {
         query: { method: "GET", isArray: true, cache: queryCache },
         get: { method: "GET", cache: cache },
+        update: {
+            method: "PUT",
+            interceptor: interceptor,
+            params: {
+                name: "@name"
+            }
+        },
+        getKubeConfig: {
+            url: "/kube/:serviceName/kubeconfig",
+            method: "GET",
+            cache: cache
+        },
         getServiceInfos: {
             url: "/kube/:serviceName/serviceInfos",
             method: "GET",
             cache: cache
         },
-        putServiceInfos: {
+        updateServiceInfos: {
             url: "/kube/:serviceName/serviceInfos",
             method: "PUT",
             interceptor: interceptor
