@@ -70,6 +70,11 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", function ($resource, 
                 method: "POST",
                 url: "/xdsl/:xdslId/updateInvalidOrMissingRio",
                 interceptor: interceptor
+            },
+            requestTasks: {
+                method: "GET",
+                url: "/xdsl/:xdslId/tasks",
+                isArray: true
             }
         }
     );
