@@ -71,10 +71,17 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", function ($resource, 
                 url: "/xdsl/:xdslId/updateInvalidOrMissingRio",
                 interceptor: interceptor
             },
-            requestTasks: {
+            getTasks: {
                 method: "GET",
                 url: "/xdsl/:xdslId/tasks",
-                isArray: true
+                isArray: true,
+                cache: OvhApiXdsl.cache
+            },
+            getTask: {
+                method: "GET",
+                url: "/xdsl/:xdslId/tasks/:taskId",
+                isArray: true,
+                cache: OvhApiXdsl.cache
             }
         }
     );
