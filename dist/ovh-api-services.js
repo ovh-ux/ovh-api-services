@@ -23014,7 +23014,6 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", ["$resource", "OvhApi
             getTask: {
                 method: "GET",
                 url: "/xdsl/:xdslId/tasks/:taskId",
-                isArray: true,
                 cache: OvhApiXdsl.cache
             }
         }
