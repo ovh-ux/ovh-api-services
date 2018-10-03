@@ -6300,13 +6300,41 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionKmsV
 
     var queryCache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionKmsV6Query");
     var cache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionKmsV6");
+    var interceptor = function (response) {
+        cache.remove(response.config.url);
+        queryCache.removeAll();
+        return response;
+    };
 
     var kmsResource = $resource("/dedicatedCloud/:serviceName/vmEncryption/kms/:kmsId", {
         serviceName: "@serviceName",
         kmsId: "@kmsId"
     }, {
         query: { method: "GET", cache: queryCache, isArray: true },
-        get: { method: "GET", cache: cache }
+        get: { method: "GET", cache: cache },
+        create: {
+            method: "POST",
+            url: "/dedicatedCloud/:serviceName/vmEncryption/kms",
+            params: {
+                ip: "@ip",
+                description: "@description",
+                sslThumbprint: "@sslThumbprint"
+            },
+            interceptor: interceptor
+        },
+        changeProperties: {
+            method: "POST",
+            url: "/dedicatedCloud/:serviceName/vmEncryption/kms/:kmsId/changeProperties",
+            params: {
+                description: "@description",
+                sslThumbprint: "@sslThumbprint"
+            },
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        }
     });
 
     kmsResource.resetQueryCache = function () {
@@ -20836,6 +20864,84 @@ angular.module("ovh-api-services").service("OvhApiVeeamV6", ["$resource", "$cach
         },
         task: {
             url: "/veeamCloudConnect/:serviceName/task/:taskId",
+            method: "GET",
+            params: {
+                taskId: "@taskId"
+            }
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVeeamEnterprise", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiVeeamEnterpriseV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVeeamEnterpriseV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiVeeamEnterpriseV6");
+    var queryCache = $cacheFactory("OvhApiVeeamEnterpriseV6Query");
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var resource = $resource("/veeam/veeamEnterprise/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        getServiceInfos: {
+            url: "/veeam/veeamEnterprise/:serviceName/serviceInfos",
+            method: "GET",
+            cache: cache
+        },
+        register: {
+            url: "/veeam/veeamEnterprise/:serviceName/register",
+            method: "POST",
+            interceptor: interceptor
+        },
+        update: {
+            url: "/veeam/veeamEnterprise/:serviceName/update",
+            method: "POST",
+            interceptor: interceptor
+        },
+        terminate: {
+            url: "/veeam/veeamEnterprise/:serviceName/terminate",
+            method: "POST",
+            interceptor: interceptor
+        },
+        confirmTermination: {
+            url: "/veeam/veeamEnterprise/:serviceName/confirmTermination",
+            method: "POST",
+            interceptor: interceptor
+        },
+        tasks: {
+            url: "/veeam/veeamEnterprise/:serviceName/task",
+            method: "GET",
+            isArray: true
+        },
+        task: {
+            url: "/veeam/veeamEnterprise/:serviceName/task/:taskId",
             method: "GET",
             params: {
                 taskId: "@taskId"
