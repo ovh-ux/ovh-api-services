@@ -23110,6 +23110,17 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", ["$resource", "OvhApi
                 method: "POST",
                 url: "/xdsl/:xdslId/updateInvalidOrMissingRio",
                 interceptor: interceptor
+            },
+            getTasks: {
+                method: "GET",
+                url: "/xdsl/:xdslId/tasks",
+                isArray: true,
+                cache: OvhApiXdsl.cache
+            },
+            getTask: {
+                method: "GET",
+                url: "/xdsl/:xdslId/tasks/:taskId",
+                cache: OvhApiXdsl.cache
             }
         }
     );
