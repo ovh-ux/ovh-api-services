@@ -2405,6 +2405,33 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectVolumeSnapshotV6",
     return volumesSnapshotResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiConnectivityEligibility", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiConnectivityEligibility");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiConnectivityEligibilityV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiConnectivityEligibilityV6", ["$resource", "OvhApiConnectivityEligibility", function ($resource, OvhApiConnectivityEligibility) {
+    "use strict";
+
+    return $resource("/connectivity/eligibility/search/buildingDetails ", {
+    }, {
+        buildingDetails: {
+            method: "POST",
+            isArray: false,
+            cache: OvhApiConnectivityEligibility.cache
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaas", ["$injector", function ($injector) {
     "use strict";
 
