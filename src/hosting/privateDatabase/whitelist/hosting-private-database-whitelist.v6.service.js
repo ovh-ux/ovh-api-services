@@ -13,7 +13,7 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelis
     var resource = $resource("/hosting/privateDatabase/:serviceName/whitelist", {
         serviceName: "@serviceName"
     }, {
-        get: {
+        query: {
             method: "GET",
             isArray: true,
             cache: cache,
@@ -55,10 +55,10 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelis
     });
 
     resource.resetAllCache = function () {
-        resource.resetQueryCache();
+        resource.resetCache();
     };
 
-    resource.resetQueryCache = function () {
+    resource.resetCache = function () {
         cache.removeAll();
     };
 

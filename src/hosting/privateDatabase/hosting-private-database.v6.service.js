@@ -15,7 +15,6 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseV6", fun
     }, {
         query: {
             method: "GET",
-            url: "/hosting/privateDatabase",
             isArray: true,
             cache: cache
         },
@@ -37,10 +36,10 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseV6", fun
     });
 
     resource.resetAllCache = function () {
-        resource.resetQueryCache();
+        resource.resetCache();
     };
 
-    resource.resetQueryCache = function () {
+    resource.resetCache = function () {
         cache.removeAll();
     };
 
