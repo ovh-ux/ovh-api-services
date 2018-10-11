@@ -20,7 +20,7 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelis
             params: {
                 ip: "@ip",
                 service: "@service",
-                sftp: "@sftp",
+                sftp: "@sftp"
             }
         },
         post: {
@@ -31,7 +31,7 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelis
             method: "GET",
             url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
             params: {
-                ip: "@ip",
+                ip: "@ip"
             },
             cache: cache
         },
@@ -48,10 +48,10 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelis
             method: "DELETE",
             url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
             params: {
-                ip: "@ip",
+                ip: "@ip"
             },
             interceptor: interceptor
-        },
+        }
     });
 
     resource.resetAllCache = function () {

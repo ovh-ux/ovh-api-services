@@ -7,6 +7,6 @@ angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabase", funct
         },
         Whitelist: function () {
             return $injector.get("OvhApiHostingPrivateDatabaseWhitelist");
-        },
+        }
     };
 });
