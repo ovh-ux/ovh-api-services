@@ -32,9 +32,10 @@
     "grunt-ng-annotate": "~0.10.0",
     "grunt-wiredep": "^2.0.0",
     "jasmine-core": "^2.6.4",
-    "matchdep": "^0.3.0"
+    "matchdep": "^0.3.0",
+    "grunt-injector": "^0.6.0"
   },
   "dependencies": {
-    "grunt-injector": "^0.6.0"
+    "lodash": "^3.10.1"
   }
 }
