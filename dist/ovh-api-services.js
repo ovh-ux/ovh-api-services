@@ -6738,6 +6738,144 @@ angular.module("ovh-api-services").service("OvhApiFreeFaxV7", ["apiv7", function
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabase", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiHostingPrivateDatabaseV6");
+        },
+        Whitelist: function () {
+            return $injector.get("OvhApiHostingPrivateDatabaseWhitelist");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiHostingPrivateDatabaseV6Cache");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            return response;
+        }
+    };
+
+    var resource = $resource("/hosting/privateDatabase/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: cache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        put: {
+            method: "PUT",
+            interceptor: interceptor
+        },
+        availableOrderCapacities: {
+            method: "GET",
+            url: "/hosting/privateDatabase/availableOrderCapacities",
+            params: {
+                offer: "@offer"
+            }
+        }
+    });
+
+    resource.resetAllCache = function () {
+        resource.resetCache();
+    };
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelist", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiHostingPrivateDatabaseWhitelistV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelistV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiHostingPrivateDatabaseWhitelistV6Cache");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            return response;
+        }
+    };
+
+    var resource = $resource("/hosting/privateDatabase/:serviceName/whitelist", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: cache,
+            params: {
+                ip: "@ip",
+                service: "@service",
+                sftp: "@sftp"
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        getIp: {
+            method: "GET",
+            url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
+            params: {
+                ip: "@ip"
+            },
+            cache: cache
+        },
+        putIp: {
+            method: "PUT",
+            url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
+            params: {
+                ip: "@ip",
+                whitelist: "@whitelist"
+            },
+            interceptor: interceptor
+        },
+        deleteIp: {
+            method: "DELETE",
+            url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
+            params: {
+                ip: "@ip"
+            },
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetAllCache = function () {
+        resource.resetCache();
+    };
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return resource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiHostingWebSsl", ["$injector", function ($injector) {
     "use strict";
 
@@ -10790,6 +10928,85 @@ angular.module("ovh-api-services").service("OvhApiOrderFreefaxV6", ["$resource",
         orderConvertToVoicefax: {
             method: "POST",
             url: "/order/freefax/:serviceName/convertToVoicefax"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderPrivateDatabase", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderPrivateDatabaseV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderPrivateDatabaseV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/order/hosting/privateDatabase/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET",
+            isArray: true
+        },
+        getNew: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/new",
+            isArray: true,
+            params: {
+                datacenter: "@datacenter",
+                offer: "@offer",
+                ram: "@ram",
+                version: "@version"
+            }
+        },
+        getNewDetails: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/new/:duration",
+            params: {
+                duration: "@duration",
+                datacenter: "@datacenter",
+                offer: "@offer",
+                ram: "@ram",
+                version: "@version"
+            }
+        },
+        orderNew: {
+            method: "POST",
+            url: "/order/hosting/privateDatabase/:serviceName/new/:duration",
+            params: {
+                duration: "@duration"
+            }
+        },
+        getRam: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/ram",
+            isArray: true,
+            params: {
+                ram: "@ram"
+            }
+        },
+        getRamDetails: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/ram/:duration",
+            params: {
+                duration: "@duration",
+                ram: "@ram"
+            }
+        },
+        orderRam: {
+            method: "POST",
+            url: "/order/hosting/privateDatabase/:serviceName/ram/:duration",
+            params: {
+                duration: "@duration"
+            }
         }
     });
 }]);
