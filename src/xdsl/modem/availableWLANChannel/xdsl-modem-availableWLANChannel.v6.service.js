@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannelV6", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannelV6", function ($resource, OvhApiXdslModemAvailableWLANChannel) {
     "use strict";
 
     return $resource("/xdsl/:xdslId/modem/availableWLANChannel", {
