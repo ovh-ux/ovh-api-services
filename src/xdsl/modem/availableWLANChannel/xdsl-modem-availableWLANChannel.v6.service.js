@@ -10,6 +10,4 @@ angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannelV
             cache: OvhApiXdslModemAvailableWLANChannel.cache
         }
     });
-
-}
-);
+});

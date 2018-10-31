@@ -32,6 +32,9 @@ angular.module("ovh-api-services").service("OvhApiXdslModem", function ($injecto
         Wifi: function () {
             return $injector.get("OvhApiXdslModemWifi");
         },
+        AvailableWLANChannel: function () {
+            return $injector.get("OvhApiXdslModemAvailableWLANChannel");
+        },
         cache: cache
     };
 });
