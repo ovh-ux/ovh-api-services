@@ -3,6 +3,7 @@ angular.module("ovh-api-services").service("OvhApiServicesAapi", function ($reso
 
     return $resource("/services", {}, {
         get: {
+            isArray: true,
             serviceType: "aapi"
         }
     });

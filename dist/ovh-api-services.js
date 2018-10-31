@@ -992,6 +992,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", ["$reso
             method: "GET",
             cache: cache,
             isArray: true,
+            queryParams: {
+                region: "@region"
+            },
             transformResponse: function (flvs, headers, status) {
                 var flavors = flvs;
 
@@ -2400,6 +2403,33 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectVolumeSnapshotV6",
     };
 
     return volumesSnapshotResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiConnectivityEligibility", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiConnectivityEligibility");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiConnectivityEligibilityV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiConnectivityEligibilityV6", ["$resource", "OvhApiConnectivityEligibility", function ($resource, OvhApiConnectivityEligibility) {
+    "use strict";
+
+    return $resource("/connectivity/eligibility/search/buildingDetails ", {
+    }, {
+        buildingDetails: {
+            method: "POST",
+            isArray: false,
+            cache: OvhApiConnectivityEligibility.cache
+        }
+    });
 }]);
 
 angular.module("ovh-api-services").service("OvhApiDbaas", ["$injector", function ($injector) {
@@ -6297,13 +6327,41 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionKmsV
 
     var queryCache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionKmsV6Query");
     var cache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionKmsV6");
+    var interceptor = function (response) {
+        cache.remove(response.config.url);
+        queryCache.removeAll();
+        return response;
+    };
 
     var kmsResource = $resource("/dedicatedCloud/:serviceName/vmEncryption/kms/:kmsId", {
         serviceName: "@serviceName",
         kmsId: "@kmsId"
     }, {
         query: { method: "GET", cache: queryCache, isArray: true },
-        get: { method: "GET", cache: cache }
+        get: { method: "GET", cache: cache },
+        create: {
+            method: "POST",
+            url: "/dedicatedCloud/:serviceName/vmEncryption/kms",
+            params: {
+                ip: "@ip",
+                description: "@description",
+                sslThumbprint: "@sslThumbprint"
+            },
+            interceptor: interceptor
+        },
+        changeProperties: {
+            method: "POST",
+            url: "/dedicatedCloud/:serviceName/vmEncryption/kms/:kmsId/changeProperties",
+            params: {
+                description: "@description",
+                sslThumbprint: "@sslThumbprint"
+            },
+            interceptor: interceptor
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        }
     });
 
     kmsResource.resetQueryCache = function () {
@@ -6678,6 +6736,144 @@ angular.module("ovh-api-services").service("OvhApiFreeFaxV7", ["apiv7", function
 
     return freeFaxEndpoint;
 
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabase", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiHostingPrivateDatabaseV6");
+        },
+        Whitelist: function () {
+            return $injector.get("OvhApiHostingPrivateDatabaseWhitelist");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiHostingPrivateDatabaseV6Cache");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            return response;
+        }
+    };
+
+    var resource = $resource("/hosting/privateDatabase/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: cache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        put: {
+            method: "PUT",
+            interceptor: interceptor
+        },
+        availableOrderCapacities: {
+            method: "GET",
+            url: "/hosting/privateDatabase/availableOrderCapacities",
+            params: {
+                offer: "@offer"
+            }
+        }
+    });
+
+    resource.resetAllCache = function () {
+        resource.resetCache();
+    };
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return resource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelist", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiHostingPrivateDatabaseWhitelistV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseWhitelistV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiHostingPrivateDatabaseWhitelistV6Cache");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            return response;
+        }
+    };
+
+    var resource = $resource("/hosting/privateDatabase/:serviceName/whitelist", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: cache,
+            params: {
+                ip: "@ip",
+                service: "@service",
+                sftp: "@sftp"
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        getIp: {
+            method: "GET",
+            url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
+            params: {
+                ip: "@ip"
+            },
+            cache: cache
+        },
+        putIp: {
+            method: "PUT",
+            url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
+            params: {
+                ip: "@ip",
+                whitelist: "@whitelist"
+            },
+            interceptor: interceptor
+        },
+        deleteIp: {
+            method: "DELETE",
+            url: "/hosting/privateDatabase/:serviceName/whitelist/:ip",
+            params: {
+                ip: "@ip"
+            },
+            interceptor: interceptor
+        }
+    });
+
+    resource.resetAllCache = function () {
+        resource.resetCache();
+    };
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return resource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiHostingWebSsl", ["$injector", function ($injector) {
@@ -7510,6 +7706,161 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingZoneV6", ["$res
     };
 
     return ipLoadBalancingZone;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKube", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiKubeV6");
+        },
+        PublicCloud: function () {
+            return $injector.get("OvhApiKubePublicCloud");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiKubeV6");
+    var queryCache = $cacheFactory("OvhApiKubeV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var kubeResource = $resource("/kube/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        update: {
+            method: "PUT",
+            interceptor: interceptor,
+            params: {
+                name: "@name"
+            }
+        },
+        getKubeConfig: {
+            url: "/kube/:serviceName/kubeconfig",
+            method: "GET",
+            cache: cache
+        },
+        getServiceInfos: {
+            url: "/kube/:serviceName/serviceInfos",
+            method: "GET",
+            cache: cache
+        },
+        updateServiceInfos: {
+            url: "/kube/:serviceName/serviceInfos",
+            method: "PUT",
+            interceptor: interceptor
+        }
+    });
+
+    kubeResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    kubeResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return kubeResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloud", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Node: function () {
+            return $injector.get("OvhApiKubePublicCloudNode");
+        },
+        Project: function () {
+            return $injector.get("OvhApiKubePublicCloudProject");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudNode", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiKubePublicCloudNodeV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudNodeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiKubePublicCloudNodeV6");
+    var queryCache = $cacheFactory("OvhApiKubePublicCloudNodeV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var nodeResource = $resource("/kube/:serviceName/publiccloud/node/:nodeId", {
+        serviceName: "@serviceName",
+        nodeId: "@nodeId"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        save: {
+            method: "POST",
+            interceptor: interceptor,
+            params: {
+                flavorName: "@flavorName"
+            }
+        },
+        "delete": { method: "DELETE", interceptor: interceptor }
+    });
+
+    nodeResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    nodeResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return nodeResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudProject", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiKubePublicCloudProjectV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiKubePublicCloudProjectV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiKubePublicCloudProjectV6Query");
+
+    var projectResource = $resource("/kube/:serviceName/publiccloud/project", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache }
+    });
+
+    projectResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return projectResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiLicenseAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
@@ -10581,6 +10932,85 @@ angular.module("ovh-api-services").service("OvhApiOrderFreefaxV6", ["$resource",
     });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiOrderPrivateDatabase", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderPrivateDatabaseV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderPrivateDatabaseV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/order/hosting/privateDatabase/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true
+        },
+        get: {
+            method: "GET",
+            isArray: true
+        },
+        getNew: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/new",
+            isArray: true,
+            params: {
+                datacenter: "@datacenter",
+                offer: "@offer",
+                ram: "@ram",
+                version: "@version"
+            }
+        },
+        getNewDetails: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/new/:duration",
+            params: {
+                duration: "@duration",
+                datacenter: "@datacenter",
+                offer: "@offer",
+                ram: "@ram",
+                version: "@version"
+            }
+        },
+        orderNew: {
+            method: "POST",
+            url: "/order/hosting/privateDatabase/:serviceName/new/:duration",
+            params: {
+                duration: "@duration"
+            }
+        },
+        getRam: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/ram",
+            isArray: true,
+            params: {
+                ram: "@ram"
+            }
+        },
+        getRamDetails: {
+            method: "GET",
+            url: "/order/hosting/privateDatabase/:serviceName/ram/:duration",
+            params: {
+                duration: "@duration",
+                ram: "@ram"
+            }
+        },
+        orderRam: {
+            method: "POST",
+            url: "/order/hosting/privateDatabase/:serviceName/ram/:duration",
+            params: {
+                duration: "@duration"
+            }
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiOrderLicenseOfficeNew", ["$injector", function ($injector) {
 
     "use strict";
@@ -12568,6 +12998,7 @@ angular.module("ovh-api-services").service("OvhApiServicesAapi", ["$resource", f
 
     return $resource("/services", {}, {
         get: {
+            isArray: true,
             serviceType: "aapi"
         }
     });
@@ -20696,6 +21127,84 @@ angular.module("ovh-api-services").service("OvhApiVeeamV6", ["$resource", "$cach
     return resource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiVeeamEnterprise", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiVeeamEnterpriseV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVeeamEnterpriseV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiVeeamEnterpriseV6");
+    var queryCache = $cacheFactory("OvhApiVeeamEnterpriseV6Query");
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
+
+    var resource = $resource("/veeam/veeamEnterprise/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        getServiceInfos: {
+            url: "/veeam/veeamEnterprise/:serviceName/serviceInfos",
+            method: "GET",
+            cache: cache
+        },
+        register: {
+            url: "/veeam/veeamEnterprise/:serviceName/register",
+            method: "POST",
+            interceptor: interceptor
+        },
+        update: {
+            url: "/veeam/veeamEnterprise/:serviceName/update",
+            method: "POST",
+            interceptor: interceptor
+        },
+        terminate: {
+            url: "/veeam/veeamEnterprise/:serviceName/terminate",
+            method: "POST",
+            interceptor: interceptor
+        },
+        confirmTermination: {
+            url: "/veeam/veeamEnterprise/:serviceName/confirmTermination",
+            method: "POST",
+            interceptor: interceptor
+        },
+        tasks: {
+            url: "/veeam/veeamEnterprise/:serviceName/task",
+            method: "GET",
+            isArray: true
+        },
+        task: {
+            url: "/veeam/veeamEnterprise/:serviceName/task/:taskId",
+            method: "GET",
+            params: {
+                taskId: "@taskId"
+            }
+        }
+    });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return resource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiVpsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -22846,6 +23355,17 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", ["$resource", "OvhApi
                 method: "POST",
                 url: "/xdsl/:xdslId/updateInvalidOrMissingRio",
                 interceptor: interceptor
+            },
+            getTasks: {
+                method: "GET",
+                url: "/xdsl/:xdslId/tasks",
+                isArray: true,
+                cache: OvhApiXdsl.cache
+            },
+            getTask: {
+                method: "GET",
+                url: "/xdsl/:xdslId/tasks/:taskId",
+                cache: OvhApiXdsl.cache
             }
         }
     );
