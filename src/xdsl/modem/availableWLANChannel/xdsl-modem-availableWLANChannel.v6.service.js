@@ -6,6 +6,7 @@ angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannelV
     }, {
         get: {
             method: "GET",
+            isArray: true,
             cache: OvhApiXdslModemAvailableWLANChannel.cache
         }
     });
