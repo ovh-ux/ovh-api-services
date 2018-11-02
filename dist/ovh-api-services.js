@@ -22514,6 +22514,34 @@ angular.module("ovh-api-services").service("OvhApiXdslLinesV7", ["apiv7", functi
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannel", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemAvailableWLANChannel");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemAvailableWLANChannelV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannelV6", ["$resource", "OvhApiXdslModemAvailableWLANChannel", function ($resource, OvhApiXdslModemAvailableWLANChannel) {
+    "use strict";
+
+    return $resource("/xdsl/:xdslId/modem/availableWLANChannel", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            isArray: true,
+            cache: OvhApiXdslModemAvailableWLANChannel.cache
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslModemDevicesAapi", ["$resource", "OvhApiXdslModemDevices", function ($resource, OvhApiXdslModemDevices) {
     "use strict";
 
@@ -22981,6 +23009,9 @@ angular.module("ovh-api-services").service("OvhApiXdslModem", ["$injector", "$ca
         },
         Wifi: function () {
             return $injector.get("OvhApiXdslModemWifi");
+        },
+        AvailableWLANChannel: function () {
+            return $injector.get("OvhApiXdslModemAvailableWLANChannel");
         },
         cache: cache
     };
