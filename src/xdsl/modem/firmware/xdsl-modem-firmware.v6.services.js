@@ -18,6 +18,12 @@ angular.module("ovh-api-services").service("OvhApiXdslModemFirmwareV6", function
         post: {
             method: "POST",
             interceptor: interceptor
+        },
+        available: {
+            method: "GET",
+            url: "/xdsl/:xdslId/modem/firmwareAvailable",
+            isArray: true,
+            cache: OvhApiXdslModemFirmware.cache
         }
     });
 });
