@@ -12993,6 +12993,41 @@ angular.module("ovh-api-services").service("OvhApiProducts", ["$injector", funct
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiScreenshotAapi", ["$resource", "OvhApiScreenshot", function ($resource, OvhApiScreenshot) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            return response.data;
+        }
+    };
+
+    return $resource("/sws/screenshot", {}, {
+        get: {
+            method: "GET",
+            serviceType: "aapi",
+            isArray: false,
+            cache: OvhApiScreenshot.cache,
+            interceptor: interceptor
+        }
+    });
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiScreenshot", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiScreenshot");
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiScreenshotAapi");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiServicesAapi", ["$resource", function ($resource) {
     "use strict";
 
