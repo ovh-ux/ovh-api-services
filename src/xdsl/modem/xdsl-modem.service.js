@@ -35,6 +35,9 @@ angular.module("ovh-api-services").service("OvhApiXdslModem", function ($injecto
         AvailableWLANChannel: function () {
             return $injector.get("OvhApiXdslModemAvailableWLANChannel");
         },
+        Firmware: function () {
+            return $injector.get("OvhApiXdslModemFirmware");
+        },
         cache: cache
     };
 });
