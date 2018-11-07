@@ -22621,6 +22621,50 @@ angular.module("ovh-api-services").service("OvhApiXdslModemDevices", ["$injector
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslModemFirmware", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemFirmware");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemFirmwareV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemFirmwareV6", ["$resource", "OvhApiXdslModemFirmware", function ($resource, OvhApiXdslModemFirmware) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemFirmware.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/firmware", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            reponseType: "text"
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        available: {
+            method: "GET",
+            url: "/xdsl/:xdslId/modem/firmwareAvailable",
+            isArray: true,
+            cache: OvhApiXdslModemFirmware.cache
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpDHCPStaticAddresses", ["$injector", function ($injector) {
     "use strict";
 
@@ -23047,6 +23091,9 @@ angular.module("ovh-api-services").service("OvhApiXdslModem", ["$injector", "$ca
         },
         AvailableWLANChannel: function () {
             return $injector.get("OvhApiXdslModemAvailableWLANChannel");
+        },
+        Firmware: function () {
+            return $injector.get("OvhApiXdslModemFirmware");
         },
         cache: cache
     };
