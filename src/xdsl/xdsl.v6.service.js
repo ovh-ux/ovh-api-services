@@ -74,13 +74,11 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", function ($resource, 
             getTasks: {
                 method: "GET",
                 url: "/xdsl/:xdslId/tasks",
-                isArray: true,
-                cache: OvhApiXdsl.cache
+                isArray: true
             },
             getTask: {
                 method: "GET",
-                url: "/xdsl/:xdslId/tasks/:taskId",
-                cache: OvhApiXdsl.cache
+                url: "/xdsl/:xdslId/tasks/:taskId"
             }
         }
     );
