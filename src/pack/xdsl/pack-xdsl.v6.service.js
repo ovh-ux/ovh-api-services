@@ -65,6 +65,14 @@ angular.module("ovh-api-services").service("OvhApiPackXdslV6", function ($resour
         resiliationFollowUp: {
             method: "GET",
             url: "/pack/xdsl/:packName/resiliationFollowUp"
+        },
+        servicesToDelete: {
+            method: "POST",
+            isArray: true,
+            url: "/pack/xdsl/:packName/migration/servicesToDelete",
+            params: {
+                packName: "@packName"
+            }
         }
     }
     );
