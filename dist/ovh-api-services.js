@@ -22223,6 +22223,7 @@ angular.module("ovh-api-services").service("OvhApiXdslDiagnosticV6", ["$resource
     var diagnostic = $resource(route, {
         xdslId: "@xdslId"
     }, {
+        get: { method: "GET" },
         launchDiagnostic: {
             method: "POST",
             isArray: false
