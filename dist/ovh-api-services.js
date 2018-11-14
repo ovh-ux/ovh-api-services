@@ -6610,6 +6610,25 @@ angular.module("ovh-api-services").service("OvhApiEmailExchangeServiceV7", ["api
     return exchangeEndpoint;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiEmailProV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var emailproEndpoint = apiv7("/email/pro/:serviceName/", {
+        serviceName: "@serviceName"
+    });
+
+    return emailproEndpoint;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailPro", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v7: function () {
+            return $injector.get("OvhApiEmailProV7");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiFreeFaxAapi", ["$resource", "$cacheFactory", "OvhApiFreeFax", function ($resource, $cacheFactory, OvhApiFreeFax) {
     "use strict";
 
