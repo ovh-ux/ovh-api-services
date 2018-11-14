@@ -34,6 +34,11 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", function ($resource, 
             method: "GET",
             cache: cache
         },
+        reset: {
+            url: "/kube/:serviceName/reset",
+            method: "POST",
+            interceptor: interceptor
+        },
         updateServiceInfos: {
             url: "/kube/:serviceName/serviceInfos",
             method: "PUT",
