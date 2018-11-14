@@ -6582,6 +6582,53 @@ angular.module("ovh-api-services").service("OvhApiDomainV7", ["apiv7", function 
     return domainEndpoint;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiEmailExchange", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        service: function () {
+            return $injector.get("OvhApiEmailExchangeService");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailExchangeService", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v7: function () {
+            return $injector.get("OvhApiEmailExchangeServiceV7");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailExchangeServiceV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var exchangeEndpoint = apiv7("/email/exchange/:organizationName/service", {
+        organizationName: "@organizationName"
+    });
+
+    return exchangeEndpoint;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailProV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var emailproEndpoint = apiv7("/email/pro/:serviceName/", {
+        serviceName: "@serviceName"
+    });
+
+    return emailproEndpoint;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailPro", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v7: function () {
+            return $injector.get("OvhApiEmailProV7");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiFreeFaxAapi", ["$resource", "$cacheFactory", "OvhApiFreeFax", function ($resource, $cacheFactory, OvhApiFreeFax) {
     "use strict";
 
