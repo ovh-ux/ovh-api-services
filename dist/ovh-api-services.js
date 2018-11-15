@@ -22090,6 +22090,43 @@ angular.module("ovh-api-services").service("OvhApiVrackV6", ["$resource", "$cach
     return vracks;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiWorkingStatusAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiWorkingStatusAapi");
+
+    var workingStatusResource = $resource("/working-status/:product", {
+        product: "@product"
+    }, {
+        get: {
+            method: "GET",
+            url: "/working-status/:product",
+            serviceType: "aapi",
+            cache: cache,
+            isArray: true
+        }
+    });
+
+    workingStatusResource.resetAllCache = function () {
+        workingStatusResource.resetCache();
+    };
+
+    workingStatusResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return workingStatusResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiWorkingStatus", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiWorkingStatusAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslDeconsolidation", ["$injector", function ($injector) {
     "use strict";
     return {
