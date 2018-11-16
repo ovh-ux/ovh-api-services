@@ -6594,10 +6594,24 @@ angular.module("ovh-api-services").service("OvhApiEmailExchange", ["$injector", 
 angular.module("ovh-api-services").service("OvhApiEmailExchangeService", ["$injector", function ($injector) {
     "use strict";
     return {
+        v6: function () {
+            return $injector.get("OvhApiEmailExchangeServiceV6");
+        },
         v7: function () {
             return $injector.get("OvhApiEmailExchangeServiceV7");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailExchangeServiceV6", ["$resource", function ($resource) {
+    "use strict";
+
+    var exchangeEndpoint = $resource("/email/exchange/:organizationName/service/:exchangeService", {
+        organizationName: "@organizationName",
+        exchangeService: "@exchangeService"
+    });
+
+    return exchangeEndpoint;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiEmailExchangeServiceV7", ["apiv7", function (apiv7) {
