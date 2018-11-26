@@ -13,7 +13,12 @@ angular.module("ovh-api-services").service("OvhApiXdslModemFirmwareV6", function
     }, {
         get: {
             method: "GET",
-            reponseType: "text"
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
         },
         post: {
             method: "POST",
