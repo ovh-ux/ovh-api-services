@@ -10386,14 +10386,12 @@ angular
 
         var cache = $cacheFactory("OvhApiMsServicesAccountV6");
 
-        var resource = $resource("/msServices/:serviceName/account/:userPrincipalName",
-                                 {
-                                     serviceName: "@serviceName",
-                                     userPrincipalName: "@userPrincipalName"
-                                 },
-                                 {
-                                     getExchange: { method: "GET", cache: cache, isArray: false, url: "/msServices/:serviceName/account/:userPrincipalName/exchange" }
-                                 });
+        var resource = $resource("/msServices/:serviceName/account/:userPrincipalName", {
+            serviceName: "@serviceName",
+            userPrincipalName: "@userPrincipalName"
+        }, {
+            getExchange: { method: "GET", cache: cache, isArray: false, url: "/msServices/:serviceName/account/:userPrincipalName/exchange" }
+        });
 
         resource.resetAllCache = function () {
             resource.resetCache();
@@ -10494,7 +10492,7 @@ angular
         var resource = $resource("/msServices/:serviceName", {
             serviceName: "@serviceName"
         }, {
-            getAll: { method: "GET", cache: cache, isArray: true, url: "/msServices" },
+            query: { method: "GET", cache: cache, isArray: true, url: "/msServices" },
             get: { method: "GET", cache: cache, isArray: false },
             edit: { method: "PUT", cache: cache, isArray: false, interceptor: interceptor }
         });
@@ -11859,17 +11857,15 @@ angular
             }
         };
 
-        var resource = $resource("/order/upgrade/microsoftExchange/:serviceName/:planCode",
-                                 {
-                                     serviceName: "@serviceName",
-                                     planCode: "@planCode"
-                                 },
-                                 {
-                                     getAvailableServices: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/microsoftExchange" },
-                                     getAvailableOffers: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/microsoftExchange/:serviceName" },
-                                     getOrder: { method: "GET", cache: cache, isArray: false },
-                                     order: { method: "POST", cache: cache, isArray: false, interceptor: interceptor }
-                                 });
+        var resource = $resource("/order/upgrade/microsoftExchange/:serviceName/:planCode", {
+            serviceName: "@serviceName",
+            planCode: "@planCode"
+        }, {
+            getAvailableServices: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/microsoftExchange" },
+            getAvailableOffers: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/microsoftExchange/:serviceName" },
+            getOrder: { method: "GET", cache: cache, isArray: false },
+            order: { method: "POST", cache: cache, isArray: false, interceptor: interceptor }
+        });
 
         resource.resetCache = function () {
             cache.removeAll();
@@ -12855,6 +12851,14 @@ angular.module("ovh-api-services").service("OvhApiPackXdslV6", ["$resource", "Ov
         resiliationFollowUp: {
             method: "GET",
             url: "/pack/xdsl/:packName/resiliationFollowUp"
+        },
+        servicesToDelete: {
+            method: "POST",
+            isArray: true,
+            url: "/pack/xdsl/:packName/migration/servicesToDelete",
+            params: {
+                packName: "@packName"
+            }
         }
     }
     );
@@ -23151,7 +23155,12 @@ angular.module("ovh-api-services").service("OvhApiXdslModemFirmwareV6", ["$resou
     }, {
         get: {
             method: "GET",
-            reponseType: "text"
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
         },
         post: {
             method: "POST",
