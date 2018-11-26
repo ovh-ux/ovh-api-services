@@ -18,8 +18,14 @@ angular.module("ovh-api-services").service("OvhApiOrderCartProductV6", function 
         productName: "@productName"
     }, {
         get: { method: "GET", cache: cache, isArray: true },
+        getOptions: {
+            url: "/order/cart/:cartId/:productName/options",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
         post: { method: "POST", interceptor: interceptor },
-        postOption: {
+        postOptions: {
             url: "/order/cart/:cartId/:productName/options",
             method: "POST",
             interceptor: interceptor }
