@@ -3,5 +3,9 @@ angular.module("ovh-api-services").service("OvhApiXdslModemResetV6", function ($
 
     return $resource("/xdsl/:xdslId/modem/reset", {
         xdslId: "@xdslId"
+    }, {
+        reset: {
+            method: "POST"
+        }
     });
 });
