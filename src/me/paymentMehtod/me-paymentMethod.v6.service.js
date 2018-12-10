@@ -3,6 +3,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMethodV6", function (
 
     return $resource("/me/paymentMethod/:id", {
         id: "@id"
+    }, {
+      edit: {
+        method: 'PUT'
+      }
     });
 
 });
