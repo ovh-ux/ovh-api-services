@@ -4,6 +4,14 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccountV6", f
     var resource = $resource("/me/paymentMean/bankAccount/:id", {
         id: "@id",
         state: "@state"
+    }, {
+      edit: {
+        method: 'PUT'
+      },
+      chooseAsDefaultPaymentMean: {
+        method: 'POST',
+        url: '/me/paymentMean/bankAccount/:id/chooseAsDefaultPaymentMean'
+      }
     });
 
     resource.getDefaultPaymentMean = function () {

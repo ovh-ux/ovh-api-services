@@ -9594,6 +9594,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Deposit: function () {
             return $injector.get("OvhApiMeDeposit");
+        },
+        Payment: function () {
+            return $injector.get("OvhApiMePayment");
         }
     };
 }]);
@@ -9810,6 +9813,67 @@ angular.module("ovh-api-services")
         return resource;
     }]);
 
+angular.module('ovh-api-services').service('OvhApiMePayment', ["$injector", function ($injector) {
+  'use strict';
+
+  return {
+    Method: function () {
+      return $injector.get('OvhApiMePayMethod');
+    },
+    Transaction: function () {
+      return $injector.get('OvhApiMePaymentTransaction');
+    }
+  };
+}]);
+
+angular.module('ovh-api-services').service('OvhApiMePayMethod', ["$injector", function ($injector) {
+  'use strict';
+
+  return {
+    v6: function () {
+      return $injector.get('OvhApiMePayMethodV6');
+    }
+  };
+}]);
+
+angular.module('ovh-api-services').service('OvhApiMePayMethodV6', ["$resource", function ($resource) {
+  'use strict';
+
+  return $resource("/me/payment/method/:paymentMethodId", {
+    paymentMethodId: "@paymentMethodId"
+  }, {
+    availableMethods: {
+      method: 'GET',
+      url: '/me/payment/availableMethods'
+    },
+    finalize: {
+      method: 'POST',
+      url: '/me/payment/method/:paymentMethodId/finalize'
+    },
+    edit: {
+      method: 'PUT'
+    }
+  });
+}]);
+
+angular.module('ovh-api-services').service('OvhApiMePaymentTransaction', ["$injector", function ($injector) {
+  'use strict';
+
+  return {
+    v6: function () {
+      return $injector.get('OvhApiMePaymentTransactionV6');
+    }
+  };
+}]);
+
+angular.module('ovh-api-services').service('OvhApiMePaymentTransactionV6', ["$resource", function ($resource) {
+  'use strict';
+
+  return $resource("/me/payment/transaction/:transactionId", {
+    transactionId: "@transactionId"
+  });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccount", ["$injector", function ($injector) {
     "use strict";
 
@@ -9827,6 +9891,14 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccountV6", [
     var resource = $resource("/me/paymentMean/bankAccount/:id", {
         id: "@id",
         state: "@state"
+    }, {
+      edit: {
+        method: 'PUT'
+      },
+      chooseAsDefaultPaymentMean: {
+        method: 'POST',
+        url: '/me/paymentMean/bankAccount/:id/chooseAsDefaultPaymentMean'
+      }
     });
 
     resource.getDefaultPaymentMean = function () {
@@ -9865,6 +9937,14 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanCreditCardV6", ["
 
     var resource = $resource("/me/paymentMean/creditCard/:id", {
         id: "@id"
+    }, {
+      edit: {
+        method: 'PUT'
+      },
+      chooseAsDefaultPaymentMean: {
+        method: 'POST',
+        url: '/me/paymentMean/creditCard/:id/chooseAsDefaultPaymentMean'
+      }
     });
 
     resource.getDefaultPaymentMean = function () {
@@ -9913,6 +9993,14 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanDeferredPaymentAc
 
     return $resource("/me/paymentMean/deferredPaymentAccount/:id", {
         id: "@id"
+    }, {
+      edit: {
+        method: 'PUT'
+      },
+      chooseAsDefaultPaymentMean: {
+        method: 'POST',
+        url: '/me/paymentMean/deferredPaymentAccount/:id/chooseAsDefaultPaymentMean'
+      }
     });
 }]);
 
@@ -9986,6 +10074,14 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypalV6", ["$res
 
     var resource = $resource("/me/paymentMean/paypal/:id", {
         id: "@id"
+    }, {
+      edit: {
+        method: 'PUT'
+      },
+      chooseAsDefaultPaymentMean: {
+        method: 'POST',
+        url: '/me/paymentMean/paypal/:id/chooseAsDefaultPaymentMean'
+      }
     });
 
     resource.getDefaultPaymentMean = function () {
@@ -10024,6 +10120,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMethodV6", ["$resourc
 
     return $resource("/me/paymentMethod/:id", {
         id: "@id"
+    }, {
+      edit: {
+        method: 'PUT'
+      }
     });
 
 }]);
