@@ -4,13 +4,13 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypalV6", functi
     var resource = $resource("/me/paymentMean/paypal/:id", {
         id: "@id"
     }, {
-      edit: {
-        method: 'PUT'
-      },
-      chooseAsDefaultPaymentMean: {
-        method: 'POST',
-        url: '/me/paymentMean/paypal/:id/chooseAsDefaultPaymentMean'
-      }
+        edit: {
+            method: "PUT"
+        },
+        chooseAsDefaultPaymentMean: {
+            method: "POST",
+            url: "/me/paymentMean/paypal/:id/chooseAsDefaultPaymentMean"
+        }
     });
 
     resource.getDefaultPaymentMean = function () {
