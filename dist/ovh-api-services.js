@@ -9844,7 +9844,8 @@ angular.module("ovh-api-services").service("OvhApiMePayMethodV6", ["$resource", 
     }, {
         availableMethods: {
             method: "GET",
-            url: "/me/payment/availableMethods"
+            url: "/me/payment/availableMethods",
+            isArray: true
         },
         finalize: {
             method: "POST",

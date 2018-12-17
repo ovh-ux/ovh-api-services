@@ -6,7 +6,8 @@ angular.module("ovh-api-services").service("OvhApiMePayMethodV6", function ($res
     }, {
         availableMethods: {
             method: "GET",
-            url: "/me/payment/availableMethods"
+            url: "/me/payment/availableMethods",
+            isArray: true
         },
         finalize: {
             method: "POST",
