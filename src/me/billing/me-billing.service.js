@@ -2,6 +2,9 @@ angular.module("ovh-api-services").service("OvhApiMeBilling", function ($injecto
     "use strict";
 
     return {
+        Capacities: function () {
+            return $injector.get("OvhApiMeBillingCapacities");
+        },
         InvoicesByPostalMail: function () {
             return $injector.get("OvhApiMeBillingInvoicesByPostalMail");
         }
