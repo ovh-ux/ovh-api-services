@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegion", function 
         },
         Workflow: function () {
             return $injector.get("OvhApiCloudProjectRegionWorkflow");
+        },
+        AvailableRegions: function () {
+            return $injector.get("OvhApiCloudProjectAvailableRegions");
         }
     };
 });
