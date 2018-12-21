@@ -10,7 +10,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", function ($re
     };
 
     var cloudProject = $resource("/cloud/project/:serviceName", {
-        serviceName: "@serviceName",
+        serviceName: "@serviceName"
     }, {
         get: {
             method: "GET",

@@ -775,6 +775,20 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", ["$resource",
         vrack: {
             url: "/cloud/project/:serviceName/vrack",
             method: "GET"
+        },
+        createVrack: {
+            url: "/cloud/project/:serviceName/vrack",
+            method: "POST",
+            hasBody: false
+        },
+        operations: {
+            method: "GET",
+            isArray: true,
+            url: "/cloud/project/:serviceName/operation"
+        },
+        getOperation: {
+            method: "GET",
+            url: "/cloud/project/:serviceName/operation/:operationId"
         }
     });
 
