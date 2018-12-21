@@ -9024,6 +9024,36 @@ angular.module("ovh-api-services").service("OvhApiMeBillV7", ["apiv7", function 
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeBillingCapacities", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeBillingCapacitiesV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillingCapacitiesV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiMeBillingCapacitiesQueryV6");
+
+    var billingCapacitiesResource = $resource("/me/billing/capacities", {}, {
+        query: {
+            method: "GET",
+            isArray: false,
+            cache: queryCache
+        }
+    });
+
+    billingCapacitiesResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return billingCapacitiesResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMail", ["$injector", function ($injector) {
     "use strict";
 
@@ -9061,6 +9091,9 @@ angular.module("ovh-api-services").service("OvhApiMeBilling", ["$injector", func
     "use strict";
 
     return {
+        Capacities: function () {
+            return $injector.get("OvhApiMeBillingCapacities");
+        },
         InvoicesByPostalMail: function () {
             return $injector.get("OvhApiMeBillingInvoicesByPostalMail");
         }
