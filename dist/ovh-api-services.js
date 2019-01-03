@@ -10849,7 +10849,7 @@ angular.module("ovh-api-services").service("OvhApiNewAccount", ["$injector", fun
     "use strict";
     return {
         v6: function () {
-          return $injector.get("OvhApiNewAccountV6");
+            return $injector.get("OvhApiNewAccountV6");
         },
         LegalForm: function () {
             return $injector.get("OvhApiNewAccountLegalForm");
