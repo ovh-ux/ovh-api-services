@@ -775,6 +775,20 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", ["$resource",
         vrack: {
             url: "/cloud/project/:serviceName/vrack",
             method: "GET"
+        },
+        createVrack: {
+            url: "/cloud/project/:serviceName/vrack",
+            method: "POST",
+            hasBody: false
+        },
+        operations: {
+            method: "GET",
+            isArray: true,
+            url: "/cloud/project/:serviceName/operation"
+        },
+        getOperation: {
+            method: "GET",
+            url: "/cloud/project/:serviceName/operation/:operationId"
         }
     });
 
@@ -1685,6 +1699,52 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectQuotaV6", ["$resou
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiCloudProjectAvailableRegions", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectAvailableRegionsV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectAvailableRegionsV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiCloudProjectAvailableRegionsV6Query");
+    var cache = $cacheFactory("OvhApiCloudProjectAvailableRegionsV6");
+
+    var regions = $resource("/cloud/project/:serviceName/regionAvailable", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            cache: queryCache,
+            isArray: true,
+            transformResponse: function (regionsResp, headers, status) {
+                var regionsRsp = regionsResp;
+                if (status === 200) {
+                    regionsRsp = angular.fromJson(regionsRsp); // IE11
+                    return regionsRsp.sort();
+                }
+                return regionsRsp;
+            }
+        }
+    });
+
+    regions.resetCache = function () {
+        cache.removeAll();
+    };
+
+    regions.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return regions;
+
+}]);
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectRegion", ["$injector", function ($injector) {
     "use strict";
 
@@ -1694,6 +1754,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegion", ["$inject
         },
         Workflow: function () {
             return $injector.get("OvhApiCloudProjectRegionWorkflow");
+        },
+        AvailableRegions: function () {
+            return $injector.get("OvhApiCloudProjectAvailableRegions");
         }
     };
 }]);
@@ -1703,6 +1766,13 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", ["$reso
 
     var queryCache = $cacheFactory("OvhApiCloudProjectRegionV6Query");
     var cache = $cacheFactory("OvhApiCloudProjectRegionV6");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
 
     var regions = $resource("/cloud/project/:serviceName/region/:id", {
         serviceName: "@serviceName",
@@ -1723,7 +1793,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", ["$reso
                 return regionsRsp;
 
             }
-        }
+        },
+        addRegion: { method: "POST", interceptor: interceptor }
     });
 
     regions.resetCache = function () {
@@ -8953,6 +9024,36 @@ angular.module("ovh-api-services").service("OvhApiMeBillV7", ["apiv7", function 
 
 }]);
 
+angular.module("ovh-api-services").service("OvhApiMeBillingCapacities", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeBillingCapacitiesV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeBillingCapacitiesV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiMeBillingCapacitiesQueryV6");
+
+    var billingCapacitiesResource = $resource("/me/billing/capacities", {}, {
+        query: {
+            method: "GET",
+            isArray: false,
+            cache: queryCache
+        }
+    });
+
+    billingCapacitiesResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return billingCapacitiesResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMail", ["$injector", function ($injector) {
     "use strict";
 
@@ -8990,6 +9091,9 @@ angular.module("ovh-api-services").service("OvhApiMeBilling", ["$injector", func
     "use strict";
 
     return {
+        Capacities: function () {
+            return $injector.get("OvhApiMeBillingCapacities");
+        },
         InvoicesByPostalMail: function () {
             return $injector.get("OvhApiMeBillingInvoicesByPostalMail");
         }

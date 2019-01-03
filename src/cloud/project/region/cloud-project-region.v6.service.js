@@ -3,6 +3,13 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", functio
 
     var queryCache = $cacheFactory("OvhApiCloudProjectRegionV6Query");
     var cache = $cacheFactory("OvhApiCloudProjectRegionV6");
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.data;
+        }
+    };
 
     var regions = $resource("/cloud/project/:serviceName/region/:id", {
         serviceName: "@serviceName",
@@ -23,7 +30,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", functio
                 return regionsRsp;
 
             }
-        }
+        },
+        addRegion: { method: "POST", interceptor: interceptor }
     });
 
     regions.resetCache = function () {
