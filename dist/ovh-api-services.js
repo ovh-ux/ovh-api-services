@@ -10744,6 +10744,9 @@ angular.module("ovh-api-services").service("OvhApiNewAccountLegalFormV6", ["$res
 angular.module("ovh-api-services").service("OvhApiNewAccount", ["$injector", function ($injector) {
     "use strict";
     return {
+        v6: function () {
+          return $injector.get("OvhApiNewAccountV6");
+        },
         LegalForm: function () {
             return $injector.get("OvhApiNewAccountLegalForm");
         },
@@ -10751,6 +10754,19 @@ angular.module("ovh-api-services").service("OvhApiNewAccount", ["$injector", fun
             return $injector.get("OvhApiNewAccountCreationRules");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiNewAccountV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/newAccount", {}, {
+      rules: {
+        method: "POST",
+        url: "/newAccount/rules",
+        isArray: true
+      }
+    });
+
 }]);
 
 angular.module("ovh-api-services").service("OvhApiNotificationAapi", ["$resource", function ($resource) {
