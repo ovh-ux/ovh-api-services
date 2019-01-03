@@ -10864,11 +10864,11 @@ angular.module("ovh-api-services").service("OvhApiNewAccountV6", ["$resource", f
     "use strict";
 
     return $resource("/newAccount", {}, {
-      rules: {
-        method: "POST",
-        url: "/newAccount/rules",
-        isArray: true
-      }
+        rules: {
+            method: "POST",
+            url: "/newAccount/rules",
+            isArray: true
+        }
     });
 
 }]);

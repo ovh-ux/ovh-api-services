@@ -2,11 +2,11 @@ angular.module("ovh-api-services").service("OvhApiNewAccountV6", function ($reso
     "use strict";
 
     return $resource("/newAccount", {}, {
-      rules: {
-        method: "POST",
-        url: "/newAccount/rules",
-        isArray: true
-      }
+        rules: {
+            method: "POST",
+            url: "/newAccount/rules",
+            isArray: true
+        }
     });
 
 });
