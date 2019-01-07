@@ -1,4 +1,4 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemFtp", function ($injector, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiXdslModemFtp", function ($cacheFactory, $injector) {
     "use strict";
 
     var cache = $cacheFactory("OvhApiXdslModemFtp");
