@@ -38,6 +38,27 @@ angular.module("ovh-api-services").service("OvhApiXdslModem", function ($injecto
         Firmware: function () {
             return $injector.get("OvhApiXdslModemFirmware");
         },
+        BlocIp: function () {
+            return $injector.get("OvhApiXdslModemBlocIp");
+        },
+        CallWaiting: function () {
+            return $injector.get("OvhApiXdslModemCallWaiting");
+        },
+        ContentSharing: function () {
+            return $injector.get("OvhApiXdslModemContentSharing");
+        },
+        Ftp: function () {
+            return $injector.get("OvhApiXdslModemFtp");
+        },
+        IpsecAlg: function () {
+            return $injector.get("OvhApiXdslModemIpsecAlg");
+        },
+        SipAlg: function () {
+            return $injector.get("OvhApiXdslModemSipAlg");
+        },
+        Upnp: function () {
+            return $injector.get("OvhApiXdslModemUpnp");
+        },
         cache: cache
     };
 });
