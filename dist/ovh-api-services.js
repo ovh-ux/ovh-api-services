@@ -6695,15 +6695,33 @@ angular.module("ovh-api-services").service("OvhApiEmailExchangeServiceV7", ["api
     return exchangeEndpoint;
 }]);
 
-angular.module("ovh-api-services").service("OvhApiEmailProV7", ["apiv7", function (apiv7) {
-    "use strict";
+angular
+    .module("ovh-api-services")
+    .service(
+        "OvhApiEmailMXPlan",
+        ["$injector", function ($injector) {
+            "use strict";
 
-    var emailproEndpoint = apiv7("/email/pro/:serviceName/", {
-        serviceName: "@serviceName"
-    });
+            return {
+                v7: function () {
+                    return $injector.get("OvhApiEmailMXPlanV7");
+                }
+            };
+        }]);
 
-    return emailproEndpoint;
-}]);
+angular
+    .module("ovh-api-services")
+    .service(
+        "OvhApiEmailMXPlanV7",
+        ["apiv7", function (apiv7) {
+            "use strict";
+
+            var emailMXPlanEndpoint = apiv7("/email/mxplan/:serviceName/", {
+                serviceName: "@serviceName"
+            });
+
+            return emailMXPlanEndpoint;
+        }]);
 
 angular.module("ovh-api-services").service("OvhApiEmailPro", ["$injector", function ($injector) {
     "use strict";
@@ -6712,6 +6730,16 @@ angular.module("ovh-api-services").service("OvhApiEmailPro", ["$injector", funct
             return $injector.get("OvhApiEmailProV7");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiEmailProV7", ["apiv7", function (apiv7) {
+    "use strict";
+
+    var emailproEndpoint = apiv7("/email/pro/:serviceName/", {
+        serviceName: "@serviceName"
+    });
+
+    return emailproEndpoint;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiFreeFaxAapi", ["$resource", "$cacheFactory", "OvhApiFreeFax", function ($resource, $cacheFactory, OvhApiFreeFax) {
@@ -23303,6 +23331,92 @@ angular.module("ovh-api-services").service("OvhApiXdslModemAvailableWLANChannelV
     });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslModemBlocIp", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemBlocIp");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemBlocIpV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemBlocIpV6", ["$resource", "OvhApiXdslModemBlocIp", function ($resource, OvhApiXdslModemBlocIp) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemBlocIp.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/blocIp", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemCallWaiting", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemCallWaiting");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemCallWaitingV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemCallWaitingV6", ["$resource", "OvhApiXdslModemCallWaiting", function ($resource, OvhApiXdslModemCallWaiting) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemCallWaiting.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/callWaiting", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslModemDevicesAapi", ["$resource", "OvhApiXdslModemDevices", function ($resource, OvhApiXdslModemDevices) {
     "use strict";
 
@@ -23345,6 +23459,49 @@ angular.module("ovh-api-services").service("OvhApiXdslModemDevices", ["$injector
         resetCache: cache.removeAll,
         cache: cache
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemContentSharing", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemContentSharing");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemContentSharingV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemContentSharingV6", ["$resource", "OvhApiXdslModemContentSharing", function ($resource, OvhApiXdslModemContentSharing) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemContentSharing.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/contentSharing", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
 }]);
 
 angular.module("ovh-api-services").service("OvhApiXdslModemFirmware", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
@@ -23392,6 +23549,92 @@ angular.module("ovh-api-services").service("OvhApiXdslModemFirmwareV6", ["$resou
             url: "/xdsl/:xdslId/modem/firmwareAvailable",
             isArray: true,
             cache: OvhApiXdslModemFirmware.cache
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemFtp", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemFtp");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemFtpV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemFtpV6", ["$resource", "OvhApiXdslModemFtp", function ($resource, OvhApiXdslModemFtp) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemFtp.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/ftp", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemIpsecAlg", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemIpsecAlg");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemIpsecAlgV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemIpsecAlgV6", ["$resource", "OvhApiXdslModemIpsecAlg", function ($resource, OvhApiXdslModemIpsecAlg) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemIpsecAlg.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/ipsecAlg", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
         }
     });
 }]);
@@ -23683,6 +23926,92 @@ angular.module("ovh-api-services").service("OvhApiXdslModemResetV6", ["$resource
     });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslModemSipAlg", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemSipAlg");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemSipAlgV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemSipAlgV6", ["$resource", "OvhApiXdslModemSipAlg", function ($resource, OvhApiXdslModemSipAlg) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemSipAlg.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/sipAlg", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemUpnp", ["$cacheFactory", "$injector", function ($cacheFactory, $injector) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslModemUpnp");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslModemUpnpV6");
+        },
+        resetCache: cache.removeAll,
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslModemUpnpV6", ["$resource", "OvhApiXdslModemUpnp", function ($resource, OvhApiXdslModemUpnp) {
+    "use strict";
+
+    var interceptor = {
+        response: function (response) {
+            OvhApiXdslModemUpnp.resetCache();
+            return response.resource;
+        }
+    };
+
+    return $resource("/xdsl/:xdslId/modem/upnp", {
+        xdslId: "@xdslId"
+    }, {
+        get: {
+            method: "GET",
+            transformResponse: function (data, headers, status) {
+                if (status === 200) {
+                    return { data: angular.fromJson(data) };
+                }
+                return data;
+            }
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslModemWifiAapi", ["$resource", "OvhApiXdslModemWifi", function ($resource, OvhApiXdslModemWifi) {
     "use strict";
 
@@ -23829,6 +24158,27 @@ angular.module("ovh-api-services").service("OvhApiXdslModem", ["$injector", "$ca
         },
         Firmware: function () {
             return $injector.get("OvhApiXdslModemFirmware");
+        },
+        BlocIp: function () {
+            return $injector.get("OvhApiXdslModemBlocIp");
+        },
+        CallWaiting: function () {
+            return $injector.get("OvhApiXdslModemCallWaiting");
+        },
+        ContentSharing: function () {
+            return $injector.get("OvhApiXdslModemContentSharing");
+        },
+        Ftp: function () {
+            return $injector.get("OvhApiXdslModemFtp");
+        },
+        IpsecAlg: function () {
+            return $injector.get("OvhApiXdslModemIpsecAlg");
+        },
+        SipAlg: function () {
+            return $injector.get("OvhApiXdslModemSipAlg");
+        },
+        Upnp: function () {
+            return $injector.get("OvhApiXdslModemUpnp");
         },
         cache: cache
     };
