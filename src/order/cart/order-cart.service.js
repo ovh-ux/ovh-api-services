@@ -5,6 +5,9 @@ angular.module("ovh-api-services").service("OvhApiOrderCart", function ($injecto
         Item: function () {
             return $injector.get("OvhApiOrderCartItem");
         },
+        Microsoft: function () {
+            return $injector.get("OvhApiOrderCartMicrosoft");
+        },
         Product: function () {
             return $injector.get("OvhApiOrderCartProduct");
         },

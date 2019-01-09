@@ -16,7 +16,18 @@ angular
         }, {
             get: { method: "GET", cache: cache, isArray: false },
             edit: { method: "PUT", cache: cache, isArray: false, interceptor: interceptor },
-            doesServiceUseAgora: { url: "/msServices/:serviceName/sharepoint/billingMigrated ", method: "GET", cache: cache, isArray: false }
+            doesServiceUseAgora: {
+                url: "/msServices/:serviceName/sharepoint/billingMigrated ",
+                method: "GET",
+                cache: cache,
+                isArray: false,
+                transformResponse: function (response, headers, status) {
+                    if (status === 200) {
+                        return { billingMigrated: angular.fromJson(response) };
+                    }
+                    return response;
+                }
+            }
         });
 
         resource.resetAllCache = function () {
