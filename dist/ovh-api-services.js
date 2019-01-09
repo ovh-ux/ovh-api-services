@@ -10775,7 +10775,18 @@ angular
         }, {
             get: { method: "GET", cache: cache, isArray: false },
             edit: { method: "PUT", cache: cache, isArray: false, interceptor: interceptor },
-            doesServiceUseAgora: { url: "/msServices/:serviceName/sharepoint/billingMigrated ", method: "GET", cache: cache, isArray: false }
+            doesServiceUseAgora: {
+                url: "/msServices/:serviceName/sharepoint/billingMigrated ",
+                method: "GET",
+                cache: cache,
+                isArray: false,
+                transformResponse: function (response, headers, status) {
+                    if (status === 200) {
+                        return { billingMigrated: angular.fromJson(response) };
+                    }
+                    return response;
+                }
+            }
         });
 
         resource.resetAllCache = function () {
@@ -11024,12 +11035,66 @@ angular.module("ovh-api-services").service("OvhApiOrderCartItemV6", ["$resource"
     return orderCartItem;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiOrderCartMicrosoft", ["$injector", function ($injector) {
+
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderCartMicrosoftV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartMicrosoftV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    // Cache to invalidate
+    var cache = $cacheFactory("OvhApiOrderCartMicrosoftV6");
+
+    var interceptor = {
+        response: function (response) {
+            orderCartMicrosoft.resetCache();
+            return response.data;
+        }
+    };
+
+    var orderCartMicrosoft = $resource("/order/cart/:cartId/microsoft", {
+        cartId: "@cartId"
+    }, {
+        get: { method: "GET", cache: cache, isArray: true },
+        post: { method: "POST", interceptor: interceptor },
+        getOptions: {
+            url: "/order/cart/:cartId/microsoft/options",
+            method: "GET",
+            cache: cache,
+            isArray: true,
+            queryParams: {
+                planCode: "@planCode"
+            }
+        },
+        postOptions: {
+            url: "/order/cart/:cartId/microsoft/options",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    orderCartMicrosoft.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return orderCartMicrosoft;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiOrderCart", ["$injector", function ($injector) {
 
     "use strict";
     return {
         Item: function () {
             return $injector.get("OvhApiOrderCartItem");
+        },
+        Microsoft: function () {
+            return $injector.get("OvhApiOrderCartMicrosoft");
         },
         Product: function () {
             return $injector.get("OvhApiOrderCartProduct");
