@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudIp", function ($
     return {
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudIpV6");
+        },
+        Details: function () {
+            return $injector.get("OvhApiDedicatedCloudIpDetails");
         }
     };
 
