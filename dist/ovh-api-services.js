@@ -13882,29 +13882,6 @@ angular.module("ovh-api-services").service("OvhApiPortalRadarServer", ["$injecto
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiPriceLicenseOffice", ["$injector", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiPriceLicenseOfficeV6");
-        }
-    };
-
-}]);
-
-angular.module("ovh-api-services").service("OvhApiPriceLicenseOfficeV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
-    "use strict";
-    var cache = $cacheFactory("OvhApiPriceLicenseOfficeV6");
-
-    return $resource("/price/license/office/:officeName", {
-        officeName: "@officeName"
-    }, {
-        get: { method: "GET", cache: cache }
-    });
-}]);
-
-
 angular.module("ovh-api-services").service("OvhApiPriceOverTheBoxOffer", ["$injector", function ($injector) {
     "use strict";
 
