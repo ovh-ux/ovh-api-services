@@ -5351,6 +5351,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", ["$
         },
         Backup: function () {
             return $injector.get("OvhApiDedicatedCloudDatacenterBackup");
+        },
+        Zerto: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterZerto");
         }
     };
 
@@ -5546,6 +5549,99 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterHostV6
     };
 
     return hostResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZerto", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterZertoV6");
+        },
+        Single: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterZertoSingle");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterZertoV6");
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            return response;
+        }
+    };
+
+    var zertoResource = $resource("/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto", {
+        serviceName: "@serviceName",
+        datacenterId: "@datacenterId"
+    }, {
+        disable: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/disable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        enable: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/enable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        generateZsspPassword: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/generateZsspPassword",
+            method: "POST",
+            interceptor: interceptor
+        },
+        state: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/state",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    return zertoResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoSingle", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterZertoSingleV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoSingleV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterZertoSingleV6");
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            return response;
+        }
+    };
+
+    var zertoSingleResource = $resource("/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle", {
+        serviceName: "@serviceName",
+        datacenterId: "@datacenterId"
+    }, {
+        disable: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/disable",
+            method: "POST",
+            interceptor: interceptor
+        },
+        enable: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/enable",
+            method: "POST",
+            interceptor: interceptor
+        }
+    });
+
+    return zertoSingleResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiDedicatedCloud", ["$injector", function ($injector) {
@@ -5786,6 +5882,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudIp", ["$injector
     return {
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudIpV6");
+        },
+        Details: function () {
+            return $injector.get("OvhApiDedicatedCloudIpDetails");
         }
     };
 
@@ -5814,6 +5913,34 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudIpV6", ["$resour
     };
 
     return ipResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudIpDetailsV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+    var cache = $cacheFactory("OvhApiDedicatedCloudIpDetailsV6");
+
+    var ipDetailsResource = $resource("/dedicatedCloud/:serviceName/ip/:network/details", {
+        serviceName: "@serviceName",
+        network: "@network"
+    }, {
+        get: { method: "GET", cache: cache, isArray: true }
+    });
+
+    ipDetailsResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return ipDetailsResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudIpDetails", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiDedicatedCloudIpDetailsV6");
+        }
+    };
 }]);
 
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocation", ["$injector", function ($injector) {
