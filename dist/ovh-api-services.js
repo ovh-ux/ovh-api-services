@@ -6780,6 +6780,43 @@ angular.module("ovh-api-services").service("OvhApiDomainV7", ["apiv7", function 
     return domainEndpoint;
 }]);
 
+angular
+    .module("ovh-api-services")
+    .service(
+        "OvhApiEmailDomain",
+        ["$injector", function ($injector) {
+            "use strict";
+
+            return {
+                v6: function () {
+                    return $injector.get("OvhApiEmailDomainV6");
+                }
+            };
+        }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiEmailDomainV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+        "use strict";
+        var cache = $cacheFactory("OvhApiEmailDomainV6");
+        var domainResource = $resource("/email/domain/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            get: { method: "GET", cache: cache },
+            serviceInfos: { method: "GET", url: "/email/domain/:serviceName/serviceInfos" }
+        });
+
+        domainResource.resetAllCache = function () {
+            domainResource.resetCache();
+        };
+
+        domainResource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        return domainResource;
+    }]);
+
 angular.module("ovh-api-services").service("OvhApiEmailExchange", ["$injector", function ($injector) {
     "use strict";
     return {
@@ -13844,6 +13881,29 @@ angular.module("ovh-api-services").service("OvhApiPortalRadarServer", ["$injecto
         cache: cache
     };
 }]);
+
+angular.module("ovh-api-services").service("OvhApiPriceLicenseOffice", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiPriceLicenseOfficeV6");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiPriceLicenseOfficeV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+    var cache = $cacheFactory("OvhApiPriceLicenseOfficeV6");
+
+    return $resource("/price/license/office/:officeName", {
+        officeName: "@officeName"
+    }, {
+        get: { method: "GET", cache: cache }
+    });
+}]);
+
 
 angular.module("ovh-api-services").service("OvhApiPriceOverTheBoxOffer", ["$injector", function ($injector) {
     "use strict";
