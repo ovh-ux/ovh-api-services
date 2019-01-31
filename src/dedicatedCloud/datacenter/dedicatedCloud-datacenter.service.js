@@ -17,6 +17,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", fun
         },
         Backup: function () {
             return $injector.get("OvhApiDedicatedCloudDatacenterBackup");
+        },
+        Zerto: function () {
+            return $injector.get("OvhApiDedicatedCloudDatacenterZerto");
         }
     };
 
