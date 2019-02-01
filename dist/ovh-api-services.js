@@ -8084,6 +8084,9 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cache
         reset: {
             url: "/kube/:serviceName/reset",
             method: "POST",
+            params: {
+                workerNodesPolicy: "@workerNodesPolicy"
+            },
             interceptor: interceptor
         },
         updateServiceInfos: {

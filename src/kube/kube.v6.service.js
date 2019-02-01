@@ -37,6 +37,9 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", function ($resource, 
         reset: {
             url: "/kube/:serviceName/reset",
             method: "POST",
+            params: {
+                workerNodesPolicy: "@workerNodesPolicy"
+            },
             interceptor: interceptor
         },
         updateServiceInfos: {
