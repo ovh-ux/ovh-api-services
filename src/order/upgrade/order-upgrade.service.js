@@ -6,6 +6,9 @@ angular
         return {
             MicrosoftExchange: function () {
                 return $injector.get("OvhApiOrderUpgradeMicrosoftExchange");
+            },
+            Vps: function () {
+                return $injector.get("OvhApiOrderVps");
             }
         };
     });

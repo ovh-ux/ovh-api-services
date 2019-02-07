@@ -24,6 +24,11 @@ angular.module("ovh-api-services").service("OvhApiVpsV6", function ($resource, $
             period: "@period",
             type: "@type",
             cache: cache
+        },
+        availableUpgrade: {
+            url: "/vps/:serviceName/availableUpgrade",
+            method: "GET",
+            isArray: true
         }
     });
 

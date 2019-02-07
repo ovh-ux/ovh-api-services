@@ -11382,6 +11382,11 @@ angular.module("ovh-api-services").service("OvhApiOrderCartProductV6", ["$resour
     return orderCartProduct;
 }]);
 
+/**
+ *  @deprecated
+ *  Use order/cartServiceOptions/cartServiceOptions.service.js instead
+ *  as this service is overrided by the same name in this file.
+ */
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$injector", function ($injector) {
 
     "use strict";
@@ -11392,6 +11397,11 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$in
     };
 }]);
 
+/**
+ *  @deprecated
+ *  Use order/cartServiceOptions/cartServiceOptions.service.v6.js instead
+ *  as this service is not reachable as there is a duplicate of the OvhApiOrderCartServiceOption service.
+ */
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
     "use strict";
@@ -11429,6 +11439,9 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$injector", function ($injector) {
     "use strict";
     return {
+        v6: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionV6");
+        },
         Microsoft: function () {
             return $injector.get("OvhApiOrderCartServiceOptionMicrosoft");
         },
@@ -11436,6 +11449,40 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$in
             return $injector.get("OvhApiOrderCartServiceOptionMicrosoftExchange");
         }
     };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    "use strict";
+
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionV6Query");
+    var cache = $cacheFactory("OvhApiOrderCartServiceOptionV6");
+
+    var interceptor = {
+        response: function (response) {
+            orderCartServiceOption.resetQueryCache();
+            return response.data;
+        }
+    };
+
+    var orderCartServiceOption = $resource("/order/cartServiceOption/:productName/:serviceName", {
+        productName: "@productName",
+        serviceName: "@serviceName"
+    }, {
+        get: { method: "GET", cache: cache, isArray: true },
+        post: { method: "POST", interceptor: interceptor }
+    });
+
+    orderCartServiceOption.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderCartServiceOption.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderCartServiceOption;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionMicrosoft", ["$injector", function ($injector) {
@@ -12364,8 +12411,39 @@ angular
         return {
             MicrosoftExchange: function () {
                 return $injector.get("OvhApiOrderUpgradeMicrosoftExchange");
+            },
+            Vps: function () {
+                return $injector.get("OvhApiOrderVps");
             }
         };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderVps", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            v6: function () {
+                return $injector.get("OvhApiOrderVpsV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderVpsV6", ["$resource", function ($resource) {
+        "use strict";
+
+        return $resource("/order/upgrade/vps/:serviceName/:planCode", {
+            serviceName: "@serviceName",
+            planCode: "@planCode"
+        }, {
+          getAvailableOffers: {
+              method: "GET",
+              isArray: true
+          }
+        });
     }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderVrackNew", ["$injector", function ($injector) {
@@ -22253,6 +22331,11 @@ angular.module("ovh-api-services").service("OvhApiVpsV6", ["$resource", "$cacheF
             period: "@period",
             type: "@type",
             cache: cache
+        },
+        availableUpgrade: {
+            url: "/vps/:serviceName/availableUpgrade",
+            method: "GET",
+            isArray: true
         }
     });
 
