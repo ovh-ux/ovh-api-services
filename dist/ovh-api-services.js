@@ -11382,6 +11382,7 @@ angular.module("ovh-api-services").service("OvhApiOrderCartProductV6", ["$resour
     return orderCartProduct;
 }]);
 
+<<<<<<< HEAD
 /**
  *  @deprecated
  *  Use order/cartServiceOptions/cartServiceOptions.service.js instead
@@ -11485,6 +11486,8 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$
     return orderCartServiceOption;
 }]);
 
+=======
+>>>>>>> a339d2a3052fe9d1b646753dcbe30f81d2d42dbe
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionMicrosoft", ["$injector", function ($injector) {
     "use strict";
     return {
@@ -11604,6 +11607,56 @@ angular
 
         return resource;
     }]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$injector", function ($injector) {
+
+    "use strict";
+    return {
+        Microsoft: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionMicrosoft");
+        },
+        MicrosoftExchange: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionMicrosoftExchange");
+        },
+        v6: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+    "use strict";
+
+    // Cache to invalidate
+    var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionV6Query");
+    var cache = $cacheFactory("OvhApiOrderCartServiceOptionV6");
+
+    var interceptor = {
+        response: function (response) {
+            orderCartServiceOption.resetQueryCache();
+            return response.data;
+        }
+    };
+
+    var orderCartServiceOption = $resource("/order/cartServiceOption/:productName/:serviceName", {
+        productName: "@productName",
+        serviceName: "@serviceName"
+    }, {
+        get: { method: "GET", cache: cache, isArray: true },
+        post: { method: "POST", interceptor: interceptor }
+    });
+
+    orderCartServiceOption.resetCache = function () {
+        cache.removeAll();
+    };
+
+    orderCartServiceOption.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return orderCartServiceOption;
+}]);
 
 angular.module("ovh-api-services").service("OvhApiOrderCatalogFormatted", ["$injector", function ($injector) {
     "use strict";
