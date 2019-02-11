@@ -13,6 +13,9 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", funct
         MicrosoftExchange: function () {
             return $injector.get("OvhApiOrderCartServiceOptionMicrosoftExchange");
         },
+        Vps: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionVps");
+        },
         v6: function () {
             return $injector.get("OvhApiOrderCartServiceOptionV6");
         }
