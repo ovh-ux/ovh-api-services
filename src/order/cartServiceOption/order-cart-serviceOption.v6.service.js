@@ -1,8 +1,3 @@
-/**
- *  @deprecated
- *  Use order/cartServiceOptions/cartServiceOptions.service.v6.js instead
- *  as this service is not reachable as there is a duplicate of the OvhApiOrderCartServiceOption service.
- */
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", function ($resource, $cacheFactory) {
 
     "use strict";

@@ -11502,11 +11502,6 @@ angular
         return resource;
     }]);
 
-/**
- *  @deprecated
- *  Use order/cartServiceOptions/cartServiceOptions.service.js instead
- *  as this service is overrided by the same name in this file.
- */
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$injector", function ($injector) {
 
     "use strict";
@@ -11526,11 +11521,6 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$in
     };
 }]);
 
-/**
- *  @deprecated
- *  Use order/cartServiceOptions/cartServiceOptions.service.v6.js instead
- *  as this service is not reachable as there is a duplicate of the OvhApiOrderCartServiceOption service.
- */
 angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
 
     "use strict";
