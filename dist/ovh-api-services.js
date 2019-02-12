@@ -11512,6 +11512,9 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOption", ["$in
         MicrosoftExchange: function () {
             return $injector.get("OvhApiOrderCartServiceOptionMicrosoftExchange");
         },
+        Vps: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionVps");
+        },
         v6: function () {
             return $injector.get("OvhApiOrderCartServiceOptionV6");
         }
@@ -11551,6 +11554,29 @@ angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", ["$
 
     return orderCartServiceOption;
 }]);
+
+angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionVps", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiOrderCartServiceOptionVpsV6");
+        }
+    };
+}]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderCartServiceOptionVpsV6", ["$resource", function ($resource) {
+        "use strict";
+
+        return $resource("/order/cartServiceOption/vps/:serviceName", {
+            serviceName: "@serviceName"
+        }, {
+            get: {
+                isArray: true
+            }
+        });
+    }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderCatalogFormatted", ["$injector", function ($injector) {
     "use strict";
@@ -12358,8 +12384,39 @@ angular
         return {
             MicrosoftExchange: function () {
                 return $injector.get("OvhApiOrderUpgradeMicrosoftExchange");
+            },
+            Vps: function () {
+                return $injector.get("OvhApiOrderVps");
             }
         };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderVps", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            v6: function () {
+                return $injector.get("OvhApiOrderVpsV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderVpsV6", ["$resource", function ($resource) {
+        "use strict";
+
+        return $resource("/order/upgrade/vps/:serviceName/:planCode", {
+            serviceName: "@serviceName",
+            planCode: "@planCode"
+        }, {
+          getAvailableOffers: {
+              method: "GET",
+              isArray: true
+          }
+        });
     }]);
 
 angular.module("ovh-api-services").service("OvhApiOrderVrackNew", ["$injector", function ($injector) {
@@ -22247,6 +22304,15 @@ angular.module("ovh-api-services").service("OvhApiVpsV6", ["$resource", "$cacheF
             period: "@period",
             type: "@type",
             cache: cache
+        },
+        availableUpgrade: {
+            url: "/vps/:serviceName/availableUpgrade",
+            method: "GET",
+            isArray: true
+        },
+        version: {
+            url: "/vps/:serviceName/version",
+            method: "GET"
         }
     });
 
