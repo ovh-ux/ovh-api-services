@@ -12412,10 +12412,10 @@ angular
             serviceName: "@serviceName",
             planCode: "@planCode"
         }, {
-          getAvailableOffers: {
-              method: "GET",
-              isArray: true
-          }
+            getAvailableOffers: {
+                method: "GET",
+                isArray: true
+            }
         });
     }]);
 
