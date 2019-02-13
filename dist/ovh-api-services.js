@@ -8090,6 +8090,11 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cache
             url: "/kube/:serviceName/serviceInfos",
             method: "PUT",
             interceptor: interceptor
+        },
+        updateVersion: {
+            url: "/kube/:serviceName/update",
+            method: "POST",
+            interceptor: interceptor
         }
     });
 
