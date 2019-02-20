@@ -1,4 +1,4 @@
-angular.module("ovh-api-services", ["ovh-angular-apiv7"]);
+angular.module("ovh-api-services", ["ngOvhApiv7"]);
 
 angular.module("ovh-api-services").service("OvhApiAuth", ["$injector", function ($injector) {
     "use strict";

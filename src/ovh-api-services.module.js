@@ -1,1 +1,1 @@
-angular.module("ovh-api-services", ["ovh-angular-apiv7"]);
+angular.module("ovh-api-services", ["ngOvhApiv7"]);

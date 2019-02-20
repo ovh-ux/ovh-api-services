@@ -39,6 +39,6 @@
     "lodash": "^3.10.1"
   },
   "peerDependencies": {
-    "ovh-angular-apiv7": "^1.2.8"
+    "@ovh-ux/ng-ovh-apiv7": "^2.0.0"
   }
 }
