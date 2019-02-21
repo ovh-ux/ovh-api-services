@@ -16,6 +16,10 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsV6", functi
             method: "POST",
             url: "/cdn/dedicated/:serviceName/domains/:domain/flush"
         },
+        logs: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/logs"
+        },
         statistics: {
             method: "GET",
             url: "/cdn/dedicated/:serviceName/domains/:domain/statistics"
