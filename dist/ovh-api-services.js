@@ -95,6 +95,10 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedV6", ["$resource",
             url: "/cdn/dedicated/:serviceName/quota",
             isArray: true
         },
+        logs: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/logs"
+        },
         swsGetStatistics: {
             method: "GET",
             url: "/sws/dedicated/cdn/:serviceName/statistics",
@@ -196,6 +200,10 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsV6", ["$res
         flush: {
             method: "POST",
             url: "/cdn/dedicated/:serviceName/domains/:domain/flush"
+        },
+        logs: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/logs"
         },
         statistics: {
             method: "GET",
