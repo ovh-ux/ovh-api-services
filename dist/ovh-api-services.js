@@ -1,4 +1,4 @@
-angular.module("ovh-api-services", ["ovh-angular-apiv7"]);
+angular.module("ovh-api-services", ["ngOvhApiv7"]);
 
 angular.module("ovh-api-services").service("OvhApiAuth", ["$injector", function ($injector) {
     "use strict";
@@ -94,6 +94,10 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedV6", ["$resource",
             method: "GET",
             url: "/cdn/dedicated/:serviceName/quota",
             isArray: true
+        },
+        logs: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/logs"
         },
         swsGetStatistics: {
             method: "GET",
@@ -196,6 +200,10 @@ angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsV6", ["$res
         flush: {
             method: "POST",
             url: "/cdn/dedicated/:serviceName/domains/:domain/flush"
+        },
+        logs: {
+            method: "POST",
+            url: "/cdn/dedicated/:serviceName/domains/:domain/logs"
         },
         statistics: {
             method: "GET",
