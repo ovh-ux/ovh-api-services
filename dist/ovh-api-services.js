@@ -8108,6 +8108,10 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cache
             url: "/kube/:serviceName/updatePolicy",
             method: "PUT",
             interceptor: interceptor
+        },
+        getSchema: {
+            url: "/kube.json",
+            method: "GET"
         }
     });
 
