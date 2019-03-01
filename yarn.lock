@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@ovh-ux/ng-ovh-apiv7@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-apiv7/-/ng-ovh-apiv7-2.0.0.tgz#838e6c224bb37928de84b4a0eb8c0c8a6713f1d7"
-  integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
+"@ovh-ux/ng-ovh-swimming-poll@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-swimming-poll/-/ng-ovh-swimming-poll-4.0.0.tgz#16e071b283fed0ab2fe3e2287819793cbf0f159a"
+  integrity sha512-kZDL0SFo2SK6yFDHhyMT7A3r8Q8czQlCKI914vMB5OQrRucX3dCNABnBaft5GKvTmDlBmCdH8ixT/H9IV9vdbA==
   dependencies:
     lodash "^4.17.11"
 
