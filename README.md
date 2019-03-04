@@ -39,6 +39,7 @@ All services must return a $resource.
 For each $resource, you can call whether:
 - `v6`: for APIv6
 - `v7`: for APIv7 (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
+- `Iceberg` for Iceberg (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
 - `Aapi`: for 2API
 
 For example, for the service Me, use `OvhApiMe.v6().get()`, to get user informations.

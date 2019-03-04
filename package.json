@@ -39,7 +39,7 @@
     "lodash": "^3.10.1"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
+    "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0"
   }
 }

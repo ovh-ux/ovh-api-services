@@ -1,1 +1,1 @@
-angular.module("ovh-api-services", ["ngOvhApiv7", "ngOvhSwimmingPoll"]);
+angular.module("ovh-api-services", ["ngOvhApiWrappers", "ngOvhSwimmingPoll"]);
