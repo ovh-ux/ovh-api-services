@@ -1,4 +1,4 @@
-angular.module("ovh-api-services", ["ngOvhApiv7", "ngOvhSwimmingPoll"]);
+angular.module("ovh-api-services", ["ngOvhApiWrappers", "ngOvhSwimmingPoll"]);
 
 angular.module("ovh-api-services").service("OvhApiAuth", ["$injector", function ($injector) {
     "use strict";
