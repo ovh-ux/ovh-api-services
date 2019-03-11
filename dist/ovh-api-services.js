@@ -6834,9 +6834,25 @@ angular.module("ovh-api-services").service("OvhApiEmailExchange", ["$injector", 
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiEmailExchangeServiceAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/sws/exchange/:organization/:exchange", {
+        organization: "@organization",
+        exchange: "@exchange"
+    }, {
+        get: {
+            serviceType: "aapi"
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiEmailExchangeService", ["$injector", function ($injector) {
     "use strict";
     return {
+        Aapi: function () {
+            return $injector.get("OvhApiEmailExchangeServiceAapi");
+        },
         v6: function () {
             return $injector.get("OvhApiEmailExchangeServiceV6");
         },
