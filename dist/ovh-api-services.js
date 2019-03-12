@@ -991,8 +991,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", ["$reso
     "use strict";
 
     var cache = $cacheFactory("OvhApiCloudProjectFlavorV6");
+    var queryCache = $cacheFactory("OvhApiCloudProjectFlavorV6Query");
 
-    return $resource("/cloud/project/:serviceName/flavor/:flavorId", {
+    var resource = $resource("/cloud/project/:serviceName/flavor/:flavorId", {
         serviceName: "@serviceName",
         flavorId: "@flavorId"
     }, {
@@ -1012,7 +1013,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", ["$reso
         },
         query: {
             method: "GET",
-            cache: cache,
+            cache: queryCache,
             isArray: true,
             queryParams: {
                 region: "@region"
@@ -1037,6 +1038,16 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", ["$reso
             }
         }
     });
+
+    resource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return resource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectForecast", ["$injector", function ($injector) {
