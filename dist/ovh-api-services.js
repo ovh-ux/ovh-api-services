@@ -9393,13 +9393,13 @@ angular.module("ovh-api-services").service("OvhApiMeContactV6", ["$resource", "$
 
 }]);
 
-angular.module("ovh-api-services").service("OvhApiMeContactV7", ["$resource", "$cacheFactory", "Apiv7Endpoint", function ($resource, $cacheFactory, Apiv7Endpoint) {
+angular.module("ovh-api-services").service("OvhApiMeContactV7", ["$resource", "$cacheFactory", "apiv7", function ($resource, $cacheFactory, apiv7) {
     "use strict";
 
     var queryCache = $cacheFactory("OvhApiMeContactv7Query");
     var otherCache = $cacheFactory("OvhApiMeContactV7");
 
-    var userContactResource = new Apiv7Endpoint("/me/contact/:contactId", {
+    var userContactResource = apiv7("/me/contact/:contactId", {
         contactId: "@contactId"
     }, {
         query: {
