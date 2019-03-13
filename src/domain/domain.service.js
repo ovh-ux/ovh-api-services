@@ -6,6 +6,12 @@ angular.module("ovh-api-services").service("OvhApiDomain", function ($injector) 
         },
         v7: function () {
             return $injector.get("OvhApiDomainV7");
+        },
+        Configurations: function () {
+            return $injector.get("OvhApiDomainConfigurations");
+        },
+        Rules: function () {
+            return $injector.get("OvhApiDomainRules");
         }
     };
 });
