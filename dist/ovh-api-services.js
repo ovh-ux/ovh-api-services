@@ -8139,6 +8139,11 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cache
         getSchema: {
             url: "/kube.json",
             method: "GET"
+        },
+        terminate: {
+            url: "/kube/:serviceName/terminate",
+            method: "POST",
+            interceptor: interceptor
         }
     });
 
