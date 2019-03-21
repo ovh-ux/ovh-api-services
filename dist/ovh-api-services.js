@@ -404,6 +404,10 @@ angular.module("ovh-api-services").service("OvhApiCloudV6", ["$resource", "OvhAp
             url: "/cloud/order",
             method: "GET",
             isArray: true
+        },
+        subsidiaryPrice: {
+            url: "/cloud/subsidiaryPrice",
+            method: "GET"
         }
     });
 }]);
