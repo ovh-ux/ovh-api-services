@@ -1603,7 +1603,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeAapi", ["$cach
     }, {
         query: {
             method: "GET",
-            isArray: true,
             serviceType: "aapi",
             cache: cache
         }
