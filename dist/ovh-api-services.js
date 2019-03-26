@@ -709,6 +709,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         Ip: function () {
             return $injector.get("OvhApiCloudProjectIp");
         },
+        Kube: function () {
+            return $injector.get("OvhApiCloudProjectKube");
+        },
         Region: function () {
             return $injector.get("OvhApiCloudProjectRegion");
         },
@@ -1471,6 +1474,44 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIplbV6", ["$resour
     };
 
     return loadbalancers;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectKubeAapi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiCloudProjectKubeAapi");
+
+    var cloudProjectKubeResource = $resource("/cloud/project/:serviceName/kube", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            serviceType: "aapi",
+            cache: cache
+        }
+    });
+
+    cloudProjectKubeResource.resetAllCache = function () {
+        cloudProjectKubeResource.resetCache();
+    };
+
+    cloudProjectKubeResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return cloudProjectKubeResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectKube", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiCloudProjectKubeAapi");
+        }
+    };
 
 }]);
 
