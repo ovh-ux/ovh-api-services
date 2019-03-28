@@ -1,7 +1,6 @@
 angular.module("ovh-api-services").service("OvhApiAdpCapabilitiesV6", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiAdpCapabilitiesV6");
     var queryCache = $cacheFactory("OvhApiAdpCapabilitiesV6Query");
 
     var adpResource = $resource("/analytics/capabilities/platforms", {
@@ -9,10 +8,6 @@ angular.module("ovh-api-services").service("OvhApiAdpCapabilitiesV6", function (
     }, {
         query: { method: "GET", isArray: true, cache: queryCache }
     });
-
-    adpResource.resetCache = function () {
-        cache.removeAll();
-    };
 
     adpResource.resetQueryCache = function () {
         queryCache.removeAll();

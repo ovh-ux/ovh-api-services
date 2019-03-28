@@ -6,7 +6,7 @@ angular.module("ovh-api-services").service("OvhApiAdp", ["$injector", function (
         v6: function () {
             return $injector.get("OvhApiAdpV6");
         },
-        capabilities: function () {
+        Capabilities: function () {
             return $injector.get("OvhApiAdpCapabilities");
         }
     };
@@ -75,7 +75,6 @@ angular.module("ovh-api-services").service("OvhApiAdpCapabilities", ["$injector"
 angular.module("ovh-api-services").service("OvhApiAdpCapabilitiesV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiAdpCapabilitiesV6");
     var queryCache = $cacheFactory("OvhApiAdpCapabilitiesV6Query");
 
     var adpResource = $resource("/analytics/capabilities/platforms", {
@@ -83,10 +82,6 @@ angular.module("ovh-api-services").service("OvhApiAdpCapabilitiesV6", ["$resourc
     }, {
         query: { method: "GET", isArray: true, cache: queryCache }
     });
-
-    adpResource.resetCache = function () {
-        cache.removeAll();
-    };
 
     adpResource.resetQueryCache = function () {
         queryCache.removeAll();

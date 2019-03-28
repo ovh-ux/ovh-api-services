@@ -4,7 +4,7 @@ angular.module("ovh-api-services").service("OvhApiAdp", function ($injector) {
         v6: function () {
             return $injector.get("OvhApiAdpV6");
         },
-        capabilities: function () {
+        Capabilities: function () {
             return $injector.get("OvhApiAdpCapabilities");
         }
     };
