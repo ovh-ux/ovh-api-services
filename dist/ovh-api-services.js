@@ -499,6 +499,10 @@ angular.module("ovh-api-services").service("OvhApiCloudV6", ["$resource", "OvhAp
             url: "/cloud/order",
             method: "GET",
             isArray: true
+        },
+        subsidiaryPrice: {
+            url: "/cloud/subsidiaryPrice",
+            method: "GET"
         }
     });
 }]);
@@ -799,6 +803,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Ip: function () {
             return $injector.get("OvhApiCloudProjectIp");
+        },
+        Kube: function () {
+            return $injector.get("OvhApiCloudProjectKube");
         },
         Region: function () {
             return $injector.get("OvhApiCloudProjectRegion");
@@ -1576,6 +1583,44 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectIplbV6", ["$resour
     };
 
     return loadbalancers;
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectKubeAapi", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiCloudProjectKubeAapi");
+
+    var cloudProjectKubeResource = $resource("/cloud/project/:serviceName/kube", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            serviceType: "aapi",
+            cache: cache
+        }
+    });
+
+    cloudProjectKubeResource.resetAllCache = function () {
+        cloudProjectKubeResource.resetCache();
+    };
+
+    cloudProjectKubeResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return cloudProjectKubeResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectKube", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiCloudProjectKubeAapi");
+        }
+    };
 
 }]);
 
@@ -8248,6 +8293,11 @@ angular.module("ovh-api-services").service("OvhApiKubeV6", ["$resource", "$cache
         getSchema: {
             url: "/kube.json",
             method: "GET"
+        },
+        terminate: {
+            url: "/kube/:serviceName/terminate",
+            method: "POST",
+            interceptor: interceptor
         }
     });
 
@@ -12125,6 +12175,9 @@ angular.module("ovh-api-services").service("OvhApiOrder", ["$injector", function
         CartServiceOption: function () {
             return $injector.get("OvhApiOrderCartServiceOption");
         },
+        CatalogFormatted: function () {
+            return $injector.get("OvhApiOrderCatalogFormatted");
+        },
         DedicatedNasha: function () {
             return $injector.get("OvhApiOrderDedicatedNasha");
         },
@@ -12545,8 +12598,62 @@ angular
             },
             Vps: function () {
                 return $injector.get("OvhApiOrderVps");
+            },
+            PrivateCloud: function () {
+                return $injector.get("OvhApiOrderUpgradePrivateCloud");
             }
         };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradePrivateCloud", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            v6: function () {
+                return $injector.get("OvhApiOrderUpgradePrivateCloudV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradePrivateCloudV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        "use strict";
+
+        // Cache to invalidate
+        var queryCache = $cacheFactory("OvhApiOrderUpgradePrivateCloudV6Query");
+        var cache = $cacheFactory("OvhApiOrderUpgradePrivateCloudV6");
+
+        var interceptor = {
+            response: function (response) {
+                resource.resetCache();
+                resource.resetQueryCache();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/order/upgrade/privateCloud/:serviceName/:planCode", {
+            serviceName: "@serviceName",
+            planCode: "@planCode"
+        }, {
+            get: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/privateCloud/:serviceName" },
+            getPlan: { method: "GET", cache: cache, isArray: false },
+            post: { method: "POST", interceptor: interceptor },
+            query: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/privateCloud" }
+        });
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
     }]);
 
 angular
