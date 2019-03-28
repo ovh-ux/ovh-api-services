@@ -842,6 +842,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Network: function () {
             return $injector.get("OvhApiCloudProjectNetwork");
+        },
+        Quota: function () {
+            return $injector.get("OvhApiCloudProjectQuota");
         }
     };
 
