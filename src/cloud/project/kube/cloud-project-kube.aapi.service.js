@@ -8,7 +8,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeAapi", functio
     }, {
         query: {
             method: "GET",
-            isArray: true,
             serviceType: "aapi",
             cache: cache
         }
