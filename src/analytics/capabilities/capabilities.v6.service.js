@@ -1,7 +1,7 @@
-angular.module("ovh-api-services").service("OvhApiAdpCapabilitiesV6", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiAnalyticsCapabilitiesV6", function ($resource, $cacheFactory) {
     "use strict";
 
-    var queryCache = $cacheFactory("OvhApiAdpCapabilitiesV6Query");
+    var queryCache = $cacheFactory("OvhApiAnalyticsCapabilitiesV6Query");
 
     var adpResource = $resource("/analytics/capabilities/platforms", {
         serviceName: "@serviceName"

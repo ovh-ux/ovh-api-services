@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiAdpV6", function ($resource, $cacheFactory) {
+angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsV6", function ($resource, $cacheFactory) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiAdpV6");
-    var queryCache = $cacheFactory("OvhApiAdpV6Query");
+    var cache = $cacheFactory("OvhApiAnalyticsPlatformsV6");
+    var queryCache = $cacheFactory("OvhApiAnalyticsPlatformsV6Query");
 
     var interceptor = {
         response: function (response) {
