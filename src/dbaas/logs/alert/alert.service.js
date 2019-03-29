@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAlert", function ($in
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsAlertV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsAlertIceberg");
         }
     };
 });
