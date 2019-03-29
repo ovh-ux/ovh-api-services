@@ -1,5 +1,104 @@
 angular.module("ovh-api-services", ["ngOvhApiWrappers", "ngOvhSwimmingPoll"]);
 
+angular.module("ovh-api-services").service("OvhApiAnalytics", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Platforms: function () {
+            return $injector.get("OvhApiAnalyticsPlatforms");
+        },
+        Capabilities: function () {
+            return $injector.get("OvhApiAnalyticsCapabilities");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiAnalyticsCapabilities", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiAnalyticsCapabilitiesV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiAnalyticsCapabilitiesV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var queryCache = $cacheFactory("OvhApiAnalyticsCapabilitiesV6Query");
+
+    var adpResource = $resource("/analytics/capabilities/platforms", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache }
+    });
+
+    adpResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return adpResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiAnalyticsPlatforms", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiAnalyticsPlatformsV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiAnalyticsPlatformsV6");
+    var queryCache = $cacheFactory("OvhApiAnalyticsPlatformsV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var adpResource = $resource("/analytics/platforms/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        deploy: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        getActivity: {
+            url: "/analytics/platforms/{serviceName}/activity",
+            method: "GET",
+            cache: cache
+        },
+        getNodes: {
+            url: "/analytics/platforms/{serviceName}/nodes",
+            method: "GET",
+            cache: cache
+        },
+        getStatus: {
+            url: "/analytics/platforms/{serviceName}/status",
+            method: "GET",
+            interceptor: interceptor
+        }
+    });
+
+    adpResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    adpResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return adpResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiAuth", ["$injector", function ($injector) {
     "use strict";
     return {
@@ -744,14 +843,22 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Volume: function () {
             return $injector.get("OvhApiCloudProjectVolume");
+        },
+        Network: function () {
+            return $injector.get("OvhApiCloudProjectNetwork");
+        },
+        Quota: function () {
+            return $injector.get("OvhApiCloudProjectQuota");
         }
     };
 
 }]);
 
-angular.module("ovh-api-services").service("OvhApiCloudProjectV6", ["$resource", "$q", "OvhApiCloudProject", function ($resource, $q, OvhApiCloudProject) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectV6", ["$cacheFactory", "$resource", "$q", "OvhApiCloudProject", function ($cacheFactory, $resource, $q, OvhApiCloudProject) {
 
     "use strict";
+
+    var queryCache = $cacheFactory("OvhApiCloudProjectV6Query");
 
     var interceptor = {
         response: function (response) {
@@ -763,6 +870,11 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", ["$resource",
     var cloudProject = $resource("/cloud/project/:serviceName", {
         serviceName: "@serviceName"
     }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
         get: {
             method: "GET",
             cache: OvhApiCloudProject.cache
@@ -832,6 +944,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", ["$resource",
 
     cloudProject.resetQueryCache = function () {
         OvhApiCloudProject.resetCache();
+    };
+
+    cloudProject.resetQueryCache = function () {
+        queryCache.removeAll();
     };
 
     return cloudProject;
