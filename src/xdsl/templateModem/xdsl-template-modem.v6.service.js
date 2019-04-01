@@ -15,16 +15,16 @@ angular.module("ovh-api-services").service("OvhApiXdslTemplateModemV6", function
     var templateModemResource = $resource("/xdsl/templateModem", {
         xdslId: "@xdslId",
         name: "@name",
-        serviceName: "@serviceName",
+        serviceName: "@serviceName"
     }, {
         query: {
             method: "GET",
             isArray: true,
-            cache: queryCache,
+            cache: queryCache
         },
         get: {
             method: "GET",
-            cache: cache,
+            cache: cache
         },
         getBatch: {
             method: "GET",
@@ -41,21 +41,21 @@ angular.module("ovh-api-services").service("OvhApiXdslTemplateModemV6", function
         },
         getTemplate: {
             method: "GET",
-            url: "/xdsl/templateModem/:name",
+            url: "/xdsl/templateModem/:name"
         },
         updateTemplate: {
             method: "PUT",
             url: "/xdsl/templateModem/:name",
-            interceptor: interceptor,
+            interceptor: interceptor
         },
         deleteTemplate: {
             method: "DELETE",
             url: "/xdsl/templateModem/:name",
-            interceptor: interceptor,
+            interceptor: interceptor
         },
         applyTemplate: {
             method: "POST",
-            url: "/xdsl/:xdslId/applyTemplateToModem",
+            url: "/xdsl/:xdslId/applyTemplateToModem"
         }
     });
 
