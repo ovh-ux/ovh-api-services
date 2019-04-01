@@ -1,6 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectV6", function ($resource, $q, OvhApiCloudProject) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectV6", function ($cacheFactory, $resource, $q, OvhApiCloudProject) {
 
     "use strict";
+
+    var queryCache = $cacheFactory("OvhApiCloudProjectV6Query");
 
     var interceptor = {
         response: function (response) {
@@ -12,6 +14,11 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", function ($re
     var cloudProject = $resource("/cloud/project/:serviceName", {
         serviceName: "@serviceName"
     }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
         get: {
             method: "GET",
             cache: OvhApiCloudProject.cache
@@ -81,6 +88,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", function ($re
 
     cloudProject.resetQueryCache = function () {
         OvhApiCloudProject.resetCache();
+    };
+
+    cloudProject.resetQueryCache = function () {
+        queryCache.removeAll();
     };
 
     return cloudProject;

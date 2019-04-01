@@ -25,6 +25,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         Ip: function () {
             return $injector.get("OvhApiCloudProjectIp");
         },
+        Kube: function () {
+            return $injector.get("OvhApiCloudProjectKube");
+        },
         Region: function () {
             return $injector.get("OvhApiCloudProjectRegion");
         },
@@ -57,6 +60,12 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         },
         Volume: function () {
             return $injector.get("OvhApiCloudProjectVolume");
+        },
+        Network: function () {
+            return $injector.get("OvhApiCloudProjectNetwork");
+        },
+        Quota: function () {
+            return $injector.get("OvhApiCloudProjectQuota");
         }
     };
 

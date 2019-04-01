@@ -9,6 +9,9 @@ angular
             },
             Vps: function () {
                 return $injector.get("OvhApiOrderVps");
+            },
+            PrivateCloud: function () {
+                return $injector.get("OvhApiOrderUpgradePrivateCloud");
             }
         };
     });
