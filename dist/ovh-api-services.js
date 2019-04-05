@@ -22481,6 +22481,37 @@ angular.module("ovh-api-services").service("OvhApiTelephonyVxmlV6", ["$resource"
     });
 }]);
 
+angular.module("ovh-api-services").service("OvhApiUniversesAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiUniversesAapi");
+
+    var universesResource = $resource("/universes", {
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            serviceType: "aapi",
+            cache: cache
+        }
+    });
+
+    universesResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    return universesResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiUniverses", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiUniversesAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiValidateAapi", ["$resource", function ($resource) {
     "use strict";
 
