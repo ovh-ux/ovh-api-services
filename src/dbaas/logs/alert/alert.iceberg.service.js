@@ -6,11 +6,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAlertIceberg", functi
         streamId: "@streamId",
         alertId: "@alertId"
     }, {
-        query: { method: "GET", isArray: true },
-        get: { method: "GET" },
         post: { method: "POST" },
-        put: { method: "PUT" },
-        "delete": { method: "DELETE" }
+        put: { method: "PUT" }
     });
 
     return alertResource;

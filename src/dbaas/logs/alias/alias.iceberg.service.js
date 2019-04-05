@@ -8,12 +8,10 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasIceberg", functi
     }, {
         create: { method: "POST" },
         update: { method: "PUT" },
-        remove: { method: "DELETE" },
         linkStream: { method: "POST", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/stream" },
         unlinkStream: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/stream/:streamId" },
         linkIndex: { method: "POST", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index" },
-        unlinkIndex: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index/:indexId" },
-        query: { method: "GET", isArray: true }
+        unlinkIndex: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index/:indexId" }
     });
 
     return aliasResource;

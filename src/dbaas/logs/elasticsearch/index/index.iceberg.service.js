@@ -5,11 +5,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexIceberg", functi
         serviceName: "@serviceName",
         indexId: "@indexId"
     }, {
-        query: { method: "GET", isArray: true },
-        get: { method: "GET" },
         post: { method: "POST" },
-        put: { method: "PUT" },
-        "delete": { method: "DELETE" }
+        put: { method: "PUT" }
     });
 
     return index;

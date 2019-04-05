@@ -4,7 +4,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferIceberg", functi
     var offerResource = iceberg("/dbaas/logs/:serviceName/offer", {
         serviceName: "@serviceName"
     }, {
-        get: { method: "GET" },
         offerDetail: {
             url: "/dbaas/logs/offer/:offerCode",
             method: "GET"

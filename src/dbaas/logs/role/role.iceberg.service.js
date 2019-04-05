@@ -5,11 +5,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleIceberg", functio
         serviceName: "@serviceName",
         roleId: "@roleId"
     }, {
-        query: { method: "GET", isArray: true },
         getDetail: { method: "GET" },
         create: { method: "POST" },
-        update: { method: "PUT" },
-        remove: { method: "DELETE" }
+        update: { method: "PUT" }
     });
 
     return roleResource;

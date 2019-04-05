@@ -6,11 +6,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsInputIceberg", functi
         inputId: "@inputId",
         allowedNetworkId: "@allowedNetworkId"
     }, {
-        query: { method: "GET", isArray: true },
-        get: { method: "GET" },
         create: { method: "POST" },
         update: { method: "PUT" },
-        "delete": { method: "DELETE" },
         start: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/start" },
         restart: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/restart" },
         end: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/end" },

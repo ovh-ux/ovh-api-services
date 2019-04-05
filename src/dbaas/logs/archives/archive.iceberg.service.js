@@ -7,8 +7,6 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsArchiveIceberg", func
         archiveId: "@archiveId",
         expirationInSeconds: "@expirationInSeconds"
     }, {
-        query: { method: "GET", isArray: true },
-        get: { method: "GET" },
         url: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive/:archiveId/url" }
     });
 

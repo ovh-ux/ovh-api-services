@@ -5,10 +5,8 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsDashboardIceberg", fu
         serviceName: "@serviceName",
         dashboardId: "@dashboardId"
     }, {
-        query: { method: "GET", isArray: true },
         create: { method: "POST" },
         update: { method: "PUT" },
-        remove: { method: "DELETE" },
         duplicate: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId/duplicate" }
     });
 
