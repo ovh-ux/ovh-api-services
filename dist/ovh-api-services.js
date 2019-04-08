@@ -2736,12 +2736,30 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAccounting", ["$injec
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAlertIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var alertResource = iceberg("/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert/:alertId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId",
+        alertId: "@alertId"
+    }, {
+        post: { method: "POST" },
+        put: { method: "PUT" }
+    });
+
+    return alertResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsAlert", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsAlertV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsAlertIceberg");
         }
     };
 }]);
@@ -2803,15 +2821,37 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasAapi", ["$resour
 }]);
 
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    // No cache here, because items can be shared at any moment by other users
+
+    var aliasResource = iceberg("/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId", {
+        serviceName: "@serviceName"
+    }, {
+        create: { method: "POST" },
+        update: { method: "PUT" },
+        linkStream: { method: "POST", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/stream" },
+        unlinkStream: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/stream/:streamId" },
+        linkIndex: { method: "POST", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index" },
+        unlinkIndex: { method: "DELETE", url: "/dbaas/logs/:serviceName/output/elasticsearch/alias/:aliasId/index/:indexId" }
+    });
+
+    return aliasResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsAlias", ["$injector", function ($injector) {
     "use strict";
 
     return {
-        Aapi: function () {
-            return $injector.get("OvhApiDbaasLogsAliasAapi");
-        },
         v6: function () {
             return $injector.get("OvhApiDbaasLogsAliasV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsAliasIceberg");
+        },
+        Aapi: function () {
+            return $injector.get("OvhApiDbaasLogsAliasAapi");
         }
     };
 }]);
@@ -2837,12 +2877,30 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAliasV6", ["$resource
     return aliasResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsArchiveIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var archiveResource = iceberg("/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive/:archiveId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId",
+        archiveId: "@archiveId",
+        expirationInSeconds: "@expirationInSeconds"
+    }, {
+        url: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/archive/:archiveId/url" }
+    });
+
+    return archiveResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsArchive", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsArchiveV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsArchiveIceberg");
         }
     };
 }]);
@@ -2876,12 +2934,26 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsArchiveV6", ["$resour
     return archiveResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsClusterIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var clusterResource = iceberg("/dbaas/logs/:serviceName/cluster/:clusterId", {
+        serviceName: "@serviceName",
+        clusterId: "@clusterId"
+    });
+
+    return clusterResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsCluster", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsClusterV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsClusterIceberg");
         }
     };
 }]);
@@ -2977,12 +3049,30 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsDashboardAapi", ["$re
     return dashboard;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsDashboardIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var dashboardResource = iceberg("/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId", {
+        serviceName: "@serviceName",
+        dashboardId: "@dashboardId"
+    }, {
+        create: { method: "POST" },
+        update: { method: "PUT" },
+        duplicate: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId/duplicate" }
+    });
+
+    return dashboardResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsDashboard", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsDashboardV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsDashboardIceberg");
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsDashboardAapi");
@@ -3101,12 +3191,29 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexAapi", ["$resour
     return index;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsIndexIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var index = iceberg("/dbaas/logs/:serviceName/output/elasticsearch/index/:indexId", {
+        serviceName: "@serviceName",
+        indexId: "@indexId"
+    }, {
+        post: { method: "POST" },
+        put: { method: "PUT" }
+    });
+
+    return index;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsIndex", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsIndexV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsIndexIceberg");
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsIndexAapi");
@@ -3182,12 +3289,40 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsInputAapi", ["$resour
     return input;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsInputIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var inputResource = iceberg("/dbaas/logs/:serviceName/input/:inputId", {
+        serviceName: "@serviceName",
+        inputId: "@inputId",
+        allowedNetworkId: "@allowedNetworkId"
+    }, {
+        create: { method: "POST" },
+        update: { method: "PUT" },
+        start: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/start" },
+        restart: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/restart" },
+        end: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/end" },
+        logurl: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/logs/url" },
+        test: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/configtest" },
+        testResult: { method: "GET", url: "/dbaas/logs/:serviceName/input/:inputId/configtest/result" },
+        updateLogstash: { method: "PUT", url: "/dbaas/logs/:serviceName/input/:inputId/configuration/logstash" },
+        updateFlowgger: { method: "PUT", url: "/dbaas/logs/:serviceName/input/:inputId/configuration/flowgger" },
+        trustNetwork: { method: "POST", url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork" },
+        rejectNetwork: { method: "DELETE", url: "/dbaas/logs/:serviceName/input/:inputId/allowedNetwork/:allowedNetworkId" }
+    });
+
+    return inputResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsInput", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsInputV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsInputIceberg");
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsInputAapi");
@@ -3268,12 +3403,25 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsAapi", ["$resource", 
     return home;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var logsResource = iceberg("/dbaas/logs/:serviceName", {
+        serviceName: "@serviceName"
+    });
+
+    return logsResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogs", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsIceberg");
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsAapi");
@@ -3372,12 +3520,30 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsV6", ["$resource", "$
     return logsResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var offerResource = iceberg("/dbaas/logs/:serviceName/offer", {
+        serviceName: "@serviceName"
+    }, {
+        offerDetail: {
+            url: "/dbaas/logs/offer/:offerCode",
+            method: "GET"
+        }
+    });
+
+    return offerResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsOffer", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsOfferV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsOfferIceberg");
         }
     };
 }]);
@@ -3414,12 +3580,25 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOfferV6", ["$resource
     return offerResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsOperationIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var operationResource = iceberg("/dbaas/logs/:serviceName/operation/:operationId", {
+        serviceName: "@serviceName",
+        operationId: "@operationId"
+    });
+    return operationResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsOperation", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsOperationV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsOperationIceberg");
         }
     };
 }]);
@@ -3436,12 +3615,28 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOperationV6", ["$reso
     return operationResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsOptionIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var optionResource = iceberg("/dbaas/logs/:serviceName/option/{optionId}", {
+        serviceName: "@serviceName",
+        optionId: "@optionId"
+    }, {
+        terminate: { method: "POST", url: "/dbaas/logs/:serviceName/option/:optionId/terminate" }
+    });
+
+    return optionResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsOption", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsOptionV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsOptionIceberg");
         }
     };
 }]);
@@ -3484,12 +3679,32 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOptionV6", ["$resourc
     return optionResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMemberIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var memberResource = iceberg("/dbaas/logs/:serviceName/role/:roleId/member/:username", {
+        serviceName: "@serviceName",
+        roleId: "@roleId",
+        username: "@username"
+    }, {
+        query: { method: "GET", isArray: true },
+        create: { method: "POST", url: "/dbaas/logs/:serviceName/role/:roleId/member" },
+        update: { method: "PUT" },
+        remove: { method: "DELETE" }
+    });
+
+    return memberResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMember", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsRoleMemberV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsRoleMemberIceberg");
         }
     };
 }]);
@@ -3534,12 +3749,36 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleMemberV6", ["$res
     return memberResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRolePermissionIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var permissionResource = iceberg("/dbaas/logs/:serviceName/role/:roleId/permission/:permissionId", {
+        serviceName: "@serviceName",
+        roleId: "@roleId",
+        permissionId: "@permissionId"
+    }, {
+        query: { method: "GET", isArray: true },
+        getPermissionDetail: { method: "GET" },
+        addAlias: { method: "POST", url: "/dbaas/logs/:serviceName/role/:roleId/permission/alias" },
+        addIndex: { method: "POST", url: "/dbaas/logs/:serviceName/role/:roleId/permission/index" },
+        addDashboard: { method: "POST", url: "/dbaas/logs/:serviceName/role/:roleId/permission/dashboard" },
+        addStream: { method: "POST", url: "/dbaas/logs/:serviceName/role/:roleId/permission/stream" },
+        update: { method: "PUT" },
+        remove: { method: "DELETE" }
+    });
+
+    return permissionResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsRolePermission", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsRolePermissionV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsRolePermissionIceberg");
         }
     };
 }]);
@@ -3615,12 +3854,30 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", ["$resourc
     return role;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var roleResource = iceberg("/dbaas/logs/:serviceName/role/:roleId", {
+        serviceName: "@serviceName",
+        roleId: "@roleId"
+    }, {
+        getDetail: { method: "GET" },
+        create: { method: "POST" },
+        update: { method: "PUT" }
+    });
+
+    return roleResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsRoleV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsRoleIceberg");
         },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsRoleAapi");
@@ -3703,6 +3960,25 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamAapi", ["$resou
     return stream;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var streamResource = iceberg("/dbaas/logs/:serviceName/output/graylog/stream/:streamId", {
+        serviceName: "@serviceName",
+        streamId: "@streamId"
+    }, {
+        create: { method: "POST" },
+        update: { method: "PUT", url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId" },
+        notifications: {
+            method: "GET",
+            url: "/dbaas/logs/:serviceName/output/graylog/stream/:streamId/alert",
+            isArray: true
+        }
+    });
+
+    return streamResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsStream", ["$injector", function ($injector) {
     "use strict";
 
@@ -3710,7 +3986,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStream", ["$injector"
         v6: function () {
             return $injector.get("OvhApiDbaasLogsStreamV6");
         },
-
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsStreamIceberg");
+        },
         Aapi: function () {
             return $injector.get("OvhApiDbaasLogsStreamAapi");
         }
@@ -3762,11 +4040,26 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsStreamV6", ["$resourc
     return streamResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsTokensIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var tokenResource = iceberg("/dbaas/logs/:serviceName/token/:tokenId", {
+        serviceName: "@serviceName"
+    }, {
+        create: { method: "POST" }
+    });
+
+    return tokenResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsTokens", ["$injector", function ($injector) {
     "use strict";
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsTokensV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsTokensIceberg");
         }
     };
 }]);
@@ -3809,12 +4102,29 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsTokensV6", ["$resourc
     return tokenResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiDbaasLogsUserIceberg", ["iceberg", function (iceberg) {
+    "use strict";
+
+    var userResource = iceberg("/dbaas/logs/:serviceName", {
+        serviceName: "@serviceName"
+    }, {
+        me: { method: "GET" },
+        updateUser: { method: "PUT" },
+        changePassword: { method: "POST", url: "/dbaas/logs/:serviceName/user/changePassword" }
+    });
+
+    return userResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiDbaasLogsUser", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsUserV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsUserIceberg");
         }
     };
 }]);
