@@ -24180,6 +24180,32 @@ angular.module("ovh-api-services").service("OvhApiXdslEmail", ["$injector", func
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslIncident", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslIncidentV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslIncidentV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslIncidentV6");
+
+    return $resource("/xdsl/:serviceName/incident", {
+        serviceName: "@serviceName"
+    }, {
+        get: {
+            method: "GET",
+            cache: cache,
+            isArray: false
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslIpsAapi", ["$resource", "OvhApiXdslIps", function ($resource, OvhApiXdslIps) {
     "use strict";
 
@@ -25552,6 +25578,9 @@ angular.module("ovh-api-services").service("OvhApiXdsl", ["$injector", "$cacheFa
         },
         Email: function () {
             return $injector.get("OvhApiXdslEmail");
+        },
+        Incident: function () {
+            return $injector.get("OvhApiXdslIncident");
         },
         Lines: function () {
             return $injector.get("OvhApiXdslLines");
