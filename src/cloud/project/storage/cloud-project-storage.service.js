@@ -5,7 +5,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectStorage", function
         v6: function () {
             return $injector.get("OvhApiCloudProjectStorageV6");
         },
-        aapi: function () {
+        Aapi: function () {
             return $injector.get("OvhApiCloudProjectStorageAapi");
         }
     };
