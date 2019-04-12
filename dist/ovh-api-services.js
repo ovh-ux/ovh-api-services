@@ -2261,12 +2261,32 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectStackV6", ["$resou
     return stack;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiCloudProjectStorageAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    var storages = $resource("/cloud/project/:serviceName/storages", {
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            serviceType: "aapi",
+            archive: "@archive",
+            isArray: true
+        }
+    });
+
+    return storages;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectStorage", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiCloudProjectStorageV6");
+        },
+        Aapi: function () {
+            return $injector.get("OvhApiCloudProjectStorageAapi");
         }
     };
 
