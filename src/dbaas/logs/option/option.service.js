@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiDbaasLogsOption", function ($i
     return {
         v6: function () {
             return $injector.get("OvhApiDbaasLogsOptionV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDbaasLogsOptionIceberg");
         }
     };
 });

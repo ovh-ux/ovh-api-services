@@ -16,6 +16,9 @@ angular.module("ovh-api-services").service("OvhApiXdsl", function ($injector, $c
         Email: function () {
             return $injector.get("OvhApiXdslEmail");
         },
+        Incident: function () {
+            return $injector.get("OvhApiXdslIncident");
+        },
         Lines: function () {
             return $injector.get("OvhApiXdslLines");
         },
