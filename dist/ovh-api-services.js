@@ -7279,7 +7279,8 @@ angular.module("ovh-api-services").service("OvhApiDomainConfigurationsObfuscated
         },
         put: {
             method: "PUT",
-            interceptor: interceptor
+            interceptor: interceptor,
+            isArray: true
         },
         refresh: {
             method: "POST",
