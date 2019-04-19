@@ -10620,6 +10620,9 @@ angular.module("ovh-api-services").service("OvhApiMe", ["$injector", function ($
         },
         Payment: function () {
             return $injector.get("OvhApiMePayment");
+        },
+        VoucherAccount: function () {
+            return $injector.get("OvhApiMeVoucherAccount");
         }
     };
 }]);
@@ -11374,6 +11377,46 @@ angular.module("ovh-api-services").service("OvhApiMeVipStatusV6", ["$injector", 
     var req = $resource("/me/vipStatus");
 
     return req;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeVoucherAccount", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeVoucherAccountV6");
+        },
+        Movements: function () {
+            return $injector.get("OvhApiMeVoucherAccountMovements");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeVoucherAccountV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/voucherAccount/:voucherAccountId", {
+        voucherAccountId: "@voucherAccountId"
+    });
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeVoucherAccountMovements", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiMeVoucherAccountMovementsV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiMeVoucherAccountMovementsV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/me/voucherAccount/:voucherAccountId/movements/:movementId", {
+        voucherAccountId: "@voucherAccountId",
+        movementId: "@movementId"
+    });
+
 }]);
 
 angular
