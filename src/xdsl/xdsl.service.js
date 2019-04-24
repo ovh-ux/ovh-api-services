@@ -25,6 +25,9 @@ angular.module("ovh-api-services").service("OvhApiXdsl", function ($injector, $c
         Modem: function () {
             return $injector.get("OvhApiXdslModem");
         },
+        TemplateModem: function () {
+            return $injector.get("OvhApiXdslTemplateModem");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };

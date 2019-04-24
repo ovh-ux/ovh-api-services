@@ -25606,6 +25606,87 @@ angular.module("ovh-api-services").service("OvhApiXdslTasksCurrent", ["$injector
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiXdslTemplateModem", ["$injector", "$cacheFactory", function ($injector, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslTemplateModem");
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiXdslTemplateModemV6");
+        },
+        resetCache: function () {
+            cache.removeAll();
+        },
+        cache: cache
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiXdslTemplateModemV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiXdslTemplateModemV6");
+    var queryCache = $cacheFactory("OvhApiXdslTemplateModemV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.remove(response.config.url);
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var templateModemResource = $resource("/xdsl/templateModem", {
+        xdslId: "@xdslId",
+        name: "@name",
+        serviceName: "@serviceName"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: {
+            method: "GET",
+            cache: cache
+        },
+        getBatch: {
+            method: "GET",
+            isArray: true,
+            headers: {
+                "X-Ovh-Batch": ","
+            },
+            url: "/xdsl/templateModem/:name",
+            cache: cache
+        },
+        post: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        getTemplate: {
+            method: "GET",
+            url: "/xdsl/templateModem/:name"
+        },
+        updateTemplate: {
+            method: "PUT",
+            url: "/xdsl/templateModem/:name",
+            interceptor: interceptor
+        },
+        deleteTemplate: {
+            method: "DELETE",
+            url: "/xdsl/templateModem/:name",
+            interceptor: interceptor
+        }
+    });
+
+    templateModemResource.resetAllCache = function () {
+        cache.removeAll();
+        queryCache.removeAll();
+    };
+
+    return templateModemResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiXdslAapi", ["$resource", "OvhApiXdsl", function ($resource, OvhApiXdsl) {
     "use strict";
 
@@ -25651,6 +25732,9 @@ angular.module("ovh-api-services").service("OvhApiXdsl", ["$injector", "$cacheFa
         },
         Modem: function () {
             return $injector.get("OvhApiXdslModem");
+        },
+        TemplateModem: function () {
+            return $injector.get("OvhApiXdslTemplateModem");
         },
         resetCache: cache.removeAll,
         cache: cache
@@ -25738,6 +25822,10 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", ["$resource", "OvhApi
             getTask: {
                 method: "GET",
                 url: "/xdsl/:xdslId/tasks/:taskId"
+            },
+            applyTemplate: {
+                method: "POST",
+                url: "/xdsl/:xdslId/applyTemplateToModem"
             }
         }
     );
