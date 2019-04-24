@@ -2684,6 +2684,9 @@ angular.module("ovh-api-services").service("OvhApiConnectivityEligibility", ["$i
         v6: function () {
             return $injector.get("OvhApiConnectivityEligibilityV6");
         },
+        Search: function () {
+            return $injector.get("OvhApiConnectivityEligibilitySearch");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
@@ -2698,6 +2701,40 @@ angular.module("ovh-api-services").service("OvhApiConnectivityEligibilityV6", ["
             method: "POST",
             isArray: false,
             cache: OvhApiConnectivityEligibility.cache
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiConnectivityEligibilitySearch", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiConnectivityEligibilitySearchV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiConnectivityEligibilitySearchV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/connectivity/eligibility/search", {
+    }, {
+        getCities: {
+            url: "/connectivity/eligibility/search/cities",
+            method: "POST",
+            isArray: false,
+            params: {
+                zipCode: "@zipCode"
+            }
+        },
+        getStreets: {
+            url: "/connectivity/eligibility/search/streets",
+            method: "POST",
+            isArray: false,
+            params: {
+                inseeCode: "@inseeCode"
+            }
         }
     });
 }]);

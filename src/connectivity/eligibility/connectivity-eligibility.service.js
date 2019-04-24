@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiConnectivityEligibility", func
         v6: function () {
             return $injector.get("OvhApiConnectivityEligibilityV6");
         },
+        Search: function () {
+            return $injector.get("OvhApiConnectivityEligibilitySearch");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
