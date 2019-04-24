@@ -52,10 +52,6 @@ angular.module("ovh-api-services").service("OvhApiXdslTemplateModemV6", function
             method: "DELETE",
             url: "/xdsl/templateModem/:name",
             interceptor: interceptor
-        },
-        applyTemplate: {
-            method: "POST",
-            url: "/xdsl/:xdslId/applyTemplateToModem"
         }
     });
 

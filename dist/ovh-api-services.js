@@ -25676,10 +25676,6 @@ angular.module("ovh-api-services").service("OvhApiXdslTemplateModemV6", ["$resou
             method: "DELETE",
             url: "/xdsl/templateModem/:name",
             interceptor: interceptor
-        },
-        applyTemplate: {
-            method: "POST",
-            url: "/xdsl/:xdslId/applyTemplateToModem"
         }
     });
 
@@ -25826,6 +25822,10 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", ["$resource", "OvhApi
             getTask: {
                 method: "GET",
                 url: "/xdsl/:xdslId/tasks/:taskId"
+            },
+            applyTemplate: {
+                method: "POST",
+                url: "/xdsl/:xdslId/applyTemplateToModem"
             }
         }
     );

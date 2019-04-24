@@ -79,6 +79,10 @@ angular.module("ovh-api-services").service("OvhApiXdslV6", function ($resource, 
             getTask: {
                 method: "GET",
                 url: "/xdsl/:xdslId/tasks/:taskId"
+            },
+            applyTemplate: {
+                method: "POST",
+                url: "/xdsl/:xdslId/applyTemplateToModem"
             }
         }
     );
