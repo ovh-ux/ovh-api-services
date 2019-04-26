@@ -10,6 +10,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectInstance", functio
         Aapi: function () {
             return $injector.get("OvhApiCloudProjectInstanceAapi");
         },
+        Interface: function () {
+            return $injector.get("OvhApiCloudProjectInstanceInterface");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };
