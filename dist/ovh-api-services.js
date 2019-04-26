@@ -2720,7 +2720,7 @@ angular.module("ovh-api-services").service("OvhApiConnectivityEligibilitySearchV
 
     return $resource("/connectivity/eligibility/search", {
     }, {
-        getCities: {
+        searchCities: {
             url: "/connectivity/eligibility/search/cities",
             method: "POST",
             isArray: false,
@@ -2728,7 +2728,7 @@ angular.module("ovh-api-services").service("OvhApiConnectivityEligibilitySearchV
                 zipCode: "@zipCode"
             }
         },
-        getStreets: {
+        searchStreets: {
             url: "/connectivity/eligibility/search/streets",
             method: "POST",
             isArray: false,
