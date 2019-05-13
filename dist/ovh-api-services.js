@@ -1684,10 +1684,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKube", ["$injector
             return $injector.get("OvhApiCloudProjectKubeAapi");
         },
         v6: function () {
-            $injector.get("OvhApiCloudProjectKubeV6");
+            return $injector.get("OvhApiCloudProjectKubeV6");
         },
         Node: function () {
-            $injector.get("OvhApiCloudProjectKubeNode");
+            return $injector.get("OvhApiCloudProjectKubeNode");
         }
     };
 
@@ -1701,7 +1701,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeV6", ["$cacheF
 
     var interceptor = {
         response: function (response) {
-            cache.remove(response.config.url);
+            cache.removeAll();
             queryCache.removeAll();
             return response.resource;
         }
@@ -1728,10 +1728,19 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeV6", ["$cacheF
             method: "DELETE",
             interceptor: interceptor
         },
+        getRegions: {
+            url: "/cloud/project/:serviceName/kube/regions",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+
+        // POST that acts like a GET
         getKubeConfig: {
             url: "/cloud/project/:serviceName/kube/:kubeId/kubeconfig",
-            method: "GET",
-            cache: cache
+            method: "POST",
+            cache: cache,
+            hasBody: false
         },
         reset: {
             url: "/cloud/project/:serviceName/kube/:kubeId/reset",
