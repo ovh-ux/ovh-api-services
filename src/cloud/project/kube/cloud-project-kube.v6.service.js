@@ -6,7 +6,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeV6", function 
 
     var interceptor = {
         response: function (response) {
-            cache.remove(response.config.url);
+            cache.removeAll();
             queryCache.removeAll();
             return response.resource;
         }
