@@ -33,6 +33,13 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeV6", function 
             method: "DELETE",
             interceptor: interceptor
         },
+        getRegions: {
+            url: "/cloud/project/:serviceName/kube/regions",
+            method: "GET",
+            cache: cache,
+            isArray: true
+        },
+
         // POST that acts like a GET
         getKubeConfig: {
             url: "/cloud/project/:serviceName/kube/:kubeId/kubeconfig",
