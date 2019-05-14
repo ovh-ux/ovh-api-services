@@ -6,7 +6,7 @@ angular.module("ovh-api-services").service("OvhApiKubePublicCloudProjectV6", fun
     var projectResource = $resource("/kube/:serviceName/publiccloud/project", {
         serviceName: "@serviceName"
     }, {
-        query: { method: "GET", isArray: true, cache: queryCache }
+        query: { method: "GET", cache: queryCache }
     });
 
     projectResource.resetQueryCache = function () {
