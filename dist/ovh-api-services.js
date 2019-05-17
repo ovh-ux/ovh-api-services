@@ -15084,6 +15084,26 @@ angular.module("ovh-api-services").service("OvhApiScreenshot", ["$injector", "$c
     };
 }]);
 
+angular.module("ovh-api-services").service("OvhApiServiceAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/service", {}, {
+        query: {
+            isArray: true,
+            serviceType: "aapi"
+        }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiService", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiServiceAapi");
+        }
+    };
+}]);
+
 angular.module("ovh-api-services").service("OvhApiServicesAapi", ["$resource", function ($resource) {
     "use strict";
 
