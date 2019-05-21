@@ -12,7 +12,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjContainerRegistryUser
         }
     };
 
-    var usersResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID/users/userID", {
+    var usersResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID/users/:userID", {
         serviceName: "@serviceName",
         registryID: "@registryID",
         usersID: "@userID"
