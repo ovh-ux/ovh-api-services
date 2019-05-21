@@ -12,10 +12,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjContainerRegistryUser
         }
     };
 
-    var usersResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryId", {
+    var usersResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID/users/userID", {
         serviceName: "@serviceName",
-        registryID: "@registryId",
-        usersID: "@userId",
+        registryID: "@registryID",
+        usersID: "@userID"
     }, {
         query: { method: "GET", isArray: true, cache: queryCache },
         get: { method: "GET", cache: cache },
@@ -26,7 +26,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjContainerRegistryUser
         "delete": {
             method: "DELETE",
             interceptor: interceptor
-        },
+        }
     });
 
     usersResource.resetCache = function () {
