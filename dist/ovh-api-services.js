@@ -1750,7 +1750,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectKubeV6", ["$cacheF
         updateVersion: {
             url: "/cloud/project/:serviceName/kube/:kubeId/update",
             method: "POST",
-            interceptor: interceptor
+            interceptor: interceptor,
+            hasBody: false
         },
         updatePolicy: {
             url: "/cloud/project/:serviceName/kube/:kubeId/updatePolicy",
