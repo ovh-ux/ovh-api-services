@@ -33,6 +33,7 @@ angular.module("ovh-api-services").service("OvhApiMeOrderV6", function ($resourc
         },
         getDetails: { method: "GET", url: "/me/order/:orderId/details", cache: queryCache, isArray: true },
         getDetail: { method: "GET", url: "/me/order/:orderId/details/:detailId", params: { orderId: "@orderId", detailId: "@detailId" }, cache: queryCache },
+        pay: { method: "POST", url: "/me/order/:orderId/pay", interceptor: interceptor },
         payRegisteredPaymentMean: { method: "POST", url: "/me/order/:orderId/payWithRegisteredPaymentMean", interceptor: interceptor },
         associatedObject: { method: "GET", url: "/me/order/:orderId/associatedObject" }
     });
