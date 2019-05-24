@@ -849,6 +849,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", ["$injector", "
         },
         Quota: function () {
             return $injector.get("OvhApiCloudProjectQuota");
+        },
+        ContainerRegistry: function () {
+            return $injector.get("OvhApiCloudProjectContainerRegistry");
         }
     };
 
@@ -1017,6 +1020,120 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectConsumptionV6", ["
     };
 
     return cloudProjectConsumptionResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistry", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectContainerRegistryV6");
+        },
+        Users: function () {
+            return $injector.get("OvhApiCloudProjectContainerRegistryUsers");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiCloudProjectContainerRegistryV6");
+    var queryCache = $cacheFactory("OvhApiCloudProjectContainerRegistryV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var registryResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID", {
+        serviceName: "@serviceName",
+        registryID: "@registryID"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        create: {
+            method: "POST",
+            interceptor: interceptor
+        },
+        update: {
+            method: "PUT",
+            interceptor: interceptor,
+            params: {
+                name: "@name"
+            }
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        }
+    });
+
+    registryResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    registryResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return registryResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryUsers", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiCloudProjectContainerRegistryUsersV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryUsersV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiCloudProjectContainerRegistryUsersV6");
+    var queryCache = $cacheFactory("OvhApiCloudProjectContainerRegistryUsersV6Query");
+
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            queryCache.removeAll();
+            return response.resource;
+        }
+    };
+
+    var usersResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID/users/:userID", {
+        serviceName: "@serviceName",
+        registryID: "@registryID",
+        usersID: "@userID"
+    }, {
+        query: { method: "GET", isArray: true, cache: queryCache },
+        get: { method: "GET", cache: cache },
+        create: {
+            method: "POST",
+            interceptor: interceptor,
+            hasBody: false
+        },
+        "delete": {
+            method: "DELETE",
+            interceptor: interceptor
+        }
+    });
+
+    usersResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    usersResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return usersResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiCloudProjectCreditAapi", ["$resource", "OvhApiCloudProjectCredit", function ($resource, OvhApiCloudProjectCredit) {
