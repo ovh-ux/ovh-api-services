@@ -21,7 +21,8 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryU
         get: { method: "GET", cache: cache },
         create: {
             method: "POST",
-            interceptor: interceptor
+            interceptor: interceptor,
+            hasBody: false
         },
         "delete": {
             method: "DELETE",
