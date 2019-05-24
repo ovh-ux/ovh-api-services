@@ -1,8 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjContainerRegistryUsersV6", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryUsersV6", function ($cacheFactory, $resource) {
     "use strict";
 
-    var cache = $cacheFactory("OvhApiCloudProjContainerRegistryUsersV6");
-    var queryCache = $cacheFactory("OvhApiCloudProjContainerRegistryUsersV6Query");
+    var cache = $cacheFactory("OvhApiCloudProjectContainerRegistryUsersV6");
+    var queryCache = $cacheFactory("OvhApiCloudProjectContainerRegistryUsersV6Query");
 
     var interceptor = {
         response: function (response) {

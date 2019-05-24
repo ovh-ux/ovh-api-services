@@ -3,9 +3,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistry"
 
     return {
         v6: function () {
-            return $injector.get("OvhApiCloudProjContainerRegistryV6");
+            return $injector.get("OvhApiCloudProjectContainerRegistryV6");
         },
-        users: function () {
+        Users: function () {
             return $injector.get("OvhApiCloudProjContainerRegistryUsers");
         },
     };
