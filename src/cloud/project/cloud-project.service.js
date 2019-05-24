@@ -69,7 +69,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         },
         ContainerRegistry: function () {
             return $injector.get("OvhApiCloudProjectContainerRegistry");
-        },
+        }
     };
 
 });
