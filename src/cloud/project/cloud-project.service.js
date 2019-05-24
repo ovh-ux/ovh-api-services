@@ -66,6 +66,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProject", function ($inje
         },
         Quota: function () {
             return $injector.get("OvhApiCloudProjectQuota");
+        },
+        ContainerRegistry: function () {
+            return $injector.get("OvhApiCloudProjectContainerRegistry");
         }
     };
 
