@@ -1510,8 +1510,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectInstanceV6", ["$re
         },
         applicationAccess: {
             url: "/cloud/project/:serviceName/instance/:instanceId/applicationAccess",
-            method: "POST",
-            isArray: true
+            method: "POST"
         },
         resize: {
             url: "/cloud/project/:serviceName/instance/:instanceId/resize",
