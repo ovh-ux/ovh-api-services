@@ -15,26 +15,34 @@ angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsV6", functio
     var adpResource = $resource("/analytics/platforms/:serviceName", {
         serviceName: "@serviceName"
     }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
         get: { method: "GET", cache: cache },
         deploy: {
+            url: "/analytics/platforms/:serviceName/deploy",
             method: "POST",
             interceptor: interceptor
         },
         getActivity: {
-            url: "/analytics/platforms/{serviceName}/activity",
+            url: "/analytics/platforms/:serviceName/activity",
             method: "GET",
+            isArray: true,
             cache: cache
         },
         getNodes: {
-            url: "/analytics/platforms/{serviceName}/nodes",
+            url: "/analytics/platforms/:serviceName/nodes",
             method: "GET",
+            isArray: true,
             cache: cache
         },
         getStatus: {
-            url: "/analytics/platforms/{serviceName}/status",
+            url: "/analytics/platforms/:serviceName/status",
             method: "GET",
-            interceptor: interceptor
+            isArray: true,
+            cache: cache
         }
     });
 
