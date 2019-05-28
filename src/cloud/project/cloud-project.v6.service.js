@@ -47,6 +47,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectV6", function ($ca
             url: "/cloud/project/:serviceName/vrack",
             method: "GET"
         },
+        role: {
+            url: "/cloud/project/:serviceName/role",
+            method: "GET"
+        },
         createVrack: {
             url: "/cloud/project/:serviceName/vrack",
             method: "POST",

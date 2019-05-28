@@ -8,6 +8,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectUser", function ($
         },
         Aapi: function () {
             return $injector.get("OvhApiCloudProjectUserAapi");
+        },
+        Role: function () {
+            return $injector.get("OvhApiCloudProjectUserRole");
         }
     };
 
