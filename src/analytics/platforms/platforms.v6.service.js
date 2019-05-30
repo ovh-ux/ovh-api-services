@@ -32,17 +32,10 @@ angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsV6", functio
             isArray: true,
             cache: cache
         },
-        getNodes: {
-            url: "/analytics/platforms/:serviceName/nodes",
-            method: "GET",
-            isArray: true,
-            cache: cache
-        },
         getStatus: {
             url: "/analytics/platforms/:serviceName/status",
             method: "GET",
-            isArray: true,
-            cache: cache
+            isArray: true
         }
     });
 
