@@ -39,11 +39,52 @@ angular.module("ovh-api-services").service("OvhApiAnalyticsCapabilitiesV6", ["$r
     return adpResource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsNode", ["$injector", function ($injector) {
+    "use strict";
+    return {
+        v6: function () {
+            return $injector.get("OvhApiAnalyticsPlatformsNodeV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsNodeV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+    "use strict";
+
+    var cache = $cacheFactory("OvhApiAnalyticsPlatformsNodeV6");
+    var queryCache = $cacheFactory("OvhApiAnalyticsPlatformsNodeV6Query");
+
+    var adpResource = $resource("/analytics/platforms/:serviceName/nodes/:nodeId", {
+        serviceName: "@serviceName",
+        nodeId: "@nodeId"
+    }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache
+        },
+        get: { method: "GET", cache: cache }
+    });
+
+    adpResource.resetCache = function () {
+        cache.removeAll();
+    };
+
+    adpResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return adpResource;
+}]);
+
 angular.module("ovh-api-services").service("OvhApiAnalyticsPlatforms", ["$injector", function ($injector) {
     "use strict";
     return {
         v6: function () {
             return $injector.get("OvhApiAnalyticsPlatformsV6");
+        },
+        Node: function () {
+            return $injector.get("OvhApiAnalyticsPlatformsNode");
         }
     };
 }]);
@@ -82,17 +123,10 @@ angular.module("ovh-api-services").service("OvhApiAnalyticsPlatformsV6", ["$reso
             isArray: true,
             cache: cache
         },
-        getNodes: {
-            url: "/analytics/platforms/:serviceName/nodes",
-            method: "GET",
-            isArray: true,
-            cache: cache
-        },
         getStatus: {
             url: "/analytics/platforms/:serviceName/status",
             method: "GET",
-            isArray: true,
-            cache: cache
+            isArray: true
         }
     });
 
