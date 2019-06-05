@@ -23,6 +23,11 @@ angular.module("ovh-api-services").service("OvhApiMeV6", function ($resource, $c
             method: "GET",
             url: "/me/consumption/usage/history",
             isArray: true
+        },
+        supportLevel: {
+            method: "GET",
+            url: "/me/supportLevel",
+            isArray: false
         }
     });
 
