@@ -11099,6 +11099,11 @@ angular.module("ovh-api-services").service("OvhApiMeV6", ["$resource", "$cacheFa
             method: "GET",
             url: "/me/consumption/usage/history",
             isArray: true
+        },
+        supportLevel: {
+            method: "GET",
+            url: "/me/supportLevel",
+            isArray: false
         }
     });
 
