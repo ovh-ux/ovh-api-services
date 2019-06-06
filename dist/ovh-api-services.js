@@ -10026,12 +10026,22 @@ angular.module("ovh-api-services").service("OvhApiMeAgreements", ["$injector", f
 
 }]);
 
-angular.module("ovh-api-services").service("OvhApiMeAgreementsV6", ["$resource", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiMeAgreementsV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
-    return $resource("/me/agreements/:id", {
+    var queryCache = $cacheFactory("OvhApiMeAgreementsV6Query");
+
+    var agreementResource = $resource("/me/agreements/:id", {
         id: "@id"
     }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache,
+            params: {
+                contractId: "@contractId"
+            }
+        },
         accept: {
             url: "/me/agreements/:id/accept",
             method: "POST"
@@ -10041,6 +10051,12 @@ angular.module("ovh-api-services").service("OvhApiMeAgreementsV6", ["$resource",
             method: "GET"
         }
     });
+
+    agreementResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return agreementResource;
 }]);
 
 angular.module("ovh-api-services").service("OvhApiMeAlertsAapi", ["$resource", function ($resource) {
