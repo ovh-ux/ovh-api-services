@@ -26,6 +26,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloud", function ($in
         Option: function () {
             return $injector.get("OvhApiDedicatedCloudOption");
         },
+        ServicePacks: function () {
+            return $injector.get("OvhApiDedicatedCloudServicePacks");
+        },
         Task: function () {
             return $injector.get("OvhApiDedicatedCloudTask");
         },
