@@ -1,9 +1,19 @@
-angular.module("ovh-api-services").service("OvhApiMeAgreementsV6", function ($resource) {
+angular.module("ovh-api-services").service("OvhApiMeAgreementsV6", function ($resource, $cacheFactory) {
     "use strict";
 
-    return $resource("/me/agreements/:id", {
+    var queryCache = $cacheFactory("OvhApiMeAgreementsV6Query");
+
+    var agreementResource = $resource("/me/agreements/:id", {
         id: "@id"
     }, {
+        query: {
+            method: "GET",
+            isArray: true,
+            cache: queryCache,
+            params: {
+                contractId: "@contractId"
+            }
+        },
         accept: {
             url: "/me/agreements/:id/accept",
             method: "POST"
@@ -13,4 +23,10 @@ angular.module("ovh-api-services").service("OvhApiMeAgreementsV6", function ($re
             method: "GET"
         }
     });
+
+    agreementResource.resetQueryCache = function () {
+        queryCache.removeAll();
+    };
+
+    return agreementResource;
 });
