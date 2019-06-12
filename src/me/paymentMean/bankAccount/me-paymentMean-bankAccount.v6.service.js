@@ -11,6 +11,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccountV6", f
         chooseAsDefaultPaymentMean: {
             method: "POST",
             url: "/me/paymentMean/bankAccount/:id/chooseAsDefaultPaymentMean"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/paymentMean/bankAccount/:id/challenge"
         }
     });
 
