@@ -6520,16 +6520,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZerto"
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoV6", ["$resource", function ($resource) {
     "use strict";
-
-    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterZertoV6");
-    var interceptor = {
-        response: function (response) {
-            cache.removeAll();
-            return response;
-        }
-    };
 
     var zertoResource = $resource("/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto", {
         serviceName: "@serviceName",
@@ -6537,23 +6529,19 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoV
     }, {
         disable: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/disable",
-            method: "POST",
-            interceptor: interceptor
+            method: "POST"
         },
         enable: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/enable",
-            method: "POST",
-            interceptor: interceptor
+            method: "POST"
         },
         generateZsspPassword: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/generateZsspPassword",
-            method: "POST",
-            interceptor: interceptor
+            method: "POST"
         },
         state: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zerto/state",
-            method: "POST",
-            interceptor: interceptor
+            method: "POST"
         }
     });
 
@@ -6570,16 +6558,8 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoS
     };
 }]);
 
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoSingleV6", ["$cacheFactory", "$resource", function ($cacheFactory, $resource) {
+angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoSingleV6", ["$resource", function ($resource) {
     "use strict";
-
-    var cache = $cacheFactory("OvhApiDedicatedCloudDatacenterZertoSingleV6");
-    var interceptor = {
-        response: function (response) {
-            cache.removeAll();
-            return response;
-        }
-    };
 
     var zertoSingleResource = $resource("/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle", {
         serviceName: "@serviceName",
@@ -6587,13 +6567,19 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoS
     }, {
         disable: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/disable",
-            method: "POST",
-            interceptor: interceptor
+            method: "POST"
         },
         enable: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/enable",
-            method: "POST",
-            interceptor: interceptor
+            method: "POST"
+        },
+        configureVpn: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/configureVpn",
+            method: "POST"
+        },
+        getDefaultLocalVraNetwork: {
+            url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/defaultLocalVraNetwork",
+            method: "GET"
         }
     });
 
