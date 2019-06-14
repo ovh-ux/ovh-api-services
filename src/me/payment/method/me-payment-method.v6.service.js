@@ -15,6 +15,10 @@ angular.module("ovh-api-services").service("OvhApiMePayMethodV6", function ($res
         },
         edit: {
             method: "PUT"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/payment/method/:paymentMethodId/challenge"
         }
     });
 });

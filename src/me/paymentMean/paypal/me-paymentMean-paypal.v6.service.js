@@ -10,6 +10,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypalV6", functi
         chooseAsDefaultPaymentMean: {
             method: "POST",
             url: "/me/paymentMean/paypal/:id/chooseAsDefaultPaymentMean"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/paymentMean/paypal/:id/challenge"
         }
     });
 
