@@ -11401,6 +11401,10 @@ angular.module("ovh-api-services").service("OvhApiMePayMethodV6", ["$resource", 
         },
         edit: {
             method: "PUT"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/payment/method/:paymentMethodId/challenge"
         }
     });
 }]);
@@ -11447,6 +11451,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanBankAccountV6", [
         chooseAsDefaultPaymentMean: {
             method: "POST",
             url: "/me/paymentMean/bankAccount/:id/chooseAsDefaultPaymentMean"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/paymentMean/bankAccount/:id/challenge"
         }
     });
 
@@ -11493,6 +11501,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanCreditCardV6", ["
         chooseAsDefaultPaymentMean: {
             method: "POST",
             url: "/me/paymentMean/creditCard/:id/chooseAsDefaultPaymentMean"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/paymentMean/creditCard/:id/challenge"
         }
     });
 
@@ -11630,6 +11642,10 @@ angular.module("ovh-api-services").service("OvhApiMePaymentMeanPaypalV6", ["$res
         chooseAsDefaultPaymentMean: {
             method: "POST",
             url: "/me/paymentMean/paypal/:id/chooseAsDefaultPaymentMean"
+        },
+        challenge: {
+            method: "POST",
+            url: "/me/paymentMean/paypal/:id/challenge"
         }
     });
 
