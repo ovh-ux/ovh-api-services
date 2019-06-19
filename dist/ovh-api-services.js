@@ -6593,7 +6593,17 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoS
         },
         getDefaultLocalVraNetwork: {
             url: "/dedicatedCloud/:serviceName/datacenter/:datacenterId/disasterRecovery/zertoSingle/defaultLocalVraNetwork",
-            method: "GET"
+            method: "GET",
+            transformResponse: function (resp, headers, status) {
+                var data = resp;
+
+                if (status === 200) {
+                    data = {
+                        value: angular.fromJson(data)
+                    };
+                }
+                return data;
+            }
         }
     });
 
