@@ -6,16 +6,13 @@ angular
         var queryCache = $cacheFactory("OvhApiDedicatedCloudServicePacksV6Query");
         var cache = $cacheFactory("OvhApiDedicatedCloudServicePacksV6");
 
-        var servicePacksResource = $resource("/dedicatedCloud/:serviceName/servicePacks", {
+        var servicePacksResource = $resource("/dedicatedCloud/:serviceName/servicePacks/:name", {
+            name: "@name",
             serviceName: "@serviceName"
         }, {
             get: {
                 cache: cache,
-                method: "GET",
-                params: {
-                    name: "@name"
-                },
-                url: "/dedicatedCloud/:serviceName/servicePacks/:name"
+                method: "GET"
             },
             query: {
                 cache: queryCache,
