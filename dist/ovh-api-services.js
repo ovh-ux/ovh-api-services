@@ -7152,16 +7152,13 @@ angular
         var queryCache = $cacheFactory("OvhApiDedicatedCloudServicePacksV6Query");
         var cache = $cacheFactory("OvhApiDedicatedCloudServicePacksV6");
 
-        var servicePacksResource = $resource("/dedicatedCloud/:serviceName/servicePacks", {
+        var servicePacksResource = $resource("/dedicatedCloud/:serviceName/servicePacks/:name", {
+            name: "@name",
             serviceName: "@serviceName"
         }, {
             get: {
                 cache: cache,
-                method: "GET",
-                params: {
-                    name: "@name"
-                },
-                url: "/dedicatedCloud/:serviceName/servicePacks/:name"
+                method: "GET"
             },
             query: {
                 cache: queryCache,
@@ -7245,12 +7242,27 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudTaskV6", ["$reso
     return taskResource;
 }]);
 
+angular
+    .module("ovh-api-services")
+    .service("OvhApiDedicatedCloudUserIceberg", ["iceberg", function (iceberg) {
+        "use strict";
+
+        var userResource = iceberg("/dedicatedCloud/:serviceName/user/", {
+            serviceName: "@serviceName"
+        });
+
+        return userResource;
+    }]);
+
 angular.module("ovh-api-services").service("OvhApiDedicatedCloudUser", ["$injector", function ($injector) {
     "use strict";
 
     return {
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudUserV6");
+        },
+        Iceberg: function () {
+            return $injector.get("OvhApiDedicatedCloudUserIceberg");
         },
         ObjectRight: function () {
             return $injector.get("OvhApiDedicatedCloudUserObjectRight");
