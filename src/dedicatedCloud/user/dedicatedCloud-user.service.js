@@ -5,6 +5,9 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudUser", function 
         v6: function () {
             return $injector.get("OvhApiDedicatedCloudUserV6");
         },
+        Iceberg: function () {
+            return $injector.get("OvhApiDedicatedCloudUserIceberg");
+        },
         ObjectRight: function () {
             return $injector.get("OvhApiDedicatedCloudUserObjectRight");
         },
