@@ -11295,7 +11295,8 @@ angular.module("ovh-api-services").service("OvhApiMeOrderV6", ["$resource", "$ca
         getDetail: { method: "GET", url: "/me/order/:orderId/details/:detailId", params: { orderId: "@orderId", detailId: "@detailId" }, cache: queryCache },
         pay: { method: "POST", url: "/me/order/:orderId/pay", interceptor: interceptor },
         payRegisteredPaymentMean: { method: "POST", url: "/me/order/:orderId/payWithRegisteredPaymentMean", interceptor: interceptor },
-        associatedObject: { method: "GET", url: "/me/order/:orderId/associatedObject" }
+        associatedObject: { method: "GET", url: "/me/order/:orderId/associatedObject" },
+        bill: { method: "GET", url: "/me/order/:orderId/bill" }
     });
 
     userOrderResource.resetAllCache = function () {
