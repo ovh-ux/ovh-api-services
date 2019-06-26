@@ -2951,7 +2951,12 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectUserRoleV6", ["$re
         query: { method: "GET", cache: queryCache, isArray: true },
         save: { method: "POST", interceptor: interceptor },
         get: { method: "GET", cache: cache },
-        "delete": { method: "DELETE", interceptor: interceptor }
+        "delete": { method: "DELETE", interceptor: interceptor },
+        put: {
+            method: "PUT",
+            interceptor: interceptor,
+            url: "/cloud/project/:serviceName/user/:userId/role"
+        }
     });
 
     roles.resetCache = function () {
@@ -11199,7 +11204,7 @@ angular.module("ovh-api-services").service("OvhApiMeV6", ["$resource", "$cacheFa
         certificates: {
             method: "GET",
             url: "/me/certificates",
-            isArray: false
+            isArray: true
         }
     });
 
