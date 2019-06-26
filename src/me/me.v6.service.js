@@ -32,7 +32,7 @@ angular.module("ovh-api-services").service("OvhApiMeV6", function ($resource, $c
         certificates: {
             method: "GET",
             url: "/me/certificates",
-            isArray: false
+            isArray: true
         }
     });
 
