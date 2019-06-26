@@ -11195,6 +11195,11 @@ angular.module("ovh-api-services").service("OvhApiMeV6", ["$resource", "$cacheFa
             method: "GET",
             url: "/me/supportLevel",
             isArray: false
+        },
+        certificates: {
+            method: "GET",
+            url: "/me/certificates",
+            isArray: false
         }
     });
 
