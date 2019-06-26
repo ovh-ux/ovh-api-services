@@ -28,6 +28,11 @@ angular.module("ovh-api-services").service("OvhApiMeV6", function ($resource, $c
             method: "GET",
             url: "/me/supportLevel",
             isArray: false
+        },
+        certificates: {
+            method: "GET",
+            url: "/me/certificates",
+            isArray: false
         }
     });
 
