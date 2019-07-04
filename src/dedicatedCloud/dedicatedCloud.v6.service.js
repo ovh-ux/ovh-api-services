@@ -38,6 +38,11 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudV6", function ($
             method: "GET",
             cache: cache
         },
+        servicePack: {
+            url: "/dedicatedCloud/:serviceName/servicePack",
+            method: "GET",
+            cache: cache
+        },
         getGlobalTasks: {
             url: "/dedicatedCloud/:serviceName/globalTasks",
             method: "GET",
