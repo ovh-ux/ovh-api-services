@@ -44,7 +44,7 @@ angular.module("ovh-api-services").service("OvhApiFreeFaxV6", function ($resourc
 
                 if (status === 200) {
                     data = {
-                        value: angular.fromJson(data)
+                        value: data
                     };
                 }
                 return data;
@@ -72,7 +72,7 @@ angular.module("ovh-api-services").service("OvhApiFreeFaxV6", function ($resourc
 
                 if (status === 200) {
                     data = {
-                        value: angular.fromJson(data)
+                        value: data
                     };
                 }
                 return data;

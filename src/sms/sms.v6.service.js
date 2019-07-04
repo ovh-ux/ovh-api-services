@@ -52,7 +52,7 @@ angular.module("ovh-api-services").service("OvhApiSmsV6", function ($cacheFactor
             },
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    return { docId: angular.fromJson(data) };
+                    return { docId: data };
                 }
                 return data;
             }

@@ -15,7 +15,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", functio
                 var flavor = flv;
 
                 if (status === 200) {
-                    flavor = angular.fromJson(flavor); // IE11
                     flavor.typeGeneric = _.snakeCase(flavor.type);
                     flavor.groupName = flavor.name.replace(/^win\-/, "");
                 }
@@ -33,8 +32,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", functio
                 var flavors = flvs;
 
                 if (status === 200) {
-                    flavors = angular.fromJson(flavors); // IE11
-
                     angular.forEach(flavors, function (flavor) {
                         flavor.typeGeneric = _.snakeCase(flavor.type);
                         flavor.groupName = flavor.name.replace(/^win\-/, "");

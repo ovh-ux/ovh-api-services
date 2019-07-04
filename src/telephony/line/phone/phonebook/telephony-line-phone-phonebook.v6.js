@@ -32,7 +32,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhonePhonebookV6"
             interceptor: interceptor,
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    return { bookKey: angular.fromJson(data) };
+                    return { bookKey: data };
                 }
                 return null;
             }

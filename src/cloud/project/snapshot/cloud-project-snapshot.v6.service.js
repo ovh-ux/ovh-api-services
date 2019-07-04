@@ -25,7 +25,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSnapshotV6", funct
                 var snapshots = snapshotsResp;
 
                 if (status === 200) {
-                    snapshots = angular.fromJson(snapshots); // IE11
                     return _.sortBy(snapshots, "name");
                 }
                 return snapshots;

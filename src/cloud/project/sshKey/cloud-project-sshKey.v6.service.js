@@ -25,10 +25,9 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyV6", functio
                 var sshKeys = sshKeysResp;
 
                 if (status === 200) {
-                    sshKeys = angular.fromJson(sshKeys); // IE11
                     return _.sortBy(sshKeys, "name");
                 }
-                return angular.fromJson(sshKeys);
+                return sshKeys;
 
             }
         },

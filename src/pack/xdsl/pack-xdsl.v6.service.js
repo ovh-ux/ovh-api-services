@@ -28,7 +28,7 @@ angular.module("ovh-api-services").service("OvhApiPackXdslV6", function ($resour
             cache: OvhApiPackXdsl.cache,
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    var services = angular.fromJson(data);
+                    var services = data;
                     services.forEach(function (service) {
                         service.available = service.total - (service.used + service.inCreation);
                     });

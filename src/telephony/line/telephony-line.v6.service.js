@@ -154,7 +154,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineV6", function ($c
             isArray: false,
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    return { maximum: angular.fromJson(data) };
+                    return { maximum: data };
                 }
                 return data;
             }

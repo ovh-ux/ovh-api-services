@@ -41,7 +41,7 @@ angular.module("ovh-api-services").service("OvhApiSmsUsersReceiversV6", function
             cache: cache,
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    return { data: angular.fromJson(data) };
+                    return { data: data };
                 }
                 return data;
             }

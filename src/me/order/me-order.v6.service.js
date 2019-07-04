@@ -26,7 +26,7 @@ angular.module("ovh-api-services").service("OvhApiMeOrderV6", function ($resourc
              */
             transformResponse: function (response, headers, httpCode) {
                 if (httpCode === 200) {
-                    return { status: angular.fromJson(response) };
+                    return { status: response };
                 }
                 return response;
             }

@@ -25,7 +25,7 @@ angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZertoS
 
                 if (status === 200) {
                     data = {
-                        value: angular.fromJson(data)
+                        value: data
                     };
                 }
                 return data;

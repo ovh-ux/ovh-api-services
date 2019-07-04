@@ -15,7 +15,7 @@ angular.module("ovh-api-services").service("OvhApiXdslModemContentSharingV6", fu
             method: "GET",
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    return { data: angular.fromJson(data) };
+                    return { data: data };
                 }
                 return data;
             }

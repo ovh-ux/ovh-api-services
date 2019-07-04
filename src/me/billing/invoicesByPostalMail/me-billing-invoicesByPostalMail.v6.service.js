@@ -8,7 +8,7 @@ angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMailV
             transformResponse: function (data) {
                 // because $resource returns a promise due to boolean type of data
                 return {
-                    data: angular.fromJson(data)
+                    data: data
                 };
             }
         },

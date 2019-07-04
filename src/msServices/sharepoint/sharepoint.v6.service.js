@@ -23,7 +23,7 @@ angular
                 isArray: false,
                 transformResponse: function (response, headers, status) {
                     if (status === 200) {
-                        return { billingMigrated: angular.fromJson(response) };
+                        return { billingMigrated: response };
                     }
                     return response;
                 }

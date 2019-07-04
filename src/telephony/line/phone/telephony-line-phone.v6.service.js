@@ -45,7 +45,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneV6", functio
             url: "/telephony/:billingAccount/line/:serviceName/phone/supportsPhonebook",
             transformResponse: function (data, headers, status) {
                 if (status === 200) {
-                    return { data: angular.fromJson(data) };
+                    return { data: data };
                 }
                 return null;
             }

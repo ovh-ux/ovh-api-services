@@ -61,7 +61,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectImageV6", function
                 var os = operatingSystem;
 
                 if (status === 200) {
-                    os = angular.fromJson(os); // IE11
                     os.nameGeneric = _.snakeCase(os.name);
                     os.distribution = getDistribution(os.name, os.type);
                 }
@@ -76,7 +75,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectImageV6", function
                 var images = imgs;
 
                 if (status === 200) {
-                    images = angular.fromJson(images); // IE11
                     angular.forEach(images, function (os) {
                         os.nameGeneric = _.snakeCase(os.name);
                         os.distribution = getDistribution(os.name, os.type);

@@ -12,12 +12,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectAvailableRegionsV6
             cache: queryCache,
             isArray: true,
             transformResponse: function (regionsResp, headers, status) {
-                var regionsRsp = regionsResp;
                 if (status === 200) {
-                    regionsRsp = angular.fromJson(regionsRsp); // IE11
-                    return regionsRsp.sort();
+                    return regionsResp.sort();
                 }
-                return regionsRsp;
+                return regionsResp;
             }
         }
     });

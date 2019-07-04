@@ -36,7 +36,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonyLineOptionsV6", funct
             transformResponse: function (data) {
                 // because $resource returns an array of char when response is a simple string
                 return {
-                    codecs: angular.fromJson(data)
+                    codecs: data
                 };
             }
         }

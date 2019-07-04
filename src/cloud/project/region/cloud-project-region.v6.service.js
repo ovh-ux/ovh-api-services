@@ -24,7 +24,6 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", functio
                 var regionsRsp = regionsResp;
 
                 if (status === 200) {
-                    regionsRsp = angular.fromJson(regionsRsp); // IE11
                     return regionsRsp.sort();
                 }
                 return regionsRsp;
