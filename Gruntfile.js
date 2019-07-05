@@ -4,7 +4,6 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
-        bower: grunt.file.readJSON("bower.json"),
         distdir: "dist",
         srcdir: "src",
         builddir: ".work/.tmp",
@@ -76,22 +75,6 @@ module.exports = function (grunt) {
             target: ["src/**/!(*.spec|*.integration).js"]
         },
 
-        // Check complexity
-        complexity: {
-            generic: {
-                src: [
-                    "<%= srcdir %>/**/*.js",
-                    "!<%= srcdir %>/**/*.spec.js"
-                ],
-                options: {
-                    errorsOnly: false,
-                    cyclomatic: 12,
-                    halstead: 45,
-                    maintainability: 82
-                }
-            }
-        },
-
         // Watch
         delta: {
             dist: {
@@ -109,10 +92,9 @@ module.exports = function (grunt) {
             options: {
                 pushTo: "origin",
                 files: [
-                    "package.json",
-                    "bower.json"
+                    "package.json"
                 ],
-                updateConfigs: ["pkg", "bower"],
+                updateConfigs: ["pkg"],
                 commitFiles: ["-a"]
             }
         },
@@ -123,66 +105,9 @@ module.exports = function (grunt) {
                 configFile: "karma.conf.js",
                 singleRun: true
             }
-        },
-
-        // Example
-        wiredep: {
-            example: {
-                src: "example/index.html",
-                overrides: {},
-                devDependencies: true,
-                exclude: ["angular-sanitize", "angular-mocks", "angular-scenario"]
-            }
-        },
-
-        injector: {
-            example: {
-                options: {
-                    transform: function (filePath) {
-                        return '<script src="' + filePath + '" type="text/javascript"></script>';
-                    },
-                    starttag: "<!-- injector:js -->",
-                    endtag: "<!-- endinjector:js -->"
-                },
-                files: {
-                    "example/index.html": [
-                        "<%= distdir %>/<%= name %>.js",
-                        "example/<%= name %>.example.js"
-                    ]
-                }
-            },
-            exampleCss: {
-                options: {
-                    transform: function (filePath) {
-                        return '<link rel="stylesheet" href="..' + filePath + '">';
-                    },
-                    starttag: "<!-- injector:css -->",
-                    endtag: "<!-- endinjector:css -->"
-                },
-                files: {
-                    "example/index.html": [
-                        "<%= distdir %>/<%= name %>.css",
-                        "bower_components/responsive-popover/dist/responsive-popover.css",
-                        "bower_components/bootstrap/dist/css/bootstrap.css"
-                    ]
-                }
-            }
-        },
-
-        connect: {
-            options: {
-                port: 7711,
-                hostname: "*"
-            },
-            example: {
-                options: {
-                    keepalive: true
-                }
-            }
         }
-    });
 
-    grunt.registerTask("example", ["wiredep:example", "less:example", "autoprefixer:example", "injector:example", "injector:exampleCss", "connect:example"]);
+    });
 
     grunt.registerTask("default", ["build"]);
     grunt.task.renameTask("watch", "delta");
