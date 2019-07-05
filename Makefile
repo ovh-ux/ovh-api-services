@@ -2,7 +2,6 @@
 NODE=node
 NPM=npm
 GRUNT=grunt
-BOWER=bower
 GIT=git
 CD=cd
 ECHO=@echo
@@ -13,7 +12,6 @@ MV=mv
 RSYNC=rsync -av --delete --exclude=".git"
 
 #### FOLDERS ####
-BOWER_DIR=bower_components
 NODE_DIR=node_modules
 GRUNT_DEP=$(NODE_DIR)/grunt
 
@@ -22,10 +20,6 @@ GRUNT_DEP=$(NODE_DIR)/grunt
 VERSION=`grep -Po '(?<="version": ")[^"]*' package.json`
 
 #### OTHER ####
-ifneq ($(strip $(bower_registry)),)
-BOWER_PARAM=--config.registry=$(bower_registry)
-endif
-
 
 help:
 	$(ECHO) "_____________________________"
@@ -43,19 +37,17 @@ help:
 
 clean:
 	$(DEL) $(NODE_DIR)
-	$(DEL) $(BOWER_DIR)
 
 install:
 	$(NPM) install
-	$(BOWER) install --allow-root $(BOWER_PARAM)
 
 dev:
 	$(GRUNT) watch
 
-test: $(GRUNT_DEP) $(BOWER_DIR)
+test: $(GRUNT_DEP)
 	$(GRUNT) eslint
 
-build: $(GRUNT_DEP) $(BOWER_DIR)
+build: $(GRUNT_DEP)
 	$(GRUNT) build
 
 version:
@@ -67,8 +59,6 @@ release: update-release build commit-release
 #############
 # Sub tasks #
 #############
-
-$(BOWER_DIR): install
 
 $(NODE_DIR)/%: install
 	# DO NOT DELETE - this comment is needed because make does not process this step

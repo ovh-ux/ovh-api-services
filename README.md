@@ -16,16 +16,8 @@
 
 ## Installation
 
-### Download module with bower
-
 ```sh
-$ bower install ovh-api-services --save
-```
-
-### Download module with NPM
-
-```sh
-$ npm install ovh-api-services --save
+$ yarn add ovh-api-services
 ```
 
 - Add Angular dependency "ovh-api-services"
