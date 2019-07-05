@@ -47,7 +47,7 @@ clean:
 
 install:
 	$(NPM) install
-	$(BOWER) install $(BOWER_PARAM)
+	$(BOWER) install --allow-root $(BOWER_PARAM)
 
 dev:
 	$(GRUNT) watch
