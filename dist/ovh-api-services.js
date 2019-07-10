@@ -8507,11 +8507,35 @@ angular.module("ovh-api-services").service("OvhApiHostingWebSslV6", ["$resource"
     return resource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiIpDelegation", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiIpDelegationV6");
+        }
+    };
+}]);
+
+
+angular.module("ovh-api-services").service("OvhApiIpDelegationV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/ip/:ip/delegation/:target", {
+        ip: "@ip",
+        target: "@target"
+    });
+}]);
+
+
 angular.module("ovh-api-services").service("OvhApiIp", ["$injector", function ($injector) {
     "use strict";
     return {
         v6: function () {
             return $injector.get("OvhApiIpV6");
+        },
+        Delegation: function () {
+            return $injector.get("OvhApiIpDelegation");
         },
         Reverse: function () {
             return $injector.get("OvhApiIpReverse");
@@ -23704,6 +23728,29 @@ angular.module("ovh-api-services").service("OvhApiVeeamEnterpriseV6", ["$resourc
     return resource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiVpsIps", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiVpsIpsV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVpsIpsV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/vps/:serviceName/ips/:ipAddress", {
+        serviceName: "@serviceName",
+        ipAddress: "@ipAddress"
+    }, {
+        put: {
+            method: "PUT"
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiVpsAapi", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -23740,6 +23787,9 @@ angular.module("ovh-api-services").service("OvhApiVps", ["$injector", function (
         },
         Aapi: function () {
             return $injector.get("OvhApiVpsAapi");
+        },
+        Ips: function () {
+            return $injector.get("OvhApiVpsIps");
         }
     };
 
