@@ -7,6 +7,9 @@ angular.module("ovh-api-services").service("OvhApiVps", function ($injector) {
         },
         Aapi: function () {
             return $injector.get("OvhApiVpsAapi");
+        },
+        Ips: function () {
+            return $injector.get("OvhApiVpsIps");
         }
     };
 
