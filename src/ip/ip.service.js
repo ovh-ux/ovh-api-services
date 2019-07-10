@@ -4,6 +4,9 @@ angular.module("ovh-api-services").service("OvhApiIp", function ($injector) {
         v6: function () {
             return $injector.get("OvhApiIpV6");
         },
+        Delegation: function () {
+            return $injector.get("OvhApiIpDelegation");
+        },
         Reverse: function () {
             return $injector.get("OvhApiIpReverse");
         }
