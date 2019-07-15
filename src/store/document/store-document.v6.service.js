@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module("ovh-api-services").service("OvhApiStoreDocumentV6", function ($resource, $cacheFactory, $http, $q) {
     "use strict";
 
@@ -33,7 +35,7 @@ angular.module("ovh-api-services").service("OvhApiStoreDocumentV6", function ($r
     };
 
     docResource.upload = function (fileName, file, tags) {
-        var formattedTags = _.map(tags, function (v, k) {
+        var formattedTags = map(tags, function (v, k) {
             return { key: k, value: v };
         });
 

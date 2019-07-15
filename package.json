@@ -2,31 +2,30 @@
   "name": "ovh-api-services",
   "version": "7.3.0",
   "description": "Contains all angular $resource for OVH API.",
-  "main": "./dist/ovh-api-services.min.js",
   "repository": "ovh-ux/ovh-api-services",
-  "author": "OVH SAS",
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "scripts": {
-    "test": "npm run lint",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
     "lint": "eslint . --quiet --ext .js",
-    "fix": "eslint . --fix --quiet --ext .js"
-  },
-  "devDependencies": {
-    "eslint": "^4.1.1",
-    "eslint-config-ovh": "^0.1.1",
-    "grunt": "0.4.x",
-    "grunt-bump": "~0.5.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-uglify": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-eslint": "^20.0.0",
-    "grunt-ng-annotate": "~0.10.0",
-    "matchdep": "^0.3.0"
+    "prepare": "yarn run build",
+    "test": "yarn run lint"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^4.17.14"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^5.2.2",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0",
+    "eslint-config-ovh": "^0.1.1",
+    "rollup-plugin-glob-import": "^0.3.1"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",

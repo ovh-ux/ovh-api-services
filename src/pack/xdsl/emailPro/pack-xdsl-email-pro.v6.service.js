@@ -1,3 +1,5 @@
+import trim from 'lodash/trim';
+
 angular.module("ovh-api-services").service("OvhApiPackXdslEmailProV6", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -37,7 +39,7 @@ angular.module("ovh-api-services").service("OvhApiPackXdslEmailProV6", function 
                 if (status !== 200) {
                     return data;
                 }
-                return { available: _.trim(data).toUpperCase() === "TRUE" };
+                return { available: trim(data).toUpperCase() === "TRUE" };
             }
         }
     });

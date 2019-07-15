@@ -1,3 +1,6 @@
+import snakeCase from 'lodash/snakeCase';
+import sortBy from 'lodash/sortBy';
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectImageV6", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -62,7 +65,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectImageV6", function
 
                 if (status === 200) {
                     os = angular.fromJson(os); // IE11
-                    os.nameGeneric = _.snakeCase(os.name);
+                    os.nameGeneric = snakeCase(os.name);
                     os.distribution = getDistribution(os.name, os.type);
                 }
                 return os;
@@ -78,10 +81,10 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectImageV6", function
                 if (status === 200) {
                     images = angular.fromJson(images); // IE11
                     angular.forEach(images, function (os) {
-                        os.nameGeneric = _.snakeCase(os.name);
+                        os.nameGeneric = snakeCase(os.name);
                         os.distribution = getDistribution(os.name, os.type);
                     });
-                    return _.sortBy(images, "name");
+                    return sortBy(images, "name");
                 }
                 return images;
 

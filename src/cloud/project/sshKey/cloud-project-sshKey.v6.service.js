@@ -1,3 +1,5 @@
+import sortBy from 'lodash/sortBy';
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyV6", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -26,7 +28,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyV6", functio
 
                 if (status === 200) {
                     sshKeys = angular.fromJson(sshKeys); // IE11
-                    return _.sortBy(sshKeys, "name");
+                    return sortBy(sshKeys, "name");
                 }
                 return angular.fromJson(sshKeys);
 

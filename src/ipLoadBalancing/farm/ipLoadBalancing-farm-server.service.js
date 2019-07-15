@@ -1,7 +1,10 @@
-_.forEach(["tcp", "udp", "http"], function (type) {
+import capitalize from 'lodash/capitalize';
+import forEach from 'lodash/forEach';
+
+forEach(["tcp", "udp", "http"], function (type) {
     "use strict";
 
-    var serverType = _.capitalize(type);
+    var serverType = capitalize(type);
     angular
         .module("ovh-api-services")
         .service("OvhApiIpLoadBalancingFarm" + serverType + "Server",

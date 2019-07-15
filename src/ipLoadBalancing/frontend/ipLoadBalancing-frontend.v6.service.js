@@ -1,3 +1,6 @@
+import capitalize from 'lodash/capitalize';
+import forEach from 'lodash/forEach';
+
 (function () {
     "use strict";
 
@@ -17,8 +20,8 @@
         return iplbFrontend;
     });
 
-    _.forEach(["tcp", "udp", "http"], function (type) {
-        var frontendType = _.capitalize(type);
+    forEach(["tcp", "udp", "http"], function (type) {
+        var frontendType = capitalize(type);
         angular
             .module("ovh-api-services")
             .service("OvhApiIpLoadBalancingFrontend" + frontendType + "V6",

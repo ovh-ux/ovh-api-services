@@ -1,3 +1,7 @@
+import head from 'lodash/head';
+import map from 'lodash/map';
+import some from 'lodash/some';
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectConsumptionV6", function ($resource) {
     "use strict";
 
@@ -38,11 +42,11 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectConsumptionV6", fu
         var to = date.endOf("month").toISOString();
         return cloudProjectConsumptionResource.bills({ serviceName: serviceName, from: from, to: to }).$promise
             .then(function (resp) {
-                return _.map(resp, "id");
+                return map(resp, "id");
             })
             .then(function (billIds) {
-                if (_.any(billIds)) {
-                    return cloudProjectConsumptionResource.bill({ serviceName: serviceName, usageId: _.first(billIds) }).$promise;
+                if (some(billIds)) {
+                    return cloudProjectConsumptionResource.bill({ serviceName: serviceName, usageId: head(billIds) }).$promise;
                 }
                 return null;
 
