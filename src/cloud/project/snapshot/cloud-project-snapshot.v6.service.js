@@ -1,3 +1,5 @@
+import sortBy from 'lodash/sortBy';
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectSnapshotV6", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -26,7 +28,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectSnapshotV6", funct
 
                 if (status === 200) {
                     snapshots = angular.fromJson(snapshots); // IE11
-                    return _.sortBy(snapshots, "name");
+                    return sortBy(snapshots, "name");
                 }
                 return snapshots;
 

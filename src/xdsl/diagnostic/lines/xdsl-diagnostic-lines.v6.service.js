@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import omit from 'lodash/omit';
+
 angular.module("ovh-api-services").service("OvhApiXdslDiagnosticLinesV6", function ($resource, Poller, OvhApiXdslDiagnosticLines) {
     "use strict";
 
@@ -38,18 +42,18 @@ angular.module("ovh-api-services").service("OvhApiXdslDiagnosticLinesV6", functi
             },
             {
                 method: "post",
-                postData: _.omit(opts, ["serviceName", "number"]),
+                postData: omit(opts, ["serviceName", "number"]),
                 interval: 30000,
                 successRule: function (response) {
                     if (response.status !== "problem") {
                         return true;
                     }
 
-                    return _.isEqual(_.get(response, "data.error", ""), "monitoringTodoAlreadyExists");
+                    return isEqual(get(response, "data.error", ""), "monitoringTodoAlreadyExists");
                 },
                 errorRule: function (response) {
-                    return _.isEqual(response.status, "problem") &&
-                           !_.isEqual(_.get(response, "data.error", ""), "monitoringTodoAlreadyExists");
+                    return isEqual(response.status, "problem") &&
+                           !isEqual(get(response, "data.error", ""), "monitoringTodoAlreadyExists");
                 },
                 namespace: "xdsl_diagnostic_run"
             }

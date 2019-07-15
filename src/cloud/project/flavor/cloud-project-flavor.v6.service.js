@@ -1,3 +1,6 @@
+import snakeCase from 'lodash/snakeCase';
+import sortBy from 'lodash/sortBy';
+
 angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -16,7 +19,7 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", functio
 
                 if (status === 200) {
                     flavor = angular.fromJson(flavor); // IE11
-                    flavor.typeGeneric = _.snakeCase(flavor.type);
+                    flavor.typeGeneric = snakeCase(flavor.type);
                     flavor.groupName = flavor.name.replace(/^win\-/, "");
                 }
                 return flavor;
@@ -36,11 +39,11 @@ angular.module("ovh-api-services").service("OvhApiCloudProjectFlavorV6", functio
                     flavors = angular.fromJson(flavors); // IE11
 
                     angular.forEach(flavors, function (flavor) {
-                        flavor.typeGeneric = _.snakeCase(flavor.type);
+                        flavor.typeGeneric = snakeCase(flavor.type);
                         flavor.groupName = flavor.name.replace(/^win\-/, "");
                     });
 
-                    return _.sortBy(flavors, function (flavor) {
+                    return sortBy(flavors, function (flavor) {
                         return /(\d+)/.test(flavor.name) ? parseInt(flavor.name.match(/(\d+)/)[0], 10) : flavor.name;
                     });
                 }

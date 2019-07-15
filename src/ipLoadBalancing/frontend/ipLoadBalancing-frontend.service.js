@@ -1,11 +1,14 @@
+import capitalize from 'lodash/capitalize';
+import reduce from 'lodash/reduce';
+
 angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFrontend", function ($injector) {
     "use strict";
 
-    var services = _.reduce(["tcp", "udp", "http"], function (frontend, type) {
-        frontend[_.capitalize(type)] = function () {
+    var services = reduce(["tcp", "udp", "http"], function (frontend, type) {
+        frontend[capitalize(type)] = function () {
             return {
                 v6: function () {
-                    return $injector.get("OvhApiIpLoadBalancingFrontend" + _.capitalize(type) + "V6");
+                    return $injector.get("OvhApiIpLoadBalancingFrontend" + capitalize(type) + "V6");
                 }
             };
         };

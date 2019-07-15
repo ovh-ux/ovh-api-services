@@ -1,3 +1,6 @@
+import capitalize from 'lodash/capitalize';
+import forEach from 'lodash/forEach';
+
 angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarmV6", function ($resource, $cacheFactory) {
     "use strict";
 
@@ -16,10 +19,10 @@ angular.module("ovh-api-services").service("OvhApiIpLoadBalancingFarmV6", functi
     return iplbFarm;
 });
 
-_.forEach(["tcp", "udp", "http"], function (type) {
+forEach(["tcp", "udp", "http"], function (type) {
     "use strict";
 
-    var farmType = _.capitalize(type);
+    var farmType = capitalize(type);
     angular
         .module("ovh-api-services")
         .service("OvhApiIpLoadBalancingFarm" + farmType + "V6",
