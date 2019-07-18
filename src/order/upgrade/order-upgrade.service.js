@@ -12,6 +12,9 @@ angular
             },
             PrivateCloud: function () {
                 return $injector.get("OvhApiOrderUpgradePrivateCloud");
+            },
+            Baremetal: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetal");
             }
         };
     });
