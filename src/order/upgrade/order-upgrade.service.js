@@ -13,8 +13,11 @@ angular
             PrivateCloud: function () {
                 return $injector.get("OvhApiOrderUpgradePrivateCloud");
             },
-            Baremetal: function () {
-                return $injector.get("OvhApiOrderUpgradeBaremetal");
+            BaremetalPublicBandwidth: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetalPublicBandwidth");
+            },
+            BaremetalPrivateBandwidth: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetalPrivateBandwidth");
             }
         };
     });
