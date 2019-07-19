@@ -20,7 +20,12 @@ angular
             serviceName: "@serviceName",
             planCode: "@planCode"
         }, {
-            getPublicBandwidthOptions: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/baremetalPublicBandwidth/:serviceName" },
+            getPublicBandwidthOptions: {
+                method: "GET",
+                cache: queryCache,
+                isArray: true,
+                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName"
+            },
             getPublicBandwidthOrder: {
                 method: "GET",
                 cache: cache,
@@ -37,7 +42,7 @@ angular
                     quantity: "@quantity",
                     autoPayWithPreferredPaymentMethod: "@autoPayWithPreferredPaymentMethod"
                 }
-            },
+            }
         });
 
         resource.resetCache = function () {

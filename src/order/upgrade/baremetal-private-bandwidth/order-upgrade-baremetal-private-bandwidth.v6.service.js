@@ -20,7 +20,12 @@ angular
             serviceName: "@serviceName",
             planCode: "@planCode"
         }, {
-            getPrivateBandwidthOptions: { method: "GET", cache: queryCache, isArray: true, url: "/order/upgrade/baremetalPrivateBandwidth/:serviceName" },
+            getPrivateBandwidthOptions: {
+                method: "GET",
+                cache: queryCache,
+                isArray: true,
+                url: "/order/upgrade/baremetalPrivateBandwidth/:serviceName"
+            },
             getPrivateBandwidthOrder: {
                 method: "GET",
                 cache: cache,
