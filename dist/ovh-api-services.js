@@ -13701,6 +13701,146 @@ angular.module("ovh-api-services").service("OvhApiOrderTelephonyV6", ["$resource
 
 angular
     .module("ovh-api-services")
+    .service("OvhApiOrderUpgradeBaremetalPrivateBandwidth", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            v6: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetalPrivateBandwidthV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradeBaremetalPrivateBandwidthV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        "use strict";
+
+        // Cache to invalidate
+        var queryCache = $cacheFactory("OvhApiOrderUpgradeBaremetalPrivateBandwidthV6Query");
+        var cache = $cacheFactory("OvhApiOrderUpgradeBaremetalPrivateBandwidthV6");
+
+        var interceptor = {
+            response: function (response) {
+                resource.resetCache();
+                resource.resetQueryCache();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/order/upgrade/baremetalPrivateBandwidth/:serviceName/:planCode", {
+            serviceName: "@serviceName",
+            planCode: "@planCode"
+        }, {
+            getPrivateBandwidthOptions: {
+                method: "GET",
+                cache: queryCache,
+                isArray: true,
+                url: "/order/upgrade/baremetalPrivateBandwidth/:serviceName"
+            },
+            getPrivateBandwidthOrder: {
+                method: "GET",
+                cache: cache,
+                url: "/order/upgrade/baremetalPrivateBandwidth/:serviceName/:planCode",
+                params: {
+                    quantity: "@quantity"
+                }
+            },
+            postPrivateBandwidthPlaceOrder: {
+                method: "POST",
+                interceptor: interceptor,
+                url: "/order/upgrade/baremetalPrivateBandwidth/:serviceName/:planCode",
+                params: {
+                    quantity: "@quantity",
+                    autoPayWithPreferredPaymentMethod: "@autoPayWithPreferredPaymentMethod"
+                }
+            }
+        });
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradeBaremetalPublicBandwidth", ["$injector", function ($injector) {
+
+        "use strict";
+        return {
+            v6: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetalPublicBandwidthV6");
+            }
+        };
+    }]);
+
+angular
+    .module("ovh-api-services")
+    .service("OvhApiOrderUpgradeBaremetalPublicBandwidthV6", ["$resource", "$cacheFactory", function ($resource, $cacheFactory) {
+
+        "use strict";
+
+        // Cache to invalidate
+        var queryCache = $cacheFactory("OvhApiOrderUpgradeBaremetalPublicBandwidthV6Query");
+        var cache = $cacheFactory("OvhApiOrderUpgradeBaremetalPublicBandwidthV6");
+
+        var interceptor = {
+            response: function (response) {
+                resource.resetCache();
+                resource.resetQueryCache();
+                return response.data;
+            }
+        };
+
+        var resource = $resource("/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode", {
+            serviceName: "@serviceName",
+            planCode: "@planCode"
+        }, {
+            getPublicBandwidthOptions: {
+                method: "GET",
+                cache: queryCache,
+                isArray: true,
+                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName"
+            },
+            getPublicBandwidthOrder: {
+                method: "GET",
+                cache: cache,
+                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode",
+                params: {
+                    quantity: "@quantity"
+                }
+            },
+            postPublicBandwidthPlaceOrder: {
+                method: "POST",
+                interceptor: interceptor,
+                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode",
+                params: {
+                    quantity: "@quantity",
+                    autoPayWithPreferredPaymentMethod: "@autoPayWithPreferredPaymentMethod"
+                }
+            }
+        });
+
+        resource.resetCache = function () {
+            cache.removeAll();
+        };
+
+        resource.resetQueryCache = function () {
+            queryCache.removeAll();
+        };
+
+        return resource;
+    }]);
+
+angular
+    .module("ovh-api-services")
     .service("OvhApiOrderUpgradeMicrosoftExchange", ["$injector", function ($injector) {
 
         "use strict";
@@ -13763,6 +13903,12 @@ angular
             },
             PrivateCloud: function () {
                 return $injector.get("OvhApiOrderUpgradePrivateCloud");
+            },
+            BaremetalPublicBandwidth: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetalPublicBandwidth");
+            },
+            BaremetalPrivateBandwidth: function () {
+                return $injector.get("OvhApiOrderUpgradeBaremetalPrivateBandwidth");
             }
         };
     }]);
