@@ -1,7 +1,7 @@
 angular.module("ovh-api-services").service("OvhApiBillingAutorenewServicesAapi", function ($resource) {
     "use strict";
 
-    var vpsResource = $resource("/sws/billing/autorenew/services", {
+    var resource = $resource("/sws/billing/autorenew/services", {
     }, {
         query: {
             method: "GET",
@@ -14,5 +14,5 @@ angular.module("ovh-api-services").service("OvhApiBillingAutorenewServicesAapi",
         }
     });
 
-    return vpsResource;
+    return resource;
 });
