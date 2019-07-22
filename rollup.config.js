@@ -2,7 +2,7 @@ const rollupConfig = require('@ovh-ux/component-rollup-config');
 const globImport = require('rollup-plugin-glob-import');
 
 const config = rollupConfig({
-    input: 'index.js'
+    input: './src/index.js'
 });
 
 const outputs = [config.es({
