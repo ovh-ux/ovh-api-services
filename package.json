@@ -21,9 +21,9 @@
     "lodash": "^4.17.14"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.2.2",
+    "@ovh-ux/component-rollup-config": "^6.0.0",
     "babel-eslint": "^10.0.2",
-    "eslint": "^5.16.0",
+    "eslint": "^6.1.0",
     "eslint-config-ovh": "^0.1.1",
     "rollup-plugin-glob-import": "^0.3.1"
   },
