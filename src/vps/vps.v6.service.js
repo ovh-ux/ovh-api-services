@@ -33,6 +33,16 @@ angular.module("ovh-api-services").service("OvhApiVpsV6", function ($resource, $
         version: {
             url: "/vps/:serviceName/version",
             method: "GET"
+        },
+        rebuild: {
+            url: "/vps/:serviceName/rebuild",
+            method: "POST",
+            interceptor: interceptor
+        },
+        resintall: {
+            url: "/vps/:serviceName/reinstall",
+            method: "POST",
+            interceptor: interceptor
         }
     });
 
