@@ -1,6 +1,7 @@
 {
     "parser": "babel-eslint",
     "parserOptions": {
+        "ecmaVersion": 6,
         "sourceType": "module"
     },
     "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
