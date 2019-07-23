@@ -2,7 +2,10 @@ const rollupConfig = require('@ovh-ux/component-rollup-config');
 const globImport = require('rollup-plugin-glob-import');
 
 const config = rollupConfig({
-    input: './src/index.js'
+    input: './src/index.js',
+    plugins: [
+        globImport()
+    ]
 });
 
 const outputs = [config.es({
@@ -14,9 +17,5 @@ const outputs = [config.es({
 if (process.env.BUILD === 'production') {
     outputs.push(config.cjs());
 }
-
-outputs.forEach(output => {
-    output.plugins.push(globImport());
-});
 
 module.exports = outputs;
