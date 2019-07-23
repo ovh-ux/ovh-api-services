@@ -181,6 +181,58 @@ angular.module("ovh-api-services").service("OvhApiAuthV6", ["$resource", "$http"
 }]
 );
 
+angular.module("ovh-api-services").service("OvhApiBillingAutorenew", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Services: function () {
+            return $injector.get("OvhApiBillingAutorenewServices");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiBillingAutorenewServicesAapi", ["$resource", function ($resource) {
+    "use strict";
+
+    var vpsResource = $resource("/sws/billing/autorenew/services", {
+    }, {
+        query: {
+            method: "GET",
+            serviceType: "aapi"
+        },
+        put: {
+            url: "/sws/billing/autorenew/services/update",
+            method: "PUT",
+            serviceType: "aapi"
+        }
+    });
+
+    return vpsResource;
+}]);
+
+angular.module("ovh-api-services").service("OvhApiBillingAutorenewServices", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Aapi: function () {
+            return $injector.get("OvhApiBillingAutorenewServicesAapi");
+        }
+    };
+
+}]);
+
+angular.module("ovh-api-services").service("OvhApiBilling", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        Autorenew: function () {
+            return $injector.get("OvhApiBillingAutorenew");
+        }
+    };
+
+}]);
+
 angular.module("ovh-api-services").service("OvhApiCdn", ["$injector", function ($injector) {
     "use strict";
     return {
