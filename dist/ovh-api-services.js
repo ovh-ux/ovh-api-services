@@ -23925,6 +23925,53 @@ angular.module("ovh-api-services").service("OvhApiVeeamEnterpriseV6", ["$resourc
     return resource;
 }]);
 
+angular.module("ovh-api-services").service("OvhApiVpsImagesAvailable", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiVpsImagesAvailableV6");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVpsImagesAvailableV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/vps/:serviceName/images/available", {
+        serviceName: "@serviceName"
+    }, {
+        query: { method: "GET", isArray: true },
+        get: { method: "GET", url: "/vps/:serviceName/images/available/:id" }
+    });
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVpsImages", ["$injector", function ($injector) {
+    "use strict";
+
+    return {
+        v6: function () {
+            return $injector.get("OvhApiVpsImagesV6");
+        },
+        Available: function () {
+            return $injector.get("OvhApiVpsImagesAvailable");
+        }
+    };
+}]);
+
+angular.module("ovh-api-services").service("OvhApiVpsImagesV6", ["$resource", function ($resource) {
+    "use strict";
+
+    return $resource("/vps/:serviceName/images", {
+        serviceName: "@serviceName"
+    }, {
+        getCurrent: {
+            url: "/vps/:serviceName/images/current",
+            method: "GET"
+        }
+    });
+}]);
+
 angular.module("ovh-api-services").service("OvhApiVpsIps", ["$injector", function ($injector) {
     "use strict";
 
@@ -23985,6 +24032,9 @@ angular.module("ovh-api-services").service("OvhApiVps", ["$injector", function (
         Aapi: function () {
             return $injector.get("OvhApiVpsAapi");
         },
+        Images: function () {
+            return $injector.get("OvhApiVpsImages");
+        },
         Ips: function () {
             return $injector.get("OvhApiVpsIps");
         }
@@ -24027,6 +24077,16 @@ angular.module("ovh-api-services").service("OvhApiVpsV6", ["$resource", "$cacheF
         version: {
             url: "/vps/:serviceName/version",
             method: "GET"
+        },
+        rebuild: {
+            url: "/vps/:serviceName/rebuild",
+            method: "POST",
+            interceptor: interceptor
+        },
+        resintall: {
+            url: "/vps/:serviceName/reinstall",
+            method: "POST",
+            interceptor: interceptor
         }
     });
 
