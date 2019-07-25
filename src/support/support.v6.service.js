@@ -11,7 +11,7 @@ angular.module("ovh-api-services").service("OvhApiSupportV6", function ($resourc
         schema: { method: "GET", url: "/support.json" },
         query: { method: "GET", isArray: true, cache: queryCache },
         get: { method: "GET", cache: cache },
-        getMessages: {
+        queryMessages: {
             method: "GET",
             url: "/support/tickets/:id/messages",
             isArray: true
