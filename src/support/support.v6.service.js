@@ -5,6 +5,14 @@ angular.module("ovh-api-services").service("OvhApiSupportV6", function ($resourc
     var cache = $cacheFactory("OvhApiSupportV6");
     var queryCache = $cacheFactory("OvhApiSupportV6Query");
 
+    var interceptor = {
+        response: function (response) {
+            cache.removeAll();
+            queryCache.removeAll();
+            return response;
+        }
+    };
+
     var support = $resource("/support/tickets/:id", {
         id: "@id"
     }, {
@@ -17,19 +25,23 @@ angular.module("ovh-api-services").service("OvhApiSupportV6", function ($resourc
             isArray: true
         },
         create: {
+            interceptor: interceptor,
             method: "POST",
             url: "/support/tickets/:id/create"
         },
         close: {
             hasBody: false,
+            interceptor: interceptor,
             method: "POST",
             url: "/support/tickets/:id/close"
         },
         reopen: {
+            interceptor: interceptor,
             method: "POST",
             url: "/support/tickets/:id/reopen"
         },
         reply: {
+            interceptor: interceptor,
             method: "POST",
             url: "/support/tickets/:id/reply"
         }
