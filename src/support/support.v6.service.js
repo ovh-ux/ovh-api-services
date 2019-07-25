@@ -21,6 +21,7 @@ angular.module("ovh-api-services").service("OvhApiSupportV6", function ($resourc
             url: "/support/tickets/:id/create"
         },
         close: {
+            hasBody: false,
             method: "POST",
             url: "/support/tickets/:id/close"
         },
