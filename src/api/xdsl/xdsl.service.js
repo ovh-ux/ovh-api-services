@@ -28,6 +28,9 @@ angular.module("ovh-api-services").service("OvhApiXdsl", function ($injector, $c
         TemplateModem: function () {
             return $injector.get("OvhApiXdslTemplateModem");
         },
+        Spare: function () {
+            return $injector.get("OvhApiXdslSpare");
+        },
         resetCache: cache.removeAll,
         cache: cache
     };

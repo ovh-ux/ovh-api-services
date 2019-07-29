@@ -45,16 +45,16 @@ angular.module("ovh-api-services").service("OvhApiXdslSpareV6", function ($resou
         },
         getBrands: {
             method: "GET",
-            url: "/xdsl/spare/brands",
+            url: "/xdsl/spare/brands"
         },
         getNewSpare: {
             method: "GET",
-            url: "/order/xdsl/spare/new",
+            url: "/order/xdsl/spare/new"
         },
         orderNewSpare: {
             method: "POST",
-            url: "/order/xdsl/spare/new",
-        },
+            url: "/order/xdsl/spare/new"
+        }
     });
 
     spareResource.resetAllCache = function () {
