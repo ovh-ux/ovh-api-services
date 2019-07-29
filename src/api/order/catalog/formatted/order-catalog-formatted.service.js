@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiOrderCatalogFormatted", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiOrderCatalogFormattedV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiOrderCatalogFormatted', $injector => ({
+  v6() {
+    return $injector.get('OvhApiOrderCatalogFormattedV6');
+  },
+}));

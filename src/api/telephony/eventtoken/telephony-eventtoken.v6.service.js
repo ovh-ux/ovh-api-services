@@ -1,25 +1,23 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyEventtokenV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyEventtokenV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiTelephonyEventtokenV6Query');
+  const interceptor = {
+    response(response) {
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var queryCache = $cacheFactory("OvhApiTelephonyEventtokenV6Query");
-    var interceptor = {
-        response: function (response) {
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const eventtokens = $resource('/telephony/:billingAccount/eventToken', {
+    billingAccount: '@billingAccount',
+  }, {
+    query: { method: 'GET', cache: queryCache },
+    save: { method: 'POST', interceptor },
+    delete: { method: 'DELETE', interceptor },
+  });
 
-    var eventtokens = $resource("/telephony/:billingAccount/eventToken", {
-        billingAccount: "@billingAccount"
-    }, {
-        query: { method: "GET", cache: queryCache },
-        save: { method: "POST", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
-    });
+  eventtokens.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    eventtokens.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return eventtokens;
+  return eventtokens;
 });

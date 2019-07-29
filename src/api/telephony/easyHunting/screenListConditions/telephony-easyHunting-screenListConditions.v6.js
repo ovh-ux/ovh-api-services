@@ -1,32 +1,30 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingScreenListConditionsV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyEasyHuntingScreenListConditionsV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyEasyHuntingScreenListConditionsV6');
 
-    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingScreenListConditionsV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            return response.resource;
-        }
-    };
+  const res = $resource('/telephony/:billingAccount/easyHunting/:serviceName/screenListConditions', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+  }, {
+    get: {
+      method: 'GET',
+      cache,
+    },
+    change: {
+      method: 'PUT',
+      interceptor,
+    },
+  });
 
-    var res = $resource("/telephony/:billingAccount/easyHunting/:serviceName/screenListConditions", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName"
-    }, {
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        change: {
-            method: "PUT",
-            interceptor: interceptor
-        }
-    });
+  res.resetCache = function () {
+    cache.removeAll();
+  };
 
-    res.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return res;
+  return res;
 });

@@ -1,15 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectRegion", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectRegionV6");
-        },
-        Workflow: function () {
-            return $injector.get("OvhApiCloudProjectRegionWorkflow");
-        },
-        AvailableRegions: function () {
-            return $injector.get("OvhApiCloudProjectAvailableRegions");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectRegion', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectRegionV6');
+  },
+  Workflow() {
+    return $injector.get('OvhApiCloudProjectRegionWorkflow');
+  },
+  AvailableRegions() {
+    return $injector.get('OvhApiCloudProjectAvailableRegions');
+  },
+}));

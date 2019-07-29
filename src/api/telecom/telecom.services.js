@@ -1,16 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiTelecom", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelecom', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelecom');
 
-    var cache = $cacheFactory("OvhApiTelecom");
-
-    return {
-        resetCache: cache.removeAll,
-        cache: cache,
-        HomeDashboard: function () {
-            return $injector.get("OvhApiTelecomHomeDashboard");
-        },
-        Preferences: function () {
-            return $injector.get("OvhApiTelecomPreferences");
-        }
-    };
+  return {
+    resetCache: cache.removeAll,
+    cache,
+    HomeDashboard() {
+      return $injector.get('OvhApiTelecomHomeDashboard');
+    },
+    Preferences() {
+      return $injector.get('OvhApiTelecomPreferences');
+    },
+  };
 });

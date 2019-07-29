@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxMenuEntry", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxMenuEntryV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxMenuEntry', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyOvhPabxMenuEntryV6');
+  },
+}));

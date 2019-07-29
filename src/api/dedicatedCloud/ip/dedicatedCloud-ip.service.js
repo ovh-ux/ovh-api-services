@@ -1,13 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudIp", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudIpV6");
-        },
-        Details: function () {
-            return $injector.get("OvhApiDedicatedCloudIpDetails");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudIp', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudIpV6');
+  },
+  Details() {
+    return $injector.get('OvhApiDedicatedCloudIpDetails');
+  },
+}));

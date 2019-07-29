@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemCallWaiting", function ($cacheFactory, $injector) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModemCallWaiting', ($cacheFactory, $injector) => {
+  const cache = $cacheFactory('OvhApiXdslModemCallWaiting');
 
-    var cache = $cacheFactory("OvhApiXdslModemCallWaiting");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslModemCallWaitingV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslModemCallWaitingV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

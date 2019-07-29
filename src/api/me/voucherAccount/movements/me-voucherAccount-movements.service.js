@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeVoucherAccountMovements", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeVoucherAccountMovementsV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeVoucherAccountMovements', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeVoucherAccountMovementsV6');
+  },
+}));

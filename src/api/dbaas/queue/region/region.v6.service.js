@@ -1,28 +1,26 @@
-angular.module("ovh-api-services").service("OvhApiDbaasQueueRegionV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasQueueRegionV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasQueueRegionV6');
+  const queryCache = $cacheFactory('OvhApiDbaasQueueRegionV6Query');
 
-    var cache = $cacheFactory("OvhApiDbaasQueueRegionV6");
-    var queryCache = $cacheFactory("OvhApiDbaasQueueRegionV6Query");
+  const regionResource = $resource('/dbaas/queue/region', {
+    regionId: '@regionId',
+  }, {
+    get: { method: 'GET', cache, url: '/dbaas/queue/region/:regionId' },
+    query: { method: 'GET', cache: queryCache, isArray: true },
+  });
 
-    var regionResource = $resource("/dbaas/queue/region", {
-        regionId: "@regionId"
-    }, {
-        get: { method: "GET", cache: cache, url: "/dbaas/queue/region/:regionId" },
-        query: { method: "GET", cache: queryCache, isArray: true }
-    });
+  regionResource.resetAllCache = function () {
+    regionResource.resetCache();
+    regionResource.resetQueryCache();
+  };
 
-    regionResource.resetAllCache = function () {
-        regionResource.resetCache();
-        regionResource.resetQueryCache();
-    };
+  regionResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    regionResource.resetCache = function () {
-        cache.removeAll();
-    };
+  regionResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    regionResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return regionResource;
+  return regionResource;
 });

@@ -1,44 +1,42 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsV6", function ($resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyEasyHuntingHuntingQueueLiveCallsV6', ($resource) => {
+  const res = $resource('/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+    queueId: '@queueId',
+    id: '@id',
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+    },
+    get: {
+      method: 'GET',
+    },
+    eavesdrop: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/eavesdrop',
+    },
+    hangup: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/hangup',
+    },
+    hold: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/hold',
+    },
+    intercept: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/intercept',
+    },
+    transfer: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/transfer',
+    },
+    whisper: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/whisper',
+    },
+  });
 
-    var res = $resource("/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName",
-        queueId: "@queueId",
-        id: "@id"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true
-        },
-        get: {
-            method: "GET"
-        },
-        eavesdrop: {
-            method: "POST",
-            url: "/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/eavesdrop"
-        },
-        hangup: {
-            method: "POST",
-            url: "/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/hangup"
-        },
-        hold: {
-            method: "POST",
-            url: "/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/hold"
-        },
-        intercept: {
-            method: "POST",
-            url: "/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/intercept"
-        },
-        transfer: {
-            method: "POST",
-            url: "/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/transfer"
-        },
-        whisper: {
-            method: "POST",
-            url: "/telephony/:billingAccount/easyHunting/:serviceName/hunting/queue/:queueId/liveCalls/:id/whisper"
-        }
-    });
-
-    return res;
+  return res;
 });

@@ -1,16 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiXdslResiliation", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslResiliation', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdslResiliation');
 
-    var cache = $cacheFactory("OvhApiXdslResiliation");
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiXdslResiliationAapi");
-        },
-        v6: function () {
-            return $injector.get("OvhApiXdslResiliationV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    Aapi() {
+      return $injector.get('OvhApiXdslResiliationAapi');
+    },
+    v6() {
+      return $injector.get('OvhApiXdslResiliationV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

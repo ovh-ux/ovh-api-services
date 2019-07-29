@@ -1,19 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiPackXdslVoipLine", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiPackXdslVoipLine', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiPackXdslVoipLine');
 
-    var cache = $cacheFactory("OvhApiPackXdslVoipLine");
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiPackXdslVoipLineAapi");
-        },
-        v6: function () {
-            return $injector.get("OvhApiPackXdslVoipLineV6");
-        },
-        v7: function () {
-            return $injector.get("OvhApiPackXdslVoipLineV7");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    Aapi() {
+      return $injector.get('OvhApiPackXdslVoipLineAapi');
+    },
+    v6() {
+      return $injector.get('OvhApiPackXdslVoipLineV6');
+    },
+    v7() {
+      return $injector.get('OvhApiPackXdslVoipLineV7');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

@@ -1,41 +1,38 @@
-angular.module("ovh-api-services").service("OvhApiOrder", function ($injector) {
-    "use strict";
-    return {
-        Cart: function () {
-            return $injector.get("OvhApiOrderCart");
-        },
-        CartServiceOption: function () {
-            return $injector.get("OvhApiOrderCartServiceOption");
-        },
-        CatalogFormatted: function () {
-            return $injector.get("OvhApiOrderCatalogFormatted");
-        },
-        DedicatedNasha: function () {
-            return $injector.get("OvhApiOrderDedicatedNasha");
-        },
-        Freefax: function () {
-            return $injector.get("OvhApiOrderFreefax");
-        },
-        License: function () {
-            return $injector.get("OvhApiOrderLicense");
-        },
-        Router: function () {
-            return $injector.get("OvhApiOrderRouter");
-        },
-        Sms: function () {
-            return $injector.get("OvhApiOrderSms");
-        },
-        Telephony: function () {
-            return $injector.get("OvhApiOrderTelephony");
-        },
-        Vrack: function () {
-            return $injector.get("OvhApiOrderVrack");
-        },
-        Upgrade: function () {
-            return $injector.get("OvhApiOrderUpgrade");
-        },
-        v6: function () {
-            return $injector.get("OvhApiOrderV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiOrder', $injector => ({
+  Cart() {
+    return $injector.get('OvhApiOrderCart');
+  },
+  CartServiceOption() {
+    return $injector.get('OvhApiOrderCartServiceOption');
+  },
+  CatalogFormatted() {
+    return $injector.get('OvhApiOrderCatalogFormatted');
+  },
+  DedicatedNasha() {
+    return $injector.get('OvhApiOrderDedicatedNasha');
+  },
+  Freefax() {
+    return $injector.get('OvhApiOrderFreefax');
+  },
+  License() {
+    return $injector.get('OvhApiOrderLicense');
+  },
+  Router() {
+    return $injector.get('OvhApiOrderRouter');
+  },
+  Sms() {
+    return $injector.get('OvhApiOrderSms');
+  },
+  Telephony() {
+    return $injector.get('OvhApiOrderTelephony');
+  },
+  Vrack() {
+    return $injector.get('OvhApiOrderVrack');
+  },
+  Upgrade() {
+    return $injector.get('OvhApiOrderUpgrade');
+  },
+  v6() {
+    return $injector.get('OvhApiOrderV6');
+  },
+}));

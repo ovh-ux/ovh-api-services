@@ -1,19 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiMeBillV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiMeBillV6', ($resource, $cacheFactory) => {
+  // we don't need cache for query : it's just list of IDs and we don't know if a new bill is emited
+  const cache = $cacheFactory('OvhApiMeBillV6');
 
-    // we don't need cache for query : it's just list of IDs and we don't know if a new bill is emited
-    var cache = $cacheFactory("OvhApiMeBillV6");
+  const userBillResource = $resource('/me/bill/:billId', {
+    billId: '@billId',
+  }, {
+    get: { method: 'GET', cache },
+    query: { method: 'GET', isArray: true },
+  });
 
-    var userBillResource = $resource("/me/bill/:billId", {
-        billId: "@billId"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: { method: "GET", isArray: true }
-    });
+  userBillResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    userBillResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return userBillResource;
+  return userBillResource;
 });

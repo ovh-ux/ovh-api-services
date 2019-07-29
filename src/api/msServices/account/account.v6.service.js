@@ -1,23 +1,24 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiMsServicesAccountV6", function ($resource, $cacheFactory) {
+  .module('ovh-api-services')
+  .service('OvhApiMsServicesAccountV6', ($resource, $cacheFactory) => {
+    const cache = $cacheFactory('OvhApiMsServicesAccountV6');
 
-        var cache = $cacheFactory("OvhApiMsServicesAccountV6");
-
-        var resource = $resource("/msServices/:serviceName/account/:userPrincipalName", {
-            serviceName: "@serviceName",
-            userPrincipalName: "@userPrincipalName"
-        }, {
-            getExchange: { method: "GET", cache: cache, isArray: false, url: "/msServices/:serviceName/account/:userPrincipalName/exchange" }
-        });
-
-        resource.resetAllCache = function () {
-            resource.resetCache();
-        };
-
-        resource.resetCache = function () {
-            cache.removeAll();
-        };
-
-        return resource;
+    const resource = $resource('/msServices/:serviceName/account/:userPrincipalName', {
+      serviceName: '@serviceName',
+      userPrincipalName: '@userPrincipalName',
+    }, {
+      getExchange: {
+        method: 'GET', cache, isArray: false, url: '/msServices/:serviceName/account/:userPrincipalName/exchange',
+      },
     });
+
+    resource.resetAllCache = function () {
+      resource.resetCache();
+    };
+
+    resource.resetCache = function () {
+      cache.removeAll();
+    };
+
+    return resource;
+  });

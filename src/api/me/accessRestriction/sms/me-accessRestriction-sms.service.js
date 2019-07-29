@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionSms", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeAccessRestrictionSmsV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiMeAccessRestrictionSms', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeAccessRestrictionSmsV6');
+  },
+}));

@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDBaasTsRegion", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDBaasTsRegionV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDBaasTsRegion', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDBaasTsRegionV6');
+  },
+}));

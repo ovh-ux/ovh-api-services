@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterFiler", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterFilerV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudDatacenterFiler', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterFilerV6');
+  },
+}));

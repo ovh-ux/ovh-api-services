@@ -1,57 +1,54 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiOrderUpgradeBaremetalPublicBandwidthV6", function ($resource, $cacheFactory) {
+  .module('ovh-api-services')
+  .service('OvhApiOrderUpgradeBaremetalPublicBandwidthV6', ($resource, $cacheFactory) => {
+    // Cache to invalidate
+    const queryCache = $cacheFactory('OvhApiOrderUpgradeBaremetalPublicBandwidthV6Query');
+    const cache = $cacheFactory('OvhApiOrderUpgradeBaremetalPublicBandwidthV6');
 
-        "use strict";
+    const interceptor = {
+      response(response) {
+        resource.resetCache();
+        resource.resetQueryCache();
+        return response.data;
+      },
+    };
 
-        // Cache to invalidate
-        var queryCache = $cacheFactory("OvhApiOrderUpgradeBaremetalPublicBandwidthV6Query");
-        var cache = $cacheFactory("OvhApiOrderUpgradeBaremetalPublicBandwidthV6");
-
-        var interceptor = {
-            response: function (response) {
-                resource.resetCache();
-                resource.resetQueryCache();
-                return response.data;
-            }
-        };
-
-        var resource = $resource("/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode", {
-            serviceName: "@serviceName",
-            planCode: "@planCode"
-        }, {
-            getPublicBandwidthOptions: {
-                method: "GET",
-                cache: queryCache,
-                isArray: true,
-                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName"
-            },
-            getPublicBandwidthOrder: {
-                method: "GET",
-                cache: cache,
-                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode",
-                params: {
-                    quantity: "@quantity"
-                }
-            },
-            postPublicBandwidthPlaceOrder: {
-                method: "POST",
-                interceptor: interceptor,
-                url: "/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode",
-                params: {
-                    quantity: "@quantity",
-                    autoPayWithPreferredPaymentMethod: "@autoPayWithPreferredPaymentMethod"
-                }
-            }
-        });
-
-        resource.resetCache = function () {
-            cache.removeAll();
-        };
-
-        resource.resetQueryCache = function () {
-            queryCache.removeAll();
-        };
-
-        return resource;
+    const resource = $resource('/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode', {
+      serviceName: '@serviceName',
+      planCode: '@planCode',
+    }, {
+      getPublicBandwidthOptions: {
+        method: 'GET',
+        cache: queryCache,
+        isArray: true,
+        url: '/order/upgrade/baremetalPublicBandwidth/:serviceName',
+      },
+      getPublicBandwidthOrder: {
+        method: 'GET',
+        cache,
+        url: '/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode',
+        params: {
+          quantity: '@quantity',
+        },
+      },
+      postPublicBandwidthPlaceOrder: {
+        method: 'POST',
+        interceptor,
+        url: '/order/upgrade/baremetalPublicBandwidth/:serviceName/:planCode',
+        params: {
+          quantity: '@quantity',
+          autoPayWithPreferredPaymentMethod: '@autoPayWithPreferredPaymentMethod',
+        },
+      },
     });
+
+    resource.resetCache = function () {
+      cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+      queryCache.removeAll();
+    };
+
+    return resource;
+  });

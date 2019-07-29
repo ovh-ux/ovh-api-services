@@ -1,16 +1,13 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyServiceVoiceConsumptionAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyServiceVoiceConsumptionAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyServiceVoiceConsumptionAapi');
 
-    var cache = $cacheFactory("OvhApiTelephonyServiceVoiceConsumptionAapi");
-
-    return $resource("/telephony/:billingAccount/consumption", {
-        billingAccount: "@billingAccount"
-    }, {
-        get: {
-            serviceType: "aapi",
-            isArray: false,
-            cache: cache
-        }
-    }
-    );
+  return $resource('/telephony/:billingAccount/consumption', {
+    billingAccount: '@billingAccount',
+  }, {
+    get: {
+      serviceType: 'aapi',
+      isArray: false,
+      cache,
+    },
+  });
 });

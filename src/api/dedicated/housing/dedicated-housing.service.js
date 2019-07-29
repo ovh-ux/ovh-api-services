@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedHousing", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedHousingV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedHousing', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedHousingV6');
+  },
+}));

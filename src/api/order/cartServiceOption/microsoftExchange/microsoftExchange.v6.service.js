@@ -1,50 +1,50 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiOrderCartServiceOptionMicrosoftExchangeV6", function ($resource, $cacheFactory) {
-        "use strict";
+  .module('ovh-api-services')
+  .service('OvhApiOrderCartServiceOptionMicrosoftExchangeV6', ($resource, $cacheFactory) => {
+    const queryCache = $cacheFactory('OvhApiOrderCartServiceOptionMicrosoftExchangeV6Query');
+    const cache = $cacheFactory('OvhApiOrderCartServiceOptionMicrosoftExchangeV6');
 
-        var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionMicrosoftExchangeV6Query");
-        var cache = $cacheFactory("OvhApiOrderCartServiceOptionMicrosoftExchangeV6");
+    const interceptor = {
+      response(response) {
+        cache.remove(response.config.url);
+        queryCache.removeAll();
+        return response.data;
+      },
+    };
 
-        var interceptor = {
-            response: function (response) {
-                cache.remove(response.config.url);
-                queryCache.removeAll();
-                return response.data;
-            }
-        };
-
-        var resource = $resource("/order/cartServiceOption/microsoftExchange/:serviceName", {
-            serviceName: "@serviceName"
-        }, {
-            getAvailableOffers: { method: "GET", isArray: true, cache: cache },
-            getServices: { method: "GET", isArray: true, cache: cache, url: "/order/cartServiceOption/microsoftExchange" },
-            orderOptions: {
-                method: "POST",
-                cache: queryCache,
-                interceptor: interceptor,
-                params: {
-                    cartId: "@cartId",
-                    duration: "@duration",
-                    planCode: "@planCode",
-                    pricingMode: "@pricingMode",
-                    quantity: "@quantity"
-                }
-            }
-        });
-
-        resource.resetAllCache = function () {
-            resource.resetCache();
-            resource.resetQueryCache();
-        };
-
-        resource.resetCache = function () {
-            cache.removeAll();
-        };
-
-        resource.resetQueryCache = function () {
-            queryCache.removeAll();
-        };
-
-        return resource;
+    const resource = $resource('/order/cartServiceOption/microsoftExchange/:serviceName', {
+      serviceName: '@serviceName',
+    }, {
+      getAvailableOffers: { method: 'GET', isArray: true, cache },
+      getServices: {
+        method: 'GET', isArray: true, cache, url: '/order/cartServiceOption/microsoftExchange',
+      },
+      orderOptions: {
+        method: 'POST',
+        cache: queryCache,
+        interceptor,
+        params: {
+          cartId: '@cartId',
+          duration: '@duration',
+          planCode: '@planCode',
+          pricingMode: '@pricingMode',
+          quantity: '@quantity',
+        },
+      },
     });
+
+    resource.resetAllCache = function () {
+      resource.resetCache();
+      resource.resetQueryCache();
+    };
+
+    resource.resetCache = function () {
+      cache.removeAll();
+    };
+
+    resource.resetQueryCache = function () {
+      queryCache.removeAll();
+    };
+
+    return resource;
+  });

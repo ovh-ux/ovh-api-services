@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectKubeNode", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectKubeNodeV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectKubeNode', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectKubeNodeV6');
+  },
+}));

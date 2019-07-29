@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectOpenstackClient", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectOpenstackClientV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectOpenstackClient', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectOpenstackClientV6');
+  },
+}));

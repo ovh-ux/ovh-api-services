@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailGreetings", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyVoicemailGreetingsV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyVoicemailGreetings', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyVoicemailGreetingsV6');
+  },
+}));

@@ -1,15 +1,13 @@
-angular.module("ovh-api-services").service("OvhApiXdslIncidentV6", function ($cacheFactory, $resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslIncidentV6', ($cacheFactory, $resource) => {
+  const cache = $cacheFactory('OvhApiXdslIncidentV6');
 
-    var cache = $cacheFactory("OvhApiXdslIncidentV6");
-
-    return $resource("/xdsl/:serviceName/incident", {
-        serviceName: "@serviceName"
-    }, {
-        get: {
-            method: "GET",
-            cache: cache,
-            isArray: false
-        }
-    });
+  return $resource('/xdsl/:serviceName/incident', {
+    serviceName: '@serviceName',
+  }, {
+    get: {
+      method: 'GET',
+      cache,
+      isArray: false,
+    },
+  });
 });

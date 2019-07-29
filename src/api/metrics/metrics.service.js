@@ -1,13 +1,10 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiMetrics", function ($injector) {
-
-        return {
-            Token: function () {
-                return $injector.get("OvhApiMetricsToken");
-            },
-            v6: function () {
-                return $injector.get("OvhApiMetricsV6");
-            }
-        };
-    });
+  .module('ovh-api-services')
+  .service('OvhApiMetrics', $injector => ({
+    Token() {
+      return $injector.get('OvhApiMetricsToken');
+    },
+    v6() {
+      return $injector.get('OvhApiMetricsV6');
+    },
+  }));

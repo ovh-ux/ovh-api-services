@@ -1,9 +1,7 @@
-angular.module("ovh-api-services").service("OvhApiMeOrderV7", function (apiv7) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiMeOrderV7', (apiv7) => {
+  const userOrderEndpoint = apiv7('/me/order/:orderId', {
+    orderId: '@orderId',
+  });
 
-    var userOrderEndpoint = apiv7("/me/order/:orderId", {
-        orderId: "@orderId"
-    });
-
-    return userOrderEndpoint;
+  return userOrderEndpoint;
 });

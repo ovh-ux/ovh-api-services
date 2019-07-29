@@ -1,26 +1,20 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenter", function ($injector) {
-
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterV6");
-        },
-        Filer: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterFiler");
-        },
-        Host: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterHost");
-        },
-        DisasterRecovery: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterDisasterRecovery");
-        },
-        Backup: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterBackup");
-        },
-        Zerto: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterZerto");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudDatacenter', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterV6');
+  },
+  Filer() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterFiler');
+  },
+  Host() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterHost');
+  },
+  DisasterRecovery() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterDisasterRecovery');
+  },
+  Backup() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterBackup');
+  },
+  Zerto() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterZerto');
+  },
+}));

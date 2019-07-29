@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectAvailableRegions", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectAvailableRegionsV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectAvailableRegions', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectAvailableRegionsV6');
+  },
+}));

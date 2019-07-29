@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationHypervisor", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudLocationHypervisorV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudLocationHypervisor', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudLocationHypervisorV6');
+  },
+}));

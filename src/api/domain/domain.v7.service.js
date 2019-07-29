@@ -1,9 +1,7 @@
-angular.module("ovh-api-services").service("OvhApiDomainV7", function (apiv7) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDomainV7', (apiv7) => {
+  const domainEndpoint = apiv7('/domain/:serviceName', {
+    serviceName: '@serviceName',
+  });
 
-    var domainEndpoint = apiv7("/domain/:serviceName", {
-        serviceName: "@serviceName"
-    });
-
-    return domainEndpoint;
+  return domainEndpoint;
 });

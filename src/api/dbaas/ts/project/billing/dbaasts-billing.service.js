@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDBaasTsProjectBilling", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDBaasTsProjectBillingV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDBaasTsProjectBilling', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDBaasTsProjectBillingV6');
+  },
+}));

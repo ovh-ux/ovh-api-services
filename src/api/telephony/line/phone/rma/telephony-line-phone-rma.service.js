@@ -1,9 +1,6 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyLinePhoneRMA", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyLinePhoneRMAV6");
-        },
-        Aapi: angular.noop
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyLinePhoneRMA', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyLinePhoneRMAV6');
+  },
+  Aapi: angular.noop,
+}));

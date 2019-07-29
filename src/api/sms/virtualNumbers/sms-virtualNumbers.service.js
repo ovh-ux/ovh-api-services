@@ -1,17 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbers", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiSmsVirtualNumbersV6");
-        },
-        Incoming: function () {
-            return $injector.get("OvhApiSmsVirtualNumbersIncoming");
-        },
-        Jobs: function () {
-            return $injector.get("OvhApiSmsVirtualNumbersJobs");
-        },
-        Outgoing: function () {
-            return $injector.get("OvhApiSmsVirtualNumbersOutgoing");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiSmsVirtualNumbers', $injector => ({
+  v6() {
+    return $injector.get('OvhApiSmsVirtualNumbersV6');
+  },
+  Incoming() {
+    return $injector.get('OvhApiSmsVirtualNumbersIncoming');
+  },
+  Jobs() {
+    return $injector.get('OvhApiSmsVirtualNumbersJobs');
+  },
+  Outgoing() {
+    return $injector.get('OvhApiSmsVirtualNumbersOutgoing');
+  },
+}));

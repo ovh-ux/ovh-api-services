@@ -1,27 +1,25 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsDashboardAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsDashboardAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasLogsDashboardAapi');
 
-    var cache = $cacheFactory("OvhApiDbaasLogsDashboardAapi");
+  const dashboard = $resource('/dbaas/logs/:serviceName/dashboard/:dashboardId', {
+    serviceName: '@serviceName',
+    dashboardId: '@dashboardId',
+  }, {
+    get: {
+      method: 'GET',
+      serviceType: 'aapi',
+      cache,
+      isArray: false,
+    },
+  });
 
-    var dashboard = $resource("/dbaas/logs/:serviceName/dashboard/:dashboardId", {
-        serviceName: "@serviceName",
-        dashboardId: "@dashboardId"
-    }, {
-        get: {
-            method: "GET",
-            serviceType: "aapi",
-            cache: cache,
-            isArray: false
-        }
-    });
+  dashboard.resetAllCache = function () {
+    dashboard.resetCache();
+  };
 
-    dashboard.resetAllCache = function () {
-        dashboard.resetCache();
-    };
+  dashboard.resetCache = function () {
+    cache.removeAll();
+  };
 
-    dashboard.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return dashboard;
+  return dashboard;
 });

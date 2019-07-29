@@ -1,11 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiMeDebtAccount", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeDebtAccountV6");
-        },
-        Debt: function () {
-            return $injector.get("OvhApiMeDebtAccountDebt");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeDebtAccount', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeDebtAccountV6');
+  },
+  Debt() {
+    return $injector.get('OvhApiMeDebtAccountDebt');
+  },
+}));

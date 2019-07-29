@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyHistoryTollfreeConsumption", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyHistoryTollfreeConsumptionV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyHistoryTollfreeConsumption', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyHistoryTollfreeConsumptionV6');
+  },
+}));

@@ -1,24 +1,22 @@
-angular.module("ovh-api-services").service("OvhApiLicenseOfficeDomainV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiLicenseOfficeDomainV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiLicenseOfficeDomainV6');
+  const queryCache = $cacheFactory('OvhApiLicenseOfficeDomainV6Query');
 
-    var cache = $cacheFactory("OvhApiLicenseOfficeDomainV6");
-    var queryCache = $cacheFactory("OvhApiLicenseOfficeDomainV6Query");
+  const domains = $resource('/license/office/:serviceName/domain/:domainName', {
+    serviceName: '@serviceName',
+    domainName: '@domainName',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache },
+  });
 
-    var domains = $resource("/license/office/:serviceName/domain/:domainName", {
-        serviceName: "@serviceName",
-        domainName: "@domainName"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache }
-    });
+  domains.resetCache = function () {
+    cache.removeAll();
+  };
 
-    domains.resetCache = function () {
-        cache.removeAll();
-    };
+  domains.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    domains.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return domains;
+  return domains;
 });

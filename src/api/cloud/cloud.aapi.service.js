@@ -1,20 +1,18 @@
-angular.module("ovh-api-services").service("OvhApiCloudAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudAapi', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiCloudAapiQuery');
 
-    var queryCache = $cacheFactory("OvhApiCloudAapiQuery");
+  const instancesResource = $resource('/cloud/instances', {}, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      serviceType: 'aapi',
+      cache: queryCache,
+    },
+  });
 
-    var instancesResource = $resource("/cloud/instances", {}, {
-        query: {
-            method: "GET",
-            isArray: true,
-            serviceType: "aapi",
-            cache: queryCache
-        }
-    });
+  instancesResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    instancesResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return instancesResource;
+  return instancesResource;
 });

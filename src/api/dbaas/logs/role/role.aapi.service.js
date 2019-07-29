@@ -1,26 +1,24 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsRoleAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsRoleAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasLogsRoleAapi');
 
-    var cache = $cacheFactory("OvhApiDbaasLogsRoleAapi");
+  const role = $resource('/dbaas/logs/:serviceName/role/:roleId', {
+    serviceName: '@serviceName',
+    roleId: '@roleId',
+  }, {
+    get: {
+      method: 'GET',
+      serviceType: 'aapi',
+      cache,
+    },
+  });
 
-    var role = $resource("/dbaas/logs/:serviceName/role/:roleId", {
-        serviceName: "@serviceName",
-        roleId: "@roleId"
-    }, {
-        get: {
-            method: "GET",
-            serviceType: "aapi",
-            cache: cache
-        }
-    });
+  role.resetAllCache = function () {
+    role.resetCache();
+  };
 
-    role.resetAllCache = function () {
-        role.resetCache();
-    };
+  role.resetCache = function () {
+    cache.removeAll();
+  };
 
-    role.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return role;
+  return role;
 });

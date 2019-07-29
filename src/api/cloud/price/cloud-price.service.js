@@ -1,13 +1,6 @@
-angular.module("ovh-api-services").service("OvhApiCloudPrice", function ($injector) {
-
-    "use strict";
-
-    // This file is deprecated
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudPriceV6");
-        }
-    };
-
-});
+// This file is deprecated
+angular.module('ovh-api-services').service('OvhApiCloudPrice', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudPriceV6');
+  },
+}));

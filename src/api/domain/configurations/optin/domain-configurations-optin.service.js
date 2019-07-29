@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDomainConfigurationsOptin", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDomainConfigurationsOptinV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDomainConfigurationsOptin', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDomainConfigurationsOptinV6');
+  },
+}));

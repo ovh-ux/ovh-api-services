@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiSmsVirtualNumbersOutgoing", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiSmsVirtualNumbersOutgoingV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiSmsVirtualNumbersOutgoing', $injector => ({
+  v6() {
+    return $injector.get('OvhApiSmsVirtualNumbersOutgoingV6');
+  },
+}));

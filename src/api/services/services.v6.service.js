@@ -1,8 +1,3 @@
-angular.module("ovh-api-services").service("OvhApiServicesV6", function ($resource) {
-    "use strict";
-
-    return $resource("/services/:serviceId", {
-        serviceId: "@serviceId"
-    });
-
-});
+angular.module('ovh-api-services').service('OvhApiServicesV6', $resource => $resource('/services/:serviceId', {
+  serviceId: '@serviceId',
+}));

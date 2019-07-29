@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryUsers", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectContainerRegistryUsersV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistryUsers', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectContainerRegistryUsersV6');
+  },
+}));

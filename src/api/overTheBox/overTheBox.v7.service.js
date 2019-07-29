@@ -1,10 +1,7 @@
-angular.module("ovh-api-services").service("OvhApiOverTheBoxV7", function (apiv7) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiOverTheBoxV7', (apiv7) => {
+  const otbEndpoint = apiv7('/overtTheBox/:serviceName', {
+    serviceName: '@serviceName',
+  });
 
-    var otbEndpoint = apiv7("/overtTheBox/:serviceName", {
-        serviceName: "@serviceName"
-    });
-
-    return otbEndpoint;
-
+  return otbEndpoint;
 });

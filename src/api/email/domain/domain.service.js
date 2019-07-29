@@ -1,13 +1,10 @@
 angular
-    .module("ovh-api-services")
-    .service(
-        "OvhApiEmailDomain",
-        function ($injector) {
-            "use strict";
-
-            return {
-                v6: function () {
-                    return $injector.get("OvhApiEmailDomainV6");
-                }
-            };
-        });
+  .module('ovh-api-services')
+  .service(
+    'OvhApiEmailDomain',
+    $injector => ({
+      v6() {
+        return $injector.get('OvhApiEmailDomainV6');
+      },
+    }),
+  );

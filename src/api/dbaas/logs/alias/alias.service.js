@@ -1,15 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsAlias", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDbaasLogsAliasV6");
-        },
-        Iceberg: function () {
-            return $injector.get("OvhApiDbaasLogsAliasIceberg");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiDbaasLogsAliasAapi");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDbaasLogsAlias', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDbaasLogsAliasV6');
+  },
+  Iceberg() {
+    return $injector.get('OvhApiDbaasLogsAliasIceberg');
+  },
+  Aapi() {
+    return $injector.get('OvhApiDbaasLogsAliasAapi');
+  },
+}));

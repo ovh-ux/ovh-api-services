@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudUserObjectRight", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudUserObjectRightV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudUserObjectRight', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudUserObjectRightV6');
+  },
+}));

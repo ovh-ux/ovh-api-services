@@ -1,20 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiSmsUsers", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiSmsUsersV6");
-        },
-        Incoming: function () {
-            return $injector.get("OvhApiSmsUsersIncoming");
-        },
-        Jobs: function () {
-            return $injector.get("OvhApiSmsUsersJobs");
-        },
-        Outgoing: function () {
-            return $injector.get("OvhApiSmsUsersOutgoing");
-        },
-        Receivers: function () {
-            return $injector.get("OvhApiSmsUsersReceivers");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiSmsUsers', $injector => ({
+  v6() {
+    return $injector.get('OvhApiSmsUsersV6');
+  },
+  Incoming() {
+    return $injector.get('OvhApiSmsUsersIncoming');
+  },
+  Jobs() {
+    return $injector.get('OvhApiSmsUsersJobs');
+  },
+  Outgoing() {
+    return $injector.get('OvhApiSmsUsersOutgoing');
+  },
+  Receivers() {
+    return $injector.get('OvhApiSmsUsersReceivers');
+  },
+}));

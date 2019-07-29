@@ -1,56 +1,54 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCephV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedCephV6', ($resource, $cacheFactory) => {
+  const schemaCache = $cacheFactory('OvhApiDedicatedCephv6Schema');
+  const queryCache = $cacheFactory('OvhApiDedicatedCephV6Query');
 
-    var schemaCache = $cacheFactory("OvhApiDedicatedCephv6Schema");
-    var queryCache = $cacheFactory("OvhApiDedicatedCephV6Query");
+  const interceptor = {
+    response(response) {
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const resource = $resource('/dedicated/ceph/:serviceName', {
+    serviceName: '@serviceName',
+  }, {
+    schema: {
+      method: 'GET',
+      cache: schemaCache,
+      url: '/dedicated/ceph.json',
+    },
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+    },
+    get: {
+      method: 'GET',
+      cache: queryCache,
+    },
+    put: {
+      method: 'PUT',
+      interceptor,
+    },
+    health: {
+      url: '/dedicated/ceph/:serviceName/health',
+      method: 'GET',
+    },
+  });
 
-    var resource = $resource("/dedicated/ceph/:serviceName", {
-        serviceName: "@serviceName"
-    }, {
-        schema: {
-            method: "GET",
-            cache: schemaCache,
-            url: "/dedicated/ceph.json"
-        },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true
-        },
-        get: {
-            method: "GET",
-            cache: queryCache
-        },
-        put: {
-            method: "PUT",
-            interceptor: interceptor
-        },
-        health: {
-            url: "/dedicated/ceph/:serviceName/health",
-            method: "GET"
-        }
-    });
+  resource.resetAllCache = function () {
+    resource.resetSchemaCache();
+    resource.resetQueryCache();
+    resource.resetOtherCache();
+  };
 
-    resource.resetAllCache = function () {
-        resource.resetSchemaCache();
-        resource.resetQueryCache();
-        resource.resetOtherCache();
-    };
+  resource.resetSchemaCache = function () {
+    schemaCache.removeAll();
+  };
 
-    resource.resetSchemaCache = function () {
-        schemaCache.removeAll();
-    };
+  resource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    resource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return resource;
+  return resource;
 });

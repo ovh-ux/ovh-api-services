@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeBillingInvoicesByPostalMail", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeBillingInvoicesByPostalMailV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeBillingInvoicesByPostalMail', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeBillingInvoicesByPostalMailV6');
+  },
+}));

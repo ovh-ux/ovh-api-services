@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiOrderPrivateDatabase", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiOrderPrivateDatabaseV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiOrderPrivateDatabase', $injector => ({
+  v6() {
+    return $injector.get('OvhApiOrderPrivateDatabaseV6');
+  },
+}));

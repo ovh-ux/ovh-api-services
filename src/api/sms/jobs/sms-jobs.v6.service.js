@@ -1,66 +1,64 @@
-angular.module("ovh-api-services").service("OvhApiSmsJobsV6", function ($cacheFactory, $resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiSmsJobsV6', ($cacheFactory, $resource) => {
+  const cache = $cacheFactory('OvhApiSmsJobsV6');
+  const queryCache = $cacheFactory('OvhApiSmsJobsV6Query');
 
-    var cache = $cacheFactory("OvhApiSmsJobsV6");
-    var queryCache = $cacheFactory("OvhApiSmsJobsV6Query");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
+  const jobResource = $resource('/sms/:serviceName/jobs/:id', {
+    serviceName: '@serviceName',
+    id: '@id',
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      cache: queryCache,
+    },
+    get: {
+      method: 'GET',
+      cache,
+    },
+    getBatch: {
+      method: 'GET',
+      isArray: true,
+      headers: {
+        'X-Ovh-Batch': ',',
+      },
+      cache,
+    },
+    delete: {
+      method: 'DELETE',
+      interceptor,
+    },
+    send: {
+      method: 'POST',
+      isArray: false,
+      interceptor,
+    },
+    getPtts: {
+      method: 'GET',
+      url: '/sms/ptts',
+      cache,
+    },
+  });
 
-    var jobResource = $resource("/sms/:serviceName/jobs/:id", {
-        serviceName: "@serviceName",
-        id: "@id"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            cache: queryCache
-        },
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        getBatch: {
-            method: "GET",
-            isArray: true,
-            headers: {
-                "X-Ovh-Batch": ","
-            },
-            cache: cache
-        },
-        "delete": {
-            method: "DELETE",
-            interceptor: interceptor
-        },
-        send: {
-            method: "POST",
-            isArray: false,
-            interceptor: interceptor
-        },
-        getPtts: {
-            method: "GET",
-            url: "/sms/ptts",
-            cache: cache
-        }
-    });
+  jobResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    jobResource.resetCache = function () {
-        cache.removeAll();
-    };
+  jobResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    jobResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
+  jobResource.resetAllCache = function () {
+    this.resetCache();
+    this.resetQueryCache();
+  };
 
-    jobResource.resetAllCache = function () {
-        this.resetCache();
-        this.resetQueryCache();
-    };
-
-    return jobResource;
+  return jobResource;
 });

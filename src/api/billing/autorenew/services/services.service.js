@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiBillingAutorenewServices", function ($injector) {
-    "use strict";
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiBillingAutorenewServicesAapi");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiBillingAutorenewServices', $injector => ({
+  Aapi() {
+    return $injector.get('OvhApiBillingAutorenewServicesAapi');
+  },
+}));

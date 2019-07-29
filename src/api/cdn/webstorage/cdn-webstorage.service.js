@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiCdnWebstorage", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCdnWebstorage', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiCdnWebstorage');
 
-    var cache = $cacheFactory("OvhApiCdnWebstorage");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCdnWebstorageV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiCdnWebstorageV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

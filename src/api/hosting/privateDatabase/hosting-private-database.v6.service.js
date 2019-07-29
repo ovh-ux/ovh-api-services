@@ -1,47 +1,45 @@
-angular.module("ovh-api-services").service("OvhApiHostingPrivateDatabaseV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiHostingPrivateDatabaseV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiHostingPrivateDatabaseV6Cache');
 
-    var cache = $cacheFactory("OvhApiHostingPrivateDatabaseV6Cache");
+  const interceptor = {
+    response(response) {
+      cache.removeAll();
+      return response;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.removeAll();
-            return response;
-        }
-    };
+  const resource = $resource('/hosting/privateDatabase/:serviceName', {
+    serviceName: '@serviceName',
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      cache,
+    },
+    get: {
+      method: 'GET',
+      cache,
+    },
+    put: {
+      method: 'PUT',
+      interceptor,
+    },
+    availableOrderCapacities: {
+      method: 'GET',
+      url: '/hosting/privateDatabase/availableOrderCapacities',
+      params: {
+        offer: '@offer',
+      },
+    },
+  });
 
-    var resource = $resource("/hosting/privateDatabase/:serviceName", {
-        serviceName: "@serviceName"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            cache: cache
-        },
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        put: {
-            method: "PUT",
-            interceptor: interceptor
-        },
-        availableOrderCapacities: {
-            method: "GET",
-            url: "/hosting/privateDatabase/availableOrderCapacities",
-            params: {
-                offer: "@offer"
-            }
-        }
-    });
+  resource.resetAllCache = function () {
+    resource.resetCache();
+  };
 
-    resource.resetAllCache = function () {
-        resource.resetCache();
-    };
+  resource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    resource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return resource;
+  return resource;
 });

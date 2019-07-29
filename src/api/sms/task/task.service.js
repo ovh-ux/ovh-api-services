@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiSmsTask", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTaskV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiSmsTask', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTaskV6');
+  },
+}));

@@ -1,52 +1,50 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudTaskV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudTaskV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDedicatedCloudTaskV6Query');
+  const cache = $cacheFactory('OvhApiDedicatedCloudTaskV6');
 
-    var queryCache = $cacheFactory("OvhApiDedicatedCloudTaskV6Query");
-    var cache = $cacheFactory("OvhApiDedicatedCloudTaskV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
-        }
-    };
+  const baseURL = '/dedicatedCloud/:serviceName/task/:taskId';
 
-    var baseURL = "/dedicatedCloud/:serviceName/task/:taskId";
+  const taskResource = $resource(baseURL, {
+    serviceName: '@serviceName',
+    taskId: '@taskId',
+  }, {
+    get: { method: 'GET', cache },
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+      params: {
+        name: '@name',
+        state: '@state',
+      },
+    },
+    changeMaintenanceExecutionDate: {
+      url: `${baseURL}/changeMaintenanceExecutionDate`,
+      method: 'POST',
+      interceptor,
+    },
+    resetTaskState: {
+      url: `${baseURL}/resetTaskState`,
+      method: 'POST',
+      interceptor,
+    },
+  });
 
-    var taskResource = $resource(baseURL, {
-        serviceName: "@serviceName",
-        taskId: "@taskId"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true,
-            params: {
-                name: "@name",
-                state: "@state"
-            }
-        },
-        changeMaintenanceExecutionDate: {
-            url: baseURL + "/changeMaintenanceExecutionDate",
-            method: "POST",
-            interceptor: interceptor
-        },
-        resetTaskState: {
-            url: baseURL + "/resetTaskState",
-            method: "POST",
-            interceptor: interceptor
-        }
-    });
+  taskResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    taskResource.resetCache = function () {
-        cache.removeAll();
-    };
+  taskResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    taskResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return taskResource;
+  return taskResource;
 });

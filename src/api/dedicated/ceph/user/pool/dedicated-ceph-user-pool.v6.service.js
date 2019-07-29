@@ -1,41 +1,39 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCephUserPoolV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedCephUserPoolV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDedicatedCephUserPoolV6');
 
-    var queryCache = $cacheFactory("OvhApiDedicatedCephUserPoolV6");
+  const interceptor = {
+    response(response) {
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const resource = $resource('/dedicated/ceph/:serviceName/user/:userName/pool', {
+    serviceName: '@serviceName',
+    userName: '@userName',
+  }, {
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+    },
+    post: {
+      method: 'POST',
+      interceptor,
+    },
+    put: {
+      method: 'PUT',
+      interceptor,
+    },
+  });
 
-    var resource = $resource("/dedicated/ceph/:serviceName/user/:userName/pool", {
-        serviceName: "@serviceName",
-        userName: "@userName"
-    }, {
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true
-        },
-        post: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        put: {
-            method: "PUT",
-            interceptor: interceptor
-        }
-    });
+  resource.resetAllCache = function () {
+    resource.resetQueryCache();
+  };
 
-    resource.resetAllCache = function () {
-        resource.resetQueryCache();
-    };
+  resource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    resource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return resource;
+  return resource;
 });

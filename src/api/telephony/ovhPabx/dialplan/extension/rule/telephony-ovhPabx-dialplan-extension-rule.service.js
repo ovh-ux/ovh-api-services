@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxDialplanExtensionRule", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyOvhPabxDialplanExtensionRuleV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtensionRule', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyOvhPabxDialplanExtensionRuleV6');
+  },
+}));

@@ -1,22 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudUser", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudUserV6");
-        },
-        Iceberg: function () {
-            return $injector.get("OvhApiDedicatedCloudUserIceberg");
-        },
-        ObjectRight: function () {
-            return $injector.get("OvhApiDedicatedCloudUserObjectRight");
-        },
-        Right: function () {
-            return $injector.get("OvhApiDedicatedCloudUserRight");
-        },
-        Task: function () {
-            return $injector.get("OvhApiDedicatedCloudUserTask");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudUser', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudUserV6');
+  },
+  Iceberg() {
+    return $injector.get('OvhApiDedicatedCloudUserIceberg');
+  },
+  ObjectRight() {
+    return $injector.get('OvhApiDedicatedCloudUserObjectRight');
+  },
+  Right() {
+    return $injector.get('OvhApiDedicatedCloudUserRight');
+  },
+  Task() {
+    return $injector.get('OvhApiDedicatedCloudUserTask');
+  },
+}));

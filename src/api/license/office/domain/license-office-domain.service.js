@@ -1,11 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiLicenseOfficeDomain", function ($injector) {
-
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiLicenseOfficeDomainV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiLicenseOfficeDomain', $injector => ({
+  v6() {
+    return $injector.get('OvhApiLicenseOfficeDomainV6');
+  },
+}));
