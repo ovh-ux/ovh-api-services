@@ -1,37 +1,35 @@
-angular.module("ovh-api-services").service("OvhApiXdsl", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdsl', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdsl');
 
-    var cache = $cacheFactory("OvhApiXdsl");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiXdslAapi");
-        },
-        v7: function () {
-            return $injector.get("OvhApiXdslV7");
-        },
-        Email: function () {
-            return $injector.get("OvhApiXdslEmail");
-        },
-        Incident: function () {
-            return $injector.get("OvhApiXdslIncident");
-        },
-        Lines: function () {
-            return $injector.get("OvhApiXdslLines");
-        },
-        Modem: function () {
-            return $injector.get("OvhApiXdslModem");
-        },
-        TemplateModem: function () {
-            return $injector.get("OvhApiXdslTemplateModem");
-        },
-        Spare: function () {
-            return $injector.get("OvhApiXdslSpare");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslV6');
+    },
+    Aapi() {
+      return $injector.get('OvhApiXdslAapi');
+    },
+    v7() {
+      return $injector.get('OvhApiXdslV7');
+    },
+    Email() {
+      return $injector.get('OvhApiXdslEmail');
+    },
+    Incident() {
+      return $injector.get('OvhApiXdslIncident');
+    },
+    Lines() {
+      return $injector.get('OvhApiXdslLines');
+    },
+    Modem() {
+      return $injector.get('OvhApiXdslModem');
+    },
+    TemplateModem() {
+      return $injector.get('OvhApiXdslTemplateModem');
+    },
+    Spare() {
+      return $injector.get('OvhApiXdslSpare');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

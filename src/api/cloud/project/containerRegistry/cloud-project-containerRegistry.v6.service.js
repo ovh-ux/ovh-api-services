@@ -1,47 +1,45 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryV6", function ($cacheFactory, $resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistryV6', ($cacheFactory, $resource) => {
+  const cache = $cacheFactory('OvhApiCloudProjectContainerRegistryV6');
+  const queryCache = $cacheFactory('OvhApiCloudProjectContainerRegistryV6Query');
 
-    var cache = $cacheFactory("OvhApiCloudProjectContainerRegistryV6");
-    var queryCache = $cacheFactory("OvhApiCloudProjectContainerRegistryV6Query");
+  const interceptor = {
+    response(response) {
+      cache.removeAll();
+      queryCache.removeAll();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.removeAll();
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
+  const registryResource = $resource('/cloud/project/:serviceName/containerRegistry/:registryID', {
+    serviceName: '@serviceName',
+    registryID: '@registryID',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache },
+    create: {
+      method: 'POST',
+      interceptor,
+    },
+    update: {
+      method: 'PUT',
+      interceptor,
+      params: {
+        name: '@name',
+      },
+    },
+    delete: {
+      method: 'DELETE',
+      interceptor,
+    },
+  });
 
-    var registryResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID", {
-        serviceName: "@serviceName",
-        registryID: "@registryID"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache },
-        create: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        update: {
-            method: "PUT",
-            interceptor: interceptor,
-            params: {
-                name: "@name"
-            }
-        },
-        "delete": {
-            method: "DELETE",
-            interceptor: interceptor
-        }
-    });
+  registryResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    registryResource.resetCache = function () {
-        cache.removeAll();
-    };
+  registryResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    registryResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return registryResource;
+  return registryResource;
 });

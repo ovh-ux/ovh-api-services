@@ -1,12 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyScreen", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyScreenV6");
-        },
-        ScreenLists: function () {
-            return $injector.get("OvhApiTelephonyScreenLists");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyScreen', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyScreenV6');
+  },
+  ScreenLists() {
+    return $injector.get('OvhApiTelephonyScreenLists');
+  },
+}));

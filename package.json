@@ -13,7 +13,7 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "lint": "eslint . --quiet --ext .js",
+    "lint": "eslint --quiet --fix --format=pretty src",
     "prepare": "yarn run build",
     "test": "yarn run lint",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
@@ -24,9 +24,10 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0",
-    "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
-    "eslint-config-ovh": "^0.1.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-formatter-pretty": "^2.1.1",
+    "eslint-plugin-import": "^2.18.0",
     "rollup-plugin-glob-import": "^0.3.1"
   },
   "peerDependencies": {

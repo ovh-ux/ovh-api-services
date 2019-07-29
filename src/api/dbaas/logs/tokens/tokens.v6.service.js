@@ -1,37 +1,35 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsTokensV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsTokensV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasLogsTokensV6');
+  const queryCache = $cacheFactory('OvhApiDbaasLogsTokensV6Query');
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var cache = $cacheFactory("OvhApiDbaasLogsTokensV6");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsTokensV6Query");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const tokenResource = $resource('/dbaas/logs/:serviceName/token/:tokenId', {
+    serviceName: '@serviceName',
+  }, {
+    get: { method: 'GET', cache },
+    create: { method: 'POST', interceptor },
+    remove: { method: 'DELETE', interceptor },
+    query: { method: 'GET', isArray: true, cache: queryCache },
+  });
 
-    var tokenResource = $resource("/dbaas/logs/:serviceName/token/:tokenId", {
-        serviceName: "@serviceName"
-    }, {
-        get: { method: "GET", cache: cache },
-        create: { method: "POST", interceptor: interceptor },
-        remove: { method: "DELETE", interceptor: interceptor },
-        query: { method: "GET", isArray: true, cache: queryCache }
-    });
+  tokenResource.resetAllCache = function () {
+    tokenResource.resetCache();
+    tokenResource.resetQueryCache();
+  };
 
-    tokenResource.resetAllCache = function () {
-        tokenResource.resetCache();
-        tokenResource.resetQueryCache();
-    };
+  tokenResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    tokenResource.resetCache = function () {
-        cache.removeAll();
-    };
+  tokenResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    tokenResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return tokenResource;
+  return tokenResource;
 });

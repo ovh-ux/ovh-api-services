@@ -1,57 +1,55 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyRsvaV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyRsvaV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyRsvaV6');
 
-    var cache = $cacheFactory("OvhApiTelephonyRsvaV6");
+  const interceptor = function (response) {
+    cache.removeAll();
+    return response.data;
+  };
 
-    var interceptor = function (response) {
-        cache.removeAll();
-        return response.data;
-    };
+  const ressource = $resource('/telephony/:billingAccount/rsva/:serviceName', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+  }, {
+    query: {
+      method: 'GET',
+      cache,
+      isArray: true,
+    },
+    edit: {
+      method: 'PUT',
+      interceptor,
+    },
+    getAllowedRateCodes: {
+      method: 'GET',
+      url: '/telephony/:billingAccount/rsva/:serviceName/allowedRateCodes',
+      cache,
+      isArray: true,
+    },
+    getCurrentRateCode: {
+      method: 'GET',
+      url: '/telephony/:billingAccount/rsva/:serviceName/currentRateCode',
+      cache,
+    },
+    getScheduledRateCode: {
+      method: 'GET',
+      url: '/telephony/:billingAccount/rsva/:serviceName/scheduledRateCode',
+      cache,
+    },
+    scheduleRateCode: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/rsva/:serviceName/scheduleRateCode',
+      interceptor,
+    },
+    cancelScheduledRateCode: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/rsva/:serviceName/cancelScheduledRateCode',
+      interceptor,
+    },
+  });
 
-    var ressource = $resource("/telephony/:billingAccount/rsva/:serviceName", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName"
-    }, {
-        query: {
-            method: "GET",
-            cache: cache,
-            isArray: true
-        },
-        edit: {
-            method: "PUT",
-            interceptor: interceptor
-        },
-        getAllowedRateCodes: {
-            method: "GET",
-            url: "/telephony/:billingAccount/rsva/:serviceName/allowedRateCodes",
-            cache: cache,
-            isArray: true
-        },
-        getCurrentRateCode: {
-            method: "GET",
-            url: "/telephony/:billingAccount/rsva/:serviceName/currentRateCode",
-            cache: cache
-        },
-        getScheduledRateCode: {
-            method: "GET",
-            url: "/telephony/:billingAccount/rsva/:serviceName/scheduledRateCode",
-            cache: cache
-        },
-        scheduleRateCode: {
-            method: "POST",
-            url: "/telephony/:billingAccount/rsva/:serviceName/scheduleRateCode",
-            interceptor: interceptor
-        },
-        cancelScheduledRateCode: {
-            method: "POST",
-            url: "/telephony/:billingAccount/rsva/:serviceName/cancelScheduledRateCode",
-            interceptor: interceptor
-        }
-    });
+  ressource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    ressource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return ressource;
+  return ressource;
 });

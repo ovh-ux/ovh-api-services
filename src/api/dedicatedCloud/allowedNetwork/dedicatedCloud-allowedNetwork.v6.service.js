@@ -1,35 +1,33 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudAllowedNetworkV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudAllowedNetworkV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDedicatedCloudAllowedNetworkV6Query');
+  const cache = $cacheFactory('OvhApiDedicatedCloudAllowedNetworkV6');
 
-    var queryCache = $cacheFactory("OvhApiDedicatedCloudAllowedNetworkV6Query");
-    var cache = $cacheFactory("OvhApiDedicatedCloudAllowedNetworkV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
-        }
-    };
+  const networkAllowedResource = $resource('/dedicatedCloud/:serviceName/allowedNetwork/:networkAccessId', {
+    serviceName: '@serviceName',
+    networkAccessId: '@networkAccessId',
+  }, {
+    get: { method: 'GET', cache },
+    query: { method: 'GET', cache: queryCache, isArray: true },
+    put: { method: 'PUT', interceptor },
+    save: { method: 'POST', interceptor },
+    delete: { method: 'DELETE', interceptor },
+  });
 
-    var networkAllowedResource = $resource("/dedicatedCloud/:serviceName/allowedNetwork/:networkAccessId", {
-        serviceName: "@serviceName",
-        networkAccessId: "@networkAccessId"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: queryCache, isArray: true },
-        put: { method: "PUT", interceptor: interceptor },
-        save: { method: "POST", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
-    });
+  networkAllowedResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    networkAllowedResource.resetCache = function () {
-        cache.removeAll();
-    };
+  networkAllowedResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    networkAllowedResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return networkAllowedResource;
+  return networkAllowedResource;
 });

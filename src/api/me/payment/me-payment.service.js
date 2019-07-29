@@ -1,12 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiMePayment", function ($injector) {
-    "use strict";
-
-    return {
-        Method: function () {
-            return $injector.get("OvhApiMePayMethod");
-        },
-        Transaction: function () {
-            return $injector.get("OvhApiMePaymentTransaction");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMePayment', $injector => ({
+  Method() {
+    return $injector.get('OvhApiMePayMethod');
+  },
+  Transaction() {
+    return $injector.get('OvhApiMePaymentTransaction');
+  },
+}));

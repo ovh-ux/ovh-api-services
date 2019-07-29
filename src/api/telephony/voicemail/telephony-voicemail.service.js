@@ -1,15 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyVoicemail", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyVoicemailV6");
-        },
-        Greetings: function () {
-            return $injector.get("OvhApiTelephonyVoicemailGreetings");
-        },
-        Directories: function () {
-            return $injector.get("OvhApiTelephonyVoicemailDirectories");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyVoicemail', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyVoicemailV6');
+  },
+  Greetings() {
+    return $injector.get('OvhApiTelephonyVoicemailGreetings');
+  },
+  Directories() {
+    return $injector.get('OvhApiTelephonyVoicemailDirectories');
+  },
+}));

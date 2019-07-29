@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiOrderCartProduct", function ($injector) {
-
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiOrderCartProductV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiOrderCartProduct', $injector => ({
+  v6() {
+    return $injector.get('OvhApiOrderCartProductV6');
+  },
+}));

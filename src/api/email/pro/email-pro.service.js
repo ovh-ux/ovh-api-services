@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiEmailPro", function ($injector) {
-    "use strict";
-    return {
-        v7: function () {
-            return $injector.get("OvhApiEmailProV7");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiEmailPro', $injector => ({
+  v7() {
+    return $injector.get('OvhApiEmailProV7');
+  },
+}));

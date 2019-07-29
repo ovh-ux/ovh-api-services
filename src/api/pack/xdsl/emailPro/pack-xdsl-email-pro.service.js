@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiPackXdslEmailPro", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiPackXdslEmailProV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiPackXdslEmailPro', $injector => ({
+  v6() {
+    return $injector.get('OvhApiPackXdslEmailProV6');
+  },
+}));

@@ -1,17 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiXdslDiagnosticV6", function ($resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslDiagnosticV6', ($resource) => {
+  const route = '/xdsl/:xdslId/diagnostic';
 
-    var route = "/xdsl/:xdslId/diagnostic";
+  const diagnostic = $resource(route, {
+    xdslId: '@xdslId',
+  }, {
+    launchDiagnostic: {
+      method: 'POST',
+      isArray: false,
+    },
+  });
 
-    var diagnostic = $resource(route, {
-        xdslId: "@xdslId"
-    }, {
-        launchDiagnostic: {
-            method: "POST",
-            isArray: false
-        }
-    });
-
-    return diagnostic;
-
+  return diagnostic;
 });

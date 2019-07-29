@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCephAcl", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCephAclV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCephAcl', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCephAclV6');
+  },
+}));

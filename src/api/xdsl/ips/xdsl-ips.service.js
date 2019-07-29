@@ -1,16 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiXdslIps", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslIps', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdslIps');
 
-    var cache = $cacheFactory("OvhApiXdslIps");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslIpsV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiXdslIpsAapi");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslIpsV6');
+    },
+    Aapi() {
+      return $injector.get('OvhApiXdslIpsAapi');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

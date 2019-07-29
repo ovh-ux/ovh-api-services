@@ -1,29 +1,26 @@
-angular.module("ovh-api-services").service("OvhApiIpLoadBalancing", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiIpLoadBalancingV6");
-        },
-        Farm: function () {
-            return $injector.get("OvhApiIpLoadBalancingFarm");
-        },
-        Frontend: function () {
-            return $injector.get("OvhApiIpLoadBalancingFrontend");
-        },
-        Ssl: function () {
-            return $injector.get("OvhApiIpLoadBalancingSsl");
-        },
-        Task: function () {
-            return $injector.get("OvhApiIpLoadBalancingTask");
-        },
-        Quota: function () {
-            return $injector.get("OvhApiIpLoadBalancingQuota");
-        },
-        Vrack: function () {
-            return $injector.get("OvhApiIpLoadBalancingVrack");
-        },
-        Zone: function () {
-            return $injector.get("OvhApiIpLoadBalancingZone");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiIpLoadBalancing', $injector => ({
+  v6() {
+    return $injector.get('OvhApiIpLoadBalancingV6');
+  },
+  Farm() {
+    return $injector.get('OvhApiIpLoadBalancingFarm');
+  },
+  Frontend() {
+    return $injector.get('OvhApiIpLoadBalancingFrontend');
+  },
+  Ssl() {
+    return $injector.get('OvhApiIpLoadBalancingSsl');
+  },
+  Task() {
+    return $injector.get('OvhApiIpLoadBalancingTask');
+  },
+  Quota() {
+    return $injector.get('OvhApiIpLoadBalancingQuota');
+  },
+  Vrack() {
+    return $injector.get('OvhApiIpLoadBalancingVrack');
+  },
+  Zone() {
+    return $injector.get('OvhApiIpLoadBalancingZone');
+  },
+}));

@@ -1,18 +1,16 @@
-angular.module("ovh-api-services").service("OvhApiMeFidelityAccountV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiMeFidelityAccountV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiMeFidelityAccountV6');
 
-    var cache = $cacheFactory("OvhApiMeFidelityAccountV6");
+  const userFidelityResource = $resource('/me/fidelityAccount', {}, {
+    get: {
+      method: 'GET',
+      cache,
+    },
+  });
 
-    var userFidelityResource = $resource("/me/fidelityAccount", {}, {
-        get: {
-            method: "GET",
-            cache: cache
-        }
-    });
+  userFidelityResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    userFidelityResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return userFidelityResource;
+  return userFidelityResource;
 });

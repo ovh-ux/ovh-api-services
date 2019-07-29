@@ -1,59 +1,58 @@
-"use strict";
 
-angular.module("ovh-api-services").service("OvhApiTelephonyVoicemailGreetingsV6", function ($resource, $cacheFactory) {
 
-    var cache = $cacheFactory("OvhApiTelephonyVoicemailGreetingsV6");
-    var queryCache = $cacheFactory("OvhApiTelephonyVoicemailGreetingsV6Query");
+angular.module('ovh-api-services').service('OvhApiTelephonyVoicemailGreetingsV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyVoicemailGreetingsV6');
+  const queryCache = $cacheFactory('OvhApiTelephonyVoicemailGreetingsV6Query');
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.resource;
+    },
+  };
 
-    var voicemailGreetings = $resource("/telephony/:billingAccount/voicemail/:serviceName/greetings/:id", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName",
-        id: "@id"
-    }, {
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true
-        },
-        create: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        "delete": {
-            method: "DELETE",
-            interceptor: interceptor
-        },
-        download: {
-            method: "GET",
-            url: "/telephony/:billingAccount/voicemail/:serviceName/greetings/:id/download",
-            cache: cache
-        },
-        move: {
-            method: "POST",
-            url: "/telephony/:billingAccount/voicemail/:serviceName/greetings/:id/move",
-            interceptor: interceptor
-        }
-    });
+  const voicemailGreetings = $resource('/telephony/:billingAccount/voicemail/:serviceName/greetings/:id', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+    id: '@id',
+  }, {
+    get: {
+      method: 'GET',
+      cache,
+    },
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+    },
+    create: {
+      method: 'POST',
+      interceptor,
+    },
+    delete: {
+      method: 'DELETE',
+      interceptor,
+    },
+    download: {
+      method: 'GET',
+      url: '/telephony/:billingAccount/voicemail/:serviceName/greetings/:id/download',
+      cache,
+    },
+    move: {
+      method: 'POST',
+      url: '/telephony/:billingAccount/voicemail/:serviceName/greetings/:id/move',
+      interceptor,
+    },
+  });
 
-    voicemailGreetings.resetCache = function () {
-        cache.removeAll();
-    };
+  voicemailGreetings.resetCache = function () {
+    cache.removeAll();
+  };
 
-    voicemailGreetings.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
+  voicemailGreetings.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    return voicemailGreetings;
+  return voicemailGreetings;
 });

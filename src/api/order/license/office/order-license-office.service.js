@@ -1,11 +1,6 @@
-angular.module("ovh-api-services").service("OvhApiOrderLicenseOffice", function ($injector) {
-    "use strict";
-
-    return {
-        v6: angular.noop,
-        New: function () {
-            return $injector.get("OvhApiOrderLicenseOfficeNew");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiOrderLicenseOffice', $injector => ({
+  v6: angular.noop,
+  New() {
+    return $injector.get('OvhApiOrderLicenseOfficeNew');
+  },
+}));

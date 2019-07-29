@@ -1,68 +1,66 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyOvhPabxHuntingQueueV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxHuntingQueueV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyOvhPabxHuntingQueueV6');
+  const queryCache = $cacheFactory('OvhApiTelephonyOvhPabxHuntingQueueV6Query');
 
-    var cache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingQueueV6");
-    var queryCache = $cacheFactory("OvhApiTelephonyOvhPabxHuntingQueueV6Query");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
+  const res = $resource('/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+    queueId: '@queueId',
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      cache: queryCache,
+    },
+    get: {
+      method: 'GET',
+      cache,
+    },
+    getBatch: {
+      method: 'GET',
+      isArray: true,
+      headers: {
+        'X-Ovh-Batch': ',',
+      },
+    },
+    change: {
+      method: 'PUT',
+      interceptor,
+    },
+    create: {
+      method: 'POST',
+      interceptor,
+    },
+    remove: {
+      method: 'DELETE',
+      interceptor,
+    },
+    getLiveStatistics: {
+      method: 'GET',
+      url: '/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveStatistics',
+    },
+  });
 
-    var res = $resource("/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName",
-        queueId: "@queueId"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            cache: queryCache
-        },
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        getBatch: {
-            method: "GET",
-            isArray: true,
-            headers: {
-                "X-Ovh-Batch": ","
-            }
-        },
-        change: {
-            method: "PUT",
-            interceptor: interceptor
-        },
-        create: {
-            method: "POST",
-            interceptor: interceptor
-        },
-        remove: {
-            method: "DELETE",
-            interceptor: interceptor
-        },
-        getLiveStatistics: {
-            method: "GET",
-            url: "/telephony/:billingAccount/ovhPabx/:serviceName/hunting/queue/:queueId/liveStatistics"
-        }
-    });
+  res.resetCache = function () {
+    cache.removeAll();
+  };
 
-    res.resetCache = function () {
-        cache.removeAll();
-    };
+  res.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    res.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
+  res.resetAllCache = function () {
+    this.resetCache();
+    this.resetQueryCache();
+  };
 
-    res.resetAllCache = function () {
-        this.resetCache();
-        this.resetQueryCache();
-    };
-
-    return res;
+  return res;
 });

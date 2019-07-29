@@ -1,7 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeVipStatusV6", function ($injector, $resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiMeVipStatusV6', ($injector, $resource) => {
+  const req = $resource('/me/vipStatus');
 
-    var req = $resource("/me/vipStatus");
-
-    return req;
+  return req;
 });

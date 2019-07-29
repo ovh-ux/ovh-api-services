@@ -1,18 +1,15 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectUsageForecastV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectUsageForecastV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiCloudProjectUsageForecastV6');
 
-    var cache = $cacheFactory("OvhApiCloudProjectUsageForecastV6");
+  const usages = $resource('/cloud/project/:serviceName/usage/forecast', {
+    serviceName: '@serviceName',
+  }, {
+    get: { method: 'GET', cache },
+  });
 
-    var usages = $resource("/cloud/project/:serviceName/usage/forecast", {
-        serviceName: "@serviceName"
-    }, {
-        get: { method: "GET", cache: cache }
-    });
+  usages.resetCache = function () {
+    cache.removeAll();
+  };
 
-    usages.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return usages;
-
+  return usages;
 });

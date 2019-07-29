@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyTrunkExternalDisplayedNumber", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyTrunkExternalDisplayedNumberV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyTrunkExternalDisplayedNumber', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyTrunkExternalDisplayedNumberV6');
+  },
+}));

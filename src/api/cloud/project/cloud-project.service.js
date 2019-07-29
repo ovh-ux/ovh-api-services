@@ -1,75 +1,71 @@
-angular.module("ovh-api-services").service("OvhApiCloudProject", function ($injector, $cacheFactory) {
+angular.module('ovh-api-services').service('OvhApiCloudProject', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('CloudProject');
 
-    "use strict";
-
-    var cache = $cacheFactory("CloudProject");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache,
-        Acl: function () {
-            return $injector.get("OvhApiCloudProjectAcl");
-        },
-        Flavor: function () {
-            return $injector.get("OvhApiCloudProjectFlavor");
-        },
-        Image: function () {
-            return $injector.get("OvhApiCloudProjectImage");
-        },
-        Instance: function () {
-            return $injector.get("OvhApiCloudProjectInstance");
-        },
-        Ip: function () {
-            return $injector.get("OvhApiCloudProjectIp");
-        },
-        Kube: function () {
-            return $injector.get("OvhApiCloudProjectKube");
-        },
-        Region: function () {
-            return $injector.get("OvhApiCloudProjectRegion");
-        },
-        Snapshot: function () {
-            return $injector.get("OvhApiCloudProjectSnapshot");
-        },
-        SshKey: function () {
-            return $injector.get("OvhApiCloudProjectSshKey");
-        },
-        Credit: function () {
-            return $injector.get("OvhApiCloudProjectCredit");
-        },
-        User: function () {
-            return $injector.get("OvhApiCloudProjectUser");
-        },
-        ServiceInfos: function () {
-            return $injector.get("OvhApiCloudProjectServiceInfos");
-        },
-        Alerting: function () {
-            return $injector.get("OvhApiCloudProjectAlerting");
-        },
-        Bill: function () {
-            return $injector.get("OvhApiCloudProjectBill");
-        },
-        Migration: function () {
-            return $injector.get("OvhApiCloudProjectMigration");
-        },
-        Stack: function () {
-            return $injector.get("OvhApiCloudProjectStack");
-        },
-        Volume: function () {
-            return $injector.get("OvhApiCloudProjectVolume");
-        },
-        Network: function () {
-            return $injector.get("OvhApiCloudProjectNetwork");
-        },
-        Quota: function () {
-            return $injector.get("OvhApiCloudProjectQuota");
-        },
-        ContainerRegistry: function () {
-            return $injector.get("OvhApiCloudProjectContainerRegistry");
-        }
-    };
-
+  return {
+    v6() {
+      return $injector.get('OvhApiCloudProjectV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+    Acl() {
+      return $injector.get('OvhApiCloudProjectAcl');
+    },
+    Flavor() {
+      return $injector.get('OvhApiCloudProjectFlavor');
+    },
+    Image() {
+      return $injector.get('OvhApiCloudProjectImage');
+    },
+    Instance() {
+      return $injector.get('OvhApiCloudProjectInstance');
+    },
+    Ip() {
+      return $injector.get('OvhApiCloudProjectIp');
+    },
+    Kube() {
+      return $injector.get('OvhApiCloudProjectKube');
+    },
+    Region() {
+      return $injector.get('OvhApiCloudProjectRegion');
+    },
+    Snapshot() {
+      return $injector.get('OvhApiCloudProjectSnapshot');
+    },
+    SshKey() {
+      return $injector.get('OvhApiCloudProjectSshKey');
+    },
+    Credit() {
+      return $injector.get('OvhApiCloudProjectCredit');
+    },
+    User() {
+      return $injector.get('OvhApiCloudProjectUser');
+    },
+    ServiceInfos() {
+      return $injector.get('OvhApiCloudProjectServiceInfos');
+    },
+    Alerting() {
+      return $injector.get('OvhApiCloudProjectAlerting');
+    },
+    Bill() {
+      return $injector.get('OvhApiCloudProjectBill');
+    },
+    Migration() {
+      return $injector.get('OvhApiCloudProjectMigration');
+    },
+    Stack() {
+      return $injector.get('OvhApiCloudProjectStack');
+    },
+    Volume() {
+      return $injector.get('OvhApiCloudProjectVolume');
+    },
+    Network() {
+      return $injector.get('OvhApiCloudProjectNetwork');
+    },
+    Quota() {
+      return $injector.get('OvhApiCloudProjectQuota');
+    },
+    ContainerRegistry() {
+      return $injector.get('OvhApiCloudProjectContainerRegistry');
+    },
+  };
 });

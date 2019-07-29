@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyLineAll", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiTelephonyLineAllAapi");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyLineAll', $injector => ({
+  Aapi() {
+    return $injector.get('OvhApiTelephonyLineAllAapi');
+  },
+}));

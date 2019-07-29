@@ -1,32 +1,30 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyEasyHuntingHuntingV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyEasyHuntingHuntingV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyEasyHuntingHuntingV6');
 
-    var cache = $cacheFactory("OvhApiTelephonyEasyHuntingHuntingV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            return response.resource;
-        }
-    };
+  const res = $resource('/telephony/:billingAccount/easyHunting/:serviceName/hunting', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+  }, {
+    get: {
+      method: 'GET',
+      cache,
+    },
+    change: {
+      method: 'PUT',
+      interceptor,
+    },
+  });
 
-    var res = $resource("/telephony/:billingAccount/easyHunting/:serviceName/hunting", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName"
-    }, {
-        get: {
-            method: "GET",
-            cache: cache
-        },
-        change: {
-            method: "PUT",
-            interceptor: interceptor
-        }
-    });
+  res.resetCache = function () {
+    cache.removeAll();
+  };
 
-    res.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return res;
+  return res;
 });

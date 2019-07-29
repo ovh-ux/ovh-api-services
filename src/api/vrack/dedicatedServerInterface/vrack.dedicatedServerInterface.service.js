@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedServerInterface", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedServerInterfaceV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedServerInterface', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedServerInterfaceV6');
+  },
+}));

@@ -1,17 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyFax", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyFaxV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiTelephonyFaxAapi");
-        },
-        v7: function () {
-            return $injector.get("OvhApiTelephonyFaxV7");
-        },
-        Campaigns: function () {
-            return $injector.get("OvhApiTelephonyFaxCampaigns");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyFax', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyFaxV6');
+  },
+  Aapi() {
+    return $injector.get('OvhApiTelephonyFaxAapi');
+  },
+  v7() {
+    return $injector.get('OvhApiTelephonyFaxV7');
+  },
+  Campaigns() {
+    return $injector.get('OvhApiTelephonyFaxCampaigns');
+  },
+}));

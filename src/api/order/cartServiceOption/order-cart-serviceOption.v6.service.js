@@ -1,33 +1,30 @@
-angular.module("ovh-api-services").service("OvhApiOrderCartServiceOptionV6", function ($resource, $cacheFactory) {
+angular.module('ovh-api-services').service('OvhApiOrderCartServiceOptionV6', ($resource, $cacheFactory) => {
+  // Cache to invalidate
+  const queryCache = $cacheFactory('OvhApiOrderCartServiceOptionV6Query');
+  const cache = $cacheFactory('OvhApiOrderCartServiceOptionV6');
 
-    "use strict";
+  const interceptor = {
+    response(response) {
+      orderCartServiceOption.resetQueryCache();
+      return response.data;
+    },
+  };
 
-    // Cache to invalidate
-    var queryCache = $cacheFactory("OvhApiOrderCartServiceOptionV6Query");
-    var cache = $cacheFactory("OvhApiOrderCartServiceOptionV6");
+  const orderCartServiceOption = $resource('/order/cartServiceOption/:productName/:serviceName', {
+    productName: '@productName',
+    serviceName: '@serviceName',
+  }, {
+    get: { method: 'GET', cache, isArray: true },
+    post: { method: 'POST', interceptor },
+  });
 
-    var interceptor = {
-        response: function (response) {
-            orderCartServiceOption.resetQueryCache();
-            return response.data;
-        }
-    };
+  orderCartServiceOption.resetCache = function () {
+    cache.removeAll();
+  };
 
-    var orderCartServiceOption = $resource("/order/cartServiceOption/:productName/:serviceName", {
-        productName: "@productName",
-        serviceName: "@serviceName"
-    }, {
-        get: { method: "GET", cache: cache, isArray: true },
-        post: { method: "POST", interceptor: interceptor }
-    });
+  orderCartServiceOption.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    orderCartServiceOption.resetCache = function () {
-        cache.removeAll();
-    };
-
-    orderCartServiceOption.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return orderCartServiceOption;
+  return orderCartServiceOption;
 });

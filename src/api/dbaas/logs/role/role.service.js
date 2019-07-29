@@ -1,21 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsRole", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDbaasLogsRoleV6");
-        },
-        Iceberg: function () {
-            return $injector.get("OvhApiDbaasLogsRoleIceberg");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiDbaasLogsRoleAapi");
-        },
-        Member: function () {
-            return $injector.get("OvhApiDbaasLogsRoleMember");
-        },
-        Permission: function () {
-            return $injector.get("OvhApiDbaasLogsRolePermission");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDbaasLogsRole', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDbaasLogsRoleV6');
+  },
+  Iceberg() {
+    return $injector.get('OvhApiDbaasLogsRoleIceberg');
+  },
+  Aapi() {
+    return $injector.get('OvhApiDbaasLogsRoleAapi');
+  },
+  Member() {
+    return $injector.get('OvhApiDbaasLogsRoleMember');
+  },
+  Permission() {
+    return $injector.get('OvhApiDbaasLogsRolePermission');
+  },
+}));

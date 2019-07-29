@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeAccessRestrictionIp", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeAccessRestrictionIpV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiMeAccessRestrictionIp', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeAccessRestrictionIpV6');
+  },
+}));

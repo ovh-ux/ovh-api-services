@@ -1,11 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiSmsPhonebooks", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiSmsPhonebooksV6");
-        },
-        PhonebookContact: function () {
-            return $injector.get("OvhApiSmsPhonebooksPhonebookContact");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiSmsPhonebooks', $injector => ({
+  v6() {
+    return $injector.get('OvhApiSmsPhonebooksV6');
+  },
+  PhonebookContact() {
+    return $injector.get('OvhApiSmsPhonebooksPhonebookContact');
+  },
+}));

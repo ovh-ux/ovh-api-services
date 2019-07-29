@@ -1,11 +1,7 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiOrderUpgradeMicrosoftExchange", function ($injector) {
-
-        "use strict";
-        return {
-            v6: function () {
-                return $injector.get("OvhApiOrderUpgradeMicrosoftExchangeV6");
-            }
-        };
-    });
+  .module('ovh-api-services')
+  .service('OvhApiOrderUpgradeMicrosoftExchange', $injector => ({
+    v6() {
+      return $injector.get('OvhApiOrderUpgradeMicrosoftExchangeV6');
+    },
+  }));

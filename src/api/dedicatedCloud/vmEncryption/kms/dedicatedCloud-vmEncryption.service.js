@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionKms", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudVMEncryptionKmsV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudVMEncryptionKms', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudVMEncryptionKmsV6');
+  },
+}));

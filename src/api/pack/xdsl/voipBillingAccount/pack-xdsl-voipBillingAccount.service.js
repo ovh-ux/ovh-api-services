@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiPackXdslVoipBillingAccount", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiPackXdslVoipBillingAccount', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiPackXdslVoipBillingAccount');
 
-    var cache = $cacheFactory("OvhApiPackXdslVoipBillingAccount");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiPackXdslVoipBillingAccountV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiPackXdslVoipBillingAccountV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

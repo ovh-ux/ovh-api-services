@@ -1,27 +1,25 @@
-angular.module("ovh-api-services").service("OvhApiWorkingStatusAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiWorkingStatusAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiWorkingStatusAapi');
 
-    var cache = $cacheFactory("OvhApiWorkingStatusAapi");
+  const workingStatusResource = $resource('/working-status/:product', {
+    product: '@product',
+  }, {
+    get: {
+      method: 'GET',
+      url: '/working-status/:product',
+      serviceType: 'aapi',
+      cache,
+      isArray: true,
+    },
+  });
 
-    var workingStatusResource = $resource("/working-status/:product", {
-        product: "@product"
-    }, {
-        get: {
-            method: "GET",
-            url: "/working-status/:product",
-            serviceType: "aapi",
-            cache: cache,
-            isArray: true
-        }
-    });
+  workingStatusResource.resetAllCache = function () {
+    workingStatusResource.resetCache();
+  };
 
-    workingStatusResource.resetAllCache = function () {
-        workingStatusResource.resetCache();
-    };
+  workingStatusResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    workingStatusResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return workingStatusResource;
+  return workingStatusResource;
 });

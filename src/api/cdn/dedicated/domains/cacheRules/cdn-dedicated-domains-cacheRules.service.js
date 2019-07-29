@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCdnDedicatedDomainsCacheRules", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCdnDedicatedDomainsCacheRulesV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiCdnDedicatedDomainsCacheRules', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCdnDedicatedDomainsCacheRulesV6');
+  },
+}));

@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiPackXdslVoipEcofax", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiPackXdslVoipEcofax', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiPackXdslVoipEcofax');
 
-    var cache = $cacheFactory("OvhApiPackXdslVoipEcofax");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiPackXdslVoipEcofaxV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiPackXdslVoipEcofaxV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

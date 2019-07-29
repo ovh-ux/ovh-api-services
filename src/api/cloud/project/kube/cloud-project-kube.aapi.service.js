@@ -1,25 +1,23 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectKubeAapi", function ($cacheFactory, $resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectKubeAapi', ($cacheFactory, $resource) => {
+  const cache = $cacheFactory('OvhApiCloudProjectKubeAapi');
 
-    var cache = $cacheFactory("OvhApiCloudProjectKubeAapi");
+  const cloudProjectKubeResource = $resource('/cloud/project/:serviceName/kube', {
+    serviceName: '@serviceName',
+  }, {
+    query: {
+      method: 'GET',
+      serviceType: 'aapi',
+      cache,
+    },
+  });
 
-    var cloudProjectKubeResource = $resource("/cloud/project/:serviceName/kube", {
-        serviceName: "@serviceName"
-    }, {
-        query: {
-            method: "GET",
-            serviceType: "aapi",
-            cache: cache
-        }
-    });
+  cloudProjectKubeResource.resetAllCache = function () {
+    cloudProjectKubeResource.resetCache();
+  };
 
-    cloudProjectKubeResource.resetAllCache = function () {
-        cloudProjectKubeResource.resetCache();
-    };
+  cloudProjectKubeResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    cloudProjectKubeResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return cloudProjectKubeResource;
+  return cloudProjectKubeResource;
 });

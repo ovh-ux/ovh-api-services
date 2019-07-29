@@ -1,37 +1,35 @@
-angular.module("ovh-api-services").service("OvhApiDomainOptionsV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDomainOptionsV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDomainOptionsV6Query');
+  const cache = $cacheFactory('OvhApiDomainOptionsV6');
 
-    var queryCache = $cacheFactory("OvhApiDomainOptionsV6Query");
-    var cache = $cacheFactory("OvhApiDomainOptionsV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
-        }
-    };
+  const domainOptions = $resource('/domain/:serviceName/option/:option', {
+    serviceName: '@serviceName',
+    option: '@option',
+  }, {
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+    },
+    get: { method: 'GET', cache },
+    delete: { method: 'DELETE', interceptor },
+  });
 
-    var domainOptions = $resource("/domain/:serviceName/option/:option", {
-        serviceName: "@serviceName",
-        option: "@option"
-    }, {
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true
-        },
-        get: { method: "GET", cache: cache },
-        "delete": { method: "DELETE", interceptor: interceptor }
-    });
+  domainOptions.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    domainOptions.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
+  domainOptions.resetCache = function () {
+    cache.removeAll();
+  };
 
-    domainOptions.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return domainOptions;
+  return domainOptions;
 });

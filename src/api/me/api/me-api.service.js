@@ -1,13 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiMeApi", function ($injector) {
-    "use strict";
-
-    return {
-        Application: function () {
-            return $injector.get("OvhApiMeApiApplication");
-        },
-        Credential: function () {
-            return $injector.get("OvhApiMeApiCredential");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiMeApi', $injector => ({
+  Application() {
+    return $injector.get('OvhApiMeApiApplication');
+  },
+  Credential() {
+    return $injector.get('OvhApiMeApiCredential');
+  },
+}));

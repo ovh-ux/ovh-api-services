@@ -1,11 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudPCA", function ($injector) {
-
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudPCAV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiCloudPCA', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudPCAV6');
+  },
+}));

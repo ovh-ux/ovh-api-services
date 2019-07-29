@@ -1,10 +1,7 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiMsServicesSharepoint", function ($injector) {
-
-        return {
-            v6: function () {
-                return $injector.get("OvhApiMsServicesSharepointV6");
-            }
-        };
-    });
+  .module('ovh-api-services')
+  .service('OvhApiMsServicesSharepoint', $injector => ({
+    v6() {
+      return $injector.get('OvhApiMsServicesSharepointV6');
+    },
+  }));

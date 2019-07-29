@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemBlocIp", function ($cacheFactory, $injector) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModemBlocIp', ($cacheFactory, $injector) => {
+  const cache = $cacheFactory('OvhApiXdslModemBlocIp');
 
-    var cache = $cacheFactory("OvhApiXdslModemBlocIp");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslModemBlocIpV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslModemBlocIpV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

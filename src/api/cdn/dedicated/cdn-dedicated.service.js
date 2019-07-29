@@ -1,19 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiCdnDedicated", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCdnDedicated', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiCdnDedicated');
 
-    var cache = $cacheFactory("OvhApiCdnDedicated");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCdnDedicatedV6");
-        },
-        Domains: function () {
-            return $injector.get("OvhApiCdnDedicatedDomains");
-        },
-        Ssl: function () {
-            return $injector.get("OvhApiCdnDedicatedSsl");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiCdnDedicatedV6');
+    },
+    Domains() {
+      return $injector.get('OvhApiCdnDedicatedDomains');
+    },
+    Ssl() {
+      return $injector.get('OvhApiCdnDedicatedSsl');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

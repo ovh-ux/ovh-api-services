@@ -1,29 +1,26 @@
-angular.module("ovh-api-services").service("OvhApiStoreContactV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiStoreContactV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiStoreContactV6');
+  const queryCache = $cacheFactory('OvhApiStoreContactV6Query');
 
-    var cache = $cacheFactory("OvhApiStoreContactV6");
-    var queryCache = $cacheFactory("OvhApiStoreContactV6Query");
+  const contact = $resource('/store/contact/:contactId', { contactId: '@contactId' }, {
+    query: { method: 'GET', cache: queryCache, isArray: true },
+    get: { method: 'GET', cache },
+    create: { method: 'POST', interceptor },
+    update: { method: 'PUT', interceptor },
+    delete: { method: 'DELETE', interceptor },
+  });
 
-    var contact = $resource("/store/contact/:contactId", { contactId: "@contactId" }, {
-        query: { method: "GET", cache: queryCache, isArray: true },
-        get: { method: "GET", cache: cache },
-        create: { method: "POST", interceptor: interceptor },
-        update: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
-    });
+  const interceptor = {
+    response(response) {
+      contact.resetCache();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            contact.resetCache();
-            return response.data;
-        }
-    };
+  contact.resetCache = function () {
+    cache.removeAll();
+    queryCache.removeAll();
+  };
 
-    contact.resetCache = function () {
-        cache.removeAll();
-        queryCache.removeAll();
-    };
-
-    return contact;
+  return contact;
 });
-

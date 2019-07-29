@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemContentSharing", function ($cacheFactory, $injector) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModemContentSharing', ($cacheFactory, $injector) => {
+  const cache = $cacheFactory('OvhApiXdslModemContentSharing');
 
-    var cache = $cacheFactory("OvhApiXdslModemContentSharing");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslModemContentSharingV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslModemContentSharingV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

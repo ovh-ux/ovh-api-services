@@ -1,25 +1,23 @@
-angular.module("ovh-api-services").service("OvhApiProductsAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiProductsAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiProductsAapi');
 
-    var cache = $cacheFactory("OvhApiProductsAapi");
+  const productsResource = $resource('/products', {
+  }, {
+    get: {
+      method: 'GET',
+      isArray: false,
+      universe: '@universe',
+      serviceType: 'aapi',
+    },
+  });
 
-    var productsResource = $resource("/products", {
-    }, {
-        get: {
-            method: "GET",
-            isArray: false,
-            universe: "@universe",
-            serviceType: "aapi"
-        }
-    });
+  productsResource.resetAllCache = function () {
+    productsResource.resetCache();
+  };
 
-    productsResource.resetAllCache = function () {
-        productsResource.resetCache();
-    };
+  productsResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    productsResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return productsResource;
+  return productsResource;
 });

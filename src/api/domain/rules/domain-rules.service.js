@@ -1,11 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiDomainRules", function ($injector) {
-    "use strict";
-    return {
-        EmailsObfuscation: function () {
-            return $injector.get("OvhApiDomainRulesEmailsObfuscation");
-        },
-        Optin: function () {
-            return $injector.get("OvhApiDomainRulesOptin");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDomainRules', $injector => ({
+  EmailsObfuscation() {
+    return $injector.get('OvhApiDomainRulesEmailsObfuscation');
+  },
+  Optin() {
+    return $injector.get('OvhApiDomainRulesOptin');
+  },
+}));

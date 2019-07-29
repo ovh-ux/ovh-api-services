@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyTask", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyTaskV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyTask', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyTaskV6');
+  },
+}));

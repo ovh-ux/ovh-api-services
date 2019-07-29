@@ -1,17 +1,15 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudVMEncryptionV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudVMEncryptionV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDedicatedCloudVMEncryptionV6Query');
 
-    var queryCache = $cacheFactory("OvhApiDedicatedCloudVMEncryptionV6Query");
+  const vmEncryptionResource = $resource('/dedicatedCloud/:serviceName/vmEncryption', {
+    serviceName: '@serviceName',
+  }, {
+    query: { method: 'GET', cache: queryCache },
+  });
 
-    var vmEncryptionResource = $resource("/dedicatedCloud/:serviceName/vmEncryption", {
-        serviceName: "@serviceName"
-    }, {
-        query: { method: "GET", cache: queryCache }
-    });
+  vmEncryptionResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    vmEncryptionResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return vmEncryptionResource;
+  return vmEncryptionResource;
 });

@@ -1,39 +1,37 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsDashboardV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsDashboardV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasLogsDashboardV6');
+  const queryCache = $cacheFactory('OvhApiDbaasLogsDashboardV6Query');
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var cache = $cacheFactory("OvhApiDbaasLogsDashboardV6");
-    var queryCache = $cacheFactory("OvhApiDbaasLogsDashboardV6Query");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const dashboardResource = $resource('/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId', {
+    serviceName: '@serviceName',
+    dashboardId: '@dashboardId',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    create: { method: 'POST', interceptor },
+    update: { method: 'PUT', interceptor },
+    remove: { method: 'DELETE', interceptor },
+    duplicate: { method: 'POST', url: '/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId/duplicate', interceptor },
+  });
 
-    var dashboardResource = $resource("/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId", {
-        serviceName: "@serviceName",
-        dashboardId: "@dashboardId"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        create: { method: "POST", interceptor: interceptor },
-        update: { method: "PUT", interceptor: interceptor },
-        remove: { method: "DELETE", interceptor: interceptor },
-        duplicate: { method: "POST", url: "/dbaas/logs/:serviceName/output/graylog/dashboard/:dashboardId/duplicate", interceptor: interceptor }
-    });
+  dashboardResource.resetAllCache = function () {
+    dashboardResource.resetCache();
+    dashboardResource.resetQueryCache();
+  };
 
-    dashboardResource.resetAllCache = function () {
-        dashboardResource.resetCache();
-        dashboardResource.resetQueryCache();
-    };
+  dashboardResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    dashboardResource.resetCache = function () {
-        cache.removeAll();
-    };
+  dashboardResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    dashboardResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return dashboardResource;
+  return dashboardResource;
 });

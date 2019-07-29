@@ -1,21 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiOrderCart", function ($injector) {
-
-    "use strict";
-    return {
-        Item: function () {
-            return $injector.get("OvhApiOrderCartItem");
-        },
-        Microsoft: function () {
-            return $injector.get("OvhApiOrderCartMicrosoft");
-        },
-        Product: function () {
-            return $injector.get("OvhApiOrderCartProduct");
-        },
-        ServiceOption: function () {
-            return $injector.get("OvhApiOrderCartServiceOption");
-        },
-        v6: function () {
-            return $injector.get("OvhApiOrderCartV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiOrderCart', $injector => ({
+  Item() {
+    return $injector.get('OvhApiOrderCartItem');
+  },
+  Microsoft() {
+    return $injector.get('OvhApiOrderCartMicrosoft');
+  },
+  Product() {
+    return $injector.get('OvhApiOrderCartProduct');
+  },
+  ServiceOption() {
+    return $injector.get('OvhApiOrderCartServiceOption');
+  },
+  v6() {
+    return $injector.get('OvhApiOrderCartV6');
+  },
+}));

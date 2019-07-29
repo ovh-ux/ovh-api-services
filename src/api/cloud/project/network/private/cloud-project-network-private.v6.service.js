@@ -1,38 +1,36 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectNetworkPrivateV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectNetworkPrivateV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiCloudProjectNetworkPrivateV6Query');
+  const cache = $cacheFactory('OvhApiCloudProjectNetworkPrivateV6');
 
-    var queryCache = $cacheFactory("OvhApiCloudProjectNetworkPrivateV6Query");
-    var cache = $cacheFactory("OvhApiCloudProjectNetworkPrivateV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
-        }
-    };
+  const privateNetworksResources = $resource('/cloud/project/:serviceName/network/private/:networkId', {
+    serviceName: '@serviceName',
+    networkId: '@networkId',
+  }, {
+    get: { method: 'GET', cache },
+    query: { method: 'GET', cache: queryCache, isArray: true },
+    save: { method: 'POST', interceptor },
+  });
 
-    var privateNetworksResources = $resource("/cloud/project/:serviceName/network/private/:networkId", {
-        serviceName: "@serviceName",
-        networkId: "@networkId"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: queryCache, isArray: true },
-        save: { method: "POST", interceptor: interceptor }
-    });
+  privateNetworksResources.resetAllCache = function () {
+    privateNetworksResources.resetCache();
+    privateNetworksResources.resetQueryCache();
+  };
 
-    privateNetworksResources.resetAllCache = function () {
-        privateNetworksResources.resetCache();
-        privateNetworksResources.resetQueryCache();
-    };
+  privateNetworksResources.resetCache = function () {
+    cache.removeAll();
+  };
 
-    privateNetworksResources.resetCache = function () {
-        cache.removeAll();
-    };
+  privateNetworksResources.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    privateNetworksResources.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return privateNetworksResources;
+  return privateNetworksResources;
 });

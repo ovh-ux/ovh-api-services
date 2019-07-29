@@ -1,7 +1,3 @@
-angular.module("ovh-api-services").service("OvhApiOrderCdnDedicatedV6", function ($resource) {
-    "use strict";
-
-    return $resource("/order/cdn/dedicated/:serviceName", {
-        serviceName: "@serviceName"
-    });
-});
+angular.module('ovh-api-services').service('OvhApiOrderCdnDedicatedV6', $resource => $resource('/order/cdn/dedicated/:serviceName', {
+  serviceName: '@serviceName',
+}));

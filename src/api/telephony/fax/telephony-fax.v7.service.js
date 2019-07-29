@@ -1,11 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyFaxV7", function (apiv7) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyFaxV7', (apiv7) => {
+  const telephonyFaxEndpoint = apiv7('/telephony/:billingAccount/fax/:serviceName', {
+    billingAccount: '@billingAccount',
+    serviceName: '@serviceName',
+  });
 
-    var telephonyFaxEndpoint = apiv7("/telephony/:billingAccount/fax/:serviceName", {
-        billingAccount: "@billingAccount",
-        serviceName: "@serviceName"
-    });
-
-    return telephonyFaxEndpoint;
-
+  return telephonyFaxEndpoint;
 });

@@ -1,24 +1,22 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudIpV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudIpV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDedicatedCloudIpV6Query');
+  const cache = $cacheFactory('OvhApiDedicatedCloudIpV6');
 
-    var queryCache = $cacheFactory("OvhApiDedicatedCloudIpV6Query");
-    var cache = $cacheFactory("OvhApiDedicatedCloudIpV6");
+  const ipResource = $resource('/dedicatedCloud/:serviceName/ip/:network', {
+    serviceName: '@serviceName',
+    network: '@network',
+  }, {
+    query: { method: 'GET', cache: queryCache, isArray: true },
+    get: { method: 'GET', cache },
+  });
 
-    var ipResource = $resource("/dedicatedCloud/:serviceName/ip/:network", {
-        serviceName: "@serviceName",
-        network: "@network"
-    }, {
-        query: { method: "GET", cache: queryCache, isArray: true },
-        get: { method: "GET", cache: cache }
-    });
+  ipResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    ipResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
+  ipResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    ipResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return ipResource;
+  return ipResource;
 });

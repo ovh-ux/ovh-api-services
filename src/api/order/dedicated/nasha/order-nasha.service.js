@@ -1,11 +1,6 @@
-angular.module("ovh-api-services").service("OvhApiOrderDedicatedNasha", function ($injector) {
-    "use strict";
-
-    return {
-        v6: angular.noop,
-        New: function () {
-            return $injector.get("OvhApiOrderDedicatedNashaNew");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiOrderDedicatedNasha', $injector => ({
+  v6: angular.noop,
+  New() {
+    return $injector.get('OvhApiOrderDedicatedNashaNew');
+  },
+}));

@@ -1,24 +1,22 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemWifiV6", function ($resource, OvhApiXdslModemWifi) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModemWifiV6', ($resource, OvhApiXdslModemWifi) => {
+  const interceptor = {
+    response(response) {
+      OvhApiXdslModemWifi.resetCache();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            OvhApiXdslModemWifi.resetCache();
-            return response.resource;
-        }
-    };
-
-    return $resource("/xdsl/:xdslId/modem/wifi/:wifiName", {
-        xdslId: "@xdslId",
-        wifiName: "@wifiName"
-    }, {
-        get: {
-            method: "GET",
-            cache: OvhApiXdslModemWifi.cache
-        },
-        update: {
-            method: "PUT",
-            interceptor: interceptor
-        }
-    });
+  return $resource('/xdsl/:xdslId/modem/wifi/:wifiName', {
+    xdslId: '@xdslId',
+    wifiName: '@wifiName',
+  }, {
+    get: {
+      method: 'GET',
+      cache: OvhApiXdslModemWifi.cache,
+    },
+    update: {
+      method: 'PUT',
+      interceptor,
+    },
+  });
 });

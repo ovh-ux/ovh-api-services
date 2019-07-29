@@ -1,34 +1,32 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedNashaAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedNashaAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDedicatedNashaAapi');
 
-    var cache = $cacheFactory("OvhApiDedicatedNashaAapi");
+  const resource = $resource('/dedicated/nasha/:serviceName', {
+    serviceName: '@serviceName',
+  }, {
+    get: {
+      url: '/dedicated/nasha/:serviceName',
+      method: 'GET',
+      cache,
+      serviceType: 'aapi',
+      isArray: false,
+    },
+    partitions: {
+      url: '/dedicated/nasha/:serviceName/partitions',
+      method: 'GET',
+      cache,
+      serviceType: 'aapi',
+      isArray: true,
+    },
+  });
 
-    var resource = $resource("/dedicated/nasha/:serviceName", {
-        serviceName: "@serviceName"
-    }, {
-        get: {
-            url: "/dedicated/nasha/:serviceName",
-            method: "GET",
-            cache: cache,
-            serviceType: "aapi",
-            isArray: false
-        },
-        partitions: {
-            url: "/dedicated/nasha/:serviceName/partitions",
-            method: "GET",
-            cache: cache,
-            serviceType: "aapi",
-            isArray: true
-        }
-    });
+  resource.resetAllCache = function () {
+    resource.resetCache();
+  };
 
-    resource.resetAllCache = function () {
-        resource.resetCache();
-    };
+  resource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    resource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return resource;
+  return resource;
 });

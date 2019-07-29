@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionSnapshot", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedNashaPartitionSnapshotV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedNashaPartitionSnapshot', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedNashaPartitionSnapshotV6');
+  },
+}));

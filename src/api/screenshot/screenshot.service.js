@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiScreenshot", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiScreenshot', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiScreenshot');
 
-    var cache = $cacheFactory("OvhApiScreenshot");
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiScreenshotAapi");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    Aapi() {
+      return $injector.get('OvhApiScreenshotAapi');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

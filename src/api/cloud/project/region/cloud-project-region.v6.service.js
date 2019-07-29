@@ -1,47 +1,43 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectRegionV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectRegionV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiCloudProjectRegionV6Query');
+  const cache = $cacheFactory('OvhApiCloudProjectRegionV6');
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var queryCache = $cacheFactory("OvhApiCloudProjectRegionV6Query");
-    var cache = $cacheFactory("OvhApiCloudProjectRegionV6");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
+  const regions = $resource('/cloud/project/:serviceName/region/:id', {
+    serviceName: '@serviceName',
+    id: '@id',
+  }, {
+    get: { method: 'GET', cache },
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+      transformResponse(regionsResp, headers, status) {
+        let regionsRsp = regionsResp;
+
+        if (status === 200) {
+          regionsRsp = angular.fromJson(regionsRsp); // IE11
+          return regionsRsp.sort();
         }
-    };
+        return regionsRsp;
+      },
+    },
+    addRegion: { method: 'POST', interceptor },
+  });
 
-    var regions = $resource("/cloud/project/:serviceName/region/:id", {
-        serviceName: "@serviceName",
-        id: "@id"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true,
-            transformResponse: function (regionsResp, headers, status) {
-                var regionsRsp = regionsResp;
+  regions.resetCache = function () {
+    cache.removeAll();
+  };
 
-                if (status === 200) {
-                    regionsRsp = angular.fromJson(regionsRsp); // IE11
-                    return regionsRsp.sort();
-                }
-                return regionsRsp;
+  regions.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-            }
-        },
-        addRegion: { method: "POST", interceptor: interceptor }
-    });
-
-    regions.resetCache = function () {
-        cache.removeAll();
-    };
-
-    regions.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return regions;
-
+  return regions;
 });

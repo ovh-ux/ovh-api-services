@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyRedirect", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyRedirectV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyRedirect', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyRedirectV6');
+  },
+}));

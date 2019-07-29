@@ -1,38 +1,35 @@
-angular.module("ovh-api-services").service("OvhApiVrack", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiVrackAapi");
-        },
-        v6: function () {
-            return $injector.get("OvhApiVrackV6");
-        },
-        CloudProject: function () {
-            return $injector.get("OvhApiVrackCloudProject");
-        },
-        DedicatedCloud: function () {
-            return $injector.get("OvhApiVrackDedicatedCloud");
-        },
-        DedicatedServer: function () {
-            return $injector.get("OvhApiVrackDedicatedServer");
-        },
-        DedicatedServerInterface: function () {
-            return $injector.get("OvhApiDedicatedServerInterface");
-        },
-        DedicatedConnect: function () {
-            return $injector.get("OvhApiVrackDedicatedConnect");
-        },
-        Ip: function () {
-            return $injector.get("OvhApiVrackIp");
-        },
-        LegacyVrack: function () {
-            return $injector.get("OvhApiVrackLegacyVrack");
-        },
-        Nasha: function () {
-            return $injector.get("OvhApiVrackNasha");
-        },
-        IpLoadBalancing: function () {
-            return $injector.get("OvhApiVrackIpLoadBalancing");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiVrack', $injector => ({
+  Aapi() {
+    return $injector.get('OvhApiVrackAapi');
+  },
+  v6() {
+    return $injector.get('OvhApiVrackV6');
+  },
+  CloudProject() {
+    return $injector.get('OvhApiVrackCloudProject');
+  },
+  DedicatedCloud() {
+    return $injector.get('OvhApiVrackDedicatedCloud');
+  },
+  DedicatedServer() {
+    return $injector.get('OvhApiVrackDedicatedServer');
+  },
+  DedicatedServerInterface() {
+    return $injector.get('OvhApiDedicatedServerInterface');
+  },
+  DedicatedConnect() {
+    return $injector.get('OvhApiVrackDedicatedConnect');
+  },
+  Ip() {
+    return $injector.get('OvhApiVrackIp');
+  },
+  LegacyVrack() {
+    return $injector.get('OvhApiVrackLegacyVrack');
+  },
+  Nasha() {
+    return $injector.get('OvhApiVrackNasha');
+  },
+  IpLoadBalancing() {
+    return $injector.get('OvhApiVrackIpLoadBalancing');
+  },
+}));
