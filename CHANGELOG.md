@@ -1,3 +1,12 @@
+## [8.0.1](https://github.com/ovh-ux/ovh-api-services/compare/v8.0.0...v8.0.1) (2019-07-29)
+
+
+### Bug Fixes
+
+* **support:** interceptor returns data as before ([#205](https://github.com/ovh-ux/ovh-api-services/issues/205)) ([63b5bdb](https://github.com/ovh-ux/ovh-api-services/commit/63b5bdb))
+
+
+
 # Changelog
 
 ## [3.0.0] - 2018-04-03
