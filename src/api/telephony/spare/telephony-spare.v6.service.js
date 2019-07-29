@@ -2,7 +2,7 @@ angular.module("ovh-api-services").service("OvhApiTelephonySpareV6", function ($
     "use strict";
 
     var cache = $cacheFactory("OvhApiTelephonySpareV6");
-    var queryCache = $cacheFactory("OvhApiTelephonySpareV6V6Query");
+    var queryCache = $cacheFactory("OvhApiTelephonySpareV6Query");
 
     var interceptor = {
         response: function (response) {
