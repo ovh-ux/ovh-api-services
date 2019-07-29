@@ -9,7 +9,7 @@ angular.module("ovh-api-services").service("OvhApiSupportV6", function ($resourc
         response: function (response) {
             cache.removeAll();
             queryCache.removeAll();
-            return response;
+            return response.data;
         }
     };
 
