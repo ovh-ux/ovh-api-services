@@ -15,7 +15,9 @@
     "dev": "rollup -c --environment BUILD:development",
     "lint": "eslint . --quiet --ext .js",
     "prepare": "yarn run build",
-    "test": "yarn run lint"
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "lodash": "^4.17.15"
