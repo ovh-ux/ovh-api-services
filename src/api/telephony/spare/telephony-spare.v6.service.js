@@ -40,16 +40,16 @@ angular.module("ovh-api-services").service("OvhApiTelephonySpareV6", function ($
         },
         getBrands: {
             method: "GET",
-            url: "/telephony/spare/brands",
+            url: "/telephony/spare/brands"
         },
         getNewSpare: {
             method: "GET",
-            url: "/order/telephony/spare/new",
+            url: "/order/telephony/spare/new"
         },
         orderNewSpare: {
             method: "POST",
-            url: "/order/telephony/spare/new",
-        },
+            url: "/order/telephony/spare/new"
+        }
     });
 
     spareResource.resetAllCache = function () {
