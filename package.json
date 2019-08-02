@@ -23,9 +23,9 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-angular": "^8.1.0",
+    "@ovh-ux/component-rollup-config": "^6.0.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-formatter-pretty": "^2.1.1",
