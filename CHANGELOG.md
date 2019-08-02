@@ -1,3 +1,17 @@
+# [8.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.0.1...v8.1.0) (2019-08-02)
+
+
+### Features
+
+* **domain:** options api addition ([c33b673](https://github.com/ovh-ux/ovh-api-services/commit/c33b673))
+* **spare:** add spare management for telephony and xdsl ([101d8e3](https://github.com/ovh-ux/ovh-api-services/commit/101d8e3))
+* **spare:** update files tu remove errors ([77af4e2](https://github.com/ovh-ux/ovh-api-services/commit/77af4e2))
+* **spare:** update telephony spare ([9e0af67](https://github.com/ovh-ux/ovh-api-services/commit/9e0af67))
+* **telecom.spare:** remove useless cache ([d9985b6](https://github.com/ovh-ux/ovh-api-services/commit/d9985b6))
+* **telecom.spare:** remove useless cache ([b3885a3](https://github.com/ovh-ux/ovh-api-services/commit/b3885a3))
+
+
+
 ## [8.0.1](https://github.com/ovh-ux/ovh-api-services/compare/v8.0.0...v8.0.1) (2019-07-29)
 
 
