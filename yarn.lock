@@ -805,10 +805,10 @@
     "@nodelib/fs.scandir" "2.1.1"
     fastq "^1.6.0"
 
-"@ovh-ux/component-rollup-config@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-6.0.0.tgz#92c648f694f9fdb34ea279db532679a219a3bcfd"
-  integrity sha512-bW2ZoGXIj+kCF3ME0177B3pvq2Xob+VuLsSiSawKN6yJKx7/WGJLxlrLQbHKqk+KXAGMaYRSmS/Jow/hBTnY3w==
+"@ovh-ux/component-rollup-config@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-6.0.1.tgz#e43f1de01f19593b7004745ce9049aeca35da1e2"
+  integrity sha512-1844gkny8n05KD9B+fd2wGqfMYVgRZ2Zlyu9f1h1lD8QC7vhJGYb5Tgd3Y58veJMS+ufmqTWd/wCT/q/vrnFJw==
   dependencies:
     "@babel/core" "^7.1.2"
     "@babel/plugin-syntax-dynamic-import" "^7.0.0"
