@@ -1,9 +1,0 @@
-.tmp
-.idea
-npm-debug.log
-.work
-.eslintignore
-.editorconfig
-.eslintrc.json
-.*.swp
-example
