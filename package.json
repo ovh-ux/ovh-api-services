@@ -12,7 +12,7 @@
   "module": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
+    "dev": "rollup -cw --environment BUILD:development",
     "lint": "eslint --quiet --fix --format=pretty src",
     "prepare": "yarn run build",
     "test": "yarn run lint",
