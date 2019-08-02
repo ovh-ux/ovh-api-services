@@ -1,11 +1,9 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsTokensIceberg", function (iceberg) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsTokensIceberg', (iceberg) => {
+  const tokenResource = iceberg('/dbaas/logs/:serviceName/token/:tokenId', {
+    serviceName: '@serviceName',
+  }, {
+    create: { method: 'POST' },
+  });
 
-    var tokenResource = iceberg("/dbaas/logs/:serviceName/token/:tokenId", {
-        serviceName: "@serviceName"
-    }, {
-        create: { method: "POST" }
-    });
-
-    return tokenResource;
+  return tokenResource;
 });

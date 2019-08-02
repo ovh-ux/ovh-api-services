@@ -1,20 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiScreenshotAapi", function ($resource, OvhApiScreenshot) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiScreenshotAapi', ($resource, OvhApiScreenshot) => {
+  const interceptor = {
+    response(response) {
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            return response.data;
-        }
-    };
-
-    return $resource("/sws/screenshot", {}, {
-        get: {
-            method: "GET",
-            serviceType: "aapi",
-            isArray: false,
-            cache: OvhApiScreenshot.cache,
-            interceptor: interceptor
-        }
-    });
-
+  return $resource('/sws/screenshot', {}, {
+    get: {
+      method: 'GET',
+      serviceType: 'aapi',
+      isArray: false,
+      cache: OvhApiScreenshot.cache,
+      interceptor,
+    },
+  });
 });

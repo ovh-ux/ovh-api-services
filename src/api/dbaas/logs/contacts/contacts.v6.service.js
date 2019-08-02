@@ -1,22 +1,20 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsContactsV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsContactsV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasLogsContactsV6');
 
-    var cache = $cacheFactory("OvhApiDbaasLogsContactsV6");
+  const contactsResource = $resource('/me/contact/:contactId', {
+    contactId: '@contactId',
+  }, {
+    query: { method: 'GET', isArray: true },
+    get: { method: 'GET', cache },
+  });
 
-    var contactsResource = $resource("/me/contact/:contactId", {
-        contactId: "@contactId"
-    }, {
-        query: { method: "GET", isArray: true },
-        get: { method: "GET", cache: cache }
-    });
+  contactsResource.resetAllCache = function () {
+    contactsResource.resetCache();
+  };
 
-    contactsResource.resetAllCache = function () {
-        contactsResource.resetCache();
-    };
+  contactsResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    contactsResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return contactsResource;
+  return contactsResource;
 });

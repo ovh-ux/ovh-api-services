@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeNotificationEmail", function ($injector) {
-    "use strict";
-    return {
-        History: function () {
-            return $injector.get("OvhApiMeNotificationEmailHistory");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeNotificationEmail', $injector => ({
+  History() {
+    return $injector.get('OvhApiMeNotificationEmailHistory');
+  },
+}));

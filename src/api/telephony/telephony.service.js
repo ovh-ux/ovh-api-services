@@ -1,98 +1,95 @@
-angular.module("ovh-api-services").service("OvhApiTelephony", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiTelephonyAapi");
-        },
-        v7: function () {
-            return $injector.get("OvhApiTelephonyV7");
-        },
-        AbbreviatedNumber: function () {
-            return $injector.get("OvhApiTelephonyAbbreviatedNumber");
-        },
-        Eventtoken: function () {
-            return $injector.get("OvhApiTelephonyEventtoken");
-        },
-        Fax: function () {
-            return $injector.get("OvhApiTelephonyFax");
-        },
-        OfferTask: function () {
-            return $injector.get("OvhApiTelephonyOfferTask");
-        },
-        Line: function () {
-            return $injector.get("OvhApiTelephonyLine");
-        },
-        Lines: function () {
-            return $injector.get("OvhApiTelephonyLines");
-        },
-        Number: function () {
-            return $injector.get("OvhApiTelephonyNumber");
-        },
-        Redirect: function () {
-            return $injector.get("OvhApiTelephonyRedirect");
-        },
-        Voicemail: function () {
-            return $injector.get("OvhApiTelephonyVoicemail");
-        },
-        Service: function () {
-            return $injector.get("OvhApiTelephonyService");
-        },
-        TimeCondition: function () {
-            return $injector.get("OvhApiTelephonyTimeCondition");
-        },
-        HistoryConsumption: function () {
-            return $injector.get("OvhApiTelephonyHistoryConsumption");
-        },
-        HistoryRepaymentConsumption: function () {
-            return $injector.get("OvhApiTelephonyHistoryRepaymentConsumption");
-        },
-        HistoryTollfreeConsumption: function () {
-            return $injector.get("OvhApiTelephonyHistoryTollfreeConsumption");
-        },
-        Screen: function () {
-            return $injector.get("OvhApiTelephonyScreen");
-        },
-        Portability: function () {
-            return $injector.get("OvhApiTelephonyPortability");
-        },
-        Scheduler: function () {
-            return $injector.get("OvhApiTelephonyScheduler");
-        },
-        Aliases: function () {
-            return $injector.get("OvhApiTelephonyAliases");
-        },
-        Phonebook: function () {
-            return $injector.get("OvhApiTelephonyPhonebook");
-        },
-        EasyHunting: function () {
-            return $injector.get("OvhApiTelephonyEasyHunting");
-        },
-        Rsva: function () {
-            return $injector.get("OvhApiTelephonyRsva");
-        },
-        Conference: function () {
-            return $injector.get("OvhApiTelephonyConference");
-        },
-        Vxml: function () {
-            return $injector.get("OvhApiTelephonyVxml");
-        },
-        Trunks: function () {
-            return $injector.get("OvhApiTelephonyTrunks");
-        },
-        Trunk: function () {
-            return $injector.get("OvhApiTelephonyTrunk");
-        },
-        OvhPabx: function () {
-            return $injector.get("OvhApiTelephonyOvhPabx");
-        },
-        Task: function () {
-            return $injector.get("OvhApiTelephonyTask");
-        },
-        Spare: function () {
-            return $injector.get("OvhApiTelephonySpare");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephony', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonyV6');
+  },
+  Aapi() {
+    return $injector.get('OvhApiTelephonyAapi');
+  },
+  v7() {
+    return $injector.get('OvhApiTelephonyV7');
+  },
+  AbbreviatedNumber() {
+    return $injector.get('OvhApiTelephonyAbbreviatedNumber');
+  },
+  Eventtoken() {
+    return $injector.get('OvhApiTelephonyEventtoken');
+  },
+  Fax() {
+    return $injector.get('OvhApiTelephonyFax');
+  },
+  OfferTask() {
+    return $injector.get('OvhApiTelephonyOfferTask');
+  },
+  Line() {
+    return $injector.get('OvhApiTelephonyLine');
+  },
+  Lines() {
+    return $injector.get('OvhApiTelephonyLines');
+  },
+  Number() {
+    return $injector.get('OvhApiTelephonyNumber');
+  },
+  Redirect() {
+    return $injector.get('OvhApiTelephonyRedirect');
+  },
+  Voicemail() {
+    return $injector.get('OvhApiTelephonyVoicemail');
+  },
+  Service() {
+    return $injector.get('OvhApiTelephonyService');
+  },
+  TimeCondition() {
+    return $injector.get('OvhApiTelephonyTimeCondition');
+  },
+  HistoryConsumption() {
+    return $injector.get('OvhApiTelephonyHistoryConsumption');
+  },
+  HistoryRepaymentConsumption() {
+    return $injector.get('OvhApiTelephonyHistoryRepaymentConsumption');
+  },
+  HistoryTollfreeConsumption() {
+    return $injector.get('OvhApiTelephonyHistoryTollfreeConsumption');
+  },
+  Screen() {
+    return $injector.get('OvhApiTelephonyScreen');
+  },
+  Portability() {
+    return $injector.get('OvhApiTelephonyPortability');
+  },
+  Scheduler() {
+    return $injector.get('OvhApiTelephonyScheduler');
+  },
+  Aliases() {
+    return $injector.get('OvhApiTelephonyAliases');
+  },
+  Phonebook() {
+    return $injector.get('OvhApiTelephonyPhonebook');
+  },
+  EasyHunting() {
+    return $injector.get('OvhApiTelephonyEasyHunting');
+  },
+  Rsva() {
+    return $injector.get('OvhApiTelephonyRsva');
+  },
+  Conference() {
+    return $injector.get('OvhApiTelephonyConference');
+  },
+  Vxml() {
+    return $injector.get('OvhApiTelephonyVxml');
+  },
+  Trunks() {
+    return $injector.get('OvhApiTelephonyTrunks');
+  },
+  Trunk() {
+    return $injector.get('OvhApiTelephonyTrunk');
+  },
+  OvhPabx() {
+    return $injector.get('OvhApiTelephonyOvhPabx');
+  },
+  Task() {
+    return $injector.get('OvhApiTelephonyTask');
+  },
+  Spare() {
+    return $injector.get('OvhApiTelephonySpare');
+  },
+}));

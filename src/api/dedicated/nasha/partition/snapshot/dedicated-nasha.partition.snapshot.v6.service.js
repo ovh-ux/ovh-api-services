@@ -1,46 +1,44 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedNashaPartitionSnapshotV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedNashaPartitionSnapshotV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiDedicatedNashaPartitionSnapshotV6Query');
 
-    var queryCache = $cacheFactory("OvhApiDedicatedNashaPartitionSnapshotV6Query");
+  const interceptor = {
+    response(response) {
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const resource = $resource('/dedicated/nasha/:serviceName/partition/:partitionName/snapshot', {
+    serviceName: '@serviceName',
+    partitionName: '@partitionName',
+    snapshotType: '@snapshotType',
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      cache: queryCache,
+    },
+    get: {
+      method: 'GET',
+      url: '/dedicated/nasha/:serviceName/partition/:partitionName/snapshot/:snapshotType',
+    },
+    add: {
+      method: 'POST',
+      interceptor,
+      params: {
+        snapshotType: '@snapshotType',
+      },
+    },
+    remove: {
+      method: 'DELETE',
+      interceptor,
+      url: '/dedicated/nasha/:serviceName/partition/:partitionName/snapshot/:snapshotType',
+    },
+  });
 
-    var resource = $resource("/dedicated/nasha/:serviceName/partition/:partitionName/snapshot", {
-        serviceName: "@serviceName",
-        partitionName: "@partitionName",
-        snapshotType: "@snapshotType"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            cache: queryCache
-        },
-        get: {
-            method: "GET",
-            url: "/dedicated/nasha/:serviceName/partition/:partitionName/snapshot/:snapshotType"
-        },
-        add: {
-            method: "POST",
-            interceptor: interceptor,
-            params: {
-                snapshotType: "@snapshotType"
-            }
-        },
-        remove: {
-            method: "DELETE",
-            interceptor: interceptor,
-            url: "/dedicated/nasha/:serviceName/partition/:partitionName/snapshot/:snapshotType"
-        }
-    });
+  resource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    resource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return resource;
+  return resource;
 });

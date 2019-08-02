@@ -1,33 +1,31 @@
-angular.module("ovh-api-services").service("OvhApiIpLoadBalancingQuotaV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiIpLoadBalancingQuotaV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiIpLoadBalancingQuotaV6');
+  const queryCache = $cacheFactory('OvhApiIpLoadBalancingQuotaV6Query');
 
-    var cache = $cacheFactory("OvhApiIpLoadBalancingQuotaV6");
-    var queryCache = $cacheFactory("OvhApiIpLoadBalancingQuotaV6Query");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
+  const ipLoadBalancingQuota = $resource('/ipLoadbalancing/:serviceName/quota/:zoneName', {
+    serviceName: '@serviceName',
+    zoneName: '@zoneName',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache },
+    put: { method: 'PUT', interceptor },
+  });
 
-    var ipLoadBalancingQuota = $resource("/ipLoadbalancing/:serviceName/quota/:zoneName", {
-        serviceName: "@serviceName",
-        zoneName: "@zoneName"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache },
-        put: { method: "PUT", interceptor: interceptor }
-    });
+  ipLoadBalancingQuota.resetCache = function () {
+    cache.removeAll();
+  };
 
-    ipLoadBalancingQuota.resetCache = function () {
-        cache.removeAll();
-    };
+  ipLoadBalancingQuota.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    ipLoadBalancingQuota.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return ipLoadBalancingQuota;
+  return ipLoadBalancingQuota;
 });

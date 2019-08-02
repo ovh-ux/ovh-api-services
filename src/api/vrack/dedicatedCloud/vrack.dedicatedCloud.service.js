@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiVrackDedicatedCloud", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiVrackDedicatedCloudV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiVrackDedicatedCloud', $injector => ({
+  v6() {
+    return $injector.get('OvhApiVrackDedicatedCloudV6');
+  },
+}));

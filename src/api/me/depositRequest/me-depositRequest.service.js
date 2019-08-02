@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeDepositRequest", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeDepositRequestV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiMeDepositRequest', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeDepositRequestV6');
+  },
+}));

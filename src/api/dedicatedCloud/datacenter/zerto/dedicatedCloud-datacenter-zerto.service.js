@@ -1,12 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudDatacenterZerto", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterZertoV6");
-        },
-        Single: function () {
-            return $injector.get("OvhApiDedicatedCloudDatacenterZertoSingle");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudDatacenterZerto', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterZertoV6');
+  },
+  Single() {
+    return $injector.get('OvhApiDedicatedCloudDatacenterZertoSingle');
+  },
+}));

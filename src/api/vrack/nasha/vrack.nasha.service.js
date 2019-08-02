@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiVrackNasha", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiVrackNashaV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiVrackNasha', $injector => ({
+  v6() {
+    return $injector.get('OvhApiVrackNashaV6');
+  },
+}));

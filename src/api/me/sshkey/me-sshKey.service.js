@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeSshKey", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeSshKeyV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeSshKey', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeSshKeyV6');
+  },
+}));

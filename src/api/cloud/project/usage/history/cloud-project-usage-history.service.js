@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectUsageHistory", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectUsageHistoryV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectUsageHistory', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectUsageHistoryV6');
+  },
+}));

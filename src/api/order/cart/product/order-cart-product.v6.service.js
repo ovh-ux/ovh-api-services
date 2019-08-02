@@ -1,43 +1,41 @@
-angular.module("ovh-api-services").service("OvhApiOrderCartProductV6", function ($resource, $cacheFactory) {
+angular.module('ovh-api-services').service('OvhApiOrderCartProductV6', ($resource, $cacheFactory) => {
+  // Cache to invalidate
+  const queryCache = $cacheFactory('OvhApiOrderCartProductV6Query');
+  const cache = $cacheFactory('OvhApiOrderCartProductV6');
 
-    "use strict";
+  const interceptor = {
+    response(response) {
+      orderCartProduct.resetQueryCache();
+      return response.data;
+    },
+  };
 
-    // Cache to invalidate
-    var queryCache = $cacheFactory("OvhApiOrderCartProductV6Query");
-    var cache = $cacheFactory("OvhApiOrderCartProductV6");
+  const orderCartProduct = $resource('/order/cart/:cartId/:productName', {
+    cartId: '@cartId',
+    productName: '@productName',
+  }, {
+    get: { method: 'GET', cache, isArray: true },
+    getOptions: {
+      url: '/order/cart/:cartId/:productName/options',
+      method: 'GET',
+      cache,
+      isArray: true,
+    },
+    post: { method: 'POST', interceptor },
+    postOptions: {
+      url: '/order/cart/:cartId/:productName/options',
+      method: 'POST',
+      interceptor,
+    },
+  });
 
-    var interceptor = {
-        response: function (response) {
-            orderCartProduct.resetQueryCache();
-            return response.data;
-        }
-    };
+  orderCartProduct.resetCache = function () {
+    cache.removeAll();
+  };
 
-    var orderCartProduct = $resource("/order/cart/:cartId/:productName", {
-        cartId: "@cartId",
-        productName: "@productName"
-    }, {
-        get: { method: "GET", cache: cache, isArray: true },
-        getOptions: {
-            url: "/order/cart/:cartId/:productName/options",
-            method: "GET",
-            cache: cache,
-            isArray: true
-        },
-        post: { method: "POST", interceptor: interceptor },
-        postOptions: {
-            url: "/order/cart/:cartId/:productName/options",
-            method: "POST",
-            interceptor: interceptor }
-    });
+  orderCartProduct.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    orderCartProduct.resetCache = function () {
-        cache.removeAll();
-    };
-
-    orderCartProduct.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return orderCartProduct;
+  return orderCartProduct;
 });

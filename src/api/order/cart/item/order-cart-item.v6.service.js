@@ -1,34 +1,31 @@
-angular.module("ovh-api-services").service("OvhApiOrderCartItemV6", function ($resource, $cacheFactory) {
+angular.module('ovh-api-services').service('OvhApiOrderCartItemV6', ($resource, $cacheFactory) => {
+  // Cache to invalidate
+  const queryCache = $cacheFactory('OvhApiOrderCartItemV6Query');
+  const cache = $cacheFactory('OvhApiOrderCartItemV6');
 
-    "use strict";
+  const interceptor = {
+    response(response) {
+      orderCartItem.resetQueryCache();
+      return response.data;
+    },
+  };
 
-    // Cache to invalidate
-    var queryCache = $cacheFactory("OvhApiOrderCartItemV6Query");
-    var cache = $cacheFactory("OvhApiOrderCartItemV6");
+  const orderCartItem = $resource('/order/cart/:cartId/item/:itemId', {
+    cartId: '@cartId',
+    itemId: '@itemId',
+  }, {
+    query: { method: 'GET', cache: queryCache },
+    get: { method: 'GET', cache },
+    put: { method: 'PUT', interceptor },
+  });
 
-    var interceptor = {
-        response: function (response) {
-            orderCartItem.resetQueryCache();
-            return response.data;
-        }
-    };
+  orderCartItem.resetCache = function () {
+    cache.removeAll();
+  };
 
-    var orderCartItem = $resource("/order/cart/:cartId/item/:itemId", {
-        cartId: "@cartId",
-        itemId: "@itemId"
-    }, {
-        query: { method: "GET", cache: queryCache },
-        get: { method: "GET", cache: cache },
-        put: { method: "PUT", interceptor: interceptor }
-    });
+  orderCartItem.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    orderCartItem.resetCache = function () {
-        cache.removeAll();
-    };
-
-    orderCartItem.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return orderCartItem;
+  return orderCartItem;
 });

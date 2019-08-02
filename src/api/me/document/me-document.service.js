@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeDocument", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeDocumentV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeDocument', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeDocumentV6');
+  },
+}));

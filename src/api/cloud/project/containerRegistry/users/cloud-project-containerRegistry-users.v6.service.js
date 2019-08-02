@@ -1,42 +1,40 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectContainerRegistryUsersV6", function ($cacheFactory, $resource) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistryUsersV6', ($cacheFactory, $resource) => {
+  const cache = $cacheFactory('OvhApiCloudProjectContainerRegistryUsersV6');
+  const queryCache = $cacheFactory('OvhApiCloudProjectContainerRegistryUsersV6Query');
 
-    var cache = $cacheFactory("OvhApiCloudProjectContainerRegistryUsersV6");
-    var queryCache = $cacheFactory("OvhApiCloudProjectContainerRegistryUsersV6Query");
+  const interceptor = {
+    response(response) {
+      cache.removeAll();
+      queryCache.removeAll();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.removeAll();
-            queryCache.removeAll();
-            return response.resource;
-        }
-    };
+  const usersResource = $resource('/cloud/project/:serviceName/containerRegistry/:registryID/users/:userID', {
+    serviceName: '@serviceName',
+    registryID: '@registryID',
+    usersID: '@userID',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache },
+    create: {
+      method: 'POST',
+      interceptor,
+      hasBody: false,
+    },
+    delete: {
+      method: 'DELETE',
+      interceptor,
+    },
+  });
 
-    var usersResource = $resource("/cloud/project/:serviceName/containerRegistry/:registryID/users/:userID", {
-        serviceName: "@serviceName",
-        registryID: "@registryID",
-        usersID: "@userID"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache },
-        create: {
-            method: "POST",
-            interceptor: interceptor,
-            hasBody: false
-        },
-        "delete": {
-            method: "DELETE",
-            interceptor: interceptor
-        }
-    });
+  usersResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    usersResource.resetCache = function () {
-        cache.removeAll();
-    };
+  usersResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    usersResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return usersResource;
+  return usersResource;
 });

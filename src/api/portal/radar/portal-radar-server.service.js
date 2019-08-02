@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiPortalRadarServer", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiPortalRadarServer', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiPortalRadarServer');
 
-    var cache = $cacheFactory("OvhApiPortalRadarServer");
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiPortalRadarServerAapi");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    Aapi() {
+      return $injector.get('OvhApiPortalRadarServerAapi');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

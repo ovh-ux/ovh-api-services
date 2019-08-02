@@ -1,22 +1,20 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemLanDhcpAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModemLanDhcpAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdslModemLanDhcpAapi');
 
-    var cache = $cacheFactory("OvhApiXdslModemLanDhcpAapi");
+  const xdslModemLanDhcpAapi = $resource('/xdsl/:xdslId/modem/lan/dhcp', {
+    xdslId: '@xdslId',
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      serviceType: 'aapi',
+      cache,
+    },
+  });
 
-    var xdslModemLanDhcpAapi = $resource("/xdsl/:xdslId/modem/lan/dhcp", {
-        xdslId: "@xdslId"
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            serviceType: "aapi",
-            cache: cache
-        }
-    });
+  xdslModemLanDhcpAapi.resetCache = function () {
+    cache.removeAll();
+  };
 
-    xdslModemLanDhcpAapi.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return xdslModemLanDhcpAapi;
+  return xdslModemLanDhcpAapi;
 });

@@ -1,38 +1,36 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedServerAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDedicatedServerAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDedicatedServerAapi');
 
-    var cache = $cacheFactory("OvhApiDedicatedServerAapi");
+  const dedicatedServerResource = $resource('/dedicated/server/:serverName', {
+    serverName: '@serverName',
+  }, {
+    get: {
+      method: 'GET',
+      serviceType: 'aapi',
+      cache,
+    },
+    rtm: {
+      url: '/dedicated/server/rtm/:type/:period',
+      method: 'GET',
+      serviceType: 'aapi',
+      isArray: true,
+    },
+    query: {
+      url: '/dedicated/server/detail/all',
+      method: 'GET',
+      serviceType: 'aapi',
+      cache,
+      isArray: true,
+    },
+  });
 
-    var dedicatedServerResource = $resource("/dedicated/server/:serverName", {
-        serverName: "@serverName"
-    }, {
-        get: {
-            method: "GET",
-            serviceType: "aapi",
-            cache: cache
-        },
-        rtm: {
-            url: "/dedicated/server/rtm/:type/:period",
-            method: "GET",
-            serviceType: "aapi",
-            isArray: true
-        },
-        query: {
-            url: "/dedicated/server/detail/all",
-            method: "GET",
-            serviceType: "aapi",
-            cache: cache,
-            isArray: true
-        }
-    });
+  dedicatedServerResource.resetAllCache = function () {
+    dedicatedServerResource.resetCache();
+  };
 
-    dedicatedServerResource.resetAllCache = function () {
-        dedicatedServerResource.resetCache();
-    };
+  dedicatedServerResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    dedicatedServerResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return dedicatedServerResource;
+  return dedicatedServerResource;
 });

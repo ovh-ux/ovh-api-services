@@ -1,11 +1,7 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiOrderUpgradePrivateCloud", function ($injector) {
-
-        "use strict";
-        return {
-            v6: function () {
-                return $injector.get("OvhApiOrderUpgradePrivateCloudV6");
-            }
-        };
-    });
+  .module('ovh-api-services')
+  .service('OvhApiOrderUpgradePrivateCloud', $injector => ({
+    v6() {
+      return $injector.get('OvhApiOrderUpgradePrivateCloudV6');
+    },
+  }));

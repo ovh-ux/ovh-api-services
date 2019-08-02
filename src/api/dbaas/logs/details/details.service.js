@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsDetails", function ($injector) {
-    "use strict";
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiDbaasLogsDetailsAapi");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDbaasLogsDetails', $injector => ({
+  Aapi() {
+    return $injector.get('OvhApiDbaasLogsDetailsAapi');
+  },
+}));

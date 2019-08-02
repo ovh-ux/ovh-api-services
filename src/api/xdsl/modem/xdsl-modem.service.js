@@ -1,64 +1,61 @@
-angular.module("ovh-api-services").service("OvhApiXdslModem", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModem', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdslModem');
 
-    var cache = $cacheFactory("OvhApiXdslModem");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslModemV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiXdslModemAapi");
-        },
-        resetCache: function () {
-            cache.removeAll();
-
-        },
-        ConnectedDevices: function () {
-            return $injector.get("OvhApiXdslModemDevices");
-        },
-        Lan: function () {
-            return $injector.get("OvhApiXdslModemLan");
-        },
-        Port: function () {
-            return $injector.get("OvhApiXdslModemPort");
-        },
-        Reboot: function () {
-            return $injector.get("OvhApiXdslModemReboot");
-        },
-        Reset: function () {
-            return $injector.get("OvhApiXdslModemReset");
-        },
-        Wifi: function () {
-            return $injector.get("OvhApiXdslModemWifi");
-        },
-        AvailableWLANChannel: function () {
-            return $injector.get("OvhApiXdslModemAvailableWLANChannel");
-        },
-        Firmware: function () {
-            return $injector.get("OvhApiXdslModemFirmware");
-        },
-        BlocIp: function () {
-            return $injector.get("OvhApiXdslModemBlocIp");
-        },
-        CallWaiting: function () {
-            return $injector.get("OvhApiXdslModemCallWaiting");
-        },
-        ContentSharing: function () {
-            return $injector.get("OvhApiXdslModemContentSharing");
-        },
-        Ftp: function () {
-            return $injector.get("OvhApiXdslModemFtp");
-        },
-        IpsecAlg: function () {
-            return $injector.get("OvhApiXdslModemIpsecAlg");
-        },
-        SipAlg: function () {
-            return $injector.get("OvhApiXdslModemSipAlg");
-        },
-        Upnp: function () {
-            return $injector.get("OvhApiXdslModemUpnp");
-        },
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslModemV6');
+    },
+    Aapi() {
+      return $injector.get('OvhApiXdslModemAapi');
+    },
+    resetCache() {
+      cache.removeAll();
+    },
+    ConnectedDevices() {
+      return $injector.get('OvhApiXdslModemDevices');
+    },
+    Lan() {
+      return $injector.get('OvhApiXdslModemLan');
+    },
+    Port() {
+      return $injector.get('OvhApiXdslModemPort');
+    },
+    Reboot() {
+      return $injector.get('OvhApiXdslModemReboot');
+    },
+    Reset() {
+      return $injector.get('OvhApiXdslModemReset');
+    },
+    Wifi() {
+      return $injector.get('OvhApiXdslModemWifi');
+    },
+    AvailableWLANChannel() {
+      return $injector.get('OvhApiXdslModemAvailableWLANChannel');
+    },
+    Firmware() {
+      return $injector.get('OvhApiXdslModemFirmware');
+    },
+    BlocIp() {
+      return $injector.get('OvhApiXdslModemBlocIp');
+    },
+    CallWaiting() {
+      return $injector.get('OvhApiXdslModemCallWaiting');
+    },
+    ContentSharing() {
+      return $injector.get('OvhApiXdslModemContentSharing');
+    },
+    Ftp() {
+      return $injector.get('OvhApiXdslModemFtp');
+    },
+    IpsecAlg() {
+      return $injector.get('OvhApiXdslModemIpsecAlg');
+    },
+    SipAlg() {
+      return $injector.get('OvhApiXdslModemSipAlg');
+    },
+    Upnp() {
+      return $injector.get('OvhApiXdslModemUpnp');
+    },
+    cache,
+  };
 });

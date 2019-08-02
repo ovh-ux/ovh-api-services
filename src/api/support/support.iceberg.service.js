@@ -1,9 +1,7 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiSupportIceberg", function (iceberg) {
-        "use strict";
+  .module('ovh-api-services')
+  .service('OvhApiSupportIceberg', (iceberg) => {
+    const alertResource = iceberg('/support/tickets');
 
-        var alertResource = iceberg("/support/tickets");
-
-        return alertResource;
-    });
+    return alertResource;
+  });

@@ -1,14 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiNewAccount", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiNewAccountV6");
-        },
-        LegalForm: function () {
-            return $injector.get("OvhApiNewAccountLegalForm");
-        },
-        CreationRules: function () {
-            return $injector.get("OvhApiNewAccountCreationRules");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiNewAccount', $injector => ({
+  v6() {
+    return $injector.get('OvhApiNewAccountV6');
+  },
+  LegalForm() {
+    return $injector.get('OvhApiNewAccountLegalForm');
+  },
+  CreationRules() {
+    return $injector.get('OvhApiNewAccountCreationRules');
+  },
+}));

@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocationHostProfile", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudLocationHostProfileV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudLocationHostProfile', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudLocationHostProfileV6');
+  },
+}));

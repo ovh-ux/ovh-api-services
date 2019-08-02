@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiVrackPublicCloud", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiVrackPublicCloud', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiVrackPublicCloud');
 
-    var cache = $cacheFactory("OvhApiVrackPublicCloud");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiVrackPublicCloudV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiVrackPublicCloudV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

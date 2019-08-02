@@ -1,14 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiEmailExchangeService", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiEmailExchangeServiceAapi");
-        },
-        v6: function () {
-            return $injector.get("OvhApiEmailExchangeServiceV6");
-        },
-        v7: function () {
-            return $injector.get("OvhApiEmailExchangeServiceV7");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiEmailExchangeService', $injector => ({
+  Aapi() {
+    return $injector.get('OvhApiEmailExchangeServiceAapi');
+  },
+  v6() {
+    return $injector.get('OvhApiEmailExchangeServiceV6');
+  },
+  v7() {
+    return $injector.get('OvhApiEmailExchangeServiceV7');
+  },
+}));

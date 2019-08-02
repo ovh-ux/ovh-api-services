@@ -1,16 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyAbbreviatedNumber", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiTelephonyAbbreviatedNumber', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiTelephonyAbbreviatedNumber');
 
-    var cache = $cacheFactory("OvhApiTelephonyAbbreviatedNumber");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonyAbbreviatedNumberV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiTelephonyAbbreviatedNumberAapi");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiTelephonyAbbreviatedNumberV6');
+    },
+    Aapi() {
+      return $injector.get('OvhApiTelephonyAbbreviatedNumberAapi');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

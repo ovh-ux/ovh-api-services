@@ -1,16 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiPackXdslTask", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiPackXdslTask', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiPackXdslTask');
 
-    var cache = $cacheFactory("OvhApiPackXdslTask");
-
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiPackXdslTaskAapi");
-        },
-        v6: function () {
-            return $injector.get("OvhApiPackXdslTaskV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    Aapi() {
+      return $injector.get('OvhApiPackXdslTaskAapi');
+    },
+    v6() {
+      return $injector.get('OvhApiPackXdslTaskV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

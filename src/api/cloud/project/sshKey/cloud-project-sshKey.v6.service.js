@@ -1,52 +1,48 @@
 import sortBy from 'lodash/sortBy';
 
-angular.module("ovh-api-services").service("OvhApiCloudProjectSshKeyV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectSshKeyV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiCloudProjectSshKeyV6Query');
+  const cache = $cacheFactory('OvhApiCloudProjectSshKeyV6');
 
-    var queryCache = $cacheFactory("OvhApiCloudProjectSshKeyV6Query");
-    var cache = $cacheFactory("OvhApiCloudProjectSshKeyV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
+  const sshkeys = $resource('/cloud/project/:serviceName/sshkey/:keyId', {
+    serviceName: '@serviceName',
+    keyId: '@keyId',
+  }, {
+    get: { method: 'GET', cache },
+    query: {
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
+      transformResponse(sshKeysResp, headers, status) {
+        let sshKeys = sshKeysResp;
+
+        if (status === 200) {
+          sshKeys = angular.fromJson(sshKeys); // IE11
+          return sortBy(sshKeys, 'name');
         }
-    };
+        return angular.fromJson(sshKeys);
+      },
+    },
+    save: { method: 'POST', interceptor },
+    remove: { method: 'DELETE', interceptor },
+    delete: { method: 'DELETE', interceptor },
+  });
 
-    var sshkeys = $resource("/cloud/project/:serviceName/sshkey/:keyId", {
-        serviceName: "@serviceName",
-        keyId: "@keyId"
-    }, {
-        get: { method: "GET", cache: cache },
-        query: {
-            method: "GET",
-            cache: queryCache,
-            isArray: true,
-            transformResponse: function (sshKeysResp, headers, status) {
-                var sshKeys = sshKeysResp;
+  sshkeys.resetCache = function () {
+    cache.removeAll();
+  };
 
-                if (status === 200) {
-                    sshKeys = angular.fromJson(sshKeys); // IE11
-                    return sortBy(sshKeys, "name");
-                }
-                return angular.fromJson(sshKeys);
+  sshkeys.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-            }
-        },
-        save: { method: "POST", interceptor: interceptor },
-        remove: { method: "DELETE", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
-    });
-
-    sshkeys.resetCache = function () {
-        cache.removeAll();
-    };
-
-    sshkeys.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return sshkeys;
-
+  return sshkeys;
 });

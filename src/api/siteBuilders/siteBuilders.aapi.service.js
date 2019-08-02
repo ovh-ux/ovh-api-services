@@ -1,25 +1,23 @@
-angular.module("ovh-api-services").service("OvhApiSiteBuildersAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiSiteBuildersAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiSiteBuildersAapi');
 
-    var cache = $cacheFactory("OvhApiSiteBuildersAapi");
+  const siteBuildersResource = $resource('/sitebuilders', {
+  }, {
+    get: {
+      method: 'GET',
+      isArray: true,
+      universe: '@universe',
+      serviceType: 'aapi',
+    },
+  });
 
-    var siteBuildersResource = $resource("/sitebuilders", {
-    }, {
-        get: {
-            method: "GET",
-            isArray: true,
-            universe: "@universe",
-            serviceType: "aapi"
-        }
-    });
+  siteBuildersResource.resetAllCache = function () {
+    siteBuildersResource.resetCache();
+  };
 
-    siteBuildersResource.resetAllCache = function () {
-        siteBuildersResource.resetCache();
-    };
+  siteBuildersResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    siteBuildersResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return siteBuildersResource;
+  return siteBuildersResource;
 });

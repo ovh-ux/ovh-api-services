@@ -1,16 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiXdslLines", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslLines', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdslLines');
 
-    var cache = $cacheFactory("OvhApiXdslLines");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslLinesV6");
-        },
-        v7: function () {
-            return $injector.get("OvhApiXdslLinesV7");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslLinesV6');
+    },
+    v7() {
+      return $injector.get('OvhApiXdslLinesV7');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

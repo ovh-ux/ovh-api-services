@@ -1,11 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiMeIdentity", function ($injector) {
-    "use strict";
-    return {
-        Group: function () {
-            return $injector.get("OvhApiMeIdentityGroup");
-        },
-        User: function () {
-            return $injector.get("OvhApiMeIdentityUser");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeIdentity', $injector => ({
+  Group() {
+    return $injector.get('OvhApiMeIdentityGroup');
+  },
+  User() {
+    return $injector.get('OvhApiMeIdentityUser');
+  },
+}));

@@ -1,11 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectIpFailover", function ($injector) {
-
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectIpFailoverV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectIpFailover', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectIpFailoverV6');
+  },
+}));

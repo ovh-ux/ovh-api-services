@@ -1,25 +1,23 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectAggregateAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectAggregateAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiCloudProjectAggregateAapi');
 
-    var cache = $cacheFactory("OvhApiCloudProjectAggregateAapi");
+  const cloudProjectAggregateResource = $resource('/cloud/project/:serviceName/aggregate', {
+    serviceName: '@serviceName',
+  }, {
+    get: {
+      method: 'GET',
+      isArray: false,
+      serviceType: 'aapi',
+    },
+  });
 
-    var cloudProjectAggregateResource = $resource("/cloud/project/:serviceName/aggregate", {
-        serviceName: "@serviceName"
-    }, {
-        get: {
-            method: "GET",
-            isArray: false,
-            serviceType: "aapi"
-        }
-    });
+  cloudProjectAggregateResource.resetAllCache = function () {
+    cloudProjectAggregateResource.resetCache();
+  };
 
-    cloudProjectAggregateResource.resetAllCache = function () {
-        cloudProjectAggregateResource.resetCache();
-    };
+  cloudProjectAggregateResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    cloudProjectAggregateResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return cloudProjectAggregateResource;
+  return cloudProjectAggregateResource;
 });

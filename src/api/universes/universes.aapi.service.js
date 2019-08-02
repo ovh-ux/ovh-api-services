@@ -1,21 +1,19 @@
-angular.module("ovh-api-services").service("OvhApiUniversesAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiUniversesAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiUniversesAapi');
 
-    var cache = $cacheFactory("OvhApiUniversesAapi");
+  const universesResource = $resource('/universes', {
+  }, {
+    query: {
+      method: 'GET',
+      isArray: true,
+      serviceType: 'aapi',
+      cache,
+    },
+  });
 
-    var universesResource = $resource("/universes", {
-    }, {
-        query: {
-            method: "GET",
-            isArray: true,
-            serviceType: "aapi",
-            cache: cache
-        }
-    });
+  universesResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    universesResource.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return universesResource;
+  return universesResource;
 });

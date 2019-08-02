@@ -1,6 +1,1 @@
-angular.module("ovh-api-services").service("OvhApiStatusV6", function ($cacheFactory, $resource) {
-    "use strict";
-
-    return $resource("/status");
-
-});
+angular.module('ovh-api-services').service('OvhApiStatusV6', ($cacheFactory, $resource) => $resource('/status'));

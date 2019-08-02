@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeAlerts", function ($injector) {
-    "use strict";
-    return {
-        Aapi: function () {
-            return $injector.get("OvhApiMeAlertsAapi");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeAlerts', $injector => ({
+  Aapi() {
+    return $injector.get('OvhApiMeAlertsAapi');
+  },
+}));

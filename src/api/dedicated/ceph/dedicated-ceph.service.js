@@ -1,21 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCeph", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCephV6");
-        },
-        User: function () {
-            return $injector.get("OvhApiDedicatedCephUser");
-        },
-        Acl: function () {
-            return $injector.get("OvhApiDedicatedCephAcl");
-        },
-        Pool: function () {
-            return $injector.get("OvhApiDedicatedCephPool");
-        },
-        Task: function () {
-            return $injector.get("OvhApiDedicatedCephTask");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCeph', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCephV6');
+  },
+  User() {
+    return $injector.get('OvhApiDedicatedCephUser');
+  },
+  Acl() {
+    return $injector.get('OvhApiDedicatedCephAcl');
+  },
+  Pool() {
+    return $injector.get('OvhApiDedicatedCephPool');
+  },
+  Task() {
+    return $injector.get('OvhApiDedicatedCephTask');
+  },
+}));

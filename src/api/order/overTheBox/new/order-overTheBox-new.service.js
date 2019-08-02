@@ -1,11 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiOrderOverTheBoxNew", function ($injector) {
-
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiOrderOverTheBoxNewV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiOrderOverTheBoxNew', $injector => ({
+  v6() {
+    return $injector.get('OvhApiOrderOverTheBoxNewV6');
+  },
+}));

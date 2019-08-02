@@ -1,12 +1,8 @@
-angular.module("ovh-api-services").service("OvhApiTelephonyScheduler", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiTelephonySchedulerV6");
-        },
-        Events: function () {
-            return $injector.get("OvhApiTelephonySchedulerEvents");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiTelephonyScheduler', $injector => ({
+  v6() {
+    return $injector.get('OvhApiTelephonySchedulerV6');
+  },
+  Events() {
+    return $injector.get('OvhApiTelephonySchedulerEvents');
+  },
+}));

@@ -1,55 +1,52 @@
-angular.module("ovh-api-services").service("OvhApiOrderCartV6", function ($resource, $cacheFactory) {
+angular.module('ovh-api-services').service('OvhApiOrderCartV6', ($resource, $cacheFactory) => {
+  // Cache to invalidate
+  const queryCache = $cacheFactory('OvhApiOrderCartV6Query');
+  const cache = $cacheFactory('OvhApiOrderCartV6');
 
-    "use strict";
+  const interceptor = {
+    response(response) {
+      orderCart.resetQueryCache();
+      return response.data;
+    },
+  };
 
-    // Cache to invalidate
-    var queryCache = $cacheFactory("OvhApiOrderCartV6Query");
-    var cache = $cacheFactory("OvhApiOrderCartV6");
+  const orderCart = $resource('/order/cart/:cartId', {
+    cartId: '@cartId',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache, isArray: false },
+    post: {
+      method: 'POST',
+      interceptor,
+      url: '/order/cart',
+    },
+    put: { method: 'PUT', interceptor },
+    delete: { method: 'DELETE', interceptor },
+    assign: {
+      method: 'POST',
+      url: '/order/cart/:cartId/assign',
+    },
+    checkout: {
+      method: 'POST',
+      url: '/order/cart/:cartId/checkout',
+    },
+    getCheckout: {
+      method: 'GET',
+      url: '/order/cart/:cartId/checkout',
+    },
+    summary: {
+      method: 'GET',
+      url: '/order/cart/:cartId/summary',
+    },
+  });
 
-    var interceptor = {
-        response: function (response) {
-            orderCart.resetQueryCache();
-            return response.data;
-        }
-    };
+  orderCart.resetCache = function () {
+    cache.removeAll();
+  };
 
-    var orderCart = $resource("/order/cart/:cartId", {
-        cartId: "@cartId"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache, isArray: false },
-        post: {
-            method: "POST",
-            interceptor: interceptor,
-            url: "/order/cart"
-        },
-        put: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor },
-        assign: {
-            method: "POST",
-            url: "/order/cart/:cartId/assign"
-        },
-        checkout: {
-            method: "POST",
-            url: "/order/cart/:cartId/checkout"
-        },
-        getCheckout: {
-            method: "GET",
-            url: "/order/cart/:cartId/checkout"
-        },
-        summary: {
-            method: "GET",
-            url: "/order/cart/:cartId/summary"
-        }
-    });
+  orderCart.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    orderCart.resetCache = function () {
-        cache.removeAll();
-    };
-
-    orderCart.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return orderCart;
+  return orderCart;
 });

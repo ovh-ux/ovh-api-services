@@ -6,20 +6,18 @@
  * Manage promotion codes. When emitted a promotion code will re-engage the customer
  *
  */
-angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCodeV6", function ($resource, OvhApiPackXdslPromotionCode) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiPackXdslPromotionCodeV6', ($resource, OvhApiPackXdslPromotionCode) => {
+  const interceptor = {
+    response(response) {
+      OvhApiPackXdslPromotionCode.resetCache();
+      return response.resource;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            OvhApiPackXdslPromotionCode.resetCache();
-            return response.resource;
-        }
-    };
-
-    return $resource("/pack/xdsl/:packId/promotionCode", {
-        packId: "@packId"
-    }, {
-        /**
+  return $resource('/pack/xdsl/:packId/promotionCode', {
+    packId: '@packId',
+  }, {
+    /**
          * @ngdoc function
          * @name capabilities
          * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCodev6
@@ -29,14 +27,14 @@ angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCodeV6", func
          * @param {string} packId Pack identifier
          * @return {object} Promise
          */
-        capabilities: {
-            url: "/pack/xdsl/:packId/promotionCode/capabilities",
-            method: "GET",
-            isArray: false,
-            cache: OvhApiPackXdslPromotionCode.cache
-        },
+    capabilities: {
+      url: '/pack/xdsl/:packId/promotionCode/capabilities',
+      method: 'GET',
+      isArray: false,
+      cache: OvhApiPackXdslPromotionCode.cache,
+    },
 
-        /**
+    /**
          * @ngdoc function
          * @name generate
          * @methodOf ovh-api-services.resource:OvhApiPackXdslPromotionCodev6
@@ -46,11 +44,11 @@ angular.module("ovh-api-services").service("OvhApiPackXdslPromotionCodeV6", func
          * @param {string} packId PackIdentifier
          * @return {object} Promise
          */
-        generate: {
-            url: "/pack/xdsl/:packId/promotionCode/generate",
-            method: "POST",
-            isArray: false,
-            interceptor: interceptor
-        }
-    });
+    generate: {
+      url: '/pack/xdsl/:packId/promotionCode/generate',
+      method: 'POST',
+      isArray: false,
+      interceptor,
+    },
+  });
 });

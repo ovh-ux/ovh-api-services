@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiMeFaxCustomDomains", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiMeFaxCustomDomainsV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiMeFaxCustomDomains', $injector => ({
+  v6() {
+    return $injector.get('OvhApiMeFaxCustomDomainsV6');
+  },
+}));

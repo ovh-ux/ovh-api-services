@@ -1,13 +1,11 @@
-angular.module("ovh-api-services").service("OvhApiXdslModemReboot", function ($injector, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslModemReboot', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiXdslModemReboot');
 
-    var cache = $cacheFactory("OvhApiXdslModemReboot");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiXdslModemRebootV6");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
+  return {
+    v6() {
+      return $injector.get('OvhApiXdslModemRebootV6');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

@@ -1,19 +1,14 @@
-angular.module("ovh-api-services").service("OvhApiDedicatedCloudLocation", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiDedicatedCloudLocationV6");
-        },
-        Stock: function () {
-            return $injector.get("OvhApiDedicatedCloudLocationStock");
-        },
-        Hypervisor: function () {
-            return $injector.get("OvhApiDedicatedCloudLocationHypervisor");
-        },
-        HostProfile: function () {
-            return $injector.get("OvhApiDedicatedCloudLocationHostProfile");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiDedicatedCloudLocation', $injector => ({
+  v6() {
+    return $injector.get('OvhApiDedicatedCloudLocationV6');
+  },
+  Stock() {
+    return $injector.get('OvhApiDedicatedCloudLocationStock');
+  },
+  Hypervisor() {
+    return $injector.get('OvhApiDedicatedCloudLocationHypervisor');
+  },
+  HostProfile() {
+    return $injector.get('OvhApiDedicatedCloudLocationHostProfile');
+  },
+}));

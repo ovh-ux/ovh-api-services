@@ -1,33 +1,31 @@
-angular.module("ovh-api-services").service("OvhApiLicenseOfficeUsersV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiLicenseOfficeUsersV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiLicenseOfficeUsersV6');
+  const queryCache = $cacheFactory('OvhApiLicenseOfficeUsersV6Query');
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response;
+    },
+  };
 
-    var cache = $cacheFactory("OvhApiLicenseOfficeUsersV6");
-    var queryCache = $cacheFactory("OvhApiLicenseOfficeUsersV6Query");
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response;
-        }
-    };
+  const licenseOfficeUsers = $resource('/license/office/:serviceName/user/:user', {
+    serviceName: '@serviceName',
+    user: '@user',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache },
+    save: { method: 'POST', interceptor },
+    delete: { method: 'DELETE', interceptor },
+  });
 
-    var licenseOfficeUsers = $resource("/license/office/:serviceName/user/:user", {
-        serviceName: "@serviceName",
-        user: "@user"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache },
-        save: { method: "POST", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor }
-    });
+  licenseOfficeUsers.resetCache = function () {
+    cache.removeAll();
+  };
 
-    licenseOfficeUsers.resetCache = function () {
-        cache.removeAll();
-    };
+  licenseOfficeUsers.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    licenseOfficeUsers.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return licenseOfficeUsers;
+  return licenseOfficeUsers;
 });

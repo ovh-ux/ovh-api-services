@@ -1,43 +1,42 @@
-"use strict";
 
-angular.module("ovh-api-services").service("OvhApiVrackLegacyVrackV6", function ($resource, $cacheFactory, OvhApiVrack) {
 
-    var cache = $cacheFactory("OvhApiVrackLegacyVrackV6");
-    var queryCache = $cacheFactory("OvhApiVrackLegacyVrackV6Query");
+angular.module('ovh-api-services').service('OvhApiVrackLegacyVrackV6', ($resource, $cacheFactory, OvhApiVrack) => {
+  const cache = $cacheFactory('OvhApiVrackLegacyVrackV6');
+  const queryCache = $cacheFactory('OvhApiVrackLegacyVrackV6Query');
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            OvhApiVrack.Aapi().resetAllCache();
-            return response;
-        }
-    };
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      OvhApiVrack.Aapi().resetAllCache();
+      return response;
+    },
+  };
 
-    var vrackLegacyVrack = $resource("/vrack/:serviceName/legacyVrack/:legacyVrack", {
-        serviceName: "@serviceName",
-        legacyVrack: "@legacyVrack"
-    }, {
-        query: { method: "GET", isArray: true, cache: queryCache },
-        get: { method: "GET", cache: cache },
-        edit: { method: "PUT", interceptor: interceptor },
-        "delete": { method: "DELETE", interceptor: interceptor },
-        create: {
-            method: "POST",
-            url: "/vrack/:serviceName/legacyVrack",
-            interceptor: interceptor
-        }
-    });
+  const vrackLegacyVrack = $resource('/vrack/:serviceName/legacyVrack/:legacyVrack', {
+    serviceName: '@serviceName',
+    legacyVrack: '@legacyVrack',
+  }, {
+    query: { method: 'GET', isArray: true, cache: queryCache },
+    get: { method: 'GET', cache },
+    edit: { method: 'PUT', interceptor },
+    delete: { method: 'DELETE', interceptor },
+    create: {
+      method: 'POST',
+      url: '/vrack/:serviceName/legacyVrack',
+      interceptor,
+    },
+  });
 
-    vrackLegacyVrack.resetCache = function () {
-        cache.removeAll();
-        OvhApiVrack.Aapi().resetAllCache();
-    };
+  vrackLegacyVrack.resetCache = function () {
+    cache.removeAll();
+    OvhApiVrack.Aapi().resetAllCache();
+  };
 
-    vrackLegacyVrack.resetQueryCache = function () {
-        queryCache.removeAll();
-        OvhApiVrack.Aapi().resetAllCache();
-    };
+  vrackLegacyVrack.resetQueryCache = function () {
+    queryCache.removeAll();
+    OvhApiVrack.Aapi().resetAllCache();
+  };
 
-    return vrackLegacyVrack;
+  return vrackLegacyVrack;
 });

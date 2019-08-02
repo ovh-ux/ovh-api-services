@@ -1,8 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiAuth", function ($injector) {
-    "use strict";
-    return {
-        v6: function () {
-            return $injector.get("OvhApiAuthV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiAuth', $injector => ({
+  v6() {
+    return $injector.get('OvhApiAuthV6');
+  },
+}));

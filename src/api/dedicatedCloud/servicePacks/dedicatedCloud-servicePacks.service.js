@@ -1,12 +1,7 @@
 angular
-    .module("ovh-api-services")
-    .service("OvhApiDedicatedCloudServicePacks", function ($injector) {
-        "use strict";
-
-        return {
-            v6: function () {
-                return $injector.get("OvhApiDedicatedCloudServicePacksV6");
-            }
-        };
-
-    });
+  .module('ovh-api-services')
+  .service('OvhApiDedicatedCloudServicePacks', $injector => ({
+    v6() {
+      return $injector.get('OvhApiDedicatedCloudServicePacksV6');
+    },
+  }));

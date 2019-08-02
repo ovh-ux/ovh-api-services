@@ -1,11 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectMigration", function ($injector) {
-
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectMigrationV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectMigration', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectMigrationV6');
+  },
+}));

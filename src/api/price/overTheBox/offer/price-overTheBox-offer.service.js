@@ -1,10 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiPriceOverTheBoxOffer", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiPriceOverTheBoxOfferV6");
-        }
-    };
-
-});
+angular.module('ovh-api-services').service('OvhApiPriceOverTheBoxOffer', $injector => ({
+  v6() {
+    return $injector.get('OvhApiPriceOverTheBoxOfferV6');
+  },
+}));

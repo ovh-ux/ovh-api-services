@@ -1,27 +1,25 @@
-angular.module("ovh-api-services").service("OvhApiDbaasLogsAccountingAapi", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiDbaasLogsAccountingAapi', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDbaasLogsAccountingAapi');
 
-    var cache = $cacheFactory("OvhApiDbaasLogsAccountingAapi");
+  const accounting = $resource('/dbaas/logs/:serviceName/accounting', {
+    serviceName: '@serviceName',
+  }, {
+    me: {
+      method: 'GET',
+      url: '/dbaas/logs/:serviceName/accounting',
+      serviceType: 'aapi',
+      cache,
+      isArray: false,
+    },
+  });
 
-    var accounting = $resource("/dbaas/logs/:serviceName/accounting", {
-        serviceName: "@serviceName"
-    }, {
-        me: {
-            method: "GET",
-            url: "/dbaas/logs/:serviceName/accounting",
-            serviceType: "aapi",
-            cache: cache,
-            isArray: false
-        }
-    });
+  accounting.resetAllCache = function () {
+    accounting.resetCache();
+  };
 
-    accounting.resetAllCache = function () {
-        accounting.resetCache();
-    };
+  accounting.resetCache = function () {
+    cache.removeAll();
+  };
 
-    accounting.resetCache = function () {
-        cache.removeAll();
-    };
-
-    return accounting;
+  return accounting;
 });

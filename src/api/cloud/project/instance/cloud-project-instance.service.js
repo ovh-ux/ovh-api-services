@@ -1,20 +1,17 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectInstance", function ($injector, $cacheFactory) {
+angular.module('ovh-api-services').service('OvhApiCloudProjectInstance', ($injector, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiCloudProjectInstance');
 
-    "use strict";
-    var cache = $cacheFactory("OvhApiCloudProjectInstance");
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectInstanceV6");
-        },
-        Aapi: function () {
-            return $injector.get("OvhApiCloudProjectInstanceAapi");
-        },
-        Interface: function () {
-            return $injector.get("OvhApiCloudProjectInstanceInterface");
-        },
-        resetCache: cache.removeAll,
-        cache: cache
-    };
-
+  return {
+    v6() {
+      return $injector.get('OvhApiCloudProjectInstanceV6');
+    },
+    Aapi() {
+      return $injector.get('OvhApiCloudProjectInstanceAapi');
+    },
+    Interface() {
+      return $injector.get('OvhApiCloudProjectInstanceInterface');
+    },
+    resetCache: cache.removeAll,
+    cache,
+  };
 });

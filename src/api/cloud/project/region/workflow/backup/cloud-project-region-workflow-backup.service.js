@@ -1,9 +1,5 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectRegionWorkflowBackup", function ($injector) {
-    "use strict";
-
-    return {
-        v6: function () {
-            return $injector.get("OvhApiCloudProjectRegionWorkflowBackupV6");
-        }
-    };
-});
+angular.module('ovh-api-services').service('OvhApiCloudProjectRegionWorkflowBackup', $injector => ({
+  v6() {
+    return $injector.get('OvhApiCloudProjectRegionWorkflowBackupV6');
+  },
+}));

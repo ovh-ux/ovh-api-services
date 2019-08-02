@@ -1,40 +1,38 @@
-angular.module("ovh-api-services").service("OvhApiCloudProjectAlertingV6", function ($resource, $cacheFactory) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiCloudProjectAlertingV6', ($resource, $cacheFactory) => {
+  const queryCache = $cacheFactory('OvhApiCloudProjectAlertingV6Query');
+  const cache = $cacheFactory('OvhApiCloudProjectAlertingV6');
 
-    var queryCache = $cacheFactory("OvhApiCloudProjectAlertingV6Query");
-    var cache = $cacheFactory("OvhApiCloudProjectAlertingV6");
+  const interceptor = {
+    response(response) {
+      cache.remove(response.config.url);
+      queryCache.removeAll();
+      return response.data;
+    },
+  };
 
-    var interceptor = {
-        response: function (response) {
-            cache.remove(response.config.url);
-            queryCache.removeAll();
-            return response.data;
-        }
-    };
+  const alertingResource = $resource('/cloud/project/:serviceName/alerting/:alertId', {
+    serviceName: '@serviceName',
+    alertId: '@alertId',
+  }, {
+    getIds: { method: 'GET', cache, isArray: true },
+    get: { method: 'GET', cache },
+    query: { method: 'GET', cache: queryCache, isArray: true },
+    save: { method: 'POST', interceptor },
+    put: { method: 'PUT', interceptor },
+    alert: {
+      url: '/cloud/project/:serviceName/alerting/:alertId/alert',
+      method: 'GET',
+      interceptor,
+    },
+  });
 
-    var alertingResource = $resource("/cloud/project/:serviceName/alerting/:alertId", {
-        serviceName: "@serviceName",
-        alertId: "@alertId"
-    }, {
-        getIds: { method: "GET", cache: cache, isArray: true },
-        get: { method: "GET", cache: cache },
-        query: { method: "GET", cache: queryCache, isArray: true },
-        save: { method: "POST", interceptor: interceptor },
-        put: { method: "PUT", interceptor: interceptor },
-        alert: {
-            url: "/cloud/project/:serviceName/alerting/:alertId/alert",
-            method: "GET",
-            interceptor: interceptor
-        }
-    });
+  alertingResource.resetCache = function () {
+    cache.removeAll();
+  };
 
-    alertingResource.resetCache = function () {
-        cache.removeAll();
-    };
+  alertingResource.resetQueryCache = function () {
+    queryCache.removeAll();
+  };
 
-    alertingResource.resetQueryCache = function () {
-        queryCache.removeAll();
-    };
-
-    return alertingResource;
+  return alertingResource;
 });

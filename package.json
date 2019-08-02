@@ -12,8 +12,8 @@
   "module": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development",
-    "lint": "eslint . --quiet --ext .js",
+    "dev": "rollup -cw --environment BUILD:development",
+    "lint": "eslint --quiet --fix --format=pretty src",
     "prepare": "yarn run build",
     "test": "yarn run lint",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
@@ -23,14 +23,21 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^6.0.0",
-    "babel-eslint": "^10.0.2",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-angular": "^8.1.0",
+    "@ovh-ux/component-rollup-config": "^6.0.1",
     "eslint": "^6.1.0",
-    "eslint-config-ovh": "^0.1.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-formatter-pretty": "^2.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "husky": "^3.0.2",
+    "lint-staged": "^9.2.1",
     "rollup-plugin-glob-import": "^0.3.1"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0"
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "angular": "^1.7.8",
+    "angular-resource": "^1.7.8"
   }
 }

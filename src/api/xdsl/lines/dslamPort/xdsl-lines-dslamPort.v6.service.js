@@ -1,31 +1,29 @@
-angular.module("ovh-api-services").service("OvhApiXdslLinesDslamPortV6", function ($resource, OvhApiXdslLinesDslamPort) {
-    "use strict";
+angular.module('ovh-api-services').service('OvhApiXdslLinesDslamPortV6', ($resource, OvhApiXdslLinesDslamPort) => {
+  const resourceUrl = '/:basePath/xdsl/:xdslId/lines/:number/dslamPort';
+  const interceptor = {
+    response(response) {
+      OvhApiXdslLinesDslamPort.resetCache();
+      return response.resource;
+    },
+  };
 
-    var resourceUrl = "/:basePath/xdsl/:xdslId/lines/:number/dslamPort";
-    var interceptor = {
-        response: function (response) {
-            OvhApiXdslLinesDslamPort.resetCache();
-            return response.resource;
-        }
-    };
+  const xdslLinesDslamPortv6 = $resource(
+    resourceUrl, {
+      xdslId: '@xdslId',
+      number: '@number',
+    }, {
+      changeProfile: {
+        method: 'POST',
+        url: `${resourceUrl}/changeProfile`,
+        interceptor,
+      },
+      reset: {
+        method: 'POST',
+        url: `${resourceUrl}/reset`,
+        interceptor,
+      },
+    },
+  );
 
-    var xdslLinesDslamPortv6 = $resource(
-        resourceUrl, {
-            xdslId: "@xdslId",
-            number: "@number"
-        }, {
-            changeProfile: {
-                method: "POST",
-                url: resourceUrl + "/changeProfile",
-                interceptor: interceptor
-            },
-            reset: {
-                method: "POST",
-                url: resourceUrl + "/reset",
-                interceptor: interceptor
-            }
-        }
-    );
-
-    return xdslLinesDslamPortv6;
+  return xdslLinesDslamPortv6;
 });
