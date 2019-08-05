@@ -1,3 +1,12 @@
+# [8.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.1.0...v8.2.0) (2019-08-05)
+
+
+### Features
+
+* **order.catalog:** add calls to public catalog ([#213](https://github.com/ovh-ux/ovh-api-services/issues/213)) ([92ac55e](https://github.com/ovh-ux/ovh-api-services/commit/92ac55e))
+
+
+
 # [8.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.0.1...v8.1.0) (2019-08-02)
 
 
