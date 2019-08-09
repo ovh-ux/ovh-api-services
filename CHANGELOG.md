@@ -1,3 +1,18 @@
+# [8.3.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.2.0...v8.3.0) (2019-08-09)
+
+
+### Bug Fixes
+
+* **telephony.spare:** set isArray to true for getBrands method ([8141bd8](https://github.com/ovh-ux/ovh-api-services/commit/8141bd8))
+* **xdsl.spare:** set isArray to true for getBrands method ([b084314](https://github.com/ovh-ux/ovh-api-services/commit/b084314))
+
+
+### Features
+
+* **xdsl.modem:** add reconfigure voip call for modem ([#215](https://github.com/ovh-ux/ovh-api-services/issues/215)) ([24c4237](https://github.com/ovh-ux/ovh-api-services/commit/24c4237))
+
+
+
 # [8.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.1.0...v8.2.0) (2019-08-05)
 
 
