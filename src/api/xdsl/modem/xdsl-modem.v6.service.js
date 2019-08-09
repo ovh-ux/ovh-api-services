@@ -17,5 +17,10 @@ angular.module('ovh-api-services').service('OvhApiXdslModemV6', ($resource, OvhA
       method: 'PUT',
       interceptor,
     },
+    reconfigureVoip: {
+      method: 'POST',
+      url: '/xdsl/:xdslId/modem/reconfigureVoip',
+      interceptor,
+    }
   });
 });
