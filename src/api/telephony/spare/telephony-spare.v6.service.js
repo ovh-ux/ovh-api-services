@@ -39,6 +39,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonySpareV6', ($resource,
     getBrands: {
       method: 'GET',
       url: '/telephony/spare/brands',
+      isArray: true,
     },
     getNewSpare: {
       method: 'GET',
