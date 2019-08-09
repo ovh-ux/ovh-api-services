@@ -44,6 +44,7 @@ angular.module('ovh-api-services').service('OvhApiXdslSpareV6', ($resource, $cac
     getBrands: {
       method: 'GET',
       url: '/xdsl/spare/brands',
+      isArray: true,
     },
     getNewSpare: {
       method: 'GET',
