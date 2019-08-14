@@ -1,3 +1,17 @@
+# [9.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.3.0...v9.0.0) (2019-08-14)
+
+
+### Build System
+
+* bump @ovh-ux/ng-ovh-api-wrappers to v4.0.2 ([e5f29c7](https://github.com/ovh-ux/ovh-api-services/commit/e5f29c7))
+
+
+### BREAKING CHANGES
+
+* major bump of @ovh-ux/ng-ovh-api-wrappers
+
+
+
 # [8.3.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.2.0...v8.3.0) (2019-08-09)
 
 
