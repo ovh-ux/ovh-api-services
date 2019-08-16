@@ -54,6 +54,11 @@ angular.module('ovh-api-services').service('OvhApiXdslSpareV6', ($resource, $cac
       method: 'POST',
       url: '/order/xdsl/spare/new',
     },
+    queryCompatibleReplacement: {
+      method: 'GET',
+      url: '/xdsl/spare/:spare/compatibleReplacement',
+      isArray: true,
+    },
   });
 
   spareResource.resetAllCache = function () {
