@@ -49,6 +49,11 @@ angular.module('ovh-api-services').service('OvhApiTelephonySpareV6', ($resource,
       method: 'POST',
       url: '/order/telephony/spare/new',
     },
+    queryCompatibleReplacement: {
+      method: 'GET',
+      url: '/telephony/spare/:spare/compatibleReplacement',
+      isArray: true,
+    },
   });
 
   spareResource.resetAllCache = function () {
