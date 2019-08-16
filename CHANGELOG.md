@@ -1,3 +1,13 @@
+# [9.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.0.0...v9.1.0) (2019-08-16)
+
+
+### Features
+
+* **telephony.spare:** add compatibleReplacement action ([67e546c](https://github.com/ovh-ux/ovh-api-services/commit/67e546c))
+* **xdsl.spare:** add compatibleReplacement action ([85b8b6a](https://github.com/ovh-ux/ovh-api-services/commit/85b8b6a))
+
+
+
 # [9.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v8.3.0...v9.0.0) (2019-08-14)
 
 
