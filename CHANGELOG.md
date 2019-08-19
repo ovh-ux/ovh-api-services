@@ -1,3 +1,12 @@
+# [9.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.1.0...v9.2.0) (2019-08-19)
+
+
+### Features
+
+* **xdsl.modem:** add comfortExchange action ([#218](https://github.com/ovh-ux/ovh-api-services/issues/218)) ([bc30fbf](https://github.com/ovh-ux/ovh-api-services/commit/bc30fbf))
+
+
+
 # [9.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.0.0...v9.1.0) (2019-08-16)
 
 
