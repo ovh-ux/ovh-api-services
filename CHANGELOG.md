@@ -1,3 +1,12 @@
+# [9.3.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.2.0...v9.3.0) (2019-08-21)
+
+
+### Features
+
+* **vps.capabilities:** add 2api endpoint ([#210](https://github.com/ovh-ux/ovh-api-services/issues/210)) ([6fdb6de](https://github.com/ovh-ux/ovh-api-services/commit/6fdb6de))
+
+
+
 # [9.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.1.0...v9.2.0) (2019-08-19)
 
 
