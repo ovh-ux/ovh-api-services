@@ -10,7 +10,7 @@ angular.module('ovh-api-services').service('OvhApiXdslRMAV6', ($resource, $cache
     },
   };
 
-  const resource = $resource('/xdsl/:xdslId/rma', {
+  const resource = $resource('/xdsl/:xdslId/rma/:id', {
     xdslId: '@xdslId',
     id: '@id',
   }, {
@@ -21,20 +21,13 @@ angular.module('ovh-api-services').service('OvhApiXdslRMAV6', ($resource, $cache
     },
     get: {
       method: 'GET',
-      cache,
     },
-    getRMA: {
-      method: 'GET',
-      url: '/xdsl/:xdslId/rma/:id',
-    },
-    updateRMA: {
+    update: {
       method: 'PUT',
-      url: '/xdsl/:xdslId/rma/:id',
       interceptor,
     },
-    deleteRMA: {
+    delete: {
       method: 'DELETE',
-      url: '/xdsl/:xdslId/rma/:id',
       interceptor,
     },
   });
