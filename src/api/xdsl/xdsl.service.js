@@ -29,6 +29,9 @@ angular.module('ovh-api-services').service('OvhApiXdsl', ($injector, $cacheFacto
     Spare() {
       return $injector.get('OvhApiXdslSpare');
     },
+    RMA() {
+      return $injector.get('OvhApiXdslRMA');
+    },
     resetCache: cache.removeAll,
     cache,
   };
