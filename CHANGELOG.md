@@ -1,3 +1,13 @@
+# [9.4.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.3.0...v9.4.0) (2019-08-23)
+
+
+### Features
+
+* **ovhproduct:** add call to ovhProduct aapi ([#220](https://github.com/ovh-ux/ovh-api-services/issues/220)) ([9009ab0](https://github.com/ovh-ux/ovh-api-services/commit/9009ab0))
+* **xdsl.rma:** add api bindings ([#219](https://github.com/ovh-ux/ovh-api-services/issues/219)) ([5fb75cf](https://github.com/ovh-ux/ovh-api-services/commit/5fb75cf))
+
+
+
 # [9.3.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.2.0...v9.3.0) (2019-08-21)
 
 
