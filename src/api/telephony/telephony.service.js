@@ -11,6 +11,9 @@ angular.module('ovh-api-services').service('OvhApiTelephony', $injector => ({
   AbbreviatedNumber() {
     return $injector.get('OvhApiTelephonyAbbreviatedNumber');
   },
+  CarrierSip() {
+    return $injector.get('OvhApiTelephonyCarrierSip');
+  },
   Eventtoken() {
     return $injector.get('OvhApiTelephonyEventtoken');
   },

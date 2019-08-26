@@ -5,19 +5,22 @@ angular.module('ovh-api-services').service('OvhApiTelephonyService', $injector =
   v7() {
     return $injector.get('OvhApiTelephonyServiceV7');
   },
-  VoiceConsumption() {
-    return $injector.get('OvhApiTelephonyServiceVoiceConsumption');
-  },
   FaxConsumption() {
     return $injector.get('OvhApiTelephonyServiceFaxConsumption');
-  },
-  Task() {
-    return $injector.get('OvhApiTelephonyServiceTask');
   },
   OfferTask() {
     return $injector.get('OvhApiTelephonyServiceOfferTask');
   },
+  PreviousVoiceConsumption() {
+    return $injector.get('OvhApiTelephonyServicePreviousVoiceConsumption');
+  },
   RepaymentConsumption() {
     return $injector.get('OvhApiTelephonyServiceRepaymentConsumption');
+  },
+  Task() {
+    return $injector.get('OvhApiTelephonyServiceTask');
+  },
+  VoiceConsumption() {
+    return $injector.get('OvhApiTelephonyServiceVoiceConsumption');
   },
 }));
