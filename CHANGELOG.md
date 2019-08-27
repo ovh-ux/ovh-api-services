@@ -1,3 +1,12 @@
+## [9.4.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.4.0...v9.4.1) (2019-08-27)
+
+
+### Bug Fixes
+
+* **ip.delegation:** don't pass target as url param ([9a3a59b](https://github.com/ovh-ux/ovh-api-services/commit/9a3a59b))
+
+
+
 # [9.4.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.3.0...v9.4.0) (2019-08-23)
 
 
