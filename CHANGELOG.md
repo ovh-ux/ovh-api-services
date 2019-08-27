@@ -1,3 +1,12 @@
+# [9.5.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.4.1...v9.5.0) (2019-08-27)
+
+
+### Features
+
+* **me:** add autorenew route ([#223](https://github.com/ovh-ux/ovh-api-services/issues/223)) ([cb978fd](https://github.com/ovh-ux/ovh-api-services/commit/cb978fd))
+
+
+
 ## [9.4.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.4.0...v9.4.1) (2019-08-27)
 
 
