@@ -11,6 +11,9 @@ angular.module('ovh-api-services').service('OvhApiMe', $injector => ({
   Agreements() {
     return $injector.get('OvhApiMeAgreements');
   },
+  Autorenew() {
+    return $injector.get('OvhApiMeAutorenew');
+  },
   SshKey() {
     return $injector.get('OvhApiMeSshKey');
   },
