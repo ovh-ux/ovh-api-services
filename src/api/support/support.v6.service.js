@@ -13,7 +13,27 @@ angular.module('ovh-api-services').service('OvhApiSupportV6', ($resource, $cache
   const support = $resource('/support/tickets/:id', {
     id: '@id',
   }, {
-    schema: { method: 'GET', url: '/support.json' },
+    schema: {
+      method: 'GET',
+      url: '/support.json',
+    },
+    getIssueTypes: {
+      isArray: true,
+      method: 'GET',
+      url: '/support/issueTypes',
+    },
+    getServiceTypes: {
+      isArray: true,
+      method: 'GET',
+      url: '/support/serviceTypes',
+    },
+    createTickets: {
+      interceptor,
+      method: 'POST',
+      url: '/support/tickets',
+    },
+
+    // TODO: deprecate some unused actions.
     query: { method: 'GET', isArray: true, cache: queryCache },
     get: { method: 'GET', cache },
     queryMessages: {
@@ -44,11 +64,11 @@ angular.module('ovh-api-services').service('OvhApiSupportV6', ($resource, $cache
     },
   });
 
-  support.resetCache = function () {
+  support.resetCache = function resetCache() {
     cache.removeAll();
   };
 
-  support.resetQueryCache = function () {
+  support.resetQueryCache = function resetQueryCache() {
     queryCache.removeAll();
   };
 
