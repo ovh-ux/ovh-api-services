@@ -1,3 +1,12 @@
+## [9.5.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.5.0...v9.5.1) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#225](https://github.com/ovh-ux/ovh-api-services/issues/225)) ([cdabdd4](https://github.com/ovh-ux/ovh-api-services/commit/cdabdd4))
+
+
+
 # [9.5.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.4.1...v9.5.0) (2019-08-27)
 
 
