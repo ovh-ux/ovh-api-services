@@ -42,6 +42,16 @@ angular.module('ovh-api-services').service('OvhApiVpsV6', ($resource, $cacheFact
       method: 'POST',
       interceptor,
     },
+    confirmTermination: {
+      url: '/vps/:serviceName/confirmTermination',
+      method: 'POST',
+      interceptor,
+    },
+    terminate: {
+      url: '/vps/:serviceName/terminate',
+      method: 'POST',
+      interceptor,
+    },
   });
 
   vps.resetCache = function () {
