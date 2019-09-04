@@ -24,7 +24,12 @@ angular.module('ovh-api-services').service('OvhApiSupportV6', ($resource, $cache
     create: {
       interceptor,
       method: 'POST',
-      url: '/support/tickets/:id/create',
+      url: '/support/tickets/create',
+    },
+    postTicket: {
+      interceptor,
+      method: 'POST',
+      url: '/support/tickets',
     },
     close: {
       hasBody: false,
@@ -41,6 +46,16 @@ angular.module('ovh-api-services').service('OvhApiSupportV6', ($resource, $cache
       interceptor,
       method: 'POST',
       url: '/support/tickets/:id/reply',
+    },
+    serviceTypes: {
+      method: 'GET',
+      url: '/support/serviceTypes',
+      isArray: true,
+    },
+    issueTypes: {
+      method: 'GET',
+      url: '/support/issueTypes',
+      isArray: true,
     },
   });
 
