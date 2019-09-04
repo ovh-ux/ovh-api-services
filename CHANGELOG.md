@@ -1,3 +1,12 @@
+# [9.6.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.5.1...v9.6.0) (2019-09-04)
+
+
+### Features
+
+* **vps:** add termination routes ([feb7e11](https://github.com/ovh-ux/ovh-api-services/commit/feb7e11))
+
+
+
 ## [9.5.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.5.0...v9.5.1) (2019-08-30)
 
 
