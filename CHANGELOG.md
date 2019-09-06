@@ -1,3 +1,12 @@
+# [9.7.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.6.0...v9.7.0) (2019-09-06)
+
+
+### Features
+
+* **support:** add some new actions api bindings ([5607e5d](https://github.com/ovh-ux/ovh-api-services/commit/5607e5d))
+
+
+
 # [9.6.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.5.1...v9.6.0) (2019-09-04)
 
 
