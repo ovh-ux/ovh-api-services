@@ -1,3 +1,12 @@
+# [9.8.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.7.0...v9.8.0) (2019-09-10)
+
+
+### Features
+
+* add banner aapi service ([#228](https://github.com/ovh-ux/ovh-api-services/issues/228)) ([4d43594](https://github.com/ovh-ux/ovh-api-services/commit/4d43594))
+
+
+
 # [9.7.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.6.0...v9.7.0) (2019-09-06)
 
 
