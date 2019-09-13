@@ -1,3 +1,12 @@
+# [9.9.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.8.0...v9.9.0) (2019-09-13)
+
+
+### Features
+
+* access dedicated network interfaces ([#229](https://github.com/ovh-ux/ovh-api-services/issues/229)) ([464fd78](https://github.com/ovh-ux/ovh-api-services/commit/464fd78))
+
+
+
 # [9.8.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.7.0...v9.8.0) (2019-09-10)
 
 
