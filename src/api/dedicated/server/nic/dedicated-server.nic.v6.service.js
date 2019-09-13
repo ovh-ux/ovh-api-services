@@ -1,30 +1,61 @@
-angular.module('ovh-api-services').service('OvhApiDedicatedServerNicV6', ($resource, $cacheFactory) => {
-  const otherCache = $cacheFactory('OvhApiDedicatedServerNicV6');
-  const queryCache = $cacheFactory('OvhApiDedicatedServerNicV6Query');
+angular.module('ovh-api-services').service('OvhApiDedicatedServerPhysicalInterfaceV6', ($resource, $cacheFactory) => {
+  const cache = $cacheFactory('OvhApiDedicatedServerPhysicalInterfaceV6');
 
-  const dedicatedServerNicResource = $resource('/dedicated/server/:serverName/networkInterfaceController', {
+  const interceptor = {
+    response(response) {
+      dedicatedServerPhysicalInterfaceResource.resetCache();
+      return response.data;
+    },
+  };
+
+  const dedicatedServerPhysicalInterfaceResource = $resource('/dedicated/server/:serverName/networkInterfaceController', {
     serverName: '@serverName',
   }, {
-    query: { method: 'GET', cache: queryCache, isArray: true },
+    query: {
+      method: 'GET',
+      cache,
+      isArray: true,
+      params: {
+        linkType: '@linkType',
+      },
+    },
     get: {
       url: '/dedicated/server/:serverName/networkInterfaceController/:mac',
       method: 'GET',
-      cache: otherCache,
+      cache,
+    },
+    mrtg: {
+      url: '/dedicated/server/:serverName/networkInterfaceController/:mac/mrtg',
+      method: 'GET',
+      cache,
+      isArray: true,
+      params: {
+        period: '@period',
+        type: '@type',
+      },
+    },
+    bind: {
+      url: '/dedicated/server/:serverName/networkInterfaceController/:mac/bind',
+      method: 'POST',
+      interceptor,
+      params: {
+        virtualNetworkInterface: '@virtualNetworkInterface',
+      },
+    },
+    unbind: {
+      url: '/dedicated/server/:serverName/networkInterfaceController/:mac/unbind',
+      method: 'POST',
+      interceptor,
     },
   });
 
-  dedicatedServerNicResource.resetAllCache = function resetAllCache() {
-    dedicatedServerNicResource.resetOtherCache();
-    dedicatedServerNicResource.resetQueryCache();
+  dedicatedServerPhysicalInterfaceResource.resetAllCache = function resetAllCache() {
+    dedicatedServerPhysicalInterfaceResource.resetCache();
   };
 
-  dedicatedServerNicResource.resetOtherCache = function resetOtherCache() {
-    otherCache.removeAll();
+  dedicatedServerPhysicalInterfaceResource.resetCache = function resetCache() {
+    cache.removeAll();
   };
 
-  dedicatedServerNicResource.resetQueryCache = function resetQueryCache() {
-    queryCache.removeAll();
-  };
-
-  return dedicatedServerNicResource;
+  return dedicatedServerPhysicalInterfaceResource;
 });

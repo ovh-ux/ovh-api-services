@@ -5,10 +5,10 @@ angular.module('ovh-api-services').service('OvhApiDedicatedServer', $injector =>
   Aapi() {
     return $injector.get('OvhApiDedicatedServerAapi');
   },
-  Nic() {
-    return $injector.get('OvhApiDedicatedServerNic');
+  PhysicalInterface() {
+    return $injector.get('OvhApiDedicatedServerPhysicalInterface');
   },
-  Vni() {
-    return $injector.get('OvhApiDedicatedServerVni');
+  VirtualInterface() {
+    return $injector.get('OvhApiDedicatedServerVirtualInterface');
   },
 }));

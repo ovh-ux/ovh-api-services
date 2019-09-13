@@ -1,5 +1,5 @@
-angular.module('ovh-api-services').service('OvhApiDedicatedServerNic', $injector => ({
+angular.module('ovh-api-services').service('OvhApiDedicatedServerPhysicalInterface', $injector => ({
   v6() {
-    return $injector.get('OvhApiDedicatedServerNicV6');
+    return $injector.get('OvhApiDedicatedServerPhysicalInterfaceV6');
   },
 }));
