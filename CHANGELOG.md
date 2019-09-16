@@ -1,3 +1,12 @@
+# [9.10.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.9.0...v9.10.0) (2019-09-16)
+
+
+### Features
+
+* **me.bill:** add iceberg service ([feff55a](https://github.com/ovh-ux/ovh-api-services/commit/feff55a))
+
+
+
 # [9.9.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.8.0...v9.9.0) (2019-09-13)
 
 
