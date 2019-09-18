@@ -1,3 +1,12 @@
+## [9.10.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.10.0...v9.10.1) (2019-09-18)
+
+
+### Bug Fixes
+
+* **xdsl.spare:** fix forgotten character ([#231](https://github.com/ovh-ux/ovh-api-services/issues/231)) ([d5793e9](https://github.com/ovh-ux/ovh-api-services/commit/d5793e9))
+
+
+
 # [9.10.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.9.0...v9.10.0) (2019-09-16)
 
 
