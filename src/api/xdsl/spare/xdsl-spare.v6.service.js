@@ -33,7 +33,7 @@ angular.module('ovh-api-services').service('OvhApiXdslSpareV6', ($resource, $cac
     },
     returnMerchandise: {
       method: 'POST',
-      url: 'xdsl/spare/:spare/returnMerchandise',
+      url: '/xdsl/spare/:spare/returnMerchandise',
       interceptor,
     },
     deleteSpare: {
