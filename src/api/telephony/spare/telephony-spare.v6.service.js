@@ -1,11 +1,9 @@
 angular.module('ovh-api-services').service('OvhApiTelephonySpareV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiTelephonySpareV6');
-  const queryCache = $cacheFactory('OvhApiTelephonySpareV6Query');
 
   const interceptor = {
     response(response) {
       cache.remove(response.config.url);
-      queryCache.removeAll();
       return response.resource;
     },
   };
@@ -16,7 +14,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonySpareV6', ($resource,
     query: {
       method: 'GET',
       isArray: true,
-      cache: queryCache,
     },
     get: {
       method: 'GET',
@@ -58,7 +55,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonySpareV6', ($resource,
 
   spareResource.resetAllCache = function () {
     cache.removeAll();
-    queryCache.removeAll();
   };
 
   return spareResource;
