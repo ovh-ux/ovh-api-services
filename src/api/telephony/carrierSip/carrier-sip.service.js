@@ -11,6 +11,9 @@ angular.module('ovh-api-services').service('OvhApiTelephonyCarrierSip', $injecto
   Endpoints() {
     return $injector.get('OvhApiTelephonyCarrierSipEndpoints');
   },
+  Iceberg() {
+    return $injector.get('OvhApiTelephonyCarrierSipIceberg');
+  },
   Settings() {
     return $injector.get('OvhApiTelephonyCarrierSipSettings');
   },
