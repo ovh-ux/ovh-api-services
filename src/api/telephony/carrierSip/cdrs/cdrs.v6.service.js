@@ -2,6 +2,5 @@ angular.module('ovh-api-services').service('OvhApiTelephonyCarrierSipCdrsV6', $r
   '/telephony/:billingAccount/carrierSip/:serviceName/cdrs', {
     billingAccount: '@billingAccount',
     serviceName: '@serviceName',
-    id: '@id',
   },
 ));
