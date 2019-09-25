@@ -1,3 +1,12 @@
+## [9.10.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.10.1...v9.10.2) (2019-09-25)
+
+
+### Bug Fixes
+
+* remove extra *.spec.json files ([c38afc7](https://github.com/ovh-ux/ovh-api-services/commit/c38afc7))
+
+
+
 ## [9.10.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.10.0...v9.10.1) (2019-09-18)
 
 
