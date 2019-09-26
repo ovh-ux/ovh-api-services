@@ -1,3 +1,12 @@
+# [9.12.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.11.0...v9.12.0) (2019-09-26)
+
+
+### Features
+
+* **telephony:** add carrier sip calls ([#221](https://github.com/ovh-ux/ovh-api-services/issues/221)) ([2bc2815](https://github.com/ovh-ux/ovh-api-services/commit/2bc2815))
+
+
+
 # [9.11.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.10.2...v9.11.0) (2019-09-26)
 
 
