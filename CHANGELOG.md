@@ -1,3 +1,12 @@
+# [9.11.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.10.2...v9.11.0) (2019-09-26)
+
+
+### Features
+
+* add OLA group/ungroup endpoints ([#236](https://github.com/ovh-ux/ovh-api-services/issues/236)) ([838aeda](https://github.com/ovh-ux/ovh-api-services/commit/838aeda))
+
+
+
 ## [9.10.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.10.1...v9.10.2) (2019-09-25)
 
 
