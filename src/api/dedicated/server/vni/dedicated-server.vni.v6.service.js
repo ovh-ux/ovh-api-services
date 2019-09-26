@@ -26,38 +26,46 @@ angular.module('ovh-api-services').service('OvhApiDedicatedServerVirtualInterfac
       url: '/dedicated/server/:serverName/virtualNetworkInterface',
       method: 'POST',
       interceptor,
-      params: {
-        mode: '@mode',
-        name: '@name',
-      },
     },
     get: {
       url: '/dedicated/server/:serverName/virtualNetworkInterface/:uuid',
       method: 'GET',
       cache,
+      params: {
+        uuid: '@uuid',
+      },
     },
     update: {
       url: '/dedicated/server/:serverName/virtualNetworkInterface/:uuid',
       method: 'PUT',
       interceptor,
       params: {
-        VirtualNetworkInterface: '@virtualNetworkInterface',
+        uuid: '@uuid',
       },
     },
     delete: {
       url: '/dedicated/server/:serverName/virtualNetworkInterface/:uuid',
       method: 'DELETE',
       interceptor,
+      params: {
+        uuid: '@uuid',
+      },
     },
     enable: {
       url: '/dedicated/server/:serverName/virtualNetworkInterface/:uuid/enable',
       method: 'POST',
       interceptor,
+      params: {
+        uuid: '@uuid',
+      },
     },
     disable: {
       url: '/dedicated/server/:serverName/virtualNetworkInterface/:uuid/disable',
       method: 'POST',
       interceptor,
+      params: {
+        uuid: '@uuid',
+      },
     },
   });
 
