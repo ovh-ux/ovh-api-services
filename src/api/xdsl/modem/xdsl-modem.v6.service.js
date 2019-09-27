@@ -26,6 +26,6 @@ angular.module('ovh-api-services').service('OvhApiXdslModemV6', ($resource, OvhA
       method: 'POST',
       url: '/xdsl/:xdslId/modem/comfortExchange',
       interceptor,
-    }
+    },
   });
 });
