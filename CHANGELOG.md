@@ -1,3 +1,12 @@
+# [9.13.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.12.0...v9.13.0) (2019-09-27)
+
+
+### Features
+
+* enterprise cloud database apis ([#232](https://github.com/ovh-ux/ovh-api-services/issues/232)) ([944a193](https://github.com/ovh-ux/ovh-api-services/commit/944a193))
+
+
+
 # [9.12.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.11.0...v9.12.0) (2019-09-26)
 
 
