@@ -1,3 +1,12 @@
+# [9.14.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.13.0...v9.14.0) (2019-09-30)
+
+
+### Features
+
+* **vps:** add cache for available images queries ([#237](https://github.com/ovh-ux/ovh-api-services/issues/237)) ([58ece3e](https://github.com/ovh-ux/ovh-api-services/commit/58ece3e))
+
+
+
 # [9.13.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.12.0...v9.13.0) (2019-09-27)
 
 
