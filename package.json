@@ -1,6 +1,6 @@
 {
   "name": "ovh-api-services",
-  "version": "9.14.0",
+  "version": "9.15.0",
   "description": "Contains all angular $resource for OVH API.",
   "repository": "ovh-ux/ovh-api-services",
   "license": "BSD-3-Clause",

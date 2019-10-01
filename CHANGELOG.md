@@ -1,3 +1,12 @@
+# [9.15.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.14.0...v9.15.0) (2019-10-01)
+
+
+### Features
+
+* **clouddb.enterprise.logs:** add grant and revoke bindings ([#239](https://github.com/ovh-ux/ovh-api-services/issues/239)) ([c84159f](https://github.com/ovh-ux/ovh-api-services/commit/c84159f))
+
+
+
 # [9.14.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.13.0...v9.14.0) (2019-09-30)
 
 
