@@ -15,7 +15,8 @@ angular.module('ovh-api-services').service('OvhApiCloudDBEnterpriseLogsV6', ($re
   }, {
     query: { method: 'GET', isArray: true, cache: queryCache },
     get: { method: 'GET', cache },
-    delete: { method: 'DELETE', interceptor },
+    grantAccess: { method: 'POST', interceptor },
+    revokeAccess: { method: 'DELETE', interceptor },
   });
 
   logsResource.resetAllCache = function () {
