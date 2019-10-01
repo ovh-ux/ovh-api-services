@@ -1,44 +1,81 @@
 # ovh-api-services
 
-![OVH component](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
-
-[![NPM](https://nodei.co/npm/ovh-api-services.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-api-services/)
-
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
-
 > Contains all $resource for API.
 
-## Table of contents
-
-- [Installation](#installation)
-- [Usage](#usage)
+[![Downloads](https://badgen.net/npm/dt/ovh-api-services)](https://npmjs.com/package/ovh-api-services) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 
-## Installation
+## Install
 
 ```sh
 $ yarn add ovh-api-services
 ```
 
-- Add Angular dependency "ovh-api-services"
-- Load files via wiredep, or manually
-
-This will also download the dependencies.
-
 ## Usage
 
-All services must return a $resource.
-For each $resource, you can call whether:
-- `v6`: for APIv6
-- `v7`: for APIv7 (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
-- `Iceberg` for Iceberg (see [ovh-angular-apiv7 library](https://github.com/ovh-ux/ovh-angular-apiv7))
-- `Aapi`: for 2API
+```js
+import angular from 'angular';
+import 'ovh-api-services';
 
-For example, for the service Me, use `OvhApiMe.v6().get()`, to get user informations.
+angular
+  .module('myApp', [
+    'ovh-api-services',
+  ]);
+```
 
-If you want the sshKeys of the user, use `OvhApiMe.v6().SshKey().get()`.
+### Services
 
-The files structure is then:
+All services must return an [AngularJS $resource](https://docs.angularjs.org/api/ngResource/service/$resource) and can be called by using:
+
+
+| Service   | Engine  | Library                                            |
+|-----------|---------|----------------------------------------------------|
+| `v6`      | APIv6   | n/a                                                |
+| `v7`      | APIv7   | [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] |
+| `Iceberg` | Iceberg | [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] |
+| `Aapi`    | 2API    | n/a                                                |
+
+
+**How to get user informations?**
+
+```js
+OvhApiMe
+  .v6()
+  .get()
+  .$promise
+  .then((nichandle) => {
+    console.log(nichandle);
+    // {
+    //   "firstname": "John",
+    //   "name": "Doe",
+    //   …
+    // }
+  });
+```
+
+**How to get a SSH Key detail?**
+
+```js
+OvhApiMe
+  .SshKey()
+  .v6()
+  .get({
+    keyName: 'YOUR_KEY_NAME',
+  })
+  .$promise
+  .then((sshKey) => {
+    console.log(sshKey);
+    // {
+    //   "keyName": "test",
+    //   "key": "ssh-rsa …",
+    //   "default": false
+    // }
+  });
+```
+
+## Structure
+
+The files structure is defined as:
 ```sh
 .
 └── me
@@ -51,25 +88,24 @@ The files structure is then:
 
 The directories structure must follow the structure of the API.
 
-## Contributing
-
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
-
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-api-services/blob/master/CONTRIBUTING.md)
-
-## Run the tests
+## Test
 
 ```sh
-$ npm test
+$ yarn test
 ```
 
-## Related links
+## Related
 
-* Contribute: https://github.com/ovh-ux/ovh-api-services/blob/master/CONTRIBUTING.md
-* Report bugs: https://github.com/ovh-ux/ovh-api-services/issues
-* Get latest version: https://github.com/ovh-ux/ovh-api-services
+* [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] - AngularJS component designed to configure API Endpoints.
+* [@ovh-ux/ng-ovh-swimming-poll](https://github.com/ovh-ux/ng-ovh-swimming-poll) - A poller to swim easily to success status.
+
+## Contributing
+
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ovh-api-services/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ovh-api-services/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
-See https://github.com/ovh-ux/ovh-api-services/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
+
+
+[ng-ovh-api-wrappers]: https://github.com/ovh-ux/ng-ovh-api-wrappers
