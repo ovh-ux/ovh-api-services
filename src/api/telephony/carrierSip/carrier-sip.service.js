@@ -5,6 +5,9 @@ angular.module('ovh-api-services').service('OvhApiTelephonyCarrierSip', $injecto
   Cdrs() {
     return $injector.get('OvhApiTelephonyCarrierSipCdrs');
   },
+  ClusterDetails() {
+    return $injector.get('OvhApiTelephonyCarrierSipClusterDetails');
+  },
   Endpoints() {
     return $injector.get('OvhApiTelephonyCarrierSipEndpoints');
   },
