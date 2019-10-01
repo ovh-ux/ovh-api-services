@@ -1,3 +1,12 @@
+# [9.16.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.15.0...v9.16.0) (2019-10-01)
+
+
+### Features
+
+* **telephony.carrier.sip:** add cluster details ([#238](https://github.com/ovh-ux/ovh-api-services/issues/238)) ([0679a31](https://github.com/ovh-ux/ovh-api-services/commit/0679a31))
+
+
+
 # [9.15.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.14.0...v9.15.0) (2019-10-01)
 
 
