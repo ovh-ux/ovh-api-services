@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeBillV7', apiv7 => apiv7('/me/bill/:billId', {
+angular.module('ovh-api-services').service('OvhApiMeBillV7', (apiv7) => apiv7('/me/bill/:billId', {
   billId: '@billId',
 }, {
   debt: {

@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeIdentityUserV6', $resource => $resource('/me/identity/user/:user', {
+angular.module('ovh-api-services').service('OvhApiMeIdentityUserV6', ($resource) => $resource('/me/identity/user/:user', {
   user: '@user',
 }, {
   query: {

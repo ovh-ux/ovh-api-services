@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiOrderPrivateDatabaseV6', $resource => $resource('/order/hosting/privateDatabase/:serviceName', {
+angular.module('ovh-api-services').service('OvhApiOrderPrivateDatabaseV6', ($resource) => $resource('/order/hosting/privateDatabase/:serviceName', {
   serviceName: '@serviceName',
 }, {
   query: {

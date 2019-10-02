@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistry', $injector => ({
+angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistry', ($injector) => ({
   v6() {
     return $injector.get('OvhApiCloudProjectContainerRegistryV6');
   },

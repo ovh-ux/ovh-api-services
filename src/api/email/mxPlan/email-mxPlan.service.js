@@ -2,7 +2,7 @@ angular
   .module('ovh-api-services')
   .service(
     'OvhApiEmailMXPlan',
-    $injector => ({
+    ($injector) => ({
       v7() {
         return $injector.get('OvhApiEmailMXPlanV7');
       },

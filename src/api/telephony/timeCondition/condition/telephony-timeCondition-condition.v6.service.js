@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyTimeConditionConditionV6', $resource => $resource('/telephony/:billingAccount/timeCondition/:serviceName/condition/:id', {
+angular.module('ovh-api-services').service('OvhApiTelephonyTimeConditionConditionV6', ($resource) => $resource('/telephony/:billingAccount/timeCondition/:serviceName/condition/:id', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   id: '@id',

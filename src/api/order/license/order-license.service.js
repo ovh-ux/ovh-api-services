@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiOrderLicense', $injector => ({
+angular.module('ovh-api-services').service('OvhApiOrderLicense', ($injector) => ({
   Office() {
     return $injector.get('OvhApiOrderLicenseOffice');
   },

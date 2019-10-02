@@ -28,7 +28,7 @@ angular.module('ovh-api-services').service('OvhApiDBaasTsProjectV6', ($resource,
           }).$promise,
         );
       });
-      return $q.allSettled(queue).then(projects => projects, (maybeProjects) => {
+      return $q.allSettled(queue).then((projects) => projects, (maybeProjects) => {
         const projects = [];
         for (let i = maybeProjects.length - 1; i >= 0; i -= 1) {
           const maybeProject = maybeProjects[i];

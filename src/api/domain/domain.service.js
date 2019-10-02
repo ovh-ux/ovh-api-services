@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiDomain', $injector => ({
+angular.module('ovh-api-services').service('OvhApiDomain', ($injector) => ({
   v6() {
     return $injector.get('OvhApiDomainV6');
   },

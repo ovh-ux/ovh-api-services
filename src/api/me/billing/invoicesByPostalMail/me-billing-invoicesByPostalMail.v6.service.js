@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeBillingInvoicesByPostalMailV6', $resource => $resource('/me/billing/invoicesByPostalMail', {}, {
+angular.module('ovh-api-services').service('OvhApiMeBillingInvoicesByPostalMailV6', ($resource) => $resource('/me/billing/invoicesByPostalMail', {}, {
   get: {
     method: 'GET',
     isArray: false,

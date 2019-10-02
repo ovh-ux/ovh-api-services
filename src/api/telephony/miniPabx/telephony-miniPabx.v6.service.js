@@ -2,7 +2,7 @@
  *  This is vocated to be removed.
  *  Done in best effort without separating routes.
  */
-angular.module('ovh-api-services').service('OvhApiTelephonyMiniPabxV6', $resource => $resource('/telephony/:billingAccount/miniPabx/:serviceName', {
+angular.module('ovh-api-services').service('OvhApiTelephonyMiniPabxV6', ($resource) => $resource('/telephony/:billingAccount/miniPabx/:serviceName', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
 }, {

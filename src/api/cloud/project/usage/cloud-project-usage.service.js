@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiCloudProjectUsage', $injector => ({
+angular.module('ovh-api-services').service('OvhApiCloudProjectUsage', ($injector) => ({
   History() {
     return $injector.get('OvhApiCloudProjectUsageHistory');
   },

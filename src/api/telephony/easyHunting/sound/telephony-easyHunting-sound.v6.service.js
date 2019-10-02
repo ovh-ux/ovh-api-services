@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyEasyHuntingSoundV6', $resource => $resource('/telephony/:billingAccount/easyHunting/:serviceName/sound/:soundId', {
+angular.module('ovh-api-services').service('OvhApiTelephonyEasyHuntingSoundV6', ($resource) => $resource('/telephony/:billingAccount/easyHunting/:serviceName/sound/:soundId', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   soundId: '@soundId',

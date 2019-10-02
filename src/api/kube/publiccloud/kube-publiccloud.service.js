@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiKubePublicCloud', $injector => ({
+angular.module('ovh-api-services').service('OvhApiKubePublicCloud', ($injector) => ({
   Node() {
     return $injector.get('OvhApiKubePublicCloudNode');
   },

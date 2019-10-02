@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiOrderCloudProjectCreditV6', $resource => $resource('/order/cloud/project/:serviceName/credit', {
+angular.module('ovh-api-services').service('OvhApiOrderCloudProjectCreditV6', ($resource) => $resource('/order/cloud/project/:serviceName/credit', {
   serviceName: '@serviceName',
   amount: '@amount',
 }, {

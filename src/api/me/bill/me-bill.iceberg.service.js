@@ -1,1 +1,1 @@
-angular.module('ovh-api-services').service('OvhApiMeBillIceberg', iceberg => iceberg('/me/bill'));
+angular.module('ovh-api-services').service('OvhApiMeBillIceberg', (iceberg) => iceberg('/me/bill'));

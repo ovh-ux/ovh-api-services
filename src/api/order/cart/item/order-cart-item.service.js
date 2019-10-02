@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiOrderCartItem', $injector => ({
+angular.module('ovh-api-services').service('OvhApiOrderCartItem', ($injector) => ({
   Configuration() {
     return $injector.get('OvhApiOrderCartItemConfiguration');
   },

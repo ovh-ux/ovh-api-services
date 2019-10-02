@@ -46,7 +46,7 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectFlavorV6', ($resou
             );
           });
 
-          return sortBy(flavors, flavor => (/(\d+)/.test(flavor.name) ? parseInt(flavor.name.match(/(\d+)/)[0], 10) : flavor.name));
+          return sortBy(flavors, (flavor) => (/(\d+)/.test(flavor.name) ? parseInt(flavor.name.match(/(\d+)/)[0], 10) : flavor.name));
         }
         return flavors;
       },

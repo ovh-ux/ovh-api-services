@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiCdnDedicatedDomainsV6', $resource => $resource('/cdn/dedicated/:serviceName/domains/:domain', {
+angular.module('ovh-api-services').service('OvhApiCdnDedicatedDomainsV6', ($resource) => $resource('/cdn/dedicated/:serviceName/domains/:domain', {
   serviceName: '@serviceName',
   domain: '@domain',
 }, {

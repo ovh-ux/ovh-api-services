@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeTaskContactChangeV6', $resource => $resource('/me/task/contactChange/:id', {
+angular.module('ovh-api-services').service('OvhApiMeTaskContactChangeV6', ($resource) => $resource('/me/task/contactChange/:id', {
   id: '@id',
 }, {
   query: {

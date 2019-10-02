@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiEmailExchangeServiceAapi', $resource => $resource('/sws/exchange/:organization/:exchange', {
+angular.module('ovh-api-services').service('OvhApiEmailExchangeServiceAapi', ($resource) => $resource('/sws/exchange/:organization/:exchange', {
   organization: '@organization',
   exchange: '@exchange',
 }, {

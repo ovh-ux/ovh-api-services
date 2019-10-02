@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeBillDebtV6', $resource => $resource('/me/bill/:billId/debt', {
+angular.module('ovh-api-services').service('OvhApiMeBillDebtV6', ($resource) => $resource('/me/bill/:billId/debt', {
   billId: '@billId',
 }, {
   pay: {

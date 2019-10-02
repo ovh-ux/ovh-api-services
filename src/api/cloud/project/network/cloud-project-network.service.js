@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiCloudProjectNetwork', $injector => ({
+angular.module('ovh-api-services').service('OvhApiCloudProjectNetwork', ($injector) => ({
   Private() {
     return $injector.get('OvhApiCloudProjectNetworkPrivate');
   },

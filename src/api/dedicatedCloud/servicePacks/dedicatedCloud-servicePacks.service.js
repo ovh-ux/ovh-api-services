@@ -1,6 +1,6 @@
 angular
   .module('ovh-api-services')
-  .service('OvhApiDedicatedCloudServicePacks', $injector => ({
+  .service('OvhApiDedicatedCloudServicePacks', ($injector) => ({
     v6() {
       return $injector.get('OvhApiDedicatedCloudServicePacksV6');
     },

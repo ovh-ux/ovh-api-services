@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtensionRuleV6', $resource => $resource('/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/rule/:ruleId', {
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtensionRuleV6', ($resource) => $resource('/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/rule/:ruleId', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   dialplanId: '@dialplanId',

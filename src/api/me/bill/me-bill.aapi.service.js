@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeBillAapi', $resource => $resource('/me/bill', {}, {
+angular.module('ovh-api-services').service('OvhApiMeBillAapi', ($resource) => $resource('/me/bill', {}, {
   last: {
     method: 'GET',
     url: '/me/bill/last',

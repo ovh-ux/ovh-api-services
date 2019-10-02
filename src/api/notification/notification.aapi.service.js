@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiNotificationAapi', $resource => $resource('/notification', {}, {
+angular.module('ovh-api-services').service('OvhApiNotificationAapi', ($resource) => $resource('/notification', {}, {
   query: {
     method: 'GET',
     isArray: true,

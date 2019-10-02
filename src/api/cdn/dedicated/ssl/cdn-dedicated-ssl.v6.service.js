@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiCdnDedicatedSslV6', $resource => $resource('/cdn/dedicated/:serviceName/ssl', {
+angular.module('ovh-api-services').service('OvhApiCdnDedicatedSslV6', ($resource) => $resource('/cdn/dedicated/:serviceName/ssl', {
   serviceName: '@serviceName',
 }, {
   update: {

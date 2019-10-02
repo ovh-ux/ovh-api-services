@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeTask', $injector => ({
+angular.module('ovh-api-services').service('OvhApiMeTask', ($injector) => ({
   ContactChange() {
     return $injector.get('OvhApiMeTaskContactChange');
   },

@@ -52,7 +52,7 @@ angular.module('ovh-api-services').service('OvhApiMeDocumentV6', ($resource, $ca
   docResource.upload = function (fileName, file) {
     return docResource.create({}, {
       name: fileName,
-    }).$promise.then(resp => docResource.cors({}, {
+    }).$promise.then((resp) => docResource.cors({}, {
       origin: $window.location.origin,
     }).$promise.then(() => $http.put(resp.putUrl, file, {
       serviceType: 'storage',

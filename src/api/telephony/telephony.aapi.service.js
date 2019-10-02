@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyAapi', $resource => $resource('/telephony', {}, {
+angular.module('ovh-api-services').service('OvhApiTelephonyAapi', ($resource) => $resource('/telephony', {}, {
   query: {
     method: 'GET',
     serviceType: 'aapi',
