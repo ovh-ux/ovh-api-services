@@ -1,3 +1,12 @@
+# [9.17.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.16.0...v9.17.0) (2019-10-02)
+
+
+### Features
+
+* **telephony.carrier.sip:** add iceberg bindings ([#241](https://github.com/ovh-ux/ovh-api-services/issues/241)) ([2abdeaa](https://github.com/ovh-ux/ovh-api-services/commit/2abdeaa))
+
+
+
 # [9.16.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.15.0...v9.16.0) (2019-10-01)
 
 
