@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiXdslResiliationV6', $resource => $resource('/xdsl/:serviceName/canCancelResiliation', {
+angular.module('ovh-api-services').service('OvhApiXdslResiliationV6', ($resource) => $resource('/xdsl/:serviceName/canCancelResiliation', {
   serviceName: '@serviceName',
 }, {
   canCancelResiliation: {

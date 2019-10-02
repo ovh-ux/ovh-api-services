@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMePaymentMeanDeferredPaymentAccountV6', $resource => $resource('/me/paymentMean/deferredPaymentAccount/:id', {
+angular.module('ovh-api-services').service('OvhApiMePaymentMeanDeferredPaymentAccountV6', ($resource) => $resource('/me/paymentMean/deferredPaymentAccount/:id', {
   id: '@id',
 }, {
   edit: {

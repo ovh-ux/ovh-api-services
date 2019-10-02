@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMePayMethodV6', $resource => $resource('/me/payment/method/:paymentMethodId', {
+angular.module('ovh-api-services').service('OvhApiMePayMethodV6', ($resource) => $resource('/me/payment/method/:paymentMethodId', {
   paymentMethodId: '@paymentMethodId',
 }, {
   availableMethods: {

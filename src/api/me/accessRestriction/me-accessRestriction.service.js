@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeAccessRestriction', $injector => ({
+angular.module('ovh-api-services').service('OvhApiMeAccessRestriction', ($injector) => ({
   BackupCode() {
     return $injector.get('OvhApiMeAccessRestrictionBackupCode');
   },

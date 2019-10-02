@@ -50,7 +50,7 @@ angular.module('ovh-api-services').service('OvhApiIpReverseV6', ($resource, $cac
         return ipReverse.get({
           ip: ipBlock || ip,
           ipReverse: ip,
-        }).$promise.then(rev => rev.reverse);
+        }).$promise.then((rev) => rev.reverse);
       }
 
       return null;

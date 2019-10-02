@@ -1,5 +1,4 @@
 
-
 angular.module('ovh-api-services').service('OvhApiTelephonyVoicemailGreetingsV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiTelephonyVoicemailGreetingsV6');
   const queryCache = $cacheFactory('OvhApiTelephonyVoicemailGreetingsV6Query');

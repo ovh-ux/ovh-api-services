@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiDbaasLogsOperation', $injector => ({
+angular.module('ovh-api-services').service('OvhApiDbaasLogsOperation', ($injector) => ({
   v6() {
     return $injector.get('OvhApiDbaasLogsOperationV6');
   },

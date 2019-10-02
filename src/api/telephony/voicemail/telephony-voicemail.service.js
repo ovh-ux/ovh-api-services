@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyVoicemail', $injector => ({
+angular.module('ovh-api-services').service('OvhApiTelephonyVoicemail', ($injector) => ({
   v6() {
     return $injector.get('OvhApiTelephonyVoicemailV6');
   },

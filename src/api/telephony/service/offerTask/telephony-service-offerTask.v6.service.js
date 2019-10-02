@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyServiceOfferTaskV6', $resource => $resource('/telephony/:billingAccount/service/:serviceName/offerTask/:taskId', {
+angular.module('ovh-api-services').service('OvhApiTelephonyServiceOfferTaskV6', ($resource) => $resource('/telephony/:billingAccount/service/:serviceName/offerTask/:taskId', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   taskId: '@taskId',

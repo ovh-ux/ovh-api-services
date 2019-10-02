@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiCloudDBEnterprise', $injector => ({
+angular.module('ovh-api-services').service('OvhApiCloudDBEnterprise', ($injector) => ({
   Backup() {
     return $injector.get('OvhApiCloudDBEnterpriseBackup');
   },

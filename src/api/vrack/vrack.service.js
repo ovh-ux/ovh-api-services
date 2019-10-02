@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiVrack', $injector => ({
+angular.module('ovh-api-services').service('OvhApiVrack', ($injector) => ({
   Aapi() {
     return $injector.get('OvhApiVrackAapi');
   },

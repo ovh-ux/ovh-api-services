@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtension', $injector => ({
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtension', ($injector) => ({
   Rule() {
     return $injector.get('OvhApiTelephonyOvhPabxDialplanExtensionRule');
   },

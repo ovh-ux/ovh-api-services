@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiVpsImagesV6', $resource => $resource('/vps/:serviceName/images', {
+angular.module('ovh-api-services').service('OvhApiVpsImagesV6', ($resource) => $resource('/vps/:serviceName/images', {
   serviceName: '@serviceName',
 }, {
   getCurrent: {

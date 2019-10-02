@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyLinesV6', $resource => $resource('/telephony/lines/:serviceName', {
+angular.module('ovh-api-services').service('OvhApiTelephonyLinesV6', ($resource) => $resource('/telephony/lines/:serviceName', {
   serviceName: '@serviceName',
 }, {
   query: {

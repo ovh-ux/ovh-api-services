@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiChangelogAapi', $resource => $resource(
+angular.module('ovh-api-services').service('OvhApiChangelogAapi', ($resource) => $resource(
   '/changelog', {
   }, {
     query: {

@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyConferenceV6', $resource => $resource('/telephony/:billingAccount/conference/:serviceName', {
+angular.module('ovh-api-services').service('OvhApiTelephonyConferenceV6', ($resource) => $resource('/telephony/:billingAccount/conference/:serviceName', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
 }, {

@@ -39,7 +39,7 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectConsumptionV6', ($
     const from = date.startOf('month').subtract(1, 'day').toISOString();
     const to = date.endOf('month').toISOString();
     return cloudProjectConsumptionResource.bills({ serviceName, from, to }).$promise
-      .then(resp => map(resp, 'id'))
+      .then((resp) => map(resp, 'id'))
       .then((billIds) => {
         if (some(billIds)) {
           return cloudProjectConsumptionResource

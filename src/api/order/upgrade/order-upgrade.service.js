@@ -1,6 +1,6 @@
 angular
   .module('ovh-api-services')
-  .service('OvhApiOrderUpgrade', $injector => ({
+  .service('OvhApiOrderUpgrade', ($injector) => ({
     MicrosoftExchange() {
       return $injector.get('OvhApiOrderUpgradeMicrosoftExchange');
     },

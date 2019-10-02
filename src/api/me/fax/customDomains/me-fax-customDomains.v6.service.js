@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeFaxCustomDomainsV6', $resource => $resource('/me/fax/customDomains/:id', {
+angular.module('ovh-api-services').service('OvhApiMeFaxCustomDomainsV6', ($resource) => $resource('/me/fax/customDomains/:id', {
   id: '@id',
 }, {
   query: {

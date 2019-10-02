@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeIdentity', $injector => ({
+angular.module('ovh-api-services').service('OvhApiMeIdentity', ($injector) => ({
   Group() {
     return $injector.get('OvhApiMeIdentityGroup');
   },

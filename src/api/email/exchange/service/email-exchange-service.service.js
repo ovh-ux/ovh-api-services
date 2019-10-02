@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiEmailExchangeService', $injector => ({
+angular.module('ovh-api-services').service('OvhApiEmailExchangeService', ($injector) => ({
   Aapi() {
     return $injector.get('OvhApiEmailExchangeServiceAapi');
   },

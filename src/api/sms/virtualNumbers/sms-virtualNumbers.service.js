@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiSmsVirtualNumbers', $injector => ({
+angular.module('ovh-api-services').service('OvhApiSmsVirtualNumbers', ($injector) => ({
   v6() {
     return $injector.get('OvhApiSmsVirtualNumbersV6');
   },

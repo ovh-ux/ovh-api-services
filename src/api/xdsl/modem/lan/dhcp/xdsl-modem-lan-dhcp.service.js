@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiXdslModemLanDhcp', $injector => ({
+angular.module('ovh-api-services').service('OvhApiXdslModemLanDhcp', ($injector) => ({
   v6() {
     return $injector.get('OvhApiXdslModemLanDhcpV6');
   },

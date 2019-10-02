@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiDedicatedCeph', $injector => ({
+angular.module('ovh-api-services').service('OvhApiDedicatedCeph', ($injector) => ({
   v6() {
     return $injector.get('OvhApiDedicatedCephV6');
   },

@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeApi', $injector => ({
+angular.module('ovh-api-services').service('OvhApiMeApi', ($injector) => ({
   Application() {
     return $injector.get('OvhApiMeApiApplication');
   },

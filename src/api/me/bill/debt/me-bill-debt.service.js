@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeBillDebt', $injector => ({
+angular.module('ovh-api-services').service('OvhApiMeBillDebt', ($injector) => ({
   v6() {
     return $injector.get('OvhApiMeBillDebtV6');
   },

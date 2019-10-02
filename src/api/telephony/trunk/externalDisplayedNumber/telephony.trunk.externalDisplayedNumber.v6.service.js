@@ -1,6 +1,5 @@
 
-
-angular.module('ovh-api-services').service('OvhApiTelephonyTrunkExternalDisplayedNumberV6', $resource => $resource('/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber/:number', {
+angular.module('ovh-api-services').service('OvhApiTelephonyTrunkExternalDisplayedNumberV6', ($resource) => $resource('/telephony/:billingAccount/trunk/:serviceName/externalDisplayedNumber/:number', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   number: '@number',

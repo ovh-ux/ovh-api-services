@@ -1,5 +1,4 @@
 
-
 angular.module('ovh-api-services').service('OvhApiVrackCloudProjectV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiVrackCloudProjectV6');
   const queryCache = $cacheFactory('OvhApiVrackCloudProjectV6Query');

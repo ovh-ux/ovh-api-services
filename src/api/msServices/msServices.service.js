@@ -1,6 +1,6 @@
 angular
   .module('ovh-api-services')
-  .service('OvhApiMsServices', $injector => ({
+  .service('OvhApiMsServices', ($injector) => ({
     Account() {
       return $injector.get('OvhApiMsServicesAccount');
     },

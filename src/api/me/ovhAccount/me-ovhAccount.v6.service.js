@@ -12,8 +12,8 @@ angular.module('ovh-api-services')
 
     resource.getBalance = function () {
       return OvhApiMev6.get().$promise
-        .then(userInfo => resource.get({ ovhAccountId: userInfo.ovhSubsidiary }).$promise)
-        .then(accountInfo => accountInfo.balance);
+        .then((userInfo) => resource.get({ ovhAccountId: userInfo.ovhSubsidiary }).$promise)
+        .then((accountInfo) => accountInfo.balance);
     };
 
     resource.resetCache = function () {

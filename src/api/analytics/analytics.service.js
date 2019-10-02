@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiAnalytics', $injector => ({
+angular.module('ovh-api-services').service('OvhApiAnalytics', ($injector) => ({
   Platforms() {
     return $injector.get('OvhApiAnalyticsPlatforms');
   },

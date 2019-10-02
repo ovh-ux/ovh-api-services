@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiOrderFreefaxV6', $resource => $resource('/order/freefax/:serviceName', {
+angular.module('ovh-api-services').service('OvhApiOrderFreefaxV6', ($resource) => $resource('/order/freefax/:serviceName', {
   serviceName: '@serviceName',
 }, {
   query: {

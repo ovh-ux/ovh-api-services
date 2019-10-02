@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiSmsUsers', $injector => ({
+angular.module('ovh-api-services').service('OvhApiSmsUsers', ($injector) => ({
   v6() {
     return $injector.get('OvhApiSmsUsersV6');
   },

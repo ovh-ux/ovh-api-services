@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanV6', $resource => $resource('/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId', {
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanV6', ($resource) => $resource('/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   dialplanId: '@dialplanId',

@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxHuntingAgent', $injector => ({
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxHuntingAgent', ($injector) => ({
   v6() {
     return $injector.get('OvhApiTelephonyOvhPabxHuntingAgentV6');
   },

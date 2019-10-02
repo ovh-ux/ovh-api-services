@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiDedicatedNashaPartition', $injector => ({
+angular.module('ovh-api-services').service('OvhApiDedicatedNashaPartition', ($injector) => ({
   v6() {
     return $injector.get('OvhApiDedicatedNashaPartitionV6');
   },

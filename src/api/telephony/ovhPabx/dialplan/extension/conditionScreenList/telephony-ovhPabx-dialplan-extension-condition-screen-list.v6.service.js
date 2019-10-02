@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenListV6', $resource => $resource('/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/conditionScreenList/:conditionId', {
+angular.module('ovh-api-services').service('OvhApiTelephonyOvhPabxDialplanExtensionConditionScreenListV6', ($resource) => $resource('/telephony/:billingAccount/ovhPabx/:serviceName/dialplan/:dialplanId/extension/:extensionId/conditionScreenList/:conditionId', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',
   dialplanId: '@dialplanId',

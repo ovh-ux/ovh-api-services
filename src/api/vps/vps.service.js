@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiVps', $injector => ({
+angular.module('ovh-api-services').service('OvhApiVps', ($injector) => ({
   v6() {
     return $injector.get('OvhApiVpsV6');
   },

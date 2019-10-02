@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeAccessRestrictionV6', $resource => $resource('/me/accessRestriction', {}, {
+angular.module('ovh-api-services').service('OvhApiMeAccessRestrictionV6', ($resource) => $resource('/me/accessRestriction', {}, {
   developerMode: {
     url: '/me/accessRestriction/developerMode',
     method: 'GET',

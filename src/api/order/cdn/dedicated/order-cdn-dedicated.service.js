@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiOrderCdnDedicated', $injector => ({
+angular.module('ovh-api-services').service('OvhApiOrderCdnDedicated', ($injector) => ({
   Backend() {
     return $injector.get('OvhApiOrderCdnDedicatedBackend');
   },

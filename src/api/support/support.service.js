@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiSupport', $injector => ({
+angular.module('ovh-api-services').service('OvhApiSupport', ($injector) => ({
   Iceberg() {
     return $injector.get('OvhApiSupportIceberg');
   },

@@ -1,5 +1,4 @@
 
-
 angular.module('ovh-api-services').service('OvhApiTelephonyLineAbbreviatedNumberV6', ($resource, OvhApiTelephonyLineAbbreviatedNumber) => {
   const interceptor = {
     response(response) {

@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiMeIdentityGroupV6', $resource => $resource('/me/identity/group/:group', {
+angular.module('ovh-api-services').service('OvhApiMeIdentityGroupV6', ($resource) => $resource('/me/identity/group/:group', {
   group: '@group',
 }, {
   query: {
