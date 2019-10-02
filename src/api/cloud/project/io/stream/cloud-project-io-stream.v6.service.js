@@ -5,6 +5,9 @@ angular
       serviceName: '@serviceName',
       streamId: '@streamId',
     }, {
+      edit: {
+        method: 'PUT',
+      },
       getStats: {
         url: '/cloud/project/:serviceName/io/stream/:streamId/stats',
         method: 'GET',
