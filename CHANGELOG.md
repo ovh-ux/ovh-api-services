@@ -1,3 +1,12 @@
+# [9.18.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.17.0...v9.18.0) (2019-10-02)
+
+
+### Features
+
+* **cloud.project:** add io api bindings ([#240](https://github.com/ovh-ux/ovh-api-services/issues/240)) ([c79872d](https://github.com/ovh-ux/ovh-api-services/commit/c79872d))
+
+
+
 # [9.17.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.16.0...v9.17.0) (2019-10-02)
 
 
