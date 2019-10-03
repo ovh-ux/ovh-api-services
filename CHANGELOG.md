@@ -1,3 +1,12 @@
+## [9.18.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.18.0...v9.18.1) (2019-10-03)
+
+
+### Bug Fixes
+
+* api for terminate enterprise cloud database ([89581d2](https://github.com/ovh-ux/ovh-api-services/commit/89581d2))
+
+
+
 # [9.18.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.17.0...v9.18.0) (2019-10-02)
 
 
