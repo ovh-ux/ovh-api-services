@@ -1,3 +1,7 @@
+## [9.18.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.18.1...v9.18.2) (2019-10-03)
+
+
+
 ## [9.18.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.18.0...v9.18.1) (2019-10-03)
 
 
