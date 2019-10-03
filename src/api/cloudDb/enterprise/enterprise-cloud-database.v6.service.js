@@ -20,6 +20,11 @@ angular.module('ovh-api-services').service('OvhApiCloudDBEnterpriseClusterV6', (
       method: 'POST',
       interceptor,
     },
+    terminate: {
+      url: '/cloudDB/enterprise/cluster/:clusterId/terminate',
+      method: 'POST',
+      interceptor,
+    },
   });
 
   enterpriseCloudResource.resetAllCache = function () {
