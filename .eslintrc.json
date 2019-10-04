@@ -1,11 +1,26 @@
 {
   "extends": "airbnb-base",
+  "plugins": [
+    "angular",
+    "markdown"
+  ],
+  "env": {
+    "angular/angular": true
+  },
   "globals": {
-    "angular": true,
     "moment": true
   },
   "rules": {
     "no-bitwise": 0,
     "no-use-before-define": 0
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.md"],
+      "rules": {
+        "import/no-unresolved": "off",
+        "no-undef": "off"
+      }
+    }
+  ]
 }
