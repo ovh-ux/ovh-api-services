@@ -28,6 +28,9 @@ angular.module('ovh-api-services').service('OvhApiCloudProject', ($injector, $ca
     Kube() {
       return $injector.get('OvhApiCloudProjectKube');
     },
+    Lab() {
+      return $injector.get('OvhApiCloudProjectLab');
+    },
     Region() {
       return $injector.get('OvhApiCloudProjectRegion');
     },
