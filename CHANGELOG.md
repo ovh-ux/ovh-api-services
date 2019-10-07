@@ -1,3 +1,12 @@
+# [9.19.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.18.2...v9.19.0) (2019-10-07)
+
+
+### Features
+
+* add cloud lab api ([#246](https://github.com/ovh-ux/ovh-api-services/issues/246)) ([4d476a4](https://github.com/ovh-ux/ovh-api-services/commit/4d476a4))
+
+
+
 ## [9.18.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.18.1...v9.18.2) (2019-10-03)
 
 
