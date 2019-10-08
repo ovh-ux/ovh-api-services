@@ -1,3 +1,12 @@
+# [9.21.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.20.0...v9.21.0) (2019-10-08)
+
+
+### Features
+
+* **webcoach:** add api bindings ([#249](https://github.com/ovh-ux/ovh-api-services/issues/249)) ([4622288](https://github.com/ovh-ux/ovh-api-services/commit/4622288))
+
+
+
 # [9.20.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.19.0...v9.20.0) (2019-10-08)
 
 
