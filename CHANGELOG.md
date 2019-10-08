@@ -1,3 +1,12 @@
+# [9.20.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.19.0...v9.20.0) (2019-10-08)
+
+
+### Features
+
+* **order:** add followUp route ([56cc4fb](https://github.com/ovh-ux/ovh-api-services/commit/56cc4fb))
+
+
+
 # [9.19.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.18.2...v9.19.0) (2019-10-07)
 
 
