@@ -10,7 +10,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     },
   };
 
-  const docResource = $resource('/telephony/:billingAccount/portability/:id/document', {
+  const docResource = $resource('/telephony/:billingAccount/portability/:id/document/:documentId', {
     billingAccount: '@billingAccount',
     id: '@id',
     documentId: '@documentId',
