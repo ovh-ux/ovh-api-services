@@ -29,7 +29,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     },
     updateDocument: {
       method: 'PUT',
-      url: '/telephony/:billingAccount/portability/:id/document/:documentId',
       interceptor,
     },
     deleteDocument: {
