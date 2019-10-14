@@ -33,7 +33,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     },
     deleteDocument: {
       method: 'DELETE',
-      url: '/telephony/:billingAccount/portability/:id/document/:documentId',
       interceptor,
     },
     cors: {
