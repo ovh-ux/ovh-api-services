@@ -25,7 +25,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     },
     getDocument: {
       method: 'GET',
-      url: '/telephony/:billingAccount/portability/:id/document/:documentId',
       isArray: false,
     },
     updateDocument: {
