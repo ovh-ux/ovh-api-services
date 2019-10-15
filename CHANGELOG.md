@@ -1,3 +1,13 @@
+# [9.22.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.21.0...v9.22.0) (2019-10-15)
+
+
+### Features
+
+* **hosting.web:** expose module list route through iceberg ([#250](https://github.com/ovh-ux/ovh-api-services/issues/250)) ([0b0fc55](https://github.com/ovh-ux/ovh-api-services/commit/0b0fc55f05b6505c1d8ad89940c67435f4e8c65e))
+* **telephony.portability.document:** add upload document for portability ([#247](https://github.com/ovh-ux/ovh-api-services/issues/247)) ([5028a9f](https://github.com/ovh-ux/ovh-api-services/commit/5028a9fbfa8df89b1762ce4776aab36f35ffd1ff))
+
+
+
 # [9.21.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.20.0...v9.21.0) (2019-10-08)
 
 
