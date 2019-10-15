@@ -15,10 +15,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     id: '@id',
     documentId: '@documentId',
   }, {
-    query: {
-      method: 'GET',
-      isArray: true,
-    },
     create: {
       method: 'POST',
       interceptor,
@@ -34,10 +30,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     deleteDocument: {
       method: 'DELETE',
       interceptor,
-    },
-    cors: {
-      method: 'POST',
-      url: '/telephony/:billingAccount/portability/:id/document/cors',
     },
   });
 
@@ -57,16 +49,14 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
   docResource.upload = function (filename, file) {
     return docResource.create({}, {
       name: filename,
-    }).$promise.then((resp) => docResource.cors({}, {
-      origin: $window.location.origin,
-    }).$promise.then(() => $http.put(resp.putUrl, file, {
+    }).$promise.then((resp) => $http.put(resp.putUrl, file, {
       serviceType: 'storage',
       headers: {
         'Content-type': 'multipart/form-data',
       },
     }).then(() => docResource.get({
       id: resp.id,
-    }).$promise)));
+    }).$promise));
   };
 
   return docResource;
