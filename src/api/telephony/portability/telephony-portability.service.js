@@ -2,4 +2,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortability', ($injec
   v6() {
     return $injector.get('OvhApiTelephonyPortabilityV6');
   },
+  PortabilityDocument() {
+    return $injector.get('OvhApiTelephonyPortabilityDocument');
+  },
 }));
