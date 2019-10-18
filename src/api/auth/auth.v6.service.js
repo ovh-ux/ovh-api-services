@@ -1,10 +1,25 @@
 angular.module('ovh-api-services').service('OvhApiAuthV6', ($resource, $http) => $resource(
   '/auth', {
   }, {
+    details: {
+      url: '/auth/details',
+      method: 'GET',
+      isArray: false,
+    },
     logout: {
       url: '/auth/logout',
       method: 'POST',
       isArray: false,
+    },
+    shouldDisplayMFAEnrollment: {
+      url: '/auth/shouldDisplayMFAEnrollment',
+      method: 'GET',
+      isArray: false,
+      transformResponse: (response) => {
+        return {
+          value: response === "true"
+        };
+      },
     },
     time: {
       url: '/auth/time',
