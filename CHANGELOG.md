@@ -1,3 +1,12 @@
+# [9.23.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.22.0...v9.23.0) (2019-10-18)
+
+
+### Features
+
+* **auth:** add shouldDisplayMFAEnrollment & details routes ([#252](https://github.com/ovh-ux/ovh-api-services/issues/252)) ([20e9341](https://github.com/ovh-ux/ovh-api-services/commit/20e9341b4f31aefd8e46635e997202b6429ad18e))
+
+
+
 # [9.22.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.21.0...v9.22.0) (2019-10-15)
 
 
