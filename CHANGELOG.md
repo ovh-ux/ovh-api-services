@@ -1,3 +1,12 @@
+## [9.23.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.23.0...v9.23.1) (2019-10-23)
+
+
+### Bug Fixes
+
+* **auth:** shouldDisplayMFAEnrollment ([0bce620](https://github.com/ovh-ux/ovh-api-services/commit/0bce620e3478a710b34573e28ce7f4657fe84fb1))
+
+
+
 # [9.23.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.22.0...v9.23.0) (2019-10-18)
 
 
