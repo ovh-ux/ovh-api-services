@@ -1,6 +1,6 @@
 angular.module('ovh-api-services').service('OvhApiVpsImagesAvailableV6', ($cacheFactory, $resource) => {
   const cache = $cacheFactory('OvhApiVpsImagesAvailableV6');
-  const queryCache = $cacheFactory('OvhApiVpsImagesAvailableV6');
+  const queryCache = $cacheFactory('OvhApiVpsImagesAvailableV6Cache');
 
   const resource = $resource('/vps/:serviceName/images/available', {
     serviceName: '@serviceName',
