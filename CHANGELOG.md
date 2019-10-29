@@ -1,3 +1,12 @@
+## [9.23.3](https://github.com/ovh-ux/ovh-api-services/compare/v9.23.2...v9.23.3) (2019-10-29)
+
+
+### Bug Fixes
+
+* **vps.images.available:** set different cache id for query request ([#253](https://github.com/ovh-ux/ovh-api-services/issues/253)) ([cf1354f](https://github.com/ovh-ux/ovh-api-services/commit/cf1354f22429408855242fd09f1c97465445654b))
+
+
+
 ## [9.23.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.23.1...v9.23.2) (2019-10-23)
 
 
