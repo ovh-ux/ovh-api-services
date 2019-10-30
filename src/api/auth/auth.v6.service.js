@@ -15,11 +15,9 @@ angular.module('ovh-api-services').service('OvhApiAuthV6', ($resource, $http) =>
       url: '/auth/shouldDisplayMFAEnrollment',
       method: 'GET',
       isArray: false,
-      transformResponse: $http.defaults.transformResponse.concat((value) => {
-        return {
-          value,
-        };
-      }),
+      transformResponse: $http.defaults.transformResponse.concat((value) => ({
+        value,
+      })),
     },
     time: {
       url: '/auth/time',

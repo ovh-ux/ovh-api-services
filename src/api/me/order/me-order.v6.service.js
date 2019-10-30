@@ -39,7 +39,7 @@ angular.module('ovh-api-services').service('OvhApiMeOrderV6', ($resource, $cache
     payRegisteredPaymentMean: { method: 'POST', url: '/me/order/:orderId/payWithRegisteredPaymentMean', interceptor },
     associatedObject: { method: 'GET', url: '/me/order/:orderId/associatedObject' },
     bill: { method: 'GET', url: '/me/order/:orderId/bill' },
-    followUp: { method: 'GET', url: '/me/order/:orderId/followUp', isArray: true, },
+    followUp: { method: 'GET', url: '/me/order/:orderId/followUp', isArray: true },
   });
 
   userOrderResource.resetAllCache = function () {
