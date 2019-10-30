@@ -8,10 +8,13 @@ angular.module('ovh-api-services').service('OvhApiDomain', ($injector) => ({
   Configurations() {
     return $injector.get('OvhApiDomainConfigurations');
   },
+  Options() {
+    return $injector.get('OvhApiDomainOptions');
+  },
   Rules() {
     return $injector.get('OvhApiDomainRules');
   },
-  Options() {
-    return $injector.get('OvhApiDomainOptions');
+  Zone() {
+    return $injector.get('OvhApiDomainZone');
   },
 }));
