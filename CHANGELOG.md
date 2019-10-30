@@ -1,3 +1,12 @@
+# [9.24.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.23.3...v9.24.0) (2019-10-30)
+
+
+### Features
+
+* **domain:** add zone records ([#254](https://github.com/ovh-ux/ovh-api-services/issues/254)) ([0e5631d](https://github.com/ovh-ux/ovh-api-services/commit/0e5631dcb7c782612f6ed0293bbc9518b72f7854))
+
+
+
 ## [9.23.3](https://github.com/ovh-ux/ovh-api-services/compare/v9.23.2...v9.23.3) (2019-10-29)
 
 
