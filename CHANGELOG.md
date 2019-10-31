@@ -1,3 +1,12 @@
+## [9.24.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.24.0...v9.24.1) (2019-10-31)
+
+
+### Bug Fixes
+
+* **cloud.project.container.registry:** remove extra param ([#256](https://github.com/ovh-ux/ovh-api-services/issues/256)) ([e1adb6e](https://github.com/ovh-ux/ovh-api-services/commit/e1adb6e2b4e3d841cd7499eb04c739dad4d8b94f))
+
+
+
 # [9.24.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.23.3...v9.24.0) (2019-10-30)
 
 
