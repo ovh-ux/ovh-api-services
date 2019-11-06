@@ -1,3 +1,12 @@
+## [9.24.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.24.1...v9.24.2) (2019-11-06)
+
+
+### Bug Fixes
+
+* **order.cart.item:** fix query is array param ([#257](https://github.com/ovh-ux/ovh-api-services/issues/257)) ([714b608](https://github.com/ovh-ux/ovh-api-services/commit/714b6085698afb836cf61763f593a1ce49c71d9f))
+
+
+
 ## [9.24.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.24.0...v9.24.1) (2019-10-31)
 
 
