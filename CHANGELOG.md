@@ -1,3 +1,12 @@
+# [9.25.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.24.2...v9.25.0) (2019-11-14)
+
+
+### Features
+
+* **cloud.project.kube:** add call for flavors ([#258](https://github.com/ovh-ux/ovh-api-services/issues/258)) ([7fa5cbe](https://github.com/ovh-ux/ovh-api-services/commit/7fa5cbebf990423555285bd5771f2765eb32d545))
+
+
+
 ## [9.24.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.24.1...v9.24.2) (2019-11-06)
 
 
