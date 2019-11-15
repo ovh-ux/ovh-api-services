@@ -23,9 +23,6 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectKubeV6', ($cacheFa
     update: {
       method: 'PUT',
       interceptor,
-      params: {
-        name: '@name',
-      },
     },
     delete: {
       method: 'DELETE',
