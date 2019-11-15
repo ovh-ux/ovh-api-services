@@ -1,3 +1,18 @@
+# [9.26.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.25.0...v9.26.0) (2019-11-15)
+
+
+### Bug Fixes
+
+* **cloud.project.kube:** remove extra param name ([9527afb](https://github.com/ovh-ux/ovh-api-services/commit/9527afb67fa5f9479750e8ac514c637b12efd8b1))
+* **cloud.project.kube.node:** remove extra param flavorName ([f7d65f4](https://github.com/ovh-ux/ovh-api-services/commit/f7d65f4587781129fabd4a4c39f608cab52f8c0c))
+
+
+### Features
+
+* **hosting:** add web services ([#259](https://github.com/ovh-ux/ovh-api-services/issues/259)) ([30a5fd5](https://github.com/ovh-ux/ovh-api-services/commit/30a5fd5d6fadd9662074ae1fe862e14bd985ae1c))
+
+
+
 # [9.25.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.24.2...v9.25.0) (2019-11-14)
 
 
