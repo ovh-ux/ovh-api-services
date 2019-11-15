@@ -20,9 +20,6 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectKubeNodeV6', ($res
     save: {
       method: 'POST',
       interceptor,
-      params: {
-        flavorName: '@flavorName',
-      },
     },
     delete: { method: 'DELETE', interceptor },
   });
