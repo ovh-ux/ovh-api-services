@@ -1,3 +1,12 @@
+## [9.26.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.26.0...v9.26.1) (2019-11-20)
+
+
+### Bug Fixes
+
+* **portability.upload:** upload file for portability attachment ([#261](https://github.com/ovh-ux/ovh-api-services/issues/261)) ([ab726e6](https://github.com/ovh-ux/ovh-api-services/commit/ab726e6bd2818563d34fc2055aa769f06ab0f13f))
+
+
+
 # [9.26.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.25.0...v9.26.0) (2019-11-15)
 
 
