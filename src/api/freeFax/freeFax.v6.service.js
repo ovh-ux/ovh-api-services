@@ -19,6 +19,10 @@ angular.module('ovh-api-services').service('OvhApiFreeFaxV6', ($resource, $cache
       isArray: true,
       cache: OvhApiFreeFax.cache,
     },
+    getServiceInfos: {
+      method: 'GET',
+      url: '/freefax/:serviceName/serviceInfos',
+    },
     getPrice: {
       method: 'GET',
       url: '/order/freefax/new',
