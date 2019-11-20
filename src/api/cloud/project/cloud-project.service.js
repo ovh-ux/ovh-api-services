@@ -22,6 +22,9 @@ angular.module('ovh-api-services').service('OvhApiCloudProject', ($injector, $ca
     Io() {
       return $injector.get('OvhApiCloudProjectIo');
     },
+    Serving() {
+      return $injector.get('OvhApiCloudProjectServing');
+    },
     Ip() {
       return $injector.get('OvhApiCloudProjectIp');
     },
