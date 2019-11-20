@@ -21,7 +21,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     },
     getDocument: {
       method: 'GET',
-      isArray: false,
+      isArray: true,
     },
     updateDocument: {
       method: 'PUT',
@@ -46,17 +46,23 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     this.resetCache();
   };
 
-  docResource.upload = function (filename, file) {
-    return docResource.create({}, {
+  docResource.upload = function (billingAccount, id, filename, file) {
+    return docResource.create({
+      billingAccount,
+      id,
+    }, {
       name: filename,
     }).$promise.then((resp) => $http.put(resp.putUrl, file, {
       serviceType: 'storage',
       headers: {
         'Content-type': 'multipart/form-data',
       },
-    }).then(() => docResource.get({
-      id: resp.id,
-    }).$promise));
+    }).then(() => docResource.getDocument({
+      billingAccount,
+      id,
+    }, {
+      id: resp.documentId,
+    })));
   };
 
   return docResource;
