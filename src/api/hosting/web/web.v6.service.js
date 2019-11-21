@@ -11,5 +11,17 @@ angular.module('ovh-api-services').service('OvhApiHostingWebV6', ($cacheFactory,
       cache,
       isArray: true,
     },
+
+    getDatabaseAvailableVersion: {
+      url: '/hosting/web/:serviceName/databaseAvailableVersion',
+      method: 'GET',
+      isArray: false,
+    },
+
+    getDatabaseCreationCapabilities: {
+      url: '/hosting/web/:serviceName/databaseCreationCapabilities',
+      method: 'GET',
+      isArray: true,
+    },
   });
 });
