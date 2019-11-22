@@ -1,3 +1,12 @@
+## [9.27.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.27.0...v9.27.1) (2019-11-22)
+
+
+### Bug Fixes
+
+* **cloud.project.lab:** remove body from activate action ([#264](https://github.com/ovh-ux/ovh-api-services/issues/264)) ([be62be0](https://github.com/ovh-ux/ovh-api-services/commit/be62be016ecf1e0cb6ed34d19b6f0fbdb19fc8c7))
+
+
+
 # [9.27.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.26.1...v9.27.0) (2019-11-22)
 
 
