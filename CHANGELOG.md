@@ -1,3 +1,12 @@
+# [9.27.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.26.1...v9.27.0) (2019-11-22)
+
+
+### Features
+
+* **hosting.web.database:** add hosting web database API routes ([#263](https://github.com/ovh-ux/ovh-api-services/issues/263)) ([347b8b2](https://github.com/ovh-ux/ovh-api-services/commit/347b8b20dfa663deaf014af296b3f3e98031705b))
+
+
+
 ## [9.26.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.26.0...v9.26.1) (2019-11-20)
 
 
