@@ -27,6 +27,7 @@ angular
       },
       activate: {
         method: 'POST',
+        hasBody: false,
         interceptor,
       },
       getAgreements: {
