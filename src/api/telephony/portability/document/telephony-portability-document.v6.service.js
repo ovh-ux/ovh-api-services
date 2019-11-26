@@ -22,6 +22,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     getDocument: {
       method: 'GET',
       isArray: false,
+      interceptor,
     },
     updateDocument: {
       method: 'PUT',
