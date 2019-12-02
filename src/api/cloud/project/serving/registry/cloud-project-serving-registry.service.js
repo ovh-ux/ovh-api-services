@@ -1,5 +1,5 @@
 angular
   .module('ovh-api-services')
-  .service('OvhApiCloudProjectServingNamespaceRegistry', ($injector) => ({
+  .service('OvhApiCloudProjectAiServingRegistry', ($injector) => ({
     v6: () => $injector.get('OvhApiCloudProjectServingNamespaceRegistryV6'),
   }));

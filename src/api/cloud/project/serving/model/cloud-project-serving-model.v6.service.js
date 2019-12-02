@@ -1,6 +1,6 @@
 angular
   .module('ovh-api-services')
-  .service('OvhApiCloudProjectServingNamespaceModelV6', ($resource) => {
+  .service('OvhApiCloudProjectAiServingModelV6', ($resource) => {
     const resource = $resource('/cloud/project/:serviceName/ai/serving/:namespaceId/model/:modelId', {
       serviceName: '@serviceName',
       namespaceId: '@namespaceId',
