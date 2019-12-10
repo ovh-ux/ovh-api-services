@@ -1,3 +1,13 @@
+# [9.28.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.27.1...v9.28.0) (2019-12-10)
+
+
+### Features
+
+* **hosting.web:** added hosting email option end points ([#267](https://github.com/ovh-ux/ovh-api-services/issues/267)) ([31da74f](https://github.com/ovh-ux/ovh-api-services/commit/31da74f98374b348f47651fb34335d17b407a87f))
+* **portability:** get documents ([#265](https://github.com/ovh-ux/ovh-api-services/issues/265)) ([68b60b4](https://github.com/ovh-ux/ovh-api-services/commit/68b60b424a61e687b246791e17b4ce12b4969015))
+
+
+
 ## [9.27.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.27.0...v9.27.1) (2019-11-22)
 
 
