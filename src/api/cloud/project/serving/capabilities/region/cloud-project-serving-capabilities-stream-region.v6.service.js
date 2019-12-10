@@ -3,6 +3,7 @@ angular
   .service('OvhApiCloudProjectAiServingCapabilitiesRegionV6', ($resource) => {
     const resource = $resource('/cloud/project/:serviceName/ai/serving/:namespaceId/capabilities/region', {
       serviceName: '@serviceName',
+      namespaceId: '@namespaceId',
     });
 
     return resource;
