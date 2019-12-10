@@ -21,7 +21,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
     },
     getDocument: {
       method: 'GET',
-      isArray: true,
+      isArray: false,
     },
     updateDocument: {
       method: 'PUT',
@@ -61,7 +61,7 @@ angular.module('ovh-api-services').service('OvhApiTelephonyPortabilityDocumentV6
       billingAccount,
       id,
     }, {
-      id: resp.documentId,
+      documentId: resp.documentId,
     })));
   };
 
