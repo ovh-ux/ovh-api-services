@@ -1,3 +1,12 @@
+# [9.29.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.28.0...v9.29.0) (2019-12-13)
+
+
+### Features
+
+* **cloud.project.serving:** add serving engine endpoints ([#266](https://github.com/ovh-ux/ovh-api-services/issues/266)) ([84e7f78](https://github.com/ovh-ux/ovh-api-services/commit/84e7f785f3384cc98c5181cb05536074f18c4994))
+
+
+
 # [9.28.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.27.1...v9.28.0) (2019-12-10)
 
 
