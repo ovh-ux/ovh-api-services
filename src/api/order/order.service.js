@@ -35,6 +35,9 @@ angular.module('ovh-api-services').service('OvhApiOrder', ($injector) => ({
   Upgrade() {
     return $injector.get('OvhApiOrderUpgrade');
   },
+  Email() {
+    return $injector.get('OvhApiOrderEmail');
+  },
   v6() {
     return $injector.get('OvhApiOrderV6');
   },
