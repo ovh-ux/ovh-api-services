@@ -1,3 +1,12 @@
+# [9.30.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.29.0...v9.30.0) (2019-12-17)
+
+
+### Features
+
+* **email:** add email offer upgrade end points ([74b498a](https://github.com/ovh-ux/ovh-api-services/commit/74b498a06ac48c324341d40b41fc29471ca72c7a))
+
+
+
 # [9.29.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.28.0...v9.29.0) (2019-12-13)
 
 
