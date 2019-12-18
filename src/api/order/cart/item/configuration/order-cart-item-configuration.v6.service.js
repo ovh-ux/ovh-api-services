@@ -15,7 +15,7 @@ angular.module('ovh-api-services').service('OvhApiOrderCartItemConfigurationV6',
     itemId: '@itemId',
     configurationId: '@configurationId',
   }, {
-    query: { method: 'GET', cache: queryCache },
+    query: { method: 'GET', cache: queryCache, isArray: true },
     get: { method: 'GET', cache },
     post: { method: 'POST', interceptor },
   });
