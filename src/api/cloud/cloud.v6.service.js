@@ -43,5 +43,9 @@ angular.module('ovh-api-services').service('OvhApiCloudV6', ($resource, OvhApiCl
         product: '@product',
       },
     },
+    getEligibility: {
+      method: 'GET',
+      url: '/cloud/eligibility',
+    },
   });
 });
