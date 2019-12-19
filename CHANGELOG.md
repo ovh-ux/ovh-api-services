@@ -1,3 +1,17 @@
+# [9.31.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.30.0...v9.31.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **order.cart.item.configuration:** set fecth response as an array ([8fbbedb](https://github.com/ovh-ux/ovh-api-services/commit/8fbbedbc2801f601eb7c61cb98fd7877861f8d20))
+
+
+### Features
+
+* **cloud:** add eligibility api call ([86eaf7d](https://github.com/ovh-ux/ovh-api-services/commit/86eaf7d15b566c70a47d484ac3e32cb223e916c4))
+
+
+
 # [9.30.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.29.0...v9.30.0) (2019-12-17)
 
 
