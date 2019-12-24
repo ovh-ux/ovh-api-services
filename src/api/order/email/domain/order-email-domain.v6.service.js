@@ -29,7 +29,7 @@ angular.module('ovh-api-services').service('OvhApiOrderEmailDomainV6', ($resourc
       method: 'POST',
       interceptor,
       url: '/order/email/domain/:domain/:option/:duration',
-    }
+    },
   });
 
   orderEmailDomain.resetCache = function () {
