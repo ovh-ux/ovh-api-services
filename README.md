@@ -1,6 +1,6 @@
 # ovh-api-services
 
-> Contains all $resource for API.
+> Contains all AngularJS $resource for the OVHcloud API.
 
 [![Downloads](https://badgen.net/npm/dt/ovh-api-services)](https://npmjs.com/package/ovh-api-services) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
@@ -15,18 +15,14 @@ $ yarn add ovh-api-services
 
 ```js
 import angular from 'angular';
-import 'ovh-api-services';
+import ovhApiServices from 'ovh-api-services';
 
-angular
-  .module('myApp', [
-    'ovh-api-services',
-  ]);
+angular.module('myApp', [ovhApiServices]);
 ```
 
 ### Services
 
 All services must return an [AngularJS $resource](https://docs.angularjs.org/api/ngResource/service/$resource) and can be called by using:
-
 
 | Service   | Engine  | Library                                            |
 |-----------|---------|----------------------------------------------------|
@@ -45,11 +41,13 @@ OvhApiMe
   .$promise
   .then((nichandle) => {
     console.log(nichandle);
-    // {
-    //   "firstname": "John",
-    //   "name": "Doe",
-    //   …
-    // }
+    /*
+    {
+      "firstname": "John",
+      "name": "Doe",
+      …
+    }
+    */
   });
 ```
 
@@ -65,11 +63,13 @@ OvhApiMe
   .$promise
   .then((sshKey) => {
     console.log(sshKey);
-    // {
-    //   "keyName": "test",
-    //   "key": "ssh-rsa …",
-    //   "default": false
-    // }
+    /*
+    {
+      "keyName": "test",
+      "key": "ssh-rsa …",
+      "default": false
+    }
+    */
   });
 ```
 
@@ -77,6 +77,7 @@ OvhApiMe
 
 The files structure is defined as:
 ```sh
+$ tree src/api/
 .
 └── me
     ├── sshKey
@@ -96,8 +97,8 @@ $ yarn test
 
 ## Related
 
-* [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] - AngularJS component designed to configure API Endpoints.
-* [@ovh-ux/ng-ovh-swimming-poll](https://github.com/ovh-ux/ng-ovh-swimming-poll) - A poller to swim easily to success status.
+- [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] - AngularJS component designed to configure API Endpoints.
+- [@ovh-ux/ng-ovh-swimming-poll](https://github.com/ovh-ux/ng-ovh-swimming-poll) - A poller to swim easily to success status.
 
 ## Contributing
 

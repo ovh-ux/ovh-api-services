@@ -1,7 +1,14 @@
 {
   "name": "ovh-api-services",
-  "version": "9.31.0",
-  "description": "Contains all angular $resource for OVH API.",
+  "version": "9.26.0",
+  "description": "Contains all AngularJS $resource for OVHcloud API.",
+  "keywords": [
+    "angularjs",
+    "api",
+    "ovh",
+    "ovhcloud",
+    "resource"
+  ],
   "repository": "ovh-ux/ovh-api-services",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
