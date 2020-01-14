@@ -10,4 +10,7 @@ angular
     Sharepoint() {
       return $injector.get('OvhApiMsServicesSharepoint');
     },
+    v6() {
+      return $injector.get('OvhApiMsServicesV6');
+    },
   }));
