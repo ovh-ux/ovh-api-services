@@ -22,6 +22,14 @@ angular
       edit: {
         method: 'PUT', cache, isArray: false, interceptor,
       },
+      createMfaOnAllUsers: {
+        method: 'POST',
+        url: '/msServices/:serviceName/createMfaOnAllUsers ',
+      },
+      removeMfaOnAllUsers: {
+        method: 'POST',
+        url: '/msServices/:serviceName/removeMfaOnAllUsers',
+      },
     });
 
     resource.resetCache = function () {
