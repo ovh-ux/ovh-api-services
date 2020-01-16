@@ -1,3 +1,12 @@
+# [9.32.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.31.0...v9.32.0) (2020-01-16)
+
+
+### Features
+
+* add msServices mfa calls ([7670c61](https://github.com/ovh-ux/ovh-api-services/commit/7670c61068f9c4d289fa12bc982cde5d8600d568))
+
+
+
 # [9.31.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.30.0...v9.31.0) (2019-12-19)
 
 
