@@ -1,3 +1,12 @@
+# [9.33.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.32.0...v9.33.0) (2020-01-17)
+
+
+### Features
+
+* **email.exchange:** add email exchange service server ([0fefb11](https://github.com/ovh-ux/ovh-api-services/commit/0fefb1147907d6788abddd733b5c09fcbec7dcc9))
+
+
+
 # [9.32.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.31.0...v9.32.0) (2020-01-16)
 
 
