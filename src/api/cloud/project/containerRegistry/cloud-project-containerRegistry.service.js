@@ -2,6 +2,9 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistry'
   v6() {
     return $injector.get('OvhApiCloudProjectContainerRegistryV6');
   },
+  Plan() {
+    return $injector.get('OvhApiCloudProjectContainerRegistryPlan');
+  },
   Users() {
     return $injector.get('OvhApiCloudProjectContainerRegistryUsers');
   },
