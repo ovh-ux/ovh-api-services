@@ -31,6 +31,7 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistryV
     getCapabilities: {
       method: 'GET',
       url: '/cloud/project/:serviceName/capabilities/containerRegistry',
+      isArray: true,
     },
   });
 
