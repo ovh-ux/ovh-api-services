@@ -1,3 +1,12 @@
+# [9.34.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.33.0...v9.34.0) (2020-01-28)
+
+
+### Features
+
+* **cloud.project.container-registry:** add plan and capabilities ([#275](https://github.com/ovh-ux/ovh-api-services/issues/275)) ([a44663c](https://github.com/ovh-ux/ovh-api-services/commit/a44663c89d779b45d2a7cf433944fd353ecd0666))
+
+
+
 # [9.33.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.32.0...v9.33.0) (2020-01-17)
 
 
