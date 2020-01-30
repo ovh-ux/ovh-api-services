@@ -1,3 +1,17 @@
+# [9.35.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.34.0...v9.35.0) (2020-01-30)
+
+
+### Bug Fixes
+
+* **cloud.project.ai:** rework capabilities to avoid endpoint shadowing ([#274](https://github.com/ovh-ux/ovh-api-services/issues/274)) ([ad19d13](https://github.com/ovh-ux/ovh-api-services/commit/ad19d13133d07a85870118eb871197dbc5ec77ba))
+
+
+### Features
+
+* **services:** add detach routes ([#276](https://github.com/ovh-ux/ovh-api-services/issues/276)) ([85d54f0](https://github.com/ovh-ux/ovh-api-services/commit/85d54f08885bb49d80a5811f83efb01c71608ef6))
+
+
+
 # [9.34.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.33.0...v9.34.0) (2020-01-28)
 
 
