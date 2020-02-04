@@ -1,3 +1,12 @@
+## [9.35.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.35.0...v9.35.1) (2020-02-04)
+
+
+### Bug Fixes
+
+* **cloud.project.container-registry:** specify array response ([#277](https://github.com/ovh-ux/ovh-api-services/issues/277)) ([a86e7b0](https://github.com/ovh-ux/ovh-api-services/commit/a86e7b07ddfb59dffeb0f372e8d66f1a565b14d9))
+
+
+
 # [9.35.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.34.0...v9.35.0) (2020-01-30)
 
 
