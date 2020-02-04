@@ -2,7 +2,7 @@ import set from 'lodash/set';
 
 angular
   .module('ovh-api-services')
-  .service('OvhApiMePaymentMeanV6', (OvhApiMePaymentMeanBankAccount, OvhApiMePaymentMeanCreditCard, OvhApiMePaymentMeanPaypal) => ({
+  .service('OvhApiMePaymentMeanV6', (OvhApiMePaymentMeanBankAccount, OvhApiMePaymentMeanCreditCard, OvhApiMePaymentMeanPaypal, OvhApiMePaymentMeanDeferredPaymentAccount) => ({
     getDefaultPaymentMean() {
       return OvhApiMePaymentMeanCreditCard
         .v6()
@@ -29,7 +29,17 @@ angular
                     return defaultPaymentMeanBankAccount;
                   }
 
-                  return null;
+                  return OvhApiMePaymentMeanDeferredPaymentAccount
+                    .v6()
+                    .getDefaultPaymentMean()
+                    .then((defaultPaymentMeanDeferred) => {
+                      if (defaultPaymentMeanDeferred) {
+                        set(defaultPaymentMeanDeferred, 'paymentType', 'deferredPaymentAccount');
+                        return defaultPaymentMeanDeferred;
+                      }
+
+                      return null;
+                    });
                 });
             });
         });
