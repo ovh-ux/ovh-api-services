@@ -8,5 +8,6 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistryP
   getCapabilities: {
     method: 'GET',
     url: '/cloud/project/:serviceName/containerRegistry/:registryID/capabilities/plan',
+    isArray: true,
   },
 }));
