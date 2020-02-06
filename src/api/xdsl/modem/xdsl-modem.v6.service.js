@@ -27,7 +27,7 @@ angular.module('ovh-api-services').service('OvhApiXdslModemV6', ($resource, OvhA
       url: '/xdsl/:xdslId/modem/comfortExchange',
       interceptor,
     },
-    comfortExchangeLastModel: {
+    getComfortExchange: {
       method: 'GET',
       url: '/xdsl/:xdslId/modem/comfortExchange',
     },
