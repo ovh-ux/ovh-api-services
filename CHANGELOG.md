@@ -1,3 +1,12 @@
+# [9.36.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.35.1...v9.36.0) (2020-02-07)
+
+
+### Features
+
+* **xdsl.modem:** add getComfortExchange endpoint ([#279](https://github.com/ovh-ux/ovh-api-services/issues/279)) ([26fe663](https://github.com/ovh-ux/ovh-api-services/commit/26fe663b60496b51e0615341fbaef0697e6f0c91))
+
+
+
 ## [9.35.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.35.0...v9.35.1) (2020-02-04)
 
 
