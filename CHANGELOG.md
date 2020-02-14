@@ -1,3 +1,13 @@
+# [9.37.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.36.0...v9.37.0) (2020-02-14)
+
+
+### Features
+
+* **hosting:** add extraSqlPerso path ([#281](https://github.com/ovh-ux/ovh-api-services/issues/281)) ([917cf9e](https://github.com/ovh-ux/ovh-api-services/commit/917cf9e8ac63587cb5041695f71542cb38b0507e))
+* **services:** add form routes ([#280](https://github.com/ovh-ux/ovh-api-services/issues/280)) ([338f3f5](https://github.com/ovh-ux/ovh-api-services/commit/338f3f554b6050fd348e30a9e9e4e937cd1b8628))
+
+
+
 # [9.36.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.35.1...v9.36.0) (2020-02-07)
 
 
