@@ -1,3 +1,12 @@
+# [9.38.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.37.0...v9.38.0) (2020-02-18)
+
+
+### Features
+
+* **cloud:** add pci deals route ([d155769](https://github.com/ovh-ux/ovh-api-services/commit/d155769ed609d47640d5cccd79d3ef9dea6ad998))
+
+
+
 # [9.37.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.36.0...v9.37.0) (2020-02-14)
 
 
