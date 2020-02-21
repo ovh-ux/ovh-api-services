@@ -19,7 +19,7 @@ angular.module('ovh-api-services').service('OvhApiHostingWebEmailOptionV6', ($re
       method: 'GET',
       url: '/hosting/web/:serviceName/emailOption/:id/serviceInfos',
       cache,
-    }
+    },
   });
 
   resource.resetCache = function () {

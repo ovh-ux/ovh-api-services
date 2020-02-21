@@ -28,6 +28,11 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectContainerRegistryV
       method: 'DELETE',
       interceptor,
     },
+    getCapabilities: {
+      method: 'GET',
+      url: '/cloud/project/:serviceName/capabilities/containerRegistry',
+      isArray: true,
+    },
   });
 
   registryResource.resetCache = function () {

@@ -1,5 +1,5 @@
-const rollupConfig = require('@ovh-ux/component-rollup-config');
-const globImport = require('rollup-plugin-glob-import');
+import rollupConfig from '@ovh-ux/component-rollup-config';
+import globImport from 'rollup-plugin-glob-import';
 
 const config = rollupConfig({
   input: './src/index.js',
@@ -16,6 +16,13 @@ const outputs = [config.es({
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());
+  outputs.push(config.umd({
+    output: {
+      globals: {
+        angular: 'angular',
+      },
+    },
+  }));
 }
 
-module.exports = outputs;
+export default outputs;

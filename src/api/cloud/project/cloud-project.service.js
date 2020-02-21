@@ -13,6 +13,9 @@ angular.module('ovh-api-services').service('OvhApiCloudProject', ($injector, $ca
     Dataprocessing() {
       return $injector.get('OvhApiCloudProjectDataProcessing');
     },
+    Ai() {
+      return $injector.get('OvhApiCloudProjectAi');
+    },
     Flavor() {
       return $injector.get('OvhApiCloudProjectFlavor');
     },

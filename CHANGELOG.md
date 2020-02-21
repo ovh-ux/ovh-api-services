@@ -1,3 +1,104 @@
+# [9.38.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.37.0...v9.38.0) (2020-02-18)
+
+
+### Features
+
+* **cloud:** add pci deals route ([d155769](https://github.com/ovh-ux/ovh-api-services/commit/d155769ed609d47640d5cccd79d3ef9dea6ad998))
+
+
+
+# [9.37.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.36.0...v9.37.0) (2020-02-14)
+
+
+### Features
+
+* **hosting:** add extraSqlPerso path ([#281](https://github.com/ovh-ux/ovh-api-services/issues/281)) ([917cf9e](https://github.com/ovh-ux/ovh-api-services/commit/917cf9e8ac63587cb5041695f71542cb38b0507e))
+* **services:** add form routes ([#280](https://github.com/ovh-ux/ovh-api-services/issues/280)) ([338f3f5](https://github.com/ovh-ux/ovh-api-services/commit/338f3f554b6050fd348e30a9e9e4e937cd1b8628))
+
+
+
+# [9.36.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.35.1...v9.36.0) (2020-02-07)
+
+
+### Features
+
+* **xdsl.modem:** add getComfortExchange endpoint ([#279](https://github.com/ovh-ux/ovh-api-services/issues/279)) ([26fe663](https://github.com/ovh-ux/ovh-api-services/commit/26fe663b60496b51e0615341fbaef0697e6f0c91))
+
+
+
+## [9.35.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.35.0...v9.35.1) (2020-02-04)
+
+
+### Bug Fixes
+
+* **cloud.project.container-registry:** specify array response ([#277](https://github.com/ovh-ux/ovh-api-services/issues/277)) ([a86e7b0](https://github.com/ovh-ux/ovh-api-services/commit/a86e7b07ddfb59dffeb0f372e8d66f1a565b14d9))
+
+
+
+# [9.35.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.34.0...v9.35.0) (2020-01-30)
+
+
+### Bug Fixes
+
+* **cloud.project.ai:** rework capabilities to avoid endpoint shadowing ([#274](https://github.com/ovh-ux/ovh-api-services/issues/274)) ([ad19d13](https://github.com/ovh-ux/ovh-api-services/commit/ad19d13133d07a85870118eb871197dbc5ec77ba))
+
+
+### Features
+
+* **services:** add detach routes ([#276](https://github.com/ovh-ux/ovh-api-services/issues/276)) ([85d54f0](https://github.com/ovh-ux/ovh-api-services/commit/85d54f08885bb49d80a5811f83efb01c71608ef6))
+
+
+
+# [9.34.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.33.0...v9.34.0) (2020-01-28)
+
+
+### Features
+
+* **cloud.project.container-registry:** add plan and capabilities ([#275](https://github.com/ovh-ux/ovh-api-services/issues/275)) ([a44663c](https://github.com/ovh-ux/ovh-api-services/commit/a44663c89d779b45d2a7cf433944fd353ecd0666))
+
+
+
+# [9.33.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.32.0...v9.33.0) (2020-01-17)
+
+
+### Features
+
+* **email.exchange:** add email exchange service server ([0fefb11](https://github.com/ovh-ux/ovh-api-services/commit/0fefb1147907d6788abddd733b5c09fcbec7dcc9))
+
+
+
+# [9.32.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.31.0...v9.32.0) (2020-01-16)
+
+
+### Features
+
+* add msServices mfa calls ([7670c61](https://github.com/ovh-ux/ovh-api-services/commit/7670c61068f9c4d289fa12bc982cde5d8600d568))
+
+
+
+# [9.31.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.30.0...v9.31.0) (2019-12-19)
+
+
+### Bug Fixes
+
+* **order.cart.item.configuration:** set fecth response as an array ([8fbbedb](https://github.com/ovh-ux/ovh-api-services/commit/8fbbedbc2801f601eb7c61cb98fd7877861f8d20))
+
+
+### Features
+
+* **cloud:** add eligibility api call ([86eaf7d](https://github.com/ovh-ux/ovh-api-services/commit/86eaf7d15b566c70a47d484ac3e32cb223e916c4))
+
+
+
+# [9.30.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.29.0...v9.30.0) (2019-12-17)
+
+
+### Features
+
+* **email:** add email offer upgrade end points ([74b498a](https://github.com/ovh-ux/ovh-api-services/commit/74b498a06ac48c324341d40b41fc29471ca72c7a))
+
+
+
 # [9.29.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.28.0...v9.29.0) (2019-12-13)
 
 

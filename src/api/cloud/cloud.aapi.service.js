@@ -8,6 +8,11 @@ angular.module('ovh-api-services').service('OvhApiCloudAapi', ($resource, $cache
       serviceType: 'aapi',
       cache: queryCache,
     },
+    getDeals: {
+      method: 'GET',
+      url: '/cloud/deals',
+      serviceType: 'aapi',
+    },
   });
 
   instancesResource.resetQueryCache = function () {
