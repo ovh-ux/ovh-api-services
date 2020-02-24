@@ -1,5 +1,6 @@
 angular.module('ovh-api-services').service('OvhApiDedicatedCloudDatacenterBackupV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiDedicatedCloudDatacenterBackupV6');
+  const queryCache = $cacheFactory('OvhApiDedicatedCloudDatacenterBackupV6Query');
 
   const interceptor = {
     response(response) {
@@ -29,6 +30,12 @@ angular.module('ovh-api-services').service('OvhApiDedicatedCloudDatacenterBackup
       url: `${baseUrl}/changeProperties`,
       method: 'POST',
       interceptor,
+    },
+    offerCapabilities: {
+      url: `${baseUrl}/offerCapabilities`,
+      method: 'GET',
+      cache: queryCache,
+      isArray: true,
     },
   });
 
