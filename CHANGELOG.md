@@ -1,3 +1,12 @@
+# [9.39.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.38.0...v9.39.0) (2020-02-25)
+
+
+### Features
+
+* **dedicatedcloud.datacenter:** add backup offer capabilities ([#284](https://github.com/ovh-ux/ovh-api-services/issues/284)) ([18e60b9](https://github.com/ovh-ux/ovh-api-services/commit/18e60b92ec33560a825e9ea46636348cd91c8845))
+
+
+
 # [9.38.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.37.0...v9.38.0) (2020-02-18)
 
 
