@@ -1,3 +1,12 @@
+## [9.39.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.39.0...v9.39.1) (2020-02-28)
+
+
+### Bug Fixes
+
+* add missing imports ([#285](https://github.com/ovh-ux/ovh-api-services/issues/285)) ([2b00ba4](https://github.com/ovh-ux/ovh-api-services/commit/2b00ba4746e3718d44e22ed3fb717ae2a48a7e75))
+
+
+
 # [9.39.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.38.0...v9.39.0) (2020-02-25)
 
 
