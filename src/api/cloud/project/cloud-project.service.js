@@ -10,6 +10,9 @@ angular.module('ovh-api-services').service('OvhApiCloudProject', ($injector, $ca
     Acl() {
       return $injector.get('OvhApiCloudProjectAcl');
     },
+    DataProcessing() {
+      return $injector.get('OvhApiCloudProjectDataProcessing');
+    },
     Ai() {
       return $injector.get('OvhApiCloudProjectAi');
     },
