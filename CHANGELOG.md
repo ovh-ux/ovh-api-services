@@ -1,3 +1,12 @@
+# [9.40.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.39.1...v9.40.0) (2020-03-03)
+
+
+### Features
+
+* **cloud.project:** add data processing endpoints ([#286](https://github.com/ovh-ux/ovh-api-services/issues/286)) ([ec51753](https://github.com/ovh-ux/ovh-api-services/commit/ec5175341a7e67eb99a93ee3bd22cf4c5dfafcfc))
+
+
+
 ## [9.39.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.39.0...v9.39.1) (2020-02-28)
 
 
