@@ -1,3 +1,12 @@
+# [9.41.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.40.0...v9.41.0) (2020-03-10)
+
+
+### Features
+
+* **cloud.project:** added load balancer endpoints ([#287](https://github.com/ovh-ux/ovh-api-services/issues/287)) ([2dce218](https://github.com/ovh-ux/ovh-api-services/commit/2dce21833abbe7e1e639e913fbe21686d20a47a8))
+
+
+
 # [9.40.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.39.1...v9.40.0) (2020-03-03)
 
 
