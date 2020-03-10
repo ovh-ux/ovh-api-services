@@ -82,5 +82,8 @@ angular.module('ovh-api-services').service('OvhApiCloudProject', ($injector, $ca
     ContainerRegistry() {
       return $injector.get('OvhApiCloudProjectContainerRegistry');
     },
+    LoadBalancer() {
+      return $injector.get('OvhApiCloudProjectLoadBalancer');
+    },
   };
 });
