@@ -1,3 +1,7 @@
+## [9.41.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.41.0...v9.41.1) (2020-03-16)
+
+
+
 # [9.41.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.40.0...v9.41.0) (2020-03-10)
 
 
