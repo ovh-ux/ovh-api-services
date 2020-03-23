@@ -9,6 +9,7 @@ angular.module('ovh-api-services').service('OvhApiPackXdslHostedEmailV6', ($reso
 
   return $resource('/pack/xdsl/:packId/hostedEmail/services', {
     packId: '@packId',
+    domain: '@domain',
   }, {
     query: {
       method: 'GET',
@@ -24,6 +25,25 @@ angular.module('ovh-api-services').service('OvhApiPackXdslHostedEmailV6', ($reso
       url: '/pack/xdsl/:packId/hostedEmail/options/domains',
       isArray: true,
       cache: OvhApiPackXdslHostedEmail.cache,
+    },
+    delete: {
+      method: 'DELETE',
+      url: '/pack/xdsl/:packId/hostEmail/services/:domain',
+      interceptor,
+    },
+    getAccount: {
+      method: 'GET',
+      url: '/pack/xdsl/:packId/hostedEmail/services/:domain/account',
+      isArray: false,
+    },
+    changePassword: {
+      method: 'POST',
+      url: '/pack/xdsl/:packId/hostedEmail/services/:domain/changePassword',
+    },
+    getConfig: {
+      method: 'GET',
+      url: '/pack/xdsl/:packId/hostedEmail/services/:domain/configuration',
+      isArray: false,
     },
   });
 });
