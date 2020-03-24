@@ -28,7 +28,7 @@ angular.module('ovh-api-services').service('OvhApiPackXdslHostedEmailV6', ($reso
     },
     delete: {
       method: 'DELETE',
-      url: '/pack/xdsl/:packId/hostEmail/services/:domain',
+      url: '/pack/xdsl/:packId/hostedEmail/services/:domain',
       interceptor,
     },
     getAccount: {
