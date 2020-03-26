@@ -1,3 +1,12 @@
+# [9.42.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.41.1...v9.42.0) (2020-03-26)
+
+
+### Features
+
+* **pack.xdsl.hostedEmail:** add domain endpoints ([#289](https://github.com/ovh-ux/ovh-api-services/issues/289)) ([8f9f890](https://github.com/ovh-ux/ovh-api-services/commit/8f9f890be524019982c69b42fdb9d99eb2929869))
+
+
+
 ## [9.41.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.41.0...v9.41.1) (2020-03-16)
 
 
