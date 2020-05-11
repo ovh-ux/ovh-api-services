@@ -5,6 +5,9 @@ angular.module('ovh-api-services').service('OvhApiDedicatedServer', ($injector) 
   Aapi() {
     return $injector.get('OvhApiDedicatedServerAapi');
   },
+  BiosSettings() {
+    return $injector.get('OvhApiDedicatedServerBiosSettings');
+  },
   Ola() {
     return $injector.get('OvhApiDedicatedServerOla');
   },
