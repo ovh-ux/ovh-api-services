@@ -109,6 +109,11 @@ angular.module('ovh-api-services').service('OvhApiOverTheBoxV6', ($resource, Ovh
       url: '/overTheBox/:serviceName/device/logs ',
       isArray: false,
     },
+    getAvailableReleaseChannels: {
+      method: 'GET',
+      url: '/overTheBox/:serviceName/availableReleaseChannels',
+      isArray: true,
+    },
   });
 
   return overTheBox;
