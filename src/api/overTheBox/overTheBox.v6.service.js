@@ -120,6 +120,11 @@ angular.module('ovh-api-services').service('OvhApiOverTheBoxV6', ($resource, Ovh
       url: '/overTheBox/:serviceName/device/actions/:actionId',
       cache: OvhApiOverTheBox.cache,
     },
+    unlinkDevice: {
+      method: 'DELETE',
+      url: '/overTheBox/:serviceName/device',
+      interceptor,
+    },
   });
 
   return overTheBox;
