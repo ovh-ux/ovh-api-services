@@ -113,12 +113,10 @@ angular.module('ovh-api-services').service('OvhApiOverTheBoxV6', ($resource, Ovh
       method: 'GET',
       url: '/overTheBox/:serviceName/device/actions',
       isArray: true,
-      cache: OvhApiOverTheBox.cache,
     },
     getAction: {
       method: 'GET',
       url: '/overTheBox/:serviceName/device/actions/:actionId',
-      cache: OvhApiOverTheBox.cache,
     },
     unlinkDevice: {
       method: 'DELETE',
