@@ -109,20 +109,6 @@ angular.module('ovh-api-services').service('OvhApiOverTheBoxV6', ($resource, Ovh
       url: '/overTheBox/:serviceName/device/logs ',
       isArray: false,
     },
-    getActions: {
-      method: 'GET',
-      url: '/overTheBox/:serviceName/device/actions',
-      isArray: true,
-    },
-    getAction: {
-      method: 'GET',
-      url: '/overTheBox/:serviceName/device/actions/:actionId',
-    },
-    unlinkDevice: {
-      method: 'DELETE',
-      url: '/overTheBox/:serviceName/device',
-      interceptor,
-    },
   });
 
   return overTheBox;
