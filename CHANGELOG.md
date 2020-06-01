@@ -1,3 +1,14 @@
+# [9.43.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.42.0...v9.43.0) (2020-06-01)
+
+
+### Features
+
+* **dbaas.logs:** add kibana endpoints ([#290](https://github.com/ovh-ux/ovh-api-services/issues/290)) ([033025e](https://github.com/ovh-ux/ovh-api-services/commit/033025eef79466e99199305e484f7df8acab2f37))
+* **otb.service:** retrieve available release channels ([#292](https://github.com/ovh-ux/ovh-api-services/issues/292)) ([3206339](https://github.com/ovh-ux/ovh-api-services/commit/320633954b5b87556ec7ac40a8c0d9eda4f8b77a))
+* **otb.services:** add endpoints for overTheBox ([#293](https://github.com/ovh-ux/ovh-api-services/issues/293)) ([d7c6301](https://github.com/ovh-ux/ovh-api-services/commit/d7c63017731d463c15d71f1e564bde4450d69a65))
+
+
+
 # [9.42.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.41.1...v9.42.0) (2020-03-26)
 
 
