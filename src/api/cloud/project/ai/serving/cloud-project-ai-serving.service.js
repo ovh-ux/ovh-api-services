@@ -5,4 +5,5 @@ angular
     Model: () => $injector.get('OvhApiCloudProjectAiServingModel'),
     Token: () => $injector.get('OvhApiCloudProjectAiServingToken'),
     Registry: () => $injector.get('OvhApiCloudProjectAiServingRegistry'),
+    Metrics: () => $injector.get('OvhApiCloudProjectAiServingMetrics'),
   }));
