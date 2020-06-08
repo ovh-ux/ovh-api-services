@@ -1,3 +1,12 @@
+# [9.44.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.43.0...v9.44.0) (2020-06-08)
+
+
+### Features
+
+* **cloud.project.ai.serving:** add metrics endpoints ([#294](https://github.com/ovh-ux/ovh-api-services/issues/294)) ([ef5274e](https://github.com/ovh-ux/ovh-api-services/commit/ef5274ecf06c522ae5b4fa02b943a73bb185d6f9))
+
+
+
 # [9.43.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.42.0...v9.43.0) (2020-06-01)
 
 
