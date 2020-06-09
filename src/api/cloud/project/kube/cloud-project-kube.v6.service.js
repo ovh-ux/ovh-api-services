@@ -47,6 +47,11 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectKubeV6', ($cacheFa
       method: 'POST',
       interceptor,
     },
+    resetKubeConfig: {
+      url: '/cloud/project/:serviceName/kube/:kubeId/kubeconfig/reset',
+      method: 'POST',
+      interceptor,
+    },
     updateVersion: {
       url: '/cloud/project/:serviceName/kube/:kubeId/update',
       method: 'POST',
