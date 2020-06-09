@@ -1,3 +1,12 @@
+## [9.44.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.44.0...v9.44.1) (2020-06-09)
+
+
+### Bug Fixes
+
+* **kube:** kubeconfig reset api addition ([66d04d0](https://github.com/ovh-ux/ovh-api-services/commit/66d04d08aba4580b54cd5e979ad53fb094e12490))
+
+
+
 # [9.44.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.43.0...v9.44.0) (2020-06-08)
 
 
