@@ -1,5 +1,5 @@
-angular.module('ovh-api-services').service('OvhApiDbaasLogsOutputElasticsearchKibana', ($injector) => ({
+angular.module('ovh-api-services').service('OvhApiDbaasLogsOutputElasticsearch', ($injector) => ({
   Kibana() {
-    return $injector.get('OvhApiDbaasLogsOutputElasticsearch');
+    return $injector.get('OvhApiDbaasLogsOutputElasticsearchKibana');
   },
 }));
