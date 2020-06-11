@@ -1,3 +1,12 @@
+## [9.44.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.44.1...v9.44.2) (2020-06-11)
+
+
+### Bug Fixes
+
+* **dbaas.logs.output.elasticsearch:** use right service name ([cdcef9b](https://github.com/ovh-ux/ovh-api-services/commit/cdcef9bc46fdea979069f933407712580a5459e4))
+
+
+
 ## [9.44.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.44.0...v9.44.1) (2020-06-09)
 
 
