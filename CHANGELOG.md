@@ -1,3 +1,12 @@
+# [9.45.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.44.2...v9.45.0) (2020-06-12)
+
+
+### Features
+
+* **dbaas.logs.output.elasticsearch:** add kibana update endpoint ([#296](https://github.com/ovh-ux/ovh-api-services/issues/296)) ([a3262df](https://github.com/ovh-ux/ovh-api-services/commit/a3262df35150aa63a2944e28921fb9a3634d27f4))
+
+
+
 ## [9.44.2](https://github.com/ovh-ux/ovh-api-services/compare/v9.44.1...v9.44.2) (2020-06-11)
 
 
