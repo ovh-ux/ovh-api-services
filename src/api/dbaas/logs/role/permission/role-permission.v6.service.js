@@ -20,6 +20,7 @@ angular.module('ovh-api-services').service('OvhApiDbaasLogsRolePermissionV6', ($
     addIndex: { method: 'POST', interceptor, url: '/dbaas/logs/:serviceName/role/:roleId/permission/index' },
     addDashboard: { method: 'POST', interceptor, url: '/dbaas/logs/:serviceName/role/:roleId/permission/dashboard' },
     addStream: { method: 'POST', interceptor, url: '/dbaas/logs/:serviceName/role/:roleId/permission/stream' },
+    addKibana: { method: 'POST', interceptor, url: '/dbaas/logs/:serviceName/role/:roleId/permission/kibana' },
     update: { method: 'PUT', interceptor },
     remove: { method: 'DELETE', interceptor },
   });
