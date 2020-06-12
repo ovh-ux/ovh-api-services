@@ -16,6 +16,7 @@ angular.module('ovh-api-services').service('OvhApiDbaasLogsOutputElasticsearchKi
     query: { method: 'GET', isArray: true, cache: queryCache },
     create: { method: 'POST', interceptor },
     remove: { method: 'DELETE', interceptor },
+    update: { method: 'PUT', interceptor },
   });
 
   kibanaResource.resetAllCache = function () {
