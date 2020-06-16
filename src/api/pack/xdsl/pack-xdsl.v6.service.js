@@ -77,5 +77,15 @@ angular.module('ovh-api-services').service('OvhApiPackXdslV6', ($resource, OvhAp
         packName: '@packName',
       },
     },
+    getContactOwner: {
+      method: 'GET',
+      url: '/pack/xdsl/:packName/contactOwner',
+      transformResponse(data, headers, status) {
+        if (status === 200) {
+          return { data: angular.fromJson(data) };
+        }
+        return data;
+      },
+    },
   });
 });
