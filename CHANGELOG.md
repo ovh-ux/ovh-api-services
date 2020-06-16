@@ -1,3 +1,15 @@
+# [9.46.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.45.0...v9.46.0) (2020-06-16)
+
+
+### Features
+
+* **connectivity.eligibility:** add endpoints ([873633a](https://github.com/ovh-ux/ovh-api-services/commit/873633aa0285eeab3ed84ae0b7f5610d17ff2968))
+* **dbaas.logs.role.permission:** support kibana permission on role ([#298](https://github.com/ovh-ux/ovh-api-services/issues/298)) ([f83970f](https://github.com/ovh-ux/ovh-api-services/commit/f83970ff0ffb0add638cc04f52b375fe664e1080))
+* **pack.xdsl:** add getContactOwner endpoint ([253aa41](https://github.com/ovh-ux/ovh-api-services/commit/253aa416a0299527e96a5b2a7f30eeb1096a65d4))
+* **pack.xdsl.move:** add moveOffer endpoint ([041fdb1](https://github.com/ovh-ux/ovh-api-services/commit/041fdb123a946695edc786d9a25aba1f8fbf3fba))
+
+
+
 # [9.45.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.44.2...v9.45.0) (2020-06-12)
 
 
