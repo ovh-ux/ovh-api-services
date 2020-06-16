@@ -7,4 +7,4 @@ angular.module('ovh-api-services').service('OvhApiDbaasLogsOutputElasticsearchKi
   });
 
   return kibanaResource;
-});  
+});
