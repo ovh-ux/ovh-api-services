@@ -7,10 +7,15 @@ angular.module('ovh-api-services').service('OvhApiPackXdslMoveV6', ($resource, P
       url: '/pack/xdsl/:packName/addressMove/move',
       isArray: false,
     },
+    moveOffer: {
+      method: 'POST',
+      url: '/pack/xdsl/:packName/addressMove/moveOffer',
+      isArray: false,
+    },
   });
 
   move.pollElligibility = function ($scope, opts) {
-    const url = ['/pack/xdsl/', opts.packName, '/addressMove/eligibility'].join('');
+    const url = `/pack/xdsl/${opts.packName}/addressMove/eligibility`;
 
     $scope.$on('$destroy', () => {
       Poller.kill({
@@ -25,6 +30,34 @@ angular.module('ovh-api-services').service('OvhApiPackXdslMoveV6', ($resource, P
         postData: {
           lineNumber: opts.lineNumber,
           address: opts.address,
+        },
+        successRule: {
+          status(elem) {
+            return elem.status === 'error' || elem.status === 'ok';
+          },
+        },
+        scope: $scope.$id,
+        method: 'post',
+        retryMaxAttempts: 3,
+      },
+    );
+  };
+
+  move.pollOffers = function ($scope, opts) {
+    const url = `/pack/xdsl/${opts.packName}/addressMove/offers`;
+
+    $scope.$on('$destroy', () => {
+      Poller.kill({
+        scope: $scope.$id,
+      });
+    });
+
+    return Poller.poll(
+      url,
+      null,
+      {
+        postData: {
+          eligibilityReference: opts.eligibilityReference,
         },
         successRule: {
           status(elem) {
