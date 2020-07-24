@@ -1,3 +1,12 @@
+# [9.47.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.46.0...v9.47.0) (2020-07-24)
+
+
+### Features
+
+* **cloud.project.ai:** add training platform initialization ([#300](https://github.com/ovh-ux/ovh-api-services/issues/300)) ([ec6a7ac](https://github.com/ovh-ux/ovh-api-services/commit/ec6a7ac541ca9cab1177b92014a2e6c3a6435ac6))
+
+
+
 # [9.46.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.45.0...v9.46.0) (2020-06-16)
 
 
