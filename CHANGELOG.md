@@ -1,10 +1,3 @@
-# [9.47.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.46.0...v9.47.0) (2020-07-02)
-
-
-### Features
-
-* **cloud.project.training:** add training engine endpoints ([#266](https://github.com/ovh-ux/ovh-api-services/issues/???)) ([84e7f78](https://github.com/ovh-ux/ovh-api-services/commit/a423f28800ee4ab8ecc2ab191f05da77ceb633e5))
-
 # [9.46.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.45.0...v9.46.0) (2020-06-16)
 
 
