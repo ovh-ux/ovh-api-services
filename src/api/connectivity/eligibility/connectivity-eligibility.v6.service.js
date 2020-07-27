@@ -42,10 +42,11 @@ angular.module('ovh-api-services').service('OvhApiConnectivityEligibilityV6', ($
 
   eligibility.testBuilding = function ($scope, opts) {
     const url = '/connectivity/eligibility/test/building';
+    const pollerId = opts.index ? `${$scope.$id}${opts.index}` : $scope.$id;
 
     $scope.$on('$destroy', () => {
       Poller.kill({
-        scope: $scope.$id,
+        scope: pollerId,
       });
     });
 
@@ -61,7 +62,7 @@ angular.module('ovh-api-services').service('OvhApiConnectivityEligibilityV6', ($
             return elem.status === 'error' || elem.status === 'ok';
           },
         },
-        scope: $scope.$id,
+        scope: pollerId,
         method: 'POST',
         retryMaxAttempts: 3,
       },
