@@ -1,3 +1,12 @@
+# [9.48.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.47.0...v9.48.0) (2020-07-27)
+
+
+### Features
+
+* **connectivity.eligibility:** update call test building endpoint ([#299](https://github.com/ovh-ux/ovh-api-services/issues/299)) ([b6f711c](https://github.com/ovh-ux/ovh-api-services/commit/b6f711c60e878ee349792b0a2a0ca3eb2a306b45))
+
+
+
 # [9.47.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.46.0...v9.47.0) (2020-07-24)
 
 
