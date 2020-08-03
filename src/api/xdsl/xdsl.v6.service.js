@@ -1,4 +1,4 @@
-angular.module('ovh-api-services').service('OvhApiXdslV6', ($resource, OvhApiXdsl, OvhApiTelecomSidebar) => {
+angular.module('ovh-api-services').service('OvhApiXdslV6', ($resource, OvhApiXdsl, OvhApiTelecomSidebar, Poller) => {
   const interceptor = {
     response(response) {
       OvhApiTelecomSidebar.resetCache();
@@ -7,7 +7,7 @@ angular.module('ovh-api-services').service('OvhApiXdslV6', ($resource, OvhApiXds
     },
   };
 
-  return $resource(
+  const xdsl = $resource(
     '/xdsl/:xdslId', {
       xdslId: '@id',
     }, {
@@ -82,6 +82,38 @@ angular.module('ovh-api-services').service('OvhApiXdslV6', ($resource, OvhApiXds
         method: 'POST',
         url: '/xdsl/:xdslId/applyTemplateToModem',
       },
+      orderMeeting: {
+        method: 'POST',
+        url: '/xdsl/:xdslId/orderMeeting',
+        interceptor,
+      },
     },
   );
+
+  xdsl.searchOrderMeetings = function ($scope, opts) {
+    const url = `/xdsl/${opts.serviceName}/searchOrderMeetings`;
+
+    $scope.$on('$destroy', () => {
+      Poller.kill({
+        scope: $scope.$id,
+      });
+    });
+
+    return Poller.poll(
+      url,
+      null,
+      {
+        successRule: {
+          status(elem) {
+            return elem.status === 'error' || elem.status === 'ok';
+          },
+        },
+        scope: $scope.$id,
+        method: 'POST',
+        retryMaxAttempts: 3,
+      },
+    );
+  };
+
+  return xdsl;
 });
