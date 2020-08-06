@@ -1,3 +1,12 @@
+# [9.50.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.49.0...v9.50.0) (2020-08-06)
+
+
+### Features
+
+* **xdsl:** add both orderMeeting and searchOrderMeetings actions ([#302](https://github.com/ovh-ux/ovh-api-services/issues/302)) ([f090e72](https://github.com/ovh-ux/ovh-api-services/commit/f090e72ead7d2b68e9f8713b695f9571db7c0a77))
+
+
+
 # [9.49.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.48.0...v9.49.0) (2020-08-06)
 
 
