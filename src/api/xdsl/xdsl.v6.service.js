@@ -10,6 +10,7 @@ angular.module('ovh-api-services').service('OvhApiXdslV6', ($resource, OvhApiXds
   const xdsl = $resource(
     '/xdsl/:xdslId', {
       xdslId: '@id',
+      serviceName: '@serviceName',
     }, {
       query: {
         method: 'GET',
@@ -84,7 +85,7 @@ angular.module('ovh-api-services').service('OvhApiXdslV6', ($resource, OvhApiXds
       },
       orderMeeting: {
         method: 'POST',
-        url: '/xdsl/:xdslId/orderMeeting',
+        url: '/xdsl/:serviceName/orderMeeting',
         interceptor,
       },
     },
