@@ -1,3 +1,12 @@
+# [9.49.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.48.0...v9.49.0) (2020-08-06)
+
+
+### Features
+
+* **cloud.project.training:** add training job logs ([#303](https://github.com/ovh-ux/ovh-api-services/issues/303)) ([ee7f2f2](https://github.com/ovh-ux/ovh-api-services/commit/ee7f2f2d94232c448f5b2251cc80959fd4ac51a7))
+
+
+
 # [9.48.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.47.0...v9.48.0) (2020-07-27)
 
 
