@@ -8,4 +8,8 @@ angular
       method: 'POST',
       url: '/cloud/project/:serviceName/ai/training/job/:jobId/kill',
     },
+    logs: {
+      method: 'GET',
+      url: '/cloud/project/:serviceName/ai/training/job/:jobId/logs',
+    },
   }));
