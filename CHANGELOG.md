@@ -1,3 +1,13 @@
+# [9.51.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.50.0...v9.51.0) (2020-08-12)
+
+
+### Features
+
+* **cloud.project.serving:** add serving backend capability ([6f3907d](https://github.com/ovh-ux/ovh-api-services/commit/6f3907d60202c028ce48cdd462b16a36cc36997d))
+* **cloud.project.serving:** add serving framework capability ([3c87f1b](https://github.com/ovh-ux/ovh-api-services/commit/3c87f1bfa25d0e75a30322040a5e81d68159af56))
+
+
+
 # [9.50.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.49.0...v9.50.0) (2020-08-06)
 
 
