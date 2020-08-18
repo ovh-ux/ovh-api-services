@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiLicenseOfficeV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiLicenseOfficeV6');
   const queryCache = $cacheFactory('OvhApiLicenseOfficeV6Query');

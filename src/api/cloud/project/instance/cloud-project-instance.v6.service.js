@@ -76,7 +76,6 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectInstanceV6', ($res
     },
   });
 
-
   // These methods were been kept to maintain compatibility with the previous method to reset cache.
 
   instancesResource.resetAllCache = function () {

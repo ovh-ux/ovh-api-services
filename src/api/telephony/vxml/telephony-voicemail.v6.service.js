@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiTelephonyVxmlV6', ($resource) => $resource('/telephony/:billingAccount/vxml/:serviceName', {
   billingAccount: '@billingAccount',
   serviceName: '@serviceName',

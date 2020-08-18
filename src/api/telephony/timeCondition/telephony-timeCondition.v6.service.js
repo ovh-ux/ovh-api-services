@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiTelephonyTimeConditionV6', ($resource, OvhApiTelephonyTimeCondition) => {
   const interceptor = {
     response(response) {

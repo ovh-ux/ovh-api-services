@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiCloudV6', ($resource, OvhApiCloudProjectV6, OvhApiVrack) => {
   const interceptor = {
     response(response) {

@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiPackXdslHostedEmail', ($injector, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiPackXdslHostedEmail');
 

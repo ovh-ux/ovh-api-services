@@ -4,7 +4,6 @@ import sortBy from 'lodash/sortBy';
 angular.module('ovh-api-services').service('OvhApiCloudProjectImageV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiCloudProjectImageV6');
 
-
   // @todo: go to service
   // /!\ tests are sequentials!
   // If distrib have specific logo (ex: windows), put it before the generic one

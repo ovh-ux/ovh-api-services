@@ -4,7 +4,6 @@ angular.module('ovh-api-services')
     ($injector, $cacheFactory, Poller) => {
       const cache = $cacheFactory('deskaas');
 
-
       return {
         v6() {
           return $injector.get('OvhApiDeskaasV6');
