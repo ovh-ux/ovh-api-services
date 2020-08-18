@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiVrackIpLoadBalancingV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiVrackIpLoadBalancingV6');
   const queryCache = $cacheFactory('OvhApiVrackIpLoadBalancingV6Query');

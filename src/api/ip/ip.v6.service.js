@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiIpV6', ($resource, $cacheFactory) => {
   const cache = $cacheFactory('OvhApiIpV6');
   const queryCache = $cacheFactory('OvhApiIpV6Query');

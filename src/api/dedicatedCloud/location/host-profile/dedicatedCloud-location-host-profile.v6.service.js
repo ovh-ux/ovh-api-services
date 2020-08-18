@@ -2,7 +2,6 @@ angular.module('ovh-api-services').service('OvhApiDedicatedCloudLocationHostProf
   const queryCache = $cacheFactory('OvhApiDedicatedCloudLocationHostProfileV6Query');
   const cache = $cacheFactory('OvhApiDedicatedCloudLocationHostProfileV6');
 
-
   const locationResource = $resource('/dedicatedCloud/location/:pccZone/hostProfile/:id', {
     pccZone: '@pccZone',
     id: '@id',

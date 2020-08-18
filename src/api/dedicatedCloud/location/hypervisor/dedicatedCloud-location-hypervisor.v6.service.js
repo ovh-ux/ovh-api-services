@@ -2,7 +2,6 @@ angular.module('ovh-api-services').service('OvhApiDedicatedCloudLocationHypervis
   const queryCache = $cacheFactory('OvhApiDedicatedCloudLocationHypervisorV6Query');
   const cache = $cacheFactory('OvhApiDedicatedCloudLocationHypervisorV6');
 
-
   const locationResource = $resource('/dedicatedCloud/location/:pccZone/hypervisor/:id', {
     pccZone: '@pccZone',
     id: '@id',

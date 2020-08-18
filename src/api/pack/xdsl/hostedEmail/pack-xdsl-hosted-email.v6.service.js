@@ -1,4 +1,3 @@
-
 angular.module('ovh-api-services').service('OvhApiPackXdslHostedEmailV6', ($resource, OvhApiPackXdslHostedEmail) => {
   const interceptor = {
     response(response) {
