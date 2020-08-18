@@ -1,3 +1,12 @@
+## [9.51.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.51.0...v9.51.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* **deps:** add some resolutions ([22612d3](https://github.com/ovh-ux/ovh-api-services/commit/22612d33d8acd1fac85fc527bbda8cc5d12ddec5))
+
+
+
 # [9.51.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.50.0...v9.51.0) (2020-08-12)
 
 
