@@ -52,5 +52,9 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "angular": "^1.7.8",
     "angular-resource": "^1.7.8"
+  },
+  "resolutions": {
+    "minimist": "^1.2.3",
+    "kind-of": "^6.0.3"
   }
 }
