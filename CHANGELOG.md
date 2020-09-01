@@ -1,3 +1,17 @@
+# [10.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.51.1...v10.0.0) (2020-09-01)
+
+
+### Code Refactoring
+
+* **dbaas.logs:** remove deprecated accounting aapi ([#306](https://github.com/ovh-ux/ovh-api-services/issues/306)) ([5b9ee5c](https://github.com/ovh-ux/ovh-api-services/commit/5b9ee5c9096dfcaacc830649e2269edc102e7d52))
+
+
+### BREAKING CHANGES
+
+* **dbaas.logs:** `OvhApiDbaasLogsAccounting` is removed and will no longer be accessible
+
+
+
 ## [9.51.1](https://github.com/ovh-ux/ovh-api-services/compare/v9.51.0...v9.51.1) (2020-08-18)
 
 
