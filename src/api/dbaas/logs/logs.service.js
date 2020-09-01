@@ -8,9 +8,6 @@ angular.module('ovh-api-services').service('OvhApiDbaasLogs', ($injector) => ({
   Aapi() {
     return $injector.get('OvhApiDbaasLogsAapi');
   },
-  Accounting() {
-    return $injector.get('OvhApiDbaasLogsAccounting');
-  },
   Cluster() {
     return $injector.get('OvhApiDbaasLogsCluster');
   },
