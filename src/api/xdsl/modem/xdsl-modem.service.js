@@ -57,5 +57,8 @@ angular.module('ovh-api-services').service('OvhApiXdslModem', ($injector, $cache
       return $injector.get('OvhApiXdslModemUpnp');
     },
     cache,
+    AvailableACSBackend() {
+      return $injector.get('OvhApiXdslModemAvailableACSBackend');
+    },
   };
 });
