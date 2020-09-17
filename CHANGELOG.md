@@ -1,3 +1,14 @@
+# [10.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v10.0.0...v10.1.0) (2020-09-17)
+
+
+### Features
+
+* **cloud.project.serving:** add serving features ([#311](https://github.com/ovh-ux/ovh-api-services/issues/311)) ([5e52862](https://github.com/ovh-ux/ovh-api-services/commit/5e52862da701c9156bdbc9ab256dec987a282b40))
+* **cloud.project.training:** add training region GPU endpoint ([#310](https://github.com/ovh-ux/ovh-api-services/issues/310)) ([cdd3244](https://github.com/ovh-ux/ovh-api-services/commit/cdd324470a30ffa24c1ae72afaa1493d1d5bb5d2))
+* **xdsl.modem:** add endpoint to retrieve available acs backend ([#309](https://github.com/ovh-ux/ovh-api-services/issues/309)) ([9fa2511](https://github.com/ovh-ux/ovh-api-services/commit/9fa2511d8d71d848fadd5353929b86fb88375ad6))
+
+
+
 # [10.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v9.51.1...v10.0.0) (2020-09-01)
 
 
