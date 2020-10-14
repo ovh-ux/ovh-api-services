@@ -12,6 +12,11 @@ angular.module('ovh-api-services').service('OvhApiPackXdslMoveV6', ($resource, P
       url: '/pack/xdsl/:packName/addressMove/moveOffer',
       isArray: false,
     },
+    servicesToDelete: {
+      method: 'POST',
+      isArray: true,
+      url: '/pack/xdsl/:packName/addressMove/servicesToDelete',
+    },
   });
 
   move.pollElligibility = function ($scope, opts) {
