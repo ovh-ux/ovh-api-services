@@ -1,3 +1,12 @@
+# [10.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v10.1.0...v10.2.0) (2020-10-15)
+
+
+### Features
+
+* **pack.xdsl.move:** add endpoint for service to delete ([#313](https://github.com/ovh-ux/ovh-api-services/issues/313)) ([3a0de00](https://github.com/ovh-ux/ovh-api-services/commit/3a0de00a0fd76a386ed903d4e5dfa5271e82266f))
+
+
+
 # [10.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v10.0.0...v10.1.0) (2020-09-17)
 
 
