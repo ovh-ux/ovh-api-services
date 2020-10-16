@@ -1,3 +1,22 @@
+# [11.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v10.2.0...v11.0.0) (2020-10-16)
+
+
+### Features
+
+* **cloud.project:** remove io stream routes ([#307](https://github.com/ovh-ux/ovh-api-services/issues/307)) ([e03b2dc](https://github.com/ovh-ux/ovh-api-services/commit/e03b2dc56c40034c4fed4c472a6f5e8feffc28b9))
+* **cloud.project.ai.training:** remove data and add registryId parameter ([#314](https://github.com/ovh-ux/ovh-api-services/issues/314)) ([25d1aed](https://github.com/ovh-ux/ovh-api-services/commit/25d1aedca5303b0d6873ee8ac6d790bcdfad4b26))
+
+
+### BREAKING CHANGES
+
+* **cloud.project.ai.training:** remove `OvhApiCloudProjectAiTrainingData` service
+  remove `Data` property from `OvhApiCloudProjectAiTraining` service
+* **cloud.project:** OvhApiCloudProjectIo and sub services are removed
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 # [10.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v10.1.0...v10.2.0) (2020-10-15)
 
 
