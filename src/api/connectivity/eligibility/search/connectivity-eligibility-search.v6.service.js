@@ -1,13 +1,33 @@
 angular.module('ovh-api-services').service('OvhApiConnectivityEligibilitySearchV6', ($resource, OvhApiConnectivityEligibilitySearch, Poller) => {
-  const eligibilitySearch = $resource('/connectivity/eligibility/search', {
-  }, {
-    buildingDetails: {
-      url: '/connectivity/eligibility/search/buildingDetails',
-      method: 'POST',
-      isArray: false,
-      cache: OvhApiConnectivityEligibilitySearch.cache,
-    },
-  });
+  const eligibilitySearch = $resource('/connectivity/eligibility/search');
+
+  eligibilitySearch.getBuildingDetails = function ($scope, opts) {
+    const url = '/connectivity/eligibility/search/buildingDetails';
+
+    $scope.$on('$destroy', () => {
+      Poller.kill({
+        scope: $scope.$id,
+      });
+    });
+
+    return Poller.poll(
+      url,
+      null,
+      {
+        postData: {
+          building: opts.building,
+        },
+        successRule: {
+          status(elem) {
+            return elem.status === 'error' || elem.status === 'ok';
+          },
+        },
+        scope: $scope.$id,
+        method: 'POST',
+        retryMaxAttempts: 3,
+      },
+    );
+  };
 
   eligibilitySearch.searchCities = function ($scope, opts) {
     const url = '/connectivity/eligibility/search/cities';
