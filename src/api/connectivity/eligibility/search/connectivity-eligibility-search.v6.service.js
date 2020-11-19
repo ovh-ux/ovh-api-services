@@ -1,7 +1,15 @@
 angular.module('ovh-api-services').service('OvhApiConnectivityEligibilitySearchV6', ($resource, OvhApiConnectivityEligibilitySearch, Poller) => {
-  const eligibilitySearch = $resource('/connectivity/eligibility/search');
+  const eligibilitySearch = $resource('/connectivity/eligibility/search', {
+  }, {
+    buildingDetails: {
+      url: '/connectivity/eligibility/search/buildingDetails',
+      method: 'POST',
+      isArray: false,
+      cache: OvhApiConnectivityEligibilitySearch.cache,
+    },
+  });
 
-  eligibilitySearch.getBuildingDetails = function ($scope, opts) {
+  eligibilitySearch.pollerBuildingDetails = function ($scope, opts) {
     const url = '/connectivity/eligibility/search/buildingDetails';
 
     $scope.$on('$destroy', () => {
