@@ -1,3 +1,12 @@
+## [11.0.1](https://github.com/ovh-ux/ovh-api-services/compare/v11.0.0...v11.0.1) (2020-11-20)
+
+
+### Bug Fixes
+
+* **connectivity.eligibility:** rework on building details call api ([#317](https://github.com/ovh-ux/ovh-api-services/issues/317)) ([fb79d88](https://github.com/ovh-ux/ovh-api-services/commit/fb79d88174a831010c25afb9fa3edd0add036e84))
+
+
+
 # [11.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v10.2.0...v11.0.0) (2020-10-16)
 
 

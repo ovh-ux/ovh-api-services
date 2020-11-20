@@ -1,6 +1,6 @@
 {
   "name": "ovh-api-services",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Contains all AngularJS $resource for OVHcloud API.",
   "keywords": [
     "angularjs",
