@@ -2,8 +2,7 @@
 
 > Contains all AngularJS $resource for the OVHcloud API.
 
-[![Downloads](https://badgen.net/npm/dt/ovh-api-services)](https://npmjs.com/package/ovh-api-services) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
-
+[![Downloads](https://badgen.net/npm/dt/ovh-api-services)](https://npmjs.com/package/ovh-api-services) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-api-services)](https://www.npmjs.com/package/ovh-api-services?activeTab=dependencies)
 
 ## Install
 
