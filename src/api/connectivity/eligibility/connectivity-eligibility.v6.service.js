@@ -98,5 +98,65 @@ angular.module('ovh-api-services').service('OvhApiConnectivityEligibilityV6', ($
     );
   };
 
+  // Only for partners
+  eligibility.testAddressPartners = function ($scope, opts) {
+    const url = '/connectivity/eligibility/test/address/partners';
+
+    $scope.$on('$destroy', () => {
+      Poller.kill({
+        scope: $scope.$id,
+      });
+    });
+
+    return Poller.poll(
+      url,
+      null,
+      {
+        postData: {
+          streetCode: opts.streetCode,
+          streetNumber: opts.streetNumber,
+        },
+        successRule: {
+          status(elem) {
+            return elem.status === 'error' || elem.status === 'ok';
+          },
+        },
+        scope: $scope.$id,
+        method: 'POST',
+        retryMaxAttempts: 3,
+      },
+    );
+  };
+
+  // Only for partners
+  eligibility.testLinePartners = function ($scope, opts) {
+    const url = '/connectivity/eligibility/test/line/partners';
+
+    $scope.$on('$destroy', () => {
+      Poller.kill({
+        scope: $scope.$id,
+      });
+    });
+
+    return Poller.poll(
+      url,
+      null,
+      {
+        postData: {
+          lineNumber: opts.lineNumber,
+          status: opts.status,
+        },
+        successRule: {
+          status(elem) {
+            return elem.status === 'error' || elem.status === 'ok';
+          },
+        },
+        scope: $scope.$id,
+        method: 'POST',
+        retryMaxAttempts: 3,
+      },
+    );
+  };
+
   return eligibility;
 });
