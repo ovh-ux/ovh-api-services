@@ -1,3 +1,13 @@
+# [11.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v11.0.1...v11.1.0) (2021-04-07)
+
+
+### Features
+
+* **cloud.project.ai.training:** add capability resource service ([#319](https://github.com/ovh-ux/ovh-api-services/issues/319)) ([19c2907](https://github.com/ovh-ux/ovh-api-services/commit/19c2907b3edbd93b69dc56b5f5f52c91e83bb028))
+* **connectivity:** add eligibility endpoints for partners ([#321](https://github.com/ovh-ux/ovh-api-services/issues/321)) ([f09c816](https://github.com/ovh-ux/ovh-api-services/commit/f09c8167849b68fdea0c58ce95b5d40c8265d07a))
+
+
+
 ## [11.0.1](https://github.com/ovh-ux/ovh-api-services/compare/v11.0.0...v11.0.1) (2020-11-20)
 
 
