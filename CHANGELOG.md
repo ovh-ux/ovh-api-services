@@ -1,3 +1,12 @@
+## [11.1.1](https://github.com/ovh-ux/ovh-api-services/compare/v11.1.0...v11.1.1) (2021-04-27)
+
+
+### Bug Fixes
+
+* **cloud.project.ai.training:** add missing resource routing ([#322](https://github.com/ovh-ux/ovh-api-services/issues/322)) ([47b66ea](https://github.com/ovh-ux/ovh-api-services/commit/47b66ea93a3aaa5c2b4fac1b09d419be5534736d))
+
+
+
 # [11.1.0](https://github.com/ovh-ux/ovh-api-services/compare/v11.0.1...v11.1.0) (2021-04-07)
 
 
