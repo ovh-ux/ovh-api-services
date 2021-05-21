@@ -10,7 +10,7 @@ angular
     },
     stop: {
       method: 'PUT',
-      url: '/cloud/project/:serviceName/ai/notebook/:notebookId/start',
+      url: '/cloud/project/:serviceName/ai/notebook/:notebookId/stop',
     },
     log: {
       method: 'GET',
