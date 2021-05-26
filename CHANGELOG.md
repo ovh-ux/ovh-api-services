@@ -1,3 +1,12 @@
+# [11.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v11.1.1...v11.2.0) (2021-05-26)
+
+
+### Features
+
+* **cloud.ai:** rework ai training routes + notebook routes ([#324](https://github.com/ovh-ux/ovh-api-services/issues/324)) ([1040f41](https://github.com/ovh-ux/ovh-api-services/commit/1040f41d428826d9ff0203323e3ef1b06e0e5d9a))
+
+
+
 ## [11.1.1](https://github.com/ovh-ux/ovh-api-services/compare/v11.1.0...v11.1.1) (2021-04-27)
 
 
