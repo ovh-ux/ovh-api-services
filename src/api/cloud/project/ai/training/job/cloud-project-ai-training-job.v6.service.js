@@ -8,10 +8,6 @@ angular
       method: 'PUT',
       url: '/cloud/project/:serviceName/ai/job/:jobId/kill',
     },
-    logs: {
-      method: 'GET',
-      url: '/cloud/project/:serviceName/ai/job/:jobId/logs',
-    },
     log: {
       method: 'GET',
       url: '/cloud/project/:serviceName/ai/job/:jobId/log',
