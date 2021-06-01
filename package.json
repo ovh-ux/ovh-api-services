@@ -30,7 +30,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "lodash": "^4.17.20"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
