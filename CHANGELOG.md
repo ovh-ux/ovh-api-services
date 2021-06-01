@@ -1,3 +1,24 @@
+# [12.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v11.2.0...v12.0.0) (2021-06-01)
+
+
+### Bug Fixes
+
+* **cloud.project.ai.job:** remove non-existing endpoint ([#326](https://github.com/ovh-ux/ovh-api-services/issues/326)) ([b73c006](https://github.com/ovh-ux/ovh-api-services/commit/b73c006b2a28bbe98a96584e12a4198809f70f86))
+
+
+### Code Refactoring
+
+* **telephony:** remove unused aapi route ([#316](https://github.com/ovh-ux/ovh-api-services/issues/316)) ([3a4e71f](https://github.com/ovh-ux/ovh-api-services/commit/3a4e71f37c78160b5919c6f9f22fc34cabd47666))
+
+
+### BREAKING CHANGES
+
+* **telephony:** OvhApiTelephonyLineAapi is no longer defined
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 # [11.2.0](https://github.com/ovh-ux/ovh-api-services/compare/v11.1.1...v11.2.0) (2021-05-26)
 
 
