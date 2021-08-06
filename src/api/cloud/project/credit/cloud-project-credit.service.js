@@ -13,9 +13,6 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectCredit', ($injecto
     v6() {
       return $injector.get('OvhApiCloudProjectCreditV6');
     },
-    Aapi() {
-      return $injector.get('OvhApiCloudProjectCreditAapi');
-    },
     resetCache() {
       cache.v6.query.removeAll();
       cache.v6.get.removeAll();

@@ -5,9 +5,6 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectInstance', ($injec
     v6() {
       return $injector.get('OvhApiCloudProjectInstanceV6');
     },
-    Aapi() {
-      return $injector.get('OvhApiCloudProjectInstanceAapi');
-    },
     Interface() {
       return $injector.get('OvhApiCloudProjectInstanceInterface');
     },
