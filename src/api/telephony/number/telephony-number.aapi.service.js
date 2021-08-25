@@ -7,13 +7,6 @@ angular.module('ovh-api-services').service('OvhApiTelephonyNumberAapi', ($resour
     cache: OvhApiTelephonyNumber.cache,
     serviceType: 'aapi',
   },
-  all: {
-    method: 'GET',
-    url: '/telephony/numbers/all',
-    isArray: true,
-    cache: OvhApiTelephonyNumber.cache,
-    serviceType: 'aapi',
-  },
   prices: {
     method: 'GET',
     url: '/telephony/:billingAccount/number/:country/prices',

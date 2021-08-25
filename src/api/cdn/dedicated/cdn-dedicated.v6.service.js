@@ -25,10 +25,4 @@ angular.module('ovh-api-services').service('OvhApiCdnDedicatedV6', ($resource, $
     serviceType: 'aapi',
     isArray: false,
   },
-  swsGetAllBackends: {
-    method: 'GET',
-    url: '/sws/dedicated/cdn/:serviceName/backends',
-    serviceType: 'aapi',
-    isArray: false,
-  },
 }));

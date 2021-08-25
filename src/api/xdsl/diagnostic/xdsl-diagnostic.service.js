@@ -5,9 +5,6 @@ angular.module('ovh-api-services').service('OvhApiXdslDiagnostic', ($injector, $
     v6() {
       return $injector.get('OvhApiXdslDiagnosticV6');
     },
-    Aapi() {
-      return $injector.get('OvhApiXdslDiagnosticAapi');
-    },
     Lines() {
       return $injector.get('OvhApiXdslDiagnosticLines');
     },

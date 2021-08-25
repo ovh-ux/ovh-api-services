@@ -7,8 +7,5 @@ angular.module('ovh-api-services').service('OvhApiTelecom', ($injector, $cacheFa
     HomeDashboard() {
       return $injector.get('OvhApiTelecomHomeDashboard');
     },
-    Preferences() {
-      return $injector.get('OvhApiTelecomPreferences');
-    },
   };
 });
