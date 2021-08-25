@@ -1,3 +1,19 @@
+# [13.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v12.0.0...v13.0.0) (2021-08-25)
+
+
+### Code Refactoring
+
+* remove unused routes ([#328](https://github.com/ovh-ux/ovh-api-services/issues/328)) ([1e51f95](https://github.com/ovh-ux/ovh-api-services/commit/1e51f951ba031fc7d0716fe1d0f9ca3ed848ae0e))
+
+
+### BREAKING CHANGES
+
+* Routes will no longer be available
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 # [12.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v11.2.0...v12.0.0) (2021-06-01)
 
 
