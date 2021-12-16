@@ -1,3 +1,24 @@
+# [14.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v13.0.0...v14.0.0) (2021-12-16)
+
+
+### Code Refactoring
+
+* remove unused services ([#330](https://github.com/ovh-ux/ovh-api-services/issues/330)) ([28b21c9](https://github.com/ovh-ux/ovh-api-services/commit/28b21c904913251ce532e4ea81a849c63a462d00))
+
+
+### BREAKING CHANGES
+
+* remove deprecated/unused services.
+
+- `OvhApiSiteBuilders`
+- `OvhApiTelecomHomeDashboard`
+- `OvhApiTelecomSidebar`
+- `OvhApiTelecom`
+
+Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
+
+
+
 # [13.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v12.0.0...v13.0.0) (2021-08-25)
 
 
