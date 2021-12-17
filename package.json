@@ -35,7 +35,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-angular": "^11.0.0",
-    "@ovh-ux/component-rollup-config": "^7.2.1",
+    "@ovh-ux/component-rollup-config": "^11.0.1",
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-formatter-pretty": "^4.0.0",
