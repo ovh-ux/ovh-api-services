@@ -15,7 +15,6 @@
 - `OvhApiTelecomSidebar`
 - `OvhApiTelecom`
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 
@@ -31,7 +30,6 @@ Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 * Routes will no longer be available
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 
@@ -52,7 +50,6 @@ Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 * **telephony:** OvhApiTelephonyLineAapi is no longer defined
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 
@@ -108,7 +105,6 @@ Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
   remove `Data` property from `OvhApiCloudProjectAiTraining` service
 * **cloud.project:** OvhApiCloudProjectIo and sub services are removed
 
-Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 
@@ -2277,6 +2273,3 @@ Signed-off-by: Marie JONES <marie.jones@corp.ovh.com>
 
 
 ## 1.1.1 (2017-07-06)
-
-
-
