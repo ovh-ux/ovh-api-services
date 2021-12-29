@@ -1,3 +1,12 @@
+## [14.0.1](https://github.com/ovh-ux/ovh-api-services/compare/v14.0.0...v14.0.1) (2021-12-29)
+
+
+### Bug Fixes
+
+* **telecom.sidebar:** restore `OvhApiTelecomSidebar` service ([#333](https://github.com/ovh-ux/ovh-api-services/issues/333)) ([44c2acd](https://github.com/ovh-ux/ovh-api-services/commit/44c2acd9b6693d68ede283712894538f1ebd4566))
+
+
+
 # [14.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v13.0.0...v14.0.0) (2021-12-16)
 
 
