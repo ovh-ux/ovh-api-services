@@ -5,9 +5,6 @@ angular.module('ovh-api-services').service('OvhApiXdslLines', ($injector, $cache
     v6() {
       return $injector.get('OvhApiXdslLinesV6');
     },
-    v7() {
-      return $injector.get('OvhApiXdslLinesV7');
-    },
     resetCache: cache.removeAll,
     cache,
   };

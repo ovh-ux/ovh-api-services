@@ -68,9 +68,6 @@ angular.module('ovh-api-services').service('OvhApiMe', ($injector) => ({
   Notification() {
     return $injector.get('OvhApiMeNotification');
   },
-  Deposit() {
-    return $injector.get('OvhApiMeDeposit');
-  },
   Payment() {
     return $injector.get('OvhApiMePayment');
   },

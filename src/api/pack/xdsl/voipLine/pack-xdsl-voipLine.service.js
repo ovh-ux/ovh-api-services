@@ -8,9 +8,6 @@ angular.module('ovh-api-services').service('OvhApiPackXdslVoipLine', ($injector,
     v6() {
       return $injector.get('OvhApiPackXdslVoipLineV6');
     },
-    v7() {
-      return $injector.get('OvhApiPackXdslVoipLineV7');
-    },
     resetCache: cache.removeAll,
     cache,
   };

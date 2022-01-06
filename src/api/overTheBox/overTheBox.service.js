@@ -8,9 +8,6 @@ angular.module('ovh-api-services').service('OvhApiOverTheBox', ($injector, $cach
     Aapi() {
       return $injector.get('OvhApiOverTheBoxAapi');
     },
-    v7() {
-      return $injector.get('OvhApiOverTheBoxV7');
-    },
     Device() {
       return $injector.get('OvhApiOverTheBoxDevice');
     },
