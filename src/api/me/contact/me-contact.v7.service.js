@@ -1,8 +1,8 @@
-angular.module('ovh-api-services').service('OvhApiMeContactV7', ($resource, $cacheFactory, apiv7) => {
+angular.module('ovh-api-services').service('OvhApiMeContactV7', ($resource, $cacheFactory) => {
   const queryCache = $cacheFactory('OvhApiMeContactv7Query');
   const otherCache = $cacheFactory('OvhApiMeContactV7');
 
-  const userContactResource = apiv7('/me/contact/:contactId', {
+  const userContactResource = $resource('/me/contact/:contactId', {
     contactId: '@contactId',
   }, {
     query: {
@@ -10,7 +10,19 @@ angular.module('ovh-api-services').service('OvhApiMeContactV7', ($resource, $cac
       method: 'GET',
       cache: queryCache,
       isArray: true,
-      serviceType: 'apiV7',
+      serviceType: 'apiv6',
+      headers: {
+        'X-Pagination-Mode': 'CachedObjectList-Pages',
+        'X-Pagination-Size': '5000',
+      },
+      transformResponse(response, headers, httpCode) {
+        if (httpCode === 200) {
+          return angular.fromJson(response).map((value) => ({
+            value,
+          }));
+        }
+        return response;
+      },
     },
   });
 
