@@ -1,3 +1,12 @@
+## [14.0.3](https://github.com/ovh-ux/ovh-api-services/compare/v14.0.2...v14.0.3) (2022-06-02)
+
+
+### Bug Fixes
+
+* **me.contact:** remove apiv7 call ([#338](https://github.com/ovh-ux/ovh-api-services/issues/338)) ([1420030](https://github.com/ovh-ux/ovh-api-services/commit/14200309a01b45de2c7bda1459d606d000dcd10b))
+
+
+
 ## [14.0.2](https://github.com/ovh-ux/ovh-api-services/compare/v14.0.1...v14.0.2) (2022-03-25)
 
 
