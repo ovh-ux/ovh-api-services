@@ -1,3 +1,17 @@
+# [15.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v14.0.6...v15.0.0) (2022-07-07)
+
+
+### Code Refactoring
+
+* drop APIv7 support ([#334](https://github.com/ovh-ux/ovh-api-services/issues/334)) ([5aa574c](https://github.com/ovh-ux/ovh-api-services/commit/5aa574c5a88281db966cb8230f25caa9593b5264))
+
+
+### BREAKING CHANGES
+
+* drop APIv7 support
+
+
+
 ## [14.0.6](https://github.com/ovh-ux/ovh-api-services/compare/v14.0.5...v14.0.6) (2022-06-02)
 
 
