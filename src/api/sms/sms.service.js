@@ -8,9 +8,6 @@ angular.module('ovh-api-services').service('OvhApiSms', ($injector, $cacheFactor
     v6() {
       return $injector.get('OvhApiSmsV6');
     },
-    v7() {
-      return $injector.get('OvhApiSmsV7');
-    },
     Jobs() {
       return $injector.get('OvhApiSmsJobs');
     },

@@ -5,9 +5,6 @@ angular.module('ovh-api-services').service('OvhApiTelephony', ($injector) => ({
   Aapi() {
     return $injector.get('OvhApiTelephonyAapi');
   },
-  v7() {
-    return $injector.get('OvhApiTelephonyV7');
-  },
   AbbreviatedNumber() {
     return $injector.get('OvhApiTelephonyAbbreviatedNumber');
   },

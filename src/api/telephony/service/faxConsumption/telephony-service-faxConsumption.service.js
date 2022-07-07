@@ -2,7 +2,4 @@ angular.module('ovh-api-services').service('OvhApiTelephonyServiceFaxConsumption
   v6() {
     return $injector.get('OvhApiTelephonyServiceFaxConsumptionV6');
   },
-  v7() {
-    return $injector.get('OvhApiTelephonyServiceFaxConsumptionV7');
-  },
 }));

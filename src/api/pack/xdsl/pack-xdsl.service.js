@@ -8,9 +8,6 @@ angular.module('ovh-api-services').service('OvhApiPackXdsl', ($injector, $cacheF
     Aapi() {
       return $injector.get('OvhApiPackXdslAapi');
     },
-    v7() {
-      return $injector.get('OvhApiPackXdslV7');
-    },
     Task() {
       return $injector.get('OvhApiPackXdslTask');
     },

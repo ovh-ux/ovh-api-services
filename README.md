@@ -26,7 +26,6 @@ All services must return an [AngularJS $resource](https://docs.angularjs.org/api
 | Service   | Engine  | Library                                            |
 |-----------|---------|----------------------------------------------------|
 | `v6`      | APIv6   | n/a                                                |
-| `v7`      | APIv7   | [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] |
 | `Iceberg` | Iceberg | [@ovh-ux/ng-ovh-api-wrappers][ng-ovh-api-wrappers] |
 | `Aapi`    | 2API    | n/a                                                |
 
