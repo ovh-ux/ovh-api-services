@@ -38,9 +38,6 @@ angular.module('ovh-api-services').service('OvhApiMe', ($injector) => ({
   PaymentMethod() {
     return $injector.get('OvhApiMePaymentMethod');
   },
-  AvailableAutomaticPaymentMeans() {
-    return $injector.get('OvhApiMeAvailableAutomaticPaymentMeans');
-  },
   Document() {
     return $injector.get('OvhApiMeDocument');
   },
