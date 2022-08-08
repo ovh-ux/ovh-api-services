@@ -1,3 +1,7 @@
+# [16.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v15.0.0...v16.0.0) (2022-08-08)
+
+
+
 # [15.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v14.0.6...v15.0.0) (2022-07-07)
 
 
