@@ -1,3 +1,12 @@
+# [17.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v16.0.0...v17.0.0) (2022-10-03)
+
+
+### Features
+
+* **cloud.storage:** include errors in regions in response ([#341](https://github.com/ovh-ux/ovh-api-services/issues/341)) ([c29c04f](https://github.com/ovh-ux/ovh-api-services/commit/c29c04feb8eace07fa89a059de0f0d8379a9f747))
+
+
+
 # [16.0.0](https://github.com/ovh-ux/ovh-api-services/compare/v15.0.0...v16.0.0) (2022-08-08)
 
 
