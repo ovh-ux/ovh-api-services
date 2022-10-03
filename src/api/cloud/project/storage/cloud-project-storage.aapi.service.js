@@ -6,7 +6,7 @@ angular.module('ovh-api-services').service('OvhApiCloudProjectStorageAapi', ($re
       method: 'GET',
       serviceType: 'aapi',
       archive: '@archive',
-      isArray: true,
+      isArray: false,
     },
   });
 
